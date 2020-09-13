@@ -1,0 +1,8 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li>המדריך העברי ל-R</li>
+      after: |
+        <li><a href="https://sarid-ins.co.il" target="blank">בהוצאת מכון שריד</a></li>
