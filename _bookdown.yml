@@ -2,4 +2,4 @@ book_filename: "hebrewr"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "פרק "
+    chapter_name: "פרק: "
