@@ -1,0 +1,3 @@
+# מבחני השערות {#hypothesis-tests}
+
+TBD
