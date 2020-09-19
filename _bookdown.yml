@@ -3,3 +3,14 @@ delete_merged_file: true
 language:
   ui:
     chapter_name: "פרק: "
+rmd_files: [
+  "index.Rmd",
+  "base-R.Rmd",
+  "data-munging-tidyverse.Rmd",
+  "visualizations-ggplot2.Rmd",
+  "hypothesis-tests.Rmd",
+  "linear-regression.Rmd",
+  "advanced-models.Rmd",
+  "references.Rmd",
+  "about.Rmd"
+]
