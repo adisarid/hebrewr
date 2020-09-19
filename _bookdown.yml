@@ -14,3 +14,4 @@ rmd_files: [
   "references.Rmd",
   "about.Rmd"
 ]
+output_dir: "docs"

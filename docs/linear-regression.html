@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>פרק: 5 רגרסיה לינארית | המדריך העברי למשתמש ב-R</title>
+  <meta name="description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="פרק: 5 רגרסיה לינארית | המדריך העברי למשתמש ב-R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="פרק: 5 רגרסיה לינארית | המדריך העברי למשתמש ב-R" />
+  
+  <meta name="twitter:description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
+  
+
+<meta name="author" content="עדי שריד" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hypothesis-tests.html"/>
+<link rel="next" href="advanced-models.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li>המדריך העברי ל-R</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>הקדמה</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#למי-מיועד-הספר"><i class="fa fa-check"></i>למי מיועד הספר?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#למה-r-ולא-python"><i class="fa fa-check"></i>למה R ולא Python?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#מה-בספר"><i class="fa fa-check"></i>מה בספר?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>1</b> R כשפת תכנות - הבסיס (Base R)</a></li>
+<li class="chapter" data-level="2" data-path="data-munging-tidyverse.html"><a href="data-munging-tidyverse.html"><i class="fa fa-check"></i><b>2</b> הכנת הנתונים (שימוש ב-<code>tidyverse</code>)</a></li>
+<li class="chapter" data-level="3" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>3</b> ויז’ואליזציה עם <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>4</b> מבחני השערות</a></li>
+<li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> רגרסיה לינארית</a></li>
+<li class="chapter" data-level="6" data-path="advanced-models.html"><a href="advanced-models.html"><i class="fa fa-check"></i><b>6</b> מודלים מתקדמים</a></li>
+<li class="chapter" data-level="" data-path="ביבליוגרפיה.html"><a href="ביבליוגרפיה.html"><i class="fa fa-check"></i>ביבליוגרפיה</a></li>
+<li class="chapter" data-level="" data-path="על-הכותב.html"><a href="על-הכותב.html"><i class="fa fa-check"></i>על הכותב</a></li>
+<li class="divider"></li>
+<li><a href="https://sarid-ins.co.il" target="blank">בהוצאת מכון שריד</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">המדריך העברי למשתמש ב-R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-regression" class="section level1" number="5">
+<h1><span class="header-section-number">פרק: 5</span> רגרסיה לינארית</h1>
+<p>TBD</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hypothesis-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="advanced-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

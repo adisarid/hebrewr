@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>המדריך העברי למשתמש ב-R</title>
+  <meta name="description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="המדריך העברי למשתמש ב-R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="המדריך העברי למשתמש ב-R" />
+  
+  <meta name="twitter:description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
+  
+
+<meta name="author" content="עדי שריד" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="base-r.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li>המדריך העברי ל-R</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>הקדמה</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#למי-מיועד-הספר"><i class="fa fa-check"></i>למי מיועד הספר?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#למה-r-ולא-python"><i class="fa fa-check"></i>למה R ולא Python?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#מה-בספר"><i class="fa fa-check"></i>מה בספר?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>1</b> R כשפת תכנות - הבסיס (Base R)</a></li>
+<li class="chapter" data-level="2" data-path="data-munging-tidyverse.html"><a href="data-munging-tidyverse.html"><i class="fa fa-check"></i><b>2</b> הכנת הנתונים (שימוש ב-<code>tidyverse</code>)</a></li>
+<li class="chapter" data-level="3" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>3</b> ויז’ואליזציה עם <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>4</b> מבחני השערות</a></li>
+<li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> רגרסיה לינארית</a></li>
+<li class="chapter" data-level="6" data-path="advanced-models.html"><a href="advanced-models.html"><i class="fa fa-check"></i><b>6</b> מודלים מתקדמים</a></li>
+<li class="chapter" data-level="" data-path="ביבליוגרפיה.html"><a href="ביבליוגרפיה.html"><i class="fa fa-check"></i>ביבליוגרפיה</a></li>
+<li class="chapter" data-level="" data-path="על-הכותב.html"><a href="על-הכותב.html"><i class="fa fa-check"></i>על הכותב</a></li>
+<li class="divider"></li>
+<li><a href="https://sarid-ins.co.il" target="blank">בהוצאת מכון שריד</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">המדריך העברי למשתמש ב-R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">המדריך העברי למשתמש ב-R</h1>
+<p class="author"><em>עדי שריד</em></p>
+<p class="date"><em>גרסה 0.0.1 בתאריך 2020-09-19</em></p>
+</div>
+<div id="הקדמה" class="section level1 unnumbered" number="">
+<h1>הקדמה</h1>
+<p>R שפה נפלאה, היא התחילה כשפה סטטיסטית, וגם כיום זה השימוש המרכזי שלה. בפועל אפשר לעשות בה כמעט הכל. החל מניתוח נתונים ועד בניית אפליקציות ואוטומציות מורכבות. אצלנו בעסק (<a href="https://www.sarid-ins.co.il">מכון שריד</a>) אנחנו משתמשים ב-R לניתוח נתונים, הצגת תוצאות עם דשבורדים בזמן אמת, הפקת דוחות Power Point בלחיצת כפתור, אוטומציות של תהליכים שונים בעסק, ועוד הרבה - היא הפכה לכלי עבודה שימושי והחליפה הרבה מאוד מהדברים שהיינו עושים בעבר עם כלים אחרים.</p>
+<p>ללומדים את השפה יש מקורות רבים ומגוונים - ספרים, סרטוני YouTube, בלוגים, ועוד. העניין הוא שרוב המקורות שישנם כתובים באנגלית. זה מה שהביא אותי לכתוב את הספר הזה, ולעזור לקהל הקוראים שיותר נוח לו ללמוד R בעברית.</p>
+<p>התוכן שבספר שלפניכם מבוסס על מספר קורסים שלימדתי בשנים האחרונות, כולל הכשרות מקצועיות בחברות סטארטאפ, וקורסי לימוד לתואר ראשון שנתתי באוניברסיטה.</p>
+<div id="למי-מיועד-הספר" class="section level2 unnumbered" number="">
+<h2>למי מיועד הספר?</h2>
+<p>הספר מיועד לאנשים שמתחילים ללמוד את R, סטודנטים או כאלו שעוברים מכלי סטטיסטי אחר.</p>
+<p>הספר מתאים גם לכאלו שיודעים R ברמה בינונית ורוצים לחזק את הבסיס, או כאלו שרוצים להשתפשף בידיעות שלהם על החבילות שנלמדות בספר (כמו <code>tidyverse</code>).</p>
+<p>הספר אינו נועד להחליף ספרי תיאוריה סטטיסטית, הוא אינו מכסה תיאוריה סטטיסטית לעומק, אלא בעיקר מדגים כיצד ניתן לממש כלים סטטיסטיים שונים באמצעות R.</p>
+</div>
+<div id="למה-r-ולא-python" class="section level2 unnumbered" number="">
+<h2>למה R ולא Python?</h2>
+<p>כמו שמרמזת הכותרת, יש היום שתי שפות שמובילות בתחום ה-Data Science, הן R ו-Python. בנקודה הזו אין שחור ולבן, טוב יותר או פחות. אני עובד בשתי השפות, ולי באופן אישי יש העדפה חזקה לשימוש ב-R, פשוט כי היא מרגישה לי יותר טבעית, זה כנראה נגזרת של העובדה שזה מה שלמדתי בהתחלה, וזה מה שהתמקצעתי בו. בפועל בשתי השפות יש כלים רבים ושימושיים, ובכל הקשור במשימות של ניתוח נתונים, שתי השפות נותנות מענה טוב מאוד.</p>
+<p>מבין שתיהן Python יותר נפוצה משום שהיא נפוצה כשפת תכנות (באופן כללי), בעוד ש-R מוכוונת יותר לתחום הסטטיסטיקה. בפועל, שתיהן עושות את העבודה, וכדאי להתאים את השפה לצורך. לדוגמה R הרבה פעמים נוחה יותר לביצוע ניתוח נתונים, אבל ל-Python עשוי להיות יתרון במעבר ל-Production (הטמעה במערכות).</p>
+<p>הדיון של בחירה בשפה מסוימת צריך להיגזר מהמשימה הנדרשת, ההקשר העסקי, ועוד הרבה שיקולים אחרים. ככלל למי שמשתלב בתוך ארגון כדאי לדעת שיש ב-R חבילות שמאפשרות להפעיל גם קוד Python מתוך R (חבילת <code>reticulate</code>), שתאפשר להשתלב עם R גם בתוך ארגון שעובד מסורתית עם Python.</p>
+</div>
+<div id="מה-בספר" class="section level2 unnumbered" number="">
+<h2>מה בספר?</h2>
+<p>בפרק <a href="base-r.html#base-r">1</a> נלמד את הבסיס של R כשפת תכנות. הפרק מתייחס לחלקים ב-R שמגיעים בגרסה ה“ערומה ביותר” מה שמכונה גם Base R.</p>
+<p>בפרק <a href="data-munging-tidyverse.html#data-munging-tidyverse">2</a> נלמד את הבסיס של חבילות <code>tidyverse</code> ואיך הן מרחיבות את Base-R והופכות את הקוד שלנו ליותר קריא, ואת הכתיבה ליותר נוחה. אנחנו נתמקד בעיקר בשלבי הכנת הנתונים לקראת ניתוח, ואז בפרק <a href="ggplot2.html#ggplot2">3</a> נלמד על ויז’ואליזציות באמצעות חבילת <code>ggplot2</code>.</p>
+<p>לעולם הסטטיסטי ניכנס בפרק <a href="hypothesis-tests.html#hypothesis-tests">4</a> עם מבחני השערה, ובפרק <a href="linear-regression.html#linear-regression">5</a> עם רגרסיה לינארית.</p>
+<p>לאחר מכן נצלול קצת יותר לעומק עם מודלים מתקדמים מעולם ה-Data Science תוך שימוש בחבילת <code>tidymodels</code> בפרק <a href="advanced-models.html#advanced-models">6</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="base-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
