@@ -1,3 +1,7 @@
 # R כשפת תכנות - הבסיס (Base R) {#base-r}
 
-TBD
+כמו בכל שפת תכנות, ב-R יש
+
+```{r hello-world}
+cat('Hello World!')
+```

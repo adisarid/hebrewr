@@ -5,6 +5,7 @@ language:
     chapter_name: "פרק: "
 rmd_files: [
   "index.Rmd",
+  "introduction.Rmd",
   "base-R.Rmd",
   "data-munging-tidyverse.Rmd",
   "visualizations-ggplot2.Rmd",
