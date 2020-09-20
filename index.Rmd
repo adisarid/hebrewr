@@ -1,7 +1,7 @@
 ---
 title: "המדריך העברי למשתמש ב-R"
 author: "עדי שריד"
-date: "גרסה 0.0.1 בתאריך `r Sys.Date()`"
+date: "גרסה 0.0.1 בתאריך `r Sys.time()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

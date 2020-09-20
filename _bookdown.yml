@@ -2,7 +2,7 @@ book_filename: "hebrewr"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "פרק: "
+    chapter_name: "פרק "
 rmd_files: [
   "index.Rmd",
   "introduction.Rmd",
@@ -12,7 +12,6 @@ rmd_files: [
   "hypothesis-tests.Rmd",
   "linear-regression.Rmd",
   "advanced-models.Rmd",
-  "references.Rmd",
   "about.Rmd"
 ]
 output_dir: "docs"
