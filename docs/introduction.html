@@ -142,14 +142,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>2</b> בסיס השפה (Base R)</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="base-r.html"><a href="base-r.html#משתנים-ופעולות-אריתמטיות"><i class="fa fa-check"></i><b>2.1</b> משתנים ופעולות אריתמטיות</a></li>
+<li class="chapter" data-level="2.1" data-path="base-r.html"><a href="base-r.html#השמת-משתנים-פעולות-אריתמטיות-ופונקציות"><i class="fa fa-check"></i><b>2.1</b> השמת משתנים, פעולות אריתמטיות ופונקציות</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-munging-tidyverse.html"><a href="data-munging-tidyverse.html"><i class="fa fa-check"></i><b>3</b> הכנת הנתונים (שימוש ב-<code>tidyverse</code>)</a></li>
 <li class="chapter" data-level="4" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>4</b> ויז’ואליזציה עם <code>ggplot2</code></a></li>
 <li class="chapter" data-level="5" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>5</b> מבחני השערות</a></li>
 <li class="chapter" data-level="6" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>6</b> רגרסיה לינארית</a></li>
 <li class="chapter" data-level="7" data-path="advanced-models.html"><a href="advanced-models.html"><i class="fa fa-check"></i><b>7</b> מודלים מתקדמים</a></li>
-<li class="chapter" data-level="" data-path="על-הכותב.html"><a href="על-הכותב.html"><i class="fa fa-check"></i>על הכותב</a></li>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>על הכותב</a></li>
+<li class="chapter" data-level="" data-path="ביבליוגרפיה.html"><a href="ביבליוגרפיה.html"><i class="fa fa-check"></i>ביבליוגרפיה</a></li>
 <li class="divider"></li>
 <li><a href="https://sarid-ins.co.il" target="blank">בהוצאת מכון שריד</a></li>
 </ul>
@@ -282,6 +283,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

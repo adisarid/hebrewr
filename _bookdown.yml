@@ -12,6 +12,7 @@ rmd_files: [
   "hypothesis-tests.Rmd",
   "linear-regression.Rmd",
   "advanced-models.Rmd",
-  "about.Rmd"
+  "about.Rmd",
+  "references.Rmd"
 ]
 output_dir: "docs"

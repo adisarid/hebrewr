@@ -19,3 +19,11 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+.questions {
+  background-color: #E9F5F9;
+}
+
+.warnings {
+  background-color: #F9E5E5;
+}
