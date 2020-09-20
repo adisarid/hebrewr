@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>פרק: 1 מבוא | המדריך העברי למשתמש ב-R</title>
+  <title>פרק 1 מבוא | המדריך העברי למשתמש ב-R</title>
   <meta name="description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="פרק: 1 מבוא | המדריך העברי למשתמש ב-R" />
+  <meta property="og:title" content="פרק 1 מבוא | המדריך העברי למשתמש ב-R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="פרק: 1 מבוא | המדריך העברי למשתמש ב-R" />
+  <meta name="twitter:title" content="פרק 1 מבוא | המדריך העברי למשתמש ב-R" />
   
   <meta name="twitter:description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
   
@@ -140,13 +140,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#איך-מתקינים-את-r"><i class="fa fa-check"></i><b>1.2</b> איך מתקינים את R?</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#איך-משתמשים-ב-rstudio"><i class="fa fa-check"></i><b>1.3</b> איך משתמשים ב-RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>2</b> R כשפת תכנות - הבסיס (Base R)</a></li>
+<li class="chapter" data-level="2" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>2</b> בסיס השפה (Base R)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="base-r.html"><a href="base-r.html#משתנים-ופעולות-אריתמטיות"><i class="fa fa-check"></i><b>2.1</b> משתנים ופעולות אריתמטיות</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-munging-tidyverse.html"><a href="data-munging-tidyverse.html"><i class="fa fa-check"></i><b>3</b> הכנת הנתונים (שימוש ב-<code>tidyverse</code>)</a></li>
 <li class="chapter" data-level="4" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>4</b> ויז’ואליזציה עם <code>ggplot2</code></a></li>
 <li class="chapter" data-level="5" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>5</b> מבחני השערות</a></li>
 <li class="chapter" data-level="6" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>6</b> רגרסיה לינארית</a></li>
 <li class="chapter" data-level="7" data-path="advanced-models.html"><a href="advanced-models.html"><i class="fa fa-check"></i><b>7</b> מודלים מתקדמים</a></li>
-<li class="chapter" data-level="" data-path="ביבליוגרפיה.html"><a href="ביבליוגרפיה.html"><i class="fa fa-check"></i>ביבליוגרפיה</a></li>
 <li class="chapter" data-level="" data-path="על-הכותב.html"><a href="על-הכותב.html"><i class="fa fa-check"></i>על הכותב</a></li>
 <li class="divider"></li>
 <li><a href="https://sarid-ins.co.il" target="blank">בהוצאת מכון שריד</a></li>
@@ -168,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="introduction" class="section level1" number="1">
-<h1><span class="header-section-number">פרק: 1</span> מבוא</h1>
+<h1><span class="header-section-number">פרק 1</span> מבוא</h1>
 <div id="תהליך-ניתוח-נתונים" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> תהליך ניתוח נתונים</h2>
 <p>בספר הזה אני מאמץ את נקודת ההשקפה של <span class="citation">(Wickham and Grolemund <a href="#ref-wickham2016r" role="doc-biblioref">2016</a>)</span> שמציגים את אבני הבניין של עבודת מדען הנתונים כפי שמומחש באיור הבא:</p>
@@ -187,15 +189,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="איך-משתמשים-ב-rstudio" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> איך משתמשים ב-RStudio?</h2>
-<p>לאחר ההתקנה, כשתפעילו את RStudio, תראו חלון המפוצל לשלושה (או אולי ארבעה) חלקים. החלק המרכזי בצד שמאל הוא ה-Console, הוא סביבת ה-R המריצה את הקוד שלכם. אתם יכולים לנסות לרשום בו קוד ולראות מה קורה, לדוגמה תנסו לרשום <code>2+2</code> וללחוץ Enter או לרשום <code>pi</code> וללחוץ Enter.</p>
-<p>בצד ימין יופיעו חלוניות שונות שמאפשרות לנו לראות (למעלה) את:</p>
+<p>לאחר ההתקנה, כשתפעילו את RStudio, תראו חלון המפוצל לשלושה (או אולי ארבעה) חלקים. החלק הגדול בצד שמאל הוא ה-Console, הוא סביבת ה-R המריצה את הקוד שלכם. אתם יכולים לנסות לרשום בו קוד ולראות מה קורה, לדוגמה תנסו לרשום <code>2+2</code> וללחוץ Enter או לרשום <code>pi</code> וללחוץ Enter.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1"></a><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1"></a>pi</span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+<p>בצד ימין למעלה ישנה חלונית המחולקת לטאבים. בין הטאבים שמופיעים בה תוכלו לראות את:</p>
 <ul>
 <li><p>Environment - משתנים או פונקציות שנטענו לסביבה</p></li>
 <li><p>History - היסטורית הפקודות שהרצתם</p></li>
 <li><p>Connections - חיבורים למקורות נתונים</p></li>
 <li><p>Tutorial - הצגה של מדריכים שונים שמלמדים איך להשתמש בחבילות של R</p></li>
 </ul>
-<p>בצד ימין למטה יופיעו חלוניות נוספות:</p>
+<p>בצד ימין למטה תופיעה חלונית נוספת המחולקת גם היא לטאבים:</p>
 <ul>
 <li><p>Files - תוכן התיקייה הנוכחית</p></li>
 <li><p>Plots - תרשימים שנכין יופיעו בטאב זה</p></li>
@@ -209,6 +215,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>אם תלחצו על Help-&gt;Cheat sheets תוכלו לראות רשימה של “שליפים”. דפים שימושיים שמרכזים פקודות שונות של R וחבילות של R. לדוגמה, אחד מהשליפים ששם נקרא RStudio IDE Cheat Sheet, והוא מכיל הרבה הסברים נוספים על הממשק משתמש של RStudio.</p></li>
 <li><p>בתפריט File -&gt; New File ישנה אפשרות לפתוח קובץ חדש. מומלץ שתנסו לפתוח קובץ חדש מסוג R Script, שישמש אותנו לפרק הבא.</p></li>
 </ul>
+<p><strong>שימו לב</strong>: לאחר שפתחתם Script חדש, וכתבתם בו קוד, על מנת להריץ את הקוד צריך לסמן אותו וללחוץ Ctrl+Enter. זה יגרום ל-R להריץ את כל הקוד המסומן.</p>
+<p>כעת אנחנו מוכנים לפרק הבא, שבו נלמד את בסיס השפה, מה שמכונה גם Base R.</p>
 
 </div>
 </div>

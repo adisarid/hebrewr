@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>פרק: 2 R כשפת תכנות - הבסיס (Base R) | המדריך העברי למשתמש ב-R</title>
+  <title>פרק 2 בסיס השפה (Base R) | המדריך העברי למשתמש ב-R</title>
   <meta name="description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="פרק: 2 R כשפת תכנות - הבסיס (Base R) | המדריך העברי למשתמש ב-R" />
+  <meta property="og:title" content="פרק 2 בסיס השפה (Base R) | המדריך העברי למשתמש ב-R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="פרק: 2 R כשפת תכנות - הבסיס (Base R) | המדריך העברי למשתמש ב-R" />
+  <meta name="twitter:title" content="פרק 2 בסיס השפה (Base R) | המדריך העברי למשתמש ב-R" />
   
   <meta name="twitter:description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
   
@@ -138,14 +138,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#תהליך-ניתוח-נתונים"><i class="fa fa-check"></i><b>1.1</b> תהליך ניתוח נתונים</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#איך-מתקינים-את-r"><i class="fa fa-check"></i><b>1.2</b> איך מתקינים את R?</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#איך-משתמשים-ב-rstudio"><i class="fa fa-check"></i><b>1.3</b> איך משתמשים ב-RStudio?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>2</b> R כשפת תכנות - הבסיס (Base R)</a></li>
+<li class="chapter" data-level="2" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>2</b> בסיס השפה (Base R)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="base-r.html"><a href="base-r.html#משתנים-ופעולות-אריתמטיות"><i class="fa fa-check"></i><b>2.1</b> משתנים ופעולות אריתמטיות</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-munging-tidyverse.html"><a href="data-munging-tidyverse.html"><i class="fa fa-check"></i><b>3</b> הכנת הנתונים (שימוש ב-<code>tidyverse</code>)</a></li>
 <li class="chapter" data-level="4" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>4</b> ויז’ואליזציה עם <code>ggplot2</code></a></li>
 <li class="chapter" data-level="5" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>5</b> מבחני השערות</a></li>
 <li class="chapter" data-level="6" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>6</b> רגרסיה לינארית</a></li>
 <li class="chapter" data-level="7" data-path="advanced-models.html"><a href="advanced-models.html"><i class="fa fa-check"></i><b>7</b> מודלים מתקדמים</a></li>
-<li class="chapter" data-level="" data-path="ביבליוגרפיה.html"><a href="ביבליוגרפיה.html"><i class="fa fa-check"></i>ביבליוגרפיה</a></li>
 <li class="chapter" data-level="" data-path="על-הכותב.html"><a href="על-הכותב.html"><i class="fa fa-check"></i>על הכותב</a></li>
 <li class="divider"></li>
 <li><a href="https://sarid-ins.co.il" target="blank">בהוצאת מכון שריד</a></li>
@@ -167,11 +170,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="base-r" class="section level1" number="2">
-<h1><span class="header-section-number">פרק: 2</span> R כשפת תכנות - הבסיס (Base R)</h1>
-<p>כמו בכל שפת תכנות, ב-R יש</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="base-r.html#cb1-1"></a><span class="kw">cat</span>(<span class="st">&#39;Hello World!&#39;</span>)</span></code></pre></div>
-<pre><code>## Hello World!</code></pre>
+<h1><span class="header-section-number">פרק 2</span> בסיס השפה (Base R)</h1>
+<p>בפרק זה נלמד את הבסיס של R, בעיקר נכיר את הפקודות הבסיסיות, אופרטורים (תנאים לוגיים) שונים, התניות, לולאות, סוגי משתנים ובניית פונקציות. בסיס זה נקרא הרבה פעמים גם Base R משום שהוא אינו מכיל חבילות הרחבה כלשהן, ומגיע עם התקנה חדשה של R.</p>
+<p>כדי לתרגל את הפקודות שתלמדו בפרק זה (ובפרקים הבאים) מומלץ לפתוח חלון של RStudio ולנסות את הפקודות השונות תוך כדי שאתם קוראים את הפרק.</p>
+<div id="משתנים-ופעולות-אריתמטיות" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> משתנים ופעולות אריתמטיות</h2>
+<p>ניתן להריץ ב-R פעולות אריתמטיות (חיבור, חיסור, כפל, חילוק), פונקציות, ולהגדיר משתנים שונים. לדוגמה, הקוד הבא מגדיר משתנה <code>a</code> משתנה <code>b</code> ומכניס את הסכום שלהם למשתנה חדש שיקרא <code>a_plus_b</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="base-r.html#cb1-1"></a>a &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb1-2"><a href="base-r.html#cb1-2"></a>b &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb1-3"><a href="base-r.html#cb1-3"></a>a_plus_b &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb1-4"><a href="base-r.html#cb1-4"></a>a_plus_b</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<p>שימו לב שההשמה לתוך משתנה מתבצעת עם האופרטור <code>&lt;-</code>, ניתן גם להשתמש ב<code>=</code> לצורך השמה, כתיב זה פחות נפוץ. לדוגמה:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="base-r.html#cb3-1"></a>a_plus_b =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b  <span class="co"># this form of assignment (=) is less common, don&#39;t use it.</span></span></code></pre></div>
 
+</div>
 </div>
             </section>
 
