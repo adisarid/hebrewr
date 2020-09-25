@@ -21,15 +21,49 @@ a_plus_b
 a_plus_b = a + b  # this form of assignment `=` is less common, don't use it (use `<-`)
 ```
 
+### קביעת שמות משתנים
+
+קודם השתמשנו בשמות `a`, `b` , ו-`a_plus_b` כדי לקבוע משתנים. ככלל, מומלץ להשתמש בשמות קצרים בעלי משמעות. שמות משתנים חייבים להתחיל באות באנגלית, ויכולים להכיל אותיות, מספרים, קו תחתון, ונקודה. לדוגמה `gender`, `age`, `raw_data`, וכו'.
+
+### סוגי משתנים
+
+TBD
+
+### שימוש בפונקציות
+
 ניתן גם להפעיל פונקציות שונות, לדוגמה לוגריתם, פונקציות טריגונומטריות, ועוד, באופן הבא:
 
 ```{r functions-example}
 log(100)  # natural logarithm
 log10(100)  # base 10 logarithm 
-sin(pi)  # sinus pi is 0
+sin(pi)  # sin(pi) is 0 but may give you a surprising answer, why?
 sqrt(4)  # square root of 4
 ```
 
 ```{block, type="questions"}
 שאלה למחשבה: למה התשובה לחישוב $\sin(\pi)$ שונה מ-0?
+```
+
+ככלל, הפעלת פונקציה ב-R תיראה כך:
+
+```{r, eval=FALSE}
+# some code which defines the variable `bar` and then
+some_result <- some_function(foo = bar)
+
+# or simply
+some_result <- some_function(bar)
+```
+
+כאשר `some_result` יחזיק את התוצאה של הפונקציה. הפונקציה עצמה נקראת `some_function`, היא מקבלת ארגומנט (משתנה) יחיד שנקרא `foo` ואנחנו משתמשים במשתנה שערכו `bar` שנכנס לארגומנט.
+
+כדי להמחיש נראה דוגמה נוספת, הפעם עם פונקציה פשוטה שגם נגדיר בעצמנו. נסו לעיין בקוד ולהבין מה המשמעות של כל שורה בקוד. שלושת השורות הראשונות בקוד מגדירות פונקציה חדשה, וההמשך מריץ אותה.
+
+```{r new_function_def}
+# define a new function which adds a number
+one_plus <- function(number){
+  number + 1
+}
+# use the function:
+one_plus(1)
+one_plus(one_plus(1))
 ```
