@@ -1,3 +1,23 @@
+.warning, .information, .question, .note {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  background: #edf9fe 5px center/3em no-repeat;
+  background-color: #edf9fe;
+  border-radius: 10px;
+}
+.warning {
+  background-image: url("images/exclamation_mark.png");
+}
+.information {
+  background-image: url("images/information_mark.png");
+}
+.question {
+  background-image: url("images/question_mark.png");
+}
+.note {
+  background-image: url("images/note.png");
+}
+
 body {
   direction: rtl;
 }
@@ -18,14 +38,6 @@ pre {
 
 pre code {
   white-space: inherit;
-}
-
-.questions {
-  background-color: #E9F5F9;
-}
-
-.warnings {
-  background-color: #F9E5E5;
 }
 
 ul {
