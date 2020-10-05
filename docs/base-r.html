@@ -182,53 +182,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="השמת-משתנים-פעולות-אריתמטיות-ופונקציות" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> השמת משתנים, פעולות אריתמטיות ופונקציות</h2>
 <p>ניתן להריץ ב-R פעולות אריתמטיות (חיבור, חיסור, כפל, חילוק), פונקציות, ולהגדיר משתנים שונים. לדוגמה, הקוד הבא מגדיר משתנה <code>a</code> משתנה <code>b</code> ומכניס את הסכום שלהם למשתנה חדש שיקרא <code>a_plus_b</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="base-r.html#cb1-1"></a>a &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb1-2"><a href="base-r.html#cb1-2"></a>b &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb1-3"><a href="base-r.html#cb1-3"></a>a_plus_b &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb1-4"><a href="base-r.html#cb1-4"></a>a_plus_b</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="base-r.html#cb5-1"></a>a &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb5-2"><a href="base-r.html#cb5-2"></a>b &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb5-3"><a href="base-r.html#cb5-3"></a>a_plus_b &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb5-4"><a href="base-r.html#cb5-4"></a>a_plus_b</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
 <p>שימו לב שההשמה לתוך משתנה מתבצעת עם האופרטור <code>-&gt;</code>, ניתן גם להשתמש ב<code>=</code> לצורך השמה, כתיב זה פחות נפוץ. לדוגמה:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="base-r.html#cb3-1"></a>a_plus_b =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b  <span class="co"># this form of assignment `=` is less common, don&#39;t use it (use `&lt;-`)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="base-r.html#cb7-1"></a>a_plus_b =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b  <span class="co"># this form of assignment `=` is less common, don&#39;t use it (use `&lt;-`)</span></span></code></pre></div>
 <div id="קביעת-שמות-משתנים" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> קביעת שמות משתנים</h3>
 <p>קודם השתמשנו בשמות <code>a</code>, <code>b</code> , ו-<code>a_plus_b</code> כדי לקבוע משתנים. ככלל, מומלץ להשתמש בשמות קצרים בעלי משמעות. שמות משתנים חייבים להתחיל באות באנגלית, ויכולים להכיל אותיות, מספרים, קו תחתון, ונקודה. לדוגמה <code>gender</code>, <code>age</code>, <code>raw_data</code>, וכו’.</p>
 </div>
 <div id="סוגי-משתנים" class="section level3" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> סוגי משתנים</h3>
-<p>TBD</p>
+<p>בבסיס השפה יש כמה סוגי משתנים, שקובעים מה סוג הערכים שהמשתנה יכול לקבל:</p>
+<ul>
+<li><p>מספר שלם (Integer)</p></li>
+<li><p>מספר רציף (Double)</p></li>
+<li><p>מחרוזת (Character)</p></li>
+<li><p>משתנה קטגוריות (Factor)</p></li>
+<li><p>תאריך (Date)</p></li>
+<li><p>רשימה (List)</p></li>
+</ul>
+<p>כל משתנה חדש אנחנו מגדירים ב-R הוא למעשה וקטור. אגב, גם כשאנחנו מגדירים משתנה כערך בודד, בעצם הוא וקטור עם איבר אחד. אנחנו יכולים להשתמש בפקודה <code>c</code> (קיצור של המילה combine) כדי לשלב וקטורים שונים.</p>
+<p>נראה דוגמאות להגדרות של וקטורים מסוגים שונים.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="base-r.html#cb8-1"></a>some_integer &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 2L, 3L)  <span class="co"># The L sign stands for &quot;Long integer&quot;</span></span>
+<span id="cb8-2"><a href="base-r.html#cb8-2"></a>some_integer</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="base-r.html#cb10-1"></a>some_double &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, pi, <span class="kw">exp</span>(<span class="dv">1</span>))</span>
+<span id="cb10-2"><a href="base-r.html#cb10-2"></a>some_double</span></code></pre></div>
+<pre><code>## [1] 1.000000 2.000000 3.141593 2.718282</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="base-r.html#cb12-1"></a>some_character &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>)</span>
+<span id="cb12-2"><a href="base-r.html#cb12-2"></a>some_character</span></code></pre></div>
+<pre><code>## [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="base-r.html#cb14-1"></a>some_factor &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Apples&quot;</span>, <span class="st">&quot;Oranges&quot;</span>, <span class="st">&quot;Paers&quot;</span>, <span class="st">&quot;Mangos&quot;</span>, <span class="st">&quot;Apples&quot;</span>, <span class="st">&quot;Oranges&quot;</span>))</span>
+<span id="cb14-2"><a href="base-r.html#cb14-2"></a>some_factor</span></code></pre></div>
+<pre><code>## [1] Apples  Oranges Paers   Mangos  Apples  Oranges
+## Levels: Apples Mangos Oranges Paers</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="base-r.html#cb16-1"></a>some_date &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">Sys.Date</span>(), <span class="kw">as.Date</span>(<span class="st">&quot;1993-08-01&quot;</span>))</span>
+<span id="cb16-2"><a href="base-r.html#cb16-2"></a>some_date</span></code></pre></div>
+<pre><code>## [1] &quot;2020-10-05&quot; &quot;1993-08-01&quot;</code></pre>
+<p>למשתני קטגוריות יש שימוש חשוב בסטטיסטיקה שעוד נראה אותו בפרקים הבאים, ולכן הוא מובחן ממשתנה מחרוזת ומקבל מקום של כבוד. כפי שניתן לראות, כאשר מדפיסים אותו, R מדווח גם על הרמות השונות שכלולות בו.</p>
+<p>שימוש בפקודה <code>typeof(some_variable)</code> יציג את סוג המשתנה.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="base-r.html#cb18-1"></a><span class="kw">typeof</span>(some_character)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="base-r.html#cb20-1"></a><span class="kw">typeof</span>(some_date)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="base-r.html#cb22-1"></a><span class="kw">typeof</span>(some_factor)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>ניתן לשים לב ש-R מחשיב את המשתנה הקטגוריאלי כמספר שלם (integer) ואת התאריך כמספר רציף (double).</p>
+<div class="question">
+<p>
+באמצעות הפקודה c והפקודה typeof בדקו מה קורה כאשר מחברים משתנים מסוגים שונים אחד לשני. האם התוצאה הגיונית? מה ההיגיון? האם יש מקרים בהם התוצאה של חיבור משתנים עשויה להטעות?
+</p>
+<p>
+בדקו את <code>c(some_factor, some_character)</code> ודוגמאות נוספות.
+</p>
+</div>
+<p>סוג המשתנה האחרון שטרם הצגנו הוא הרשימה. רשימה היא אובייקט מרכזי ב-R שמאפשר לנו לאחד משתנים ווקטורים מסוגים שונים, לתוך dataset שיאפשר לנו בהמשך לנתח נתונים. ישנן מספר דרכים להגדיר רשימה, אחת מהן באמצעות הפקודה <code>list</code>. לדוגמה, הרשימה הבאה תכיל את כל הוקטורים שהגדרנו עד כה, מבלי שהם יאבדו מהמשמעות שלהם (כפי שקורה כשמנסים לעשות חיבור רגיל).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="base-r.html#cb24-1"></a>my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">my_int =</span> some_integer,</span>
+<span id="cb24-2"><a href="base-r.html#cb24-2"></a>                <span class="dt">my_double =</span> some_double,</span>
+<span id="cb24-3"><a href="base-r.html#cb24-3"></a>                <span class="dt">my_character =</span> some_character,</span>
+<span id="cb24-4"><a href="base-r.html#cb24-4"></a>                <span class="dt">my_factor =</span> some_factor,</span>
+<span id="cb24-5"><a href="base-r.html#cb24-5"></a>                <span class="dt">my_date =</span> some_date)</span>
+<span id="cb24-6"><a href="base-r.html#cb24-6"></a>my_list</span></code></pre></div>
+<pre><code>## $my_int
+## [1] 1 2 3
+## 
+## $my_double
+## [1] 1.000000 2.000000 3.141593 2.718282
+## 
+## $my_character
+## [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;   
+## 
+## $my_factor
+## [1] Apples  Oranges Paers   Mangos  Apples  Oranges
+## Levels: Apples Mangos Oranges Paers
+## 
+## $my_date
+## [1] &quot;2020-10-05&quot; &quot;1993-08-01&quot;</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="base-r.html#cb26-1"></a><span class="kw">typeof</span>(my_list)</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
 </div>
 <div id="שימוש-בפונקציות" class="section level3" number="2.1.3">
 <h3><span class="header-section-number">2.1.3</span> שימוש בפונקציות</h3>
-<p>ניתן גם להפעיל פונקציות שונות, לדוגמה לוגריתם, פונקציות טריגונומטריות, ועוד, באופן הבא:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="base-r.html#cb4-1"></a><span class="kw">log</span>(<span class="dv">100</span>)  <span class="co"># natural logarithm</span></span></code></pre></div>
+<p>ניתן גם להפעיל פונקציות שונות, לדוגמה לוגריתם, פונקציות טריגונומטריות. למעשה בסעיף הקודם כבר ראינו מספר פונקציות כגון <code>c</code> ו-<code>typeof</code>. כעת נראה עוד מספר דוגמאות:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="base-r.html#cb28-1"></a><span class="kw">log</span>(<span class="dv">100</span>)  <span class="co"># natural logarithm</span></span></code></pre></div>
 <pre><code>## [1] 4.60517</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="base-r.html#cb6-1"></a><span class="kw">log10</span>(<span class="dv">100</span>)  <span class="co"># base 10 logarithm </span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="base-r.html#cb30-1"></a><span class="kw">log10</span>(<span class="dv">100</span>)  <span class="co"># base 10 logarithm </span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="base-r.html#cb8-1"></a><span class="kw">sin</span>(pi)  <span class="co"># sin(pi) is 0 but may give you a surprising answer, why?</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="base-r.html#cb32-1"></a><span class="kw">sin</span>(pi)  <span class="co"># sin(pi) is 0 but may give you a surprising answer, why?</span></span></code></pre></div>
 <pre><code>## [1] 1.224647e-16</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="base-r.html#cb10-1"></a><span class="kw">sqrt</span>(<span class="dv">4</span>)  <span class="co"># square root of 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="base-r.html#cb34-1"></a><span class="kw">sqrt</span>(<span class="dv">4</span>)  <span class="co"># square root of 4</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="questions">
+<div class="question">
 <p>
 שאלה למחשבה: למה התשובה לחישוב <span class="math inline"><span class="math inline">\(\sin(\pi)\)</span></span> שונה מ-0?
 </p>
 </div>
 <p>ככלל, הפעלת פונקציה ב-R תיראה כך:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="base-r.html#cb12-1"></a><span class="co"># some code which defines the variable `bar` and then</span></span>
-<span id="cb12-2"><a href="base-r.html#cb12-2"></a>some_result &lt;-<span class="st"> </span><span class="kw">some_function</span>(<span class="dt">foo =</span> bar)</span>
-<span id="cb12-3"><a href="base-r.html#cb12-3"></a></span>
-<span id="cb12-4"><a href="base-r.html#cb12-4"></a><span class="co"># or simply</span></span>
-<span id="cb12-5"><a href="base-r.html#cb12-5"></a>some_result &lt;-<span class="st"> </span><span class="kw">some_function</span>(bar)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="base-r.html#cb36-1"></a><span class="co"># some code which defines the variable `bar` and then</span></span>
+<span id="cb36-2"><a href="base-r.html#cb36-2"></a>some_result &lt;-<span class="st"> </span><span class="kw">some_function</span>(<span class="dt">foo =</span> bar)</span>
+<span id="cb36-3"><a href="base-r.html#cb36-3"></a></span>
+<span id="cb36-4"><a href="base-r.html#cb36-4"></a><span class="co"># or simply</span></span>
+<span id="cb36-5"><a href="base-r.html#cb36-5"></a>some_result &lt;-<span class="st"> </span><span class="kw">some_function</span>(bar)</span></code></pre></div>
 <p>כאשר <code>some_result</code> יחזיק את התוצאה של הפונקציה. הפונקציה עצמה נקראת <code>some_function</code>, היא מקבלת ארגומנט (משתנה) יחיד שנקרא <code>foo</code> ואנחנו משתמשים במשתנה שערכו <code>bar</code> שנכנס לארגומנט.</p>
 <p>כדי להמחיש נראה דוגמה נוספת, הפעם עם פונקציה פשוטה שגם נגדיר בעצמנו. נסו לעיין בקוד ולהבין מה המשמעות של כל שורה בקוד. שלושת השורות הראשונות בקוד מגדירות פונקציה חדשה, וההמשך מריץ אותה.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="base-r.html#cb13-1"></a><span class="co"># define a new function which adds a number</span></span>
-<span id="cb13-2"><a href="base-r.html#cb13-2"></a>one_plus &lt;-<span class="st"> </span><span class="cf">function</span>(number){</span>
-<span id="cb13-3"><a href="base-r.html#cb13-3"></a>  number <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb13-4"><a href="base-r.html#cb13-4"></a>}</span>
-<span id="cb13-5"><a href="base-r.html#cb13-5"></a><span class="co"># use the function:</span></span>
-<span id="cb13-6"><a href="base-r.html#cb13-6"></a><span class="kw">one_plus</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="base-r.html#cb37-1"></a><span class="co"># define a new function which adds a number</span></span>
+<span id="cb37-2"><a href="base-r.html#cb37-2"></a>one_plus &lt;-<span class="st"> </span><span class="cf">function</span>(number){</span>
+<span id="cb37-3"><a href="base-r.html#cb37-3"></a>  number <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb37-4"><a href="base-r.html#cb37-4"></a>}</span>
+<span id="cb37-5"><a href="base-r.html#cb37-5"></a><span class="co"># use the function:</span></span>
+<span id="cb37-6"><a href="base-r.html#cb37-6"></a><span class="kw">one_plus</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="base-r.html#cb15-1"></a><span class="kw">one_plus</span>(<span class="kw">one_plus</span>(<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="base-r.html#cb39-1"></a><span class="kw">one_plus</span>(<span class="kw">one_plus</span>(<span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 
 </div>
