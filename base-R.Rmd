@@ -27,11 +27,76 @@ a_plus_b = a + b  # this form of assignment `=` is less common, don't use it (us
 
 ### סוגי משתנים
 
-TBD
+בבסיס השפה יש כמה סוגי משתנים, שקובעים מה סוג הערכים שהמשתנה יכול לקבל:
+
+-   מספר שלם (Integer)
+
+-   מספר רציף (Double)
+
+-   מחרוזת (Character)
+
+-   משתנה קטגוריות (Factor)
+
+-   תאריך (Date)
+
+-   רשימה (List)
+
+כל משתנה חדש אנחנו מגדירים ב-R הוא למעשה וקטור. אגב, גם כשאנחנו מגדירים משתנה כערך בודד, בעצם הוא וקטור עם איבר אחד. אנחנו יכולים להשתמש בפקודה `c` (קיצור של המילה combine) כדי לשלב וקטורים שונים.
+
+נראה דוגמאות להגדרות של וקטורים מסוגים שונים.
+
+```{r variable definition examples}
+some_integer <- c(1L, 2L, 3L)  # The L sign stands for "Long integer"
+some_integer
+
+some_double <- c(1, 2, pi, exp(1))
+some_double
+
+some_character <- c("This", "is", "a", "character", "vector")
+some_character
+
+some_factor <- factor(c("Apples", "Oranges", "Paers", "Mangos", "Apples", "Oranges"))
+some_factor
+
+some_date <- c(Sys.Date(), as.Date("1993-08-01"))
+some_date
+```
+
+למשתני קטגוריות יש שימוש חשוב בסטטיסטיקה שעוד נראה אותו בפרקים הבאים, ולכן הוא מובחן ממשתנה מחרוזת ומקבל מקום של כבוד. כפי שניתן לראות, כאשר מדפיסים אותו, R מדווח גם על הרמות השונות שכלולות בו.
+
+שימוש בפקודה `typeof(some_variable)` יציג את סוג המשתנה.
+
+```{r using typeof}
+typeof(some_character)
+typeof(some_date)
+typeof(some_factor)
+```
+
+ניתן לשים לב ש-R מחשיב את המשתנה הקטגוריאלי כמספר שלם (integer) ואת התאריך כמספר רציף (double).
+
+```{block, type="questions"}
+באמצעות הפקודה c והפקודה typeof בדקו מה קורה כאשר מחברים משתנים מסוגים שונים אחד לשני.
+האם התוצאה הגיונית? מה ההיגיון? האם יש מקרים בהם התוצאה של חיבור משתנים עשויה להטעות?
+
+בדקו את `c(some_factor, some_character)` ודוגמאות נוספות.
+```
+
+סוג המשתנה האחרון שטרם הצגנו הוא הרשימה. רשימה היא אובייקט מרכזי ב-R שמאפשר לנו לאחד משתנים ווקטורים מסוגים שונים, לתוך dataset שיאפשר לנו בהמשך לנתח נתונים. ישנן מספר דרכים להגדיר רשימה, אחת מהן באמצעות הפקודה `list`. לדוגמה, הרשימה הבאה תכיל את כל הוקטורים שהגדרנו עד כה, מבלי שהם יאבדו מהמשמעות שלהם (כפי שקורה כשמנסים לעשות חיבור רגיל).
+
+```{r a complete list example}
+my_list <- list(my_int = some_integer,
+                my_double = some_double,
+                my_character = some_character,
+                my_factor = some_factor,
+                my_date = some_date)
+my_list
+typeof(my_list)
+
+```
 
 ### שימוש בפונקציות
 
-ניתן גם להפעיל פונקציות שונות, לדוגמה לוגריתם, פונקציות טריגונומטריות, ועוד, באופן הבא:
+ניתן גם להפעיל פונקציות שונות, לדוגמה לוגריתם, פונקציות טריגונומטריות. למעשה בסעיף הקודם כבר ראינו מספר פונקציות כגון `c` ו-`typeof`. כעת נראה עוד מספר דוגמאות:
 
 ```{r functions-example}
 log(100)  # natural logarithm

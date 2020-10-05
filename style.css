@@ -27,3 +27,7 @@ pre code {
 .warnings {
   background-color: #F9E5E5;
 }
+
+ul {
+  text-indent: 40px;
+}
