@@ -74,7 +74,7 @@ typeof(some_factor)
 
 ניתן לשים לב ש-R מחשיב את המשתנה הקטגוריאלי כמספר שלם (integer) ואת התאריך כמספר רציף (double).
 
-```{block, type="questions"}
+```{block, type="question"}
 באמצעות הפקודה c והפקודה typeof בדקו מה קורה כאשר מחברים משתנים מסוגים שונים אחד לשני.
 האם התוצאה הגיונית? מה ההיגיון? האם יש מקרים בהם התוצאה של חיבור משתנים עשויה להטעות?
 
@@ -105,7 +105,7 @@ sin(pi)  # sin(pi) is 0 but may give you a surprising answer, why?
 sqrt(4)  # square root of 4
 ```
 
-```{block, type="questions"}
+```{block, type="question"}
 שאלה למחשבה: למה התשובה לחישוב $\sin(\pi)$ שונה מ-0?
 ```
 
