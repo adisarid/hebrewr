@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>פרק 1 מבוא | המדריך העברי למשתמש ב-R</title>
   <meta name="description" content="ללמוד לעבוד עם R לניתוחים סטטיסטיים, Data Science, ועוד." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="פרק 1 מבוא | המדריך העברי למשתמש ב-R" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="base-r.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +50,8 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -183,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">פרק 1</span> מבוא</h1>
 <div id="תהליך-ניתוח-נתונים" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> תהליך ניתוח נתונים</h2>
-<p>בספר הזה אני מאמץ את נקודת ההשקפה של <span class="citation">(Wickham and Grolemund <a href="#ref-wickham2016r" role="doc-biblioref">2016</a>)</span> שמציגים את אבני הבניין של עבודת מדען הנתונים כפי שמומחש באיור הבא:</p>
+<p>בספר הזה אני מאמץ את נקודת ההשקפה של <span class="citation">(<a href="ביבליוגרפיה.html#ref-wickham2016r" role="doc-biblioref">Wickham and Grolemund 2016</a>)</span> שמציגים את אבני הבניין של עבודת מדען הנתונים כפי שמומחש באיור הבא:</p>
 <div class="figure">
 <img src="images/ds_workflow_he.svg" title="תהליך ניתוח הנתונים" id="fig:ds-workflow" alt="" />
 <p class="caption">המחשה של תהליך ניתוח הנתונים</p>
@@ -200,9 +201,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="איך-משתמשים-ב-rstudio" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> איך משתמשים ב-RStudio?</h2>
 <p>לאחר ההתקנה, כשתפעילו את RStudio, תראו חלון המפוצל לשלושה (או אולי ארבעה) חלקים. החלק הגדול בצד שמאל הוא ה-Console, הוא סביבת ה-R המריצה את הקוד שלכם. אתם יכולים לנסות לרשום בו קוד ולראות מה קורה, לדוגמה תנסו לרשום <code>2+2</code> וללחוץ Enter או לרשום <code>pi</code> וללחוץ Enter.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1"></a><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1"></a>pi</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1" aria-hidden="true" tabindex="-1"></a>pi</span></code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
 <p>בצד ימין למעלה ישנה חלונית המחולקת לטאבים. בין הטאבים שמופיעים בה תוכלו לראות את:</p>
 <ul>
@@ -222,18 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>בתוך משתמשים מתחילים נשתמש בחלק קטן מאלו, אך ככל שיעבור זמן תראו שאתם משתמשים ביותר ויותר אפשרויות, וגם אפשרויות נוספות שכרגע אינן מופיעות לכם.</p>
 <p>עוד כמה פינות חשובות שנמצאות ב-RStudio:</p>
 <ul>
-<li><p>אם תלחצו על Help-&gt;Cheat sheets תוכלו לראות רשימה של “שליפים”. דפים שימושיים שמרכזים פקודות שונות של R וחבילות של R. לדוגמה, אחד מהשליפים ששם נקרא RStudio IDE Cheat Sheet, והוא מכיל הרבה הסברים נוספים על הממשק משתמש של RStudio.</p></li>
+<li><p>אם תלחצו על Help-&gt;Cheat sheets תוכלו לראות רשימה של “שליפים.” דפים שימושיים שמרכזים פקודות שונות של R וחבילות של R. לדוגמה, אחד מהשליפים ששם נקרא RStudio IDE Cheat Sheet, והוא מכיל הרבה הסברים נוספים על הממשק משתמש של RStudio.</p></li>
 <li><p>בתפריט File -&gt; New File ישנה אפשרות לפתוח קובץ חדש. מומלץ שתנסו לפתוח קובץ חדש מסוג R Script, שישמש אותנו לפרק הבא.</p></li>
 </ul>
 <p><strong>שימו לב</strong>: לאחר שפתחתם Script חדש, וכתבתם בו קוד, על מנת להריץ את הקוד צריך לסמן אותו וללחוץ Ctrl+Enter. זה יגרום ל-R להריץ את כל הקוד המסומן.</p>
 <p>כעת אנחנו מוכנים לפרק הבא, שבו נלמד את בסיס השפה, מה שמכונה גם Base R.</p>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-wickham2016r">
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.".</p>
 </div>
 </div>
             </section>
