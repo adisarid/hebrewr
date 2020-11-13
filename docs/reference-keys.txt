@@ -9,6 +9,7 @@ base-r
 קריאה-לתתי-וקטורים
 רשימה-list
 שימוש-בפונקציות
+אופרטורים
 התניות
 לולאות
 data-munging-tidyverse
@@ -16,4 +17,3 @@ ggplot2
 hypothesis-tests
 linear-regression
 advanced-models
-אופרטורים
