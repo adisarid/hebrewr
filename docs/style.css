@@ -41,5 +41,9 @@ pre code {
 }
 
 ul {
-  text-indent: 40px;
+  text-indent: 20px;
+}
+
+.anchorjs-link {
+  float: left;
 }

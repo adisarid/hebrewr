@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - 2&nbsp; מבוא</title>
+<title>המדריך העברי למשתמש ב-R - 1&nbsp; מבוא</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,6 +78,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -88,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./base-R.html" rel="next">
+<link href="./02-base-R.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -129,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">מבוא</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -154,47 +173,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">המדריך העברי למשתמש ב-R</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">הקדמה</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">מבוא</span></a>
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./base-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">תחביר בסיסי (Base R Syntax)</span></a>
+  <a href="./02-base-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visualizations-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציה עם <code>ggplot2</code></span></a>
+  <a href="./03-data-munging-tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">הכנת נתונים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
+  <a href="./04-visualizations-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
+  <a href="./05-hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים מתקדמים</span></a>
+  <a href="./06-linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  <a href="./07-advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">ביבליוגרפיה</a>
+  <a href="./08-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
   </div>
 </li>
     </ul>
@@ -203,12 +227,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#תהליך-ניתוח-נתונים" id="toc-תהליך-ניתוח-נתונים" class="nav-link active" data-scroll-target="#תהליך-ניתוח-נתונים"> <span class="header-section-number">2.1</span> תהליך ניתוח נתונים</a></li>
-  <li><a href="#איך-מתקינים-את-r" id="toc-איך-מתקינים-את-r" class="nav-link" data-scroll-target="#איך-מתקינים-את-r"> <span class="header-section-number">2.2</span> איך מתקינים את R?</a></li>
-  <li><a href="#איך-משתמשים-ב-rstudio" id="toc-איך-משתמשים-ב-rstudio" class="nav-link" data-scroll-target="#איך-משתמשים-ב-rstudio"> <span class="header-section-number">2.3</span> איך משתמשים ב-RStudio?</a></li>
+  <li><a href="#תהליך-ניתוח-נתונים" id="toc-תהליך-ניתוח-נתונים" class="nav-link active" data-scroll-target="#תהליך-ניתוח-נתונים"> <span class="header-section-number">1.1</span> תהליך ניתוח נתונים</a></li>
+  <li><a href="#איך-מתקינים-את-r" id="toc-איך-מתקינים-את-r" class="nav-link" data-scroll-target="#איך-מתקינים-את-r"> <span class="header-section-number">1.2</span> איך מתקינים את R?</a></li>
+  <li><a href="#איך-משתמשים-ב-rstudio" id="toc-איך-משתמשים-ב-rstudio" class="nav-link" data-scroll-target="#איך-משתמשים-ב-rstudio"> <span class="header-section-number">1.3</span> איך משתמשים ב-RStudio?</a></li>
   </ul>
 </nav>
     </div>
@@ -217,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="introduction" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">מבוא</span></span></h1>
+<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></span></h1>
 </div>
 
 
@@ -231,9 +255,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="תהליך-ניתוח-נתונים" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="תהליך-ניתוח-נתונים"><span class="header-section-number">2.1</span> תהליך ניתוח נתונים</h2>
-<p>בספר הזה אני מאמץ את נקודת ההשקפה של <span class="citation" data-cites="wickham2016r">(<a href="#ref-wickham2016r" role="doc-biblioref"><strong>wickham2016r?</strong></a>)</span> שמציגים את אבני הבניין של עבודת מדען הנתונים כפי שמומחש באיור הבא:</p>
+<section id="תהליך-ניתוח-נתונים" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="תהליך-ניתוח-נתונים"><span class="header-section-number">1.1</span> תהליך ניתוח נתונים</h2>
+<p>בספר הזה אני מאמץ את נקודת ההשקפה של <span class="citation" data-cites="wickham2016r">(<a href="09-references.html#ref-wickham2016r" role="doc-biblioref">Wickham and Grolemund 2016</a>)</span> שמציגים את אבני הבניין של עבודת מדען הנתונים כפי שמומחש באיור הבא:</p>
 <div id="fig:ds-workflow" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <figure class="figure">
@@ -245,14 +269,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>כל תהליך ניתוח נתונים מורכב מיבוא סט הנתונים, סידור שלהם בצורה שנוח לעבוד איתה, לאחר מכן מחקר על הנתונים, שהוא תהליך איטרטיבי (חוזר על עצמו) שמורכב מהתמרות שונות על הנתונים (טרנספורמציות), המחשות בתרשימים (ויז’ואליזציות), ומידול של הנתונים. לבסוף, התהליך עובר למסמך, מצגת או אמצעי אחר, ומוצג למקבלי החלטות.</p>
 <p>בספר זה נדון בשלבים של יבוא הנתונים, סידור, וכלל שלבי המחקר (טרנספורמציות, ויז’ואליזציות, ומידול). אך ראשית, לפני שנתחיל בצעדים הראשונים (למידת בסיס השפה), נראה כיצד להתקין את R.</p>
 </section>
-<section id="איך-מתקינים-את-r" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="איך-מתקינים-את-r"><span class="header-section-number">2.2</span> איך מתקינים את R?</h2>
+<section id="איך-מתקינים-את-r" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="איך-מתקינים-את-r"><span class="header-section-number">1.2</span> איך מתקינים את R?</h2>
 <p>התקנת התוכנה פשוטה מאוד. R היא שפה בקוד פתוח (Open Source) מה שאומר שכל אחד יכול להתקין אותה ללא עלות. כמו כן, ישנה סביבת פיתוח, גם היא חינמית ובקוד פתוח, הנקראת RStudio IDE.</p>
 <p>על מנת להתקין את R עליכם להיכנס לכתובת <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> ולבחור בגרסה המתאימה למערכת ההפעלה שלכם. לאחר מכן, כדי להתקין את RStudio היכנסו לכתובת <a href="https://rstudio.com/products/rstudio/download/." class="uri">https://rstudio.com/products/rstudio/download/.</a> הגרסה החינמית של RStudio נקראת RStudio Desktop והיא זמינה לכל צורך (כולל לשימוש במסגרת מסחרית).</p>
 <p>הסיבה שאנחנו מתקינים גם את R וגם את RStudio היא שבהתקנת R בלבד, מקבלים ממשק משתמש בסיסי ביותר, בעוד שלאחר התקנת RStudio ניתן יהיה לעבוד עם ממשק משתמש נוח שיש לו הרבה אפשרויות שיקלו עליכם את הלמידה ואת העבודה השוטפת ב-R.</p>
 </section>
-<section id="איך-משתמשים-ב-rstudio" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="איך-משתמשים-ב-rstudio"><span class="header-section-number">2.3</span> איך משתמשים ב-RStudio?</h2>
+<section id="איך-משתמשים-ב-rstudio" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="איך-משתמשים-ב-rstudio"><span class="header-section-number">1.3</span> איך משתמשים ב-RStudio?</h2>
 <p>לאחר ההתקנה, כשתפעילו את RStudio, תראו חלון המפוצל לשלושה (או אולי ארבעה) חלקים. החלק הגדול בצד שמאל הוא ה-Console, הוא סביבת ה-R המריצה את הקוד שלכם. אתם יכולים לנסות לרשום בו קוד ולראות מה קורה, לדוגמה תנסו לרשום <code>2+2</code> וללחוץ Enter או לרשום <code>pi</code> וללחוץ Enter.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -289,6 +313,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>כעת אנחנו מוכנים לפרק הבא, שבו נלמד את בסיס השפה, מה שמכונה גם Base R.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-wickham2016r" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. "O’Reilly Media, Inc.".
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -392,12 +421,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">המדריך העברי למשתמש ב-R</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">הקדמה</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./base-R.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">תחביר בסיסי (Base R Syntax)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-base-R.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

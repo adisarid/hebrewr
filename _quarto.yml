@@ -1,0 +1,36 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "המדריך העברי למשתמש ב-R"
+  author: "דר' עדי שריד"
+  date: today
+  date-format: iso
+  chapters:
+    - index.Rmd
+    - 01-introduction.qmd
+    - 02-base-R.Rmd
+    - 03-data-munging-tidyverse.Rmd
+    - 04-visualizations-ggplot2.Rmd
+    - 05-hypothesis-tests.Rmd
+    - 06-linear-regression.Rmd
+    - 07-advanced-models.Rmd
+    - 08-about.Rmd
+    - 09-references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    toc: true
+    toc-title: "בעמוד זה"
+    theme: cosmo
+    css: style.css
+    grid:
+      sidebar-width: 350px
+      body-width: 900px
+      margin-width: 300px
+      
+
+editor: visual

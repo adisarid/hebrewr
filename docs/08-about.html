@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="דר’ עדי שריד">
-<meta name="dcterms.date" content="2022-12-03">
 
-<title>המדריך העברי למשתמש ב-R</title>
+<title>המדריך העברי למשתמש ב-R - על הכותב</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -27,7 +25,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-introduction.html" rel="next">
+<link href="./09-references.html" rel="next">
+<link href="./07-advanced-models.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -67,7 +66,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">המדריך העברי למשתמש ב-R</h1>
+      <h1 class="quarto-secondary-nav-title">על הכותב</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -92,7 +91,7 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">הקדמה</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">הקדמה</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -132,7 +131,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  <a href="./08-about.html" class="sidebar-item-text sidebar-link active">על הכותב</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -145,67 +144,32 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">בעמוד זה</h2>
-   
-  <ul>
-  <li><a href="#הקדמה" id="toc-הקדמה" class="nav-link active" data-scroll-target="#הקדמה">הקדמה</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">המדריך העברי למשתמש ב-R</h1>
+<h1 class="title"><span id="about" class="quarto-section-identifier d-none d-lg-block">על הכותב</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>דר’ עדי שריד </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">2022-12-03</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="הקדמה" class="level1 unnumbered">
-<h1 class="unnumbered">הקדמה</h1>
-<p>R שפה נפלאה, היא התחילה כשפה סטטיסטית, וגם כיום זה השימוש המרכזי שלה. בפועל אפשר לעשות בה כמעט הכל. החל מניתוח נתונים ועד בניית אפליקציות ואוטומציות מורכבות. אצלנו בעסק (<a href="https://www.sarid-ins.co.il">מכון שריד</a>) אנחנו משתמשים ב-R לניתוח נתונים, הצגת תוצאות עם דשבורדים בזמן אמת, הפקת דוחות Power Point בלחיצת כפתור, אוטומציות של תהליכים שונים בעסק, ועוד הרבה - היא הפכה לכלי עבודה שימושי והחליפה הרבה מאוד מהדברים שהיינו עושים בעבר עם כלים אחרים.</p>
-<p>ללומדים את השפה יש מקורות רבים ומגוונים - ספרים, סרטוני YouTube, בלוגים, ועוד. העניין הוא שרוב המקורות שישנם כתובים באנגלית. זה מה שהביא אותי לכתוב את הספר הזה, ולעזור לקהל הקוראים שיותר נוח לו ללמוד R בעברית.</p>
-<p>התוכן שבספר שלפניכם מבוסס על מספר קורסים שלימדתי בשנים האחרונות, כולל הכשרות מקצועיות בחברות סטארטאפ, וקורסי לימוד לתואר ראשון שנתתי באוניברסיטה.</p>
-<p><strong>למי מיועד הספר?</strong></p>
-<p>הספר מיועד לאנשים שמתחילים ללמוד את R, סטודנטים או כאלו שעוברים מכלי סטטיסטי אחר.</p>
-<p>הספר מתאים גם לכאלו שיודעים R ברמה בינונית ורוצים לחזק את הבסיס, או כאלו שרוצים להשתפשף בידיעות שלהם על החבילות שנלמדות בספר (כמו <code>tidyverse</code>).</p>
-<p>הספר אינו נועד להחליף ספרי תיאוריה סטטיסטית, הוא אינו מכסה תיאוריה סטטיסטית לעומק, אלא בעיקר מדגים כיצד ניתן לממש כלים סטטיסטיים שונים באמצעות R.</p>
-<p><strong>למה R ולא Python?</strong></p>
-<p>כמו שמרמזת הכותרת, יש היום שתי שפות שמובילות בתחום ה-Data Science, הן R ו-Python. בנקודה הזו אין שחור ולבן, טוב יותר או פחות. אני עובד בשתי השפות, ולי באופן אישי יש העדפה חזקה לשימוש ב-R, פשוט כי היא מרגישה לי יותר טבעית, זה כנראה נגזרת של העובדה שזה מה שלמדתי בהתחלה, וזה מה שהתמקצעתי בו. בפועל בשתי השפות יש כלים רבים ושימושיים, ובכל הקשור במשימות של ניתוח נתונים, שתי השפות נותנות מענה טוב מאוד.</p>
-<p>מבין שתיהן Python יותר נפוצה משום שהיא נפוצה כשפת תכנות (באופן כללי), בעוד ש-R מוכוונת יותר לתחום הסטטיסטיקה. בפועל, שתיהן עושות את העבודה, וכדאי להתאים את השפה לצורך. לדוגמה R הרבה פעמים נוחה יותר לביצוע ניתוח נתונים, אבל ל-Python עשוי להיות יתרון במעבר ל-Production (הטמעה במערכות).</p>
-<p>הדיון של בחירה בשפה מסוימת צריך להיגזר מהמשימה הנדרשת, ההקשר העסקי, ועוד הרבה שיקולים אחרים. ככלל למי שמשתלב בתוך ארגון כדאי לדעת שיש ב-R חבילות שמאפשרות להפעיל גם קוד Python מתוך R (חבילת <code>reticulate</code>), שתאפשר להשתלב עם R גם בתוך ארגון שעובד מסורתית עם Python.</p>
-<p><strong>מה בספר?</strong></p>
-<p>ב<a href="01-introduction.html">פרק&nbsp;<span>1</span></a> נראה מבוא קצר לתהליך ניתוח הנתונים ונלמד מהם הכלים הנדרשים על מנת להתקין את R. לאחר מכן נצלול, ב<a href="02-base-R.html">פרק&nbsp;<span>2</span></a> לבסיס של R כשפת תכנות. הפרק מתייחס לחלקים ב-R שמגיעים בגרסה ה”ערומה ביותר” מה שמכונה גם Base R.</p>
-<p>ב<a href="03-data-munging-tidyverse.html">פרק&nbsp;<span>3</span></a> נלמד את הבסיס של חבילות <code>tidyverse</code> ואיך הן מרחיבות את Base-R והופכות את הקוד שלנו ליותר קריא, ואת הכתיבה ליותר נוחה. אנחנו נתמקד בעיקר בשלבי הכנת הנתונים לקראת ניתוח, ואז ב<a href="04-visualizations-ggplot2.html">פרק&nbsp;<span>4</span></a> נלמד על ויז’ואליזציות באמצעות חבילת <code>ggplot2</code>.</p>
-<p>לעולם הסטטיסטי ניכנס ב<a href="05-hypothesis-tests.html">פרק&nbsp;<span>5</span></a> עם מבחני השערה, וב<a href="06-linear-regression.html">פרק&nbsp;<span>6</span></a> עם רגרסיה לינארית.</p>
-<p>לאחר מכן נצלול קצת יותר לעומק עם מודלים מתקדמים מעולם ה-Data Science תוך שימוש בחבילת <code>tidymodels</code> ב<a href="07-advanced-models.html">פרק&nbsp;<span>7</span></a>.</p>
-<p><strong>הנוסח שלפניכם הוא טיוטה, ולכן חלקים מסוימים עוד חסרים ממנו, וחלקים מסוימים עוד ישתנו. מי שמוצא טעות בספר, מוזמן לפנות אלי בטוויטר @SaridResearch</strong>.</p>
+<p>כותב הספר הוא ד"ר עדי שריד, שותף ומנהל מחלקת חקר הביצועים ומדעי הנתונים <a href="https://www.sarid-ins.co.il">במכון שריד</a>. לעדי יש דוקטורט מטעם המחלקה להנדסת תעשייה באוניברסיטת תל-אביב, תואר שני בחקר ביצועים מאוניברסיטת תל-אביב, ותואר ראשון במתמטיקה עם סטטיסטיקה וחקר ביצועים מהטכניון.</p>
+<p>עדי לימד ומלמד R במגוון מסגרות: באוניברסיטה במסגרת קורסים כגון מבוא לסטטיסטיקה, ניתוח נתונים, וקורסים פרטיים במכללות ובחברות הייטק. את הניסיון בהכשרה בלימוד R מביא איתו עדי לספר הנוכחי שנועד לתת מענה ללומדים את R ששפת האם שלהם היא עברית.</p>
+<p>לפרטים נוספים <a href="https://adisarid.github.io">adisarid.github.io</a>.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -307,10 +271,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./07-advanced-models.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-introduction.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09-references.html" class="pagination-link">
+        <span class="nav-page-text">מקורות</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

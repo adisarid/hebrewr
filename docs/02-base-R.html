@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - 3&nbsp; תחביר בסיסי (Base R Syntax)</title>
+<title>המדריך העברי למשתמש ב-R - 2&nbsp; תחביר בסיסי</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,8 +88,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./visualizations-ggplot2.html" rel="next">
-<link href="./introduction.html" rel="prev">
+<link href="./03-data-munging-tidyverse.html" rel="next">
+<link href="./01-introduction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -130,7 +130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">תחביר בסיסי (Base R Syntax)</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -155,47 +155,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">המדריך העברי למשתמש ב-R</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">הקדמה</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">מבוא</span></a>
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./base-R.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">תחביר בסיסי (Base R Syntax)</span></a>
+  <a href="./02-base-R.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visualizations-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציה עם <code>ggplot2</code></span></a>
+  <a href="./03-data-munging-tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">הכנת נתונים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
+  <a href="./04-visualizations-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
+  <a href="./05-hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים מתקדמים</span></a>
+  <a href="./06-linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  <a href="./07-advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">ביבליוגרפיה</a>
+  <a href="./08-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
   </div>
 </li>
     </ul>
@@ -204,20 +209,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#השמת-משתנים-פעולות-אריתמטיות-ופונקציות" id="toc-השמת-משתנים-פעולות-אריתמטיות-ופונקציות" class="nav-link active" data-scroll-target="#השמת-משתנים-פעולות-אריתמטיות-ופונקציות"> <span class="header-section-number">3.1</span> השמת משתנים, פעולות אריתמטיות ופונקציות</a>
+  <li><a href="#השמת-משתנים-פעולות-אריתמטיות-ופונקציות" id="toc-השמת-משתנים-פעולות-אריתמטיות-ופונקציות" class="nav-link active" data-scroll-target="#השמת-משתנים-פעולות-אריתמטיות-ופונקציות"> <span class="header-section-number">2.1</span> השמת משתנים, פעולות אריתמטיות ופונקציות</a>
   <ul class="collapse">
-  <li><a href="#קביעת-שמות-משתנים" id="toc-קביעת-שמות-משתנים" class="nav-link" data-scroll-target="#קביעת-שמות-משתנים"> <span class="header-section-number">3.1.1</span> קביעת שמות משתנים</a></li>
-  <li><a href="#סוגי-משתנים" id="toc-סוגי-משתנים" class="nav-link" data-scroll-target="#סוגי-משתנים"> <span class="header-section-number">3.1.2</span> סוגי משתנים</a></li>
-  <li><a href="#קריאה-לתתי-וקטורים" id="toc-קריאה-לתתי-וקטורים" class="nav-link" data-scroll-target="#קריאה-לתתי-וקטורים"> <span class="header-section-number">3.1.3</span> קריאה לתתי וקטורים</a></li>
+  <li><a href="#קביעת-שמות-משתנים" id="toc-קביעת-שמות-משתנים" class="nav-link" data-scroll-target="#קביעת-שמות-משתנים"> <span class="header-section-number">2.1.1</span> קביעת שמות משתנים</a></li>
+  <li><a href="#סוגי-משתנים" id="toc-סוגי-משתנים" class="nav-link" data-scroll-target="#סוגי-משתנים"> <span class="header-section-number">2.1.2</span> סוגי משתנים</a></li>
+  <li><a href="#קריאה-לתתי-וקטורים" id="toc-קריאה-לתתי-וקטורים" class="nav-link" data-scroll-target="#קריאה-לתתי-וקטורים"> <span class="header-section-number">2.1.3</span> קריאה לתתי וקטורים</a></li>
   </ul></li>
-  <li><a href="#רשימה-list" id="toc-רשימה-list" class="nav-link" data-scroll-target="#רשימה-list"> <span class="header-section-number">3.2</span> רשימה (list)</a></li>
-  <li><a href="#שימוש-בפונקציות" id="toc-שימוש-בפונקציות" class="nav-link" data-scroll-target="#שימוש-בפונקציות"> <span class="header-section-number">3.3</span> שימוש בפונקציות</a></li>
-  <li><a href="#אופרטורים" id="toc-אופרטורים" class="nav-link" data-scroll-target="#אופרטורים"> <span class="header-section-number">3.4</span> אופרטורים</a></li>
-  <li><a href="#התניות" id="toc-התניות" class="nav-link" data-scroll-target="#התניות"> <span class="header-section-number">3.5</span> התניות</a></li>
-  <li><a href="#לולאות" id="toc-לולאות" class="nav-link" data-scroll-target="#לולאות"> <span class="header-section-number">3.6</span> לולאות</a></li>
+  <li><a href="#רשימה-list" id="toc-רשימה-list" class="nav-link" data-scroll-target="#רשימה-list"> <span class="header-section-number">2.2</span> רשימה (list)</a></li>
+  <li><a href="#שימוש-בפונקציות" id="toc-שימוש-בפונקציות" class="nav-link" data-scroll-target="#שימוש-בפונקציות"> <span class="header-section-number">2.3</span> שימוש בפונקציות</a></li>
+  <li><a href="#אופרטורים" id="toc-אופרטורים" class="nav-link" data-scroll-target="#אופרטורים"> <span class="header-section-number">2.4</span> אופרטורים</a></li>
+  <li><a href="#התניות" id="toc-התניות" class="nav-link" data-scroll-target="#התניות"> <span class="header-section-number">2.5</span> התניות</a></li>
+  <li><a href="#לולאות" id="toc-לולאות" class="nav-link" data-scroll-target="#לולאות"> <span class="header-section-number">2.6</span> לולאות</a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="base-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">תחביר בסיסי (Base R Syntax)</span></span></h1>
+<h1 class="title"><span id="sec-base-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></span></h1>
 </div>
 
 
@@ -243,8 +248,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>בפרק זה נלמד את הבסיס של R, בעיקר נכיר את הפקודות הבסיסיות, אופרטורים (תנאים לוגיים) שונים, התניות, לולאות, סוגי משתנים ובניית פונקציות. בסיס זה נקרא הרבה פעמים גם Base R משום שהוא אינו מכיל חבילות הרחבה כלשהן, ומגיע עם התקנה חדשה של R.</p>
 <p>פרק זה הוא בין הפרקים הבודדים בספר שמתמקד בעקרונות של תכנות כמו התניות, לולאות, ופונקציות. עקרונות אלו יהיו מוכרים מאוד למי שכבר למד תכנות, אך ייתכן שיהיו קצת יותר מאתגרים למישהו שמעולם לא למד תכנות. זה לא נורא, משום שהיכרות בסיסית עם העקרונות ומעט תרגול (כמו בתרגילים שמופיעים בפרק זה) יאפשרו גם למי שאין לו היכרות עם תכנות להתקדם לפרקים הבאים.</p>
 <p>כדי לתרגל את הפקודות שתלמדו בפרק זה (ובפרקים הבאים) מומלץ לפתוח חלון של RStudio ולנסות את הפקודות השונות תוך כדי שאתם קוראים את הפרק.</p>
-<section id="השמת-משתנים-פעולות-אריתמטיות-ופונקציות" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="השמת-משתנים-פעולות-אריתמטיות-ופונקציות"><span class="header-section-number">3.1</span> השמת משתנים, פעולות אריתמטיות ופונקציות</h2>
+<section id="השמת-משתנים-פעולות-אריתמטיות-ופונקציות" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="השמת-משתנים-פעולות-אריתמטיות-ופונקציות"><span class="header-section-number">2.1</span> השמת משתנים, פעולות אריתמטיות ופונקציות</h2>
 <p>ניתן להריץ ב-R פעולות אריתמטיות (חיבור, חיסור, כפל, חילוק), פונקציות, ולהגדיר משתנים שונים. לדוגמה, הקוד הבא מגדיר משתנה <code>a</code> משתנה <code>b</code> ומכניס את הסכום שלהם למשתנה חדש שיקרא <code>a_plus_b</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
@@ -259,12 +264,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a_plus_b <span class="ot">=</span> a <span class="sc">+</span> b  <span class="co"># this form of assignment `=` is less common, don't use it (use `&lt;-`)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="קביעת-שמות-משתנים" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="קביעת-שמות-משתנים"><span class="header-section-number">3.1.1</span> קביעת שמות משתנים</h3>
+<section id="קביעת-שמות-משתנים" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="קביעת-שמות-משתנים"><span class="header-section-number">2.1.1</span> קביעת שמות משתנים</h3>
 <p>קודם השתמשנו בשמות <code>a</code>, <code>b</code> , ו-<code>a_plus_b</code> כדי לקבוע משתנים. ככלל, מומלץ להשתמש בשמות קצרים בעלי משמעות. שמות משתנים חייבים להתחיל באות באנגלית, ויכולים להכיל אותיות, מספרים, קו תחתון, ונקודה. לדוגמה <code>gender</code>, <code>age</code>, <code>raw_data</code>, וכו’.</p>
 </section>
-<section id="סוגי-משתנים" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="סוגי-משתנים"><span class="header-section-number">3.1.2</span> סוגי משתנים</h3>
+<section id="סוגי-משתנים" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="סוגי-משתנים"><span class="header-section-number">2.1.2</span> סוגי משתנים</h3>
 <p>בבסיס השפה יש כמה סוגי משתנים, שקובעים מה סוג הערכים שהמשתנה יכול לקבל:</p>
 <ul>
 <li><p>מספר שלם (Integer)</p></li>
@@ -301,7 +306,7 @@ Levels: Apples Mangos Oranges Paers</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>some_date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">Sys.Date</span>(), <span class="fu">as.Date</span>(<span class="st">"1993-08-01"</span>))</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>some_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2022-12-02" "1993-08-01"</code></pre>
+<pre><code>[1] "2022-12-03" "1993-08-01"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>some_logical <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>) <span class="co"># can also use c(T, F, F, T) is the same</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>some_logical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -349,8 +354,8 @@ Levels: Apples Mangos Oranges Paers</code></pre>
 </div>
 </div>
 </section>
-<section id="קריאה-לתתי-וקטורים" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="קריאה-לתתי-וקטורים"><span class="header-section-number">3.1.3</span> קריאה לתתי וקטורים</h3>
+<section id="קריאה-לתתי-וקטורים" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="קריאה-לתתי-וקטורים"><span class="header-section-number">2.1.3</span> קריאה לתתי וקטורים</h3>
 <p>ב-R ניתן לקרוא לחלק מסוים מתוך וקטור. לדוגמה, אם אנחנו רוצים רק את שני האיברים הראשונים מתוך הוקטור some_factor או את האיבר הראשון והרביעי מתוך some_character נשתמש בכתיב:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>some_factor[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -365,8 +370,8 @@ Levels: Apples Mangos Oranges Paers</code></pre>
 </div>
 </section>
 </section>
-<section id="רשימה-list" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="רשימה-list"><span class="header-section-number">3.2</span> רשימה (list)</h2>
+<section id="רשימה-list" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="רשימה-list"><span class="header-section-number">2.2</span> רשימה (list)</h2>
 <p>כעת נדון במבנה נתונים שנקרא רשימה (list). רשימה היא אובייקט מרכזי ב-R שמאפשר לנו לאחד משתנים ווקטורים מסוגים שונים, לתוך dataset שיאפשר לנו בהמשך לנתח נתונים. ישנן מספר דרכים להגדיר רשימה, אחת מהן באמצעות הפקודה <code>list</code>. לדוגמה, הרשימה הבאה תכיל את כל הוקטורים שהגדרנו עד כה, מבלי שהם יאבדו מהמשמעות שלהם (כפי שקורה כשמנסים לעשות חיבור רגיל).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">my_int =</span> some_integer,</span>
@@ -390,7 +395,7 @@ $my_factor
 Levels: Apples Mangos Oranges Paers
 
 $my_date
-[1] "2022-12-02" "1993-08-01"</code></pre>
+[1] "2022-12-03" "1993-08-01"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -425,8 +430,8 @@ $my_date
 </div>
 </div>
 </section>
-<section id="שימוש-בפונקציות" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="שימוש-בפונקציות"><span class="header-section-number">3.3</span> שימוש בפונקציות</h2>
+<section id="שימוש-בפונקציות" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="שימוש-בפונקציות"><span class="header-section-number">2.3</span> שימוש בפונקציות</h2>
 <p>ניתן גם להפעיל פונקציות שונות, לדוגמה לוגריתם, פונקציות טריגונומטריות. למעשה בסעיף הקודם כבר ראינו מספר פונקציות כגון <code>c</code> ו-<code>typeof</code>. כעת נראה עוד מספר דוגמאות.</p>
 <p>נסו להריץ את הקוד הבא, ולאחר מכן לענות על השאלות שמתחת למקטע הקוד. יש לשים לב שעל מנת להריץ את הפקודות בסוף המקטע (שקשורות ב-<code>my_data</code> נדרש קודם להגדיר את <code>my_data</code> כפי שהוגדר במקטע הקוד הקודם.</p>
 <div class="cell">
@@ -478,8 +483,8 @@ $my_date
 </div>
 </div>
 </section>
-<section id="אופרטורים" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="אופרטורים"><span class="header-section-number">3.4</span> אופרטורים</h2>
+<section id="אופרטורים" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="אופרטורים"><span class="header-section-number">2.4</span> אופרטורים</h2>
 <p>אופרטורים משמשים כדי להגדיר תנאים לוגיים שונים, לדוגמה אם אנחנו רוצים לבדוק את נכונותם של שני תנאים או יותר. ב-R נשתמש בתו כפול <code>||</code> כדי לציין “או” לוגי (or), ונשתמש בתו כפול <code>&amp;&amp;</code> על מנת לציין “וגם” לוגי (and).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
@@ -547,8 +552,8 @@ $my_date
 </div>
 <p>ישנם אופרטורים נוספים ב-R, אך בינתיים נסתפק באופרטורים שצוינו לעיל. כעת, לאחר שלמדנו על אופרטורים לוגיים, באפשרותנו ללמוד על התניות (if cluases) ועל לולאות (loops).</p>
 </section>
-<section id="התניות" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="התניות"><span class="header-section-number">3.5</span> התניות</h2>
+<section id="התניות" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="התניות"><span class="header-section-number">2.5</span> התניות</h2>
 <p>במקרים רבים אנחנו רוצים להתנות פעולות מסוימות בקיומו של תנאי כלשהו. ניתן לבצע התניה זו באמצעות הפקודות <code>if</code>, <code>else if</code>, <code>else</code>.</p>
 <p>המבנה הכללי של התניות יראה כך:</p>
 <div class="cell">
@@ -595,8 +600,8 @@ $my_date
 </div>
 </div>
 </section>
-<section id="לולאות" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="לולאות"><span class="header-section-number">3.6</span> לולאות</h2>
+<section id="לולאות" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="לולאות"><span class="header-section-number">2.6</span> לולאות</h2>
 <p>לולאות הן דרך נוחה כדי לגרום למחשב לעשות הרבה חזרות של אותה הפעולה (רק בשינוי ערכים מסוימים). ב-R ישנם סוגים שונים של לולאות, המתאפיינים בפקודות שונות אבל גם בזמן ריצה (יעילות) שונה.</p>
 <ul>
 <li>לולאות <code>for</code></li>
@@ -804,13 +809,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./introduction.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">מבוא</span></span>
+      <a href="./01-introduction.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./visualizations-ggplot2.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציה עם <code>ggplot2</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-data-munging-tidyverse.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">הכנת נתונים</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

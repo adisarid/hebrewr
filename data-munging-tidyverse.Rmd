@@ -1,3 +1,0 @@
-# הכנת הנתונים (שימוש ב-`tidyverse`) {#data-munging-tidyverse}
-
-TBD

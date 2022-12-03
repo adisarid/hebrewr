@@ -1,4 +1,4 @@
-# מבוא {#introduction}
+# מבוא {#sec-introduction}
 
 ## תהליך ניתוח נתונים
 

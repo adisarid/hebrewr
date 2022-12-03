@@ -1,3 +1,0 @@
-# רגרסיה לינארית {#linear-regression}
-
-TBD

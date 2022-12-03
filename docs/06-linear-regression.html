@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - על הכותב</title>
+<title>המדריך העברי למשתמש ב-R - 6&nbsp; רגרסיה לינארית</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,8 +25,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./advanced-models.html" rel="prev">
+<link href="./07-advanced-models.html" rel="next">
+<link href="./05-hypothesis-tests.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -66,7 +66,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">על הכותב</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -91,47 +91,52 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">המדריך העברי למשתמש ב-R</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">הקדמה</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">מבוא</span></a>
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./base-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">תחביר בסיסי (Base R Syntax)</span></a>
+  <a href="./02-base-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visualizations-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציה עם <code>ggplot2</code></span></a>
+  <a href="./03-data-munging-tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">הכנת נתונים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
+  <a href="./04-visualizations-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
+  <a href="./05-hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים מתקדמים</span></a>
+  <a href="./06-linear-regression.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link active">על הכותב</a>
+  <a href="./07-advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">ביבליוגרפיה</a>
+  <a href="./08-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
   </div>
 </li>
     </ul>
@@ -146,7 +151,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="about" class="quarto-section-identifier d-none d-lg-block">על הכותב</span></h1>
+<h1 class="title"><span id="sec-linear-regression" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></span></h1>
 </div>
 
 
@@ -160,9 +165,7 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>כותב הספר הוא ד"ר עדי שריד, שותף ומנהל מחלקת חקר הביצועים ומדעי הנתונים <a href="https://www.sarid-ins.co.il">במכון שריד</a>. לעדי יש דוקטורט מטעם המחלקה להנדסת תעשייה באוניברסיטת תל-אביב, תואר שני בחקר ביצועים מאוניברסיטת תל-אביב, ותואר ראשון במתמטיקה עם סטטיסטיקה וחקר ביצועים מהטכניון.</p>
-<p>עדי לימד ומלמד R במגוון מסגרות: באוניברסיטה במסגרת קורסים כגון מבוא לסטטיסטיקה, ניתוח נתונים, וקורסים פרטיים במכללות ובחברות הייטק. את הניסיון בהכשרה בלימוד R מביא איתו עדי לספר הנוכחי שנועד לתת מענה ללומדים את R ששפת האם שלהם היא עברית.</p>
-<p>לפרטים נוספים <a href="https://adisarid.github.io">adisarid.github.io</a>.</p>
+<p>TBD</p>
 
 
 
@@ -266,13 +269,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./advanced-models.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים מתקדמים</span></span>
+      <a href="./05-hypothesis-tests.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">ביבליוגרפיה</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07-advanced-models.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
