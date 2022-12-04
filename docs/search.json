@@ -81,7 +81,14 @@
     "href": "03-data-munging-tidyverse.html",
     "title": "3  הכנת נתונים",
     "section": "",
-    "text": "TBD"
+    "text": "הכנת נתונים, או כמו שהיא מכונה באנגלית Data Munging היא קבוצת הפעולות שיש לעשות לנתונים על מנת שאפשר יהיה להשתמש בהם בהצגת נתונים (ויז’ואליזציה), או במודל. בספר זה, אנחנו עושים שימוש רב בחבילת tidyverse על מנת להכין את הנתונים.\nראשית, נעמוד על הפילוסופיה מאחורי tidyverse."
+  },
+  {
+    "objectID": "03-data-munging-tidyverse.html#הפילוסופיה-מאחורי-tidyverse",
+    "href": "03-data-munging-tidyverse.html#הפילוסופיה-מאחורי-tidyverse",
+    "title": "3  הכנת נתונים",
+    "section": "3.1 הפילוסופיה מאחורי tidyverse",
+    "text": "3.1 הפילוסופיה מאחורי tidyverse"
   },
   {
     "objectID": "04-visualizations-ggplot2.html",
