@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -148,7 +211,16 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#הפילוסופיה-מאחורי-tidyverse" id="toc-הפילוסופיה-מאחורי-tidyverse" class="nav-link active" data-scroll-target="#הפילוסופיה-מאחורי-tidyverse"> <span class="header-section-number">3.1</span> הפילוסופיה מאחורי <code>tidyverse</code></a></li>
+  <li><a href="#הפילוסופיה-מאחורי-tidyverse" id="toc-הפילוסופיה-מאחורי-tidyverse" class="nav-link active" data-scroll-target="#הפילוסופיה-מאחורי-tidyverse"> <span class="header-section-number">3.1</span> הפילוסופיה מאחורי <code>tidyverse</code></a>
+  <ul class="collapse">
+  <li><a href="#דוגמה-לדאטה-לא-מסודר" id="toc-דוגמה-לדאטה-לא-מסודר" class="nav-link" data-scroll-target="#דוגמה-לדאטה-לא-מסודר"> <span class="header-section-number">3.1.1</span> דוגמה לדאטה לא מסודר</a></li>
+  <li><a href="#דוגמה-לדאטה-מסודר" id="toc-דוגמה-לדאטה-מסודר" class="nav-link" data-scroll-target="#דוגמה-לדאטה-מסודר"> <span class="header-section-number">3.1.2</span> דוגמה לדאטה מסודר</a></li>
+  </ul></li>
+  <li><a href="#פעולות-להצצה-על-הנתונים" id="toc-פעולות-להצצה-על-הנתונים" class="nav-link" data-scroll-target="#פעולות-להצצה-על-הנתונים"> <span class="header-section-number">3.2</span> פעולות להצצה על הנתונים</a></li>
+  <li><a href="#פעולות-שמשנות-ערכים-טרנספורמציות" id="toc-פעולות-שמשנות-ערכים-טרנספורמציות" class="nav-link" data-scroll-target="#פעולות-שמשנות-ערכים-טרנספורמציות"> <span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</a></li>
+  <li><a href="#פעולות-על-שורות-סינון" id="toc-פעולות-על-שורות-סינון" class="nav-link" data-scroll-target="#פעולות-על-שורות-סינון"> <span class="header-section-number">3.4</span> פעולות על שורות (סינון)</a></li>
+  <li><a href="#פעולות-לפי-קיבוצים-סיכום" id="toc-פעולות-לפי-קיבוצים-סיכום" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים-סיכום"> <span class="header-section-number">3.5</span> פעולות לפי קיבוצים (סיכום)</a></li>
+  <li><a href="#חיבור-בין-טבלאות" id="toc-חיבור-בין-טבלאות" class="nav-link" data-scroll-target="#חיבור-בין-טבלאות"> <span class="header-section-number">3.6</span> חיבור בין טבלאות</a></li>
   </ul>
 </nav>
     </div>
@@ -171,10 +243,84 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>הכנת נתונים, או כמו שהיא מכונה באנגלית Data Munging היא קבוצת הפעולות שיש לעשות לנתונים על מנת שאפשר יהיה להשתמש בהם בהצגת נתונים (ויז’ואליזציה), או במודל. בספר זה, אנחנו עושים שימוש רב בחבילת <code>tidyverse</code> על מנת להכין את הנתונים.</p>
+<p>הכנת נתונים, או כמו שהיא מכונה באנגלית, Data Munging, היא סדר הפעולות שיש לעשות לנתונים על מנת שאפשר יהיה להשתמש בהם בכלל שלבי המחקר, כגון הצגת נתונים (ויז’ואליזציה), מידול, ובפעולות נוספות במהלך המחקר. בספר זה, אנחנו עושים שימוש רב בחבילת <code>tidyverse</code> על מנת להכין את הנתונים.</p>
 <p>ראשית, נעמוד על הפילוסופיה מאחורי <code>tidyverse</code>.</p>
 <section id="הפילוסופיה-מאחורי-tidyverse" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="הפילוסופיה-מאחורי-tidyverse"><span class="header-section-number">3.1</span> הפילוסופיה מאחורי <code>tidyverse</code></h2>
+<p>החבילה ב-R שנקראת <code>tidyverse</code> היא למעשה “חבילה של חבילות”.<br>
+היא מכילה מקבץ חבילות לעבודה עם נתונים כמו <code>dplyr</code>, וכמו <code>tidyr</code> שהן חבילות מאוד שימושיות במניפולציה על נתונים, וסידור נתונים, אבל היא מכילה גם חבילות שממוקדות סביב עולמות תוכן אחרים, כמו <code>stringr</code> לעבודה עם מחזורות, <code>lubridate</code> לעבודה עם תאריכים, ו-<code>forcats</code> לעבודה עם פקטורים. כפי שחדי העין ישימו לב, לרוב שם של חבילה ירמוז לגבי מהות החבילה (לעיתים עם האות r איפשהו, ולעיתים עם קורטוב של הומור). הפירוט המלא של תוכן החבילה <code>tidyverse</code>והחבילות שמוכלות בה זמין <a href="https://www.tidyverse.org/">בקישור</a>.</p>
+<p>על מנת להתקין את החבילה נשתמש בפקודה <code>install.packages("tidyverse")</code>, ועל מנת לטעון אותה לאחר ההתקנה, נשתמש בפקודה <code>library(tidyverse)</code>. שימו לב שבהתקנה צריך להשתמש במרכאות אבל בקריאה לאחר מכן אין צורך במרכאות. את ההתקנה צריך לעשות רק פעם אחת (והיא לוקחת המון זמן), ואת הקריאה לספריה צריך לעשות כל פעם שמפעילים מחדש את R.</p>
+<p>כשלב יסודי, מה שחשוב להבין בעבודה עם נתונים זה שהשאיפה היא שתמיד נשאף להגיע ולעבוד במבנה מסודר שבו:</p>
+<ol type="1">
+<li>כל עמודה היא משתנה.</li>
+<li>כל שורה היא תצפית.</li>
+<li>כל תא הוא ערך של משתנה עבור תצפית מסוימות.</li>
+</ol>
+<p>אם הדאטה המקורי שלנו לא במבנה הזה - אז כהכנה נרצה להביא אותו למבנה כזה, ואם הוא כבר במבנה המסודר הזה, אז כל פעולה שנעשה, עדיין תשמור את הדאטה במבנה מסודר. המבנה הזה מכונה באנגלית tidy (ומכאן השם tidyverse). אנחנו פשוט נכנה אותו פה מבנה “מסודר”.</p>
+<p>ניתן שתי דוגמאות לדאטה, אחד מסודר ואחר לא מסודר. נתחיל בדוגמה לדאטה לא מסודר.</p>
+<section id="דוגמה-לדאטה-לא-מסודר" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="דוגמה-לדאטה-לא-מסודר"><span class="header-section-number">3.1.1</span> דוגמה לדאטה לא מסודר</h3>
+<p>הלשכה המרכזית לסטטיסטיקה מנגישה הרבה נתונים לציבור באמצעות האתר שלה https://www.cbs.gov.il<br>
+מרבית הנתונים שמונגשים לציבור דרך האתר בקבצי אקסל הינם בפורמט לא מסודר. לדוגמה, קובץ שהורדתי מהכתובת <a href="https://www.cbs.gov.il/he/publications/Pages/2016/%D7%A1%D7%A4%D7%99%D7%A8%D7%95%D7%AA-%D7%AA%D7%A0%D7%95%D7%A2%D7%94-%D7%91%D7%93%D7%A8%D7%9B%D7%99%D7%9D-%D7%9C%D7%90-%D7%A2%D7%99%D7%A8%D7%95%D7%A0%D7%99%D7%95%D7%AA-2015-2010.aspx">הזו</a> והוא עוסק בנפח תנועה מסביב לכנרת בחג הפסח וסוכות.</p>
+<p>זה קובץ אקסל, והוא נראה כך:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cbs_untidy_data.png" class="img-fluid figure-img" alt="דאטה לא-מסודר מאתר הלשכה המרכזית לסטטיסטיקה"></p>
+<p></p><figcaption class="figure-caption">דאטה לא-מסודר מאתר הלשכה המרכזית לסטטיסטיקה</figcaption><p></p>
+</figure>
+</div>
+<p>איפה הבעיות עם הדאטה? נראה מה הסעיפים שאינם מתקיימים:</p>
+<ol type="1">
+<li>כל עמודה היא משתנה - מתקיים באופן חלקי. משום שיש עמודות מסוימות כמו עמודות H-K שהן ממוזגות מה שהופך אותם ל”לא בדיוק משתנה יחיד”. מדובר בקבוצת משתנים ותכונה שמתארת אותם. בפרט, היינו מצפים לראות שורת כותרת אחת שמתארת את שמות המשתנים (מה שמכונה באנגלית headers), אבל בפועל יש פה הרבה שורות כותרות.</li>
+<li>כל שורה היא תצפית - לא מתקיים בכלל. יש שורות ריקות (כמו שורה 5), ויש שורות שאינן תצפית אלא מתארות תכונות של מקבץ תצפיות (כגון שורה 6 ושורה 14).</li>
+<li>כל תא הוא ערך של משתנה עבור תצפית מסוימת - לא מתקיים. ראו סעיף קודם - מדובר בתאים שמכילים ערכים שמתארים מקבץ תצפיות.</li>
+</ol>
+<p>כמו כן, יש עוד כל מיני חריגות לא ברורות בקובץ כגון תאים שמודגשים במסגרת גבול שחורה (מבלי שברור מה המסגרת אומרת), יש תאים שמכילים שתי נקודות (לא ברור מה זה, האם ערך חסר?), שמות המשתנים לעיתים מפוצלים על פני שתי שורות (כמו לדוגמה “ערב פסח” בעמודה F), ועוד בעיות.</p>
+<p>בסיכומו של עניין - אילו היינו רוצים לקלוט קובץ כזה לתוך R על מנת לחלץ את המספרים שבו, היינו צריכים להתאמץ רבות על מנת להפוך את הקובץ למסודר. באופן כללי, ניתן לומר שקבצי אקסל הם מתכון לאסון כי הם מעודדים את המשתמשים לבנות קבצים לא-מסודרים על ידי ביצוע פעולות כמו מיזוג תאים, צביעה של תאים (שזה אינדיקציה לקידוד מידע כלשהו, אבל קידוד שקשה להבין אותו ב”שפת הנתונים”), ועוד שאר בעיות שאין זה המקום לתאר.</p>
+</section>
+<section id="דוגמה-לדאטה-מסודר" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="דוגמה-לדאטה-מסודר"><span class="header-section-number">3.1.2</span> דוגמה לדאטה מסודר</h3>
+<p>הנה דוגמה לדאטה מסודר מתוך חבילת <code>palmerpenguins</code>. חבילה זו מכילה נתונים של שלושה זנים של פינגוינים, ואנחנו עוד נשתמש בה בהמשך הספר. לכרגע רק נראה איך נראות עשרת השורות הראשונות בטבלת הנתונים (הסבר על הקוד והתוצר שרואים מצורף מטה):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>palmerpenguins<span class="sc">::</span>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
+ 2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
+ 3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
+ 4 Adelie  Torgersen           NA            NA           NA      NA &lt;NA&gt;   2007
+ 5 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
+ 6 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
+ 7 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
+ 8 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
+ 9 Adelie  Torgersen           34.1          18.1        193    3475 &lt;NA&gt;   2007
+10 Adelie  Torgersen           42            20.2        190    4250 &lt;NA&gt;   2007
+# … with 334 more rows, and abbreviated variable names ¹​flipper_length_mm,
+#   ²​body_mass_g
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>אנחנו רואים שהאובייקט הוא מסוג tibble (טבלה שהיא גרסה מודרנית יותר של ה-<code>data.frame</code> הבסיסי ב-R). לטבלה הזו יש 344 תצפיות (פינגוינים), ויש לה 8 עמודות (משתנים) שכוללים את הזן של הפינגוין, מאיזה אי הוא, אורך ועומד המקור, אורך הכנף, מסה, מין, והשנה שבה נצפתה הדגימה. הדאטה הזה מסודר ועומד בכללים שהגדרנו.</p>
+<p>לגבי הקוד עצמו שבו השתמשנו: השימוש בנקודותיים <code>::</code> אומר ל-R לקחת את האובייקט <code>penguins</code> שנמצא בתוך חבילת <code>palmerpenguins</code> (אפשר גם היה לפצל את הקוד וקודם להשתמש ב-<code>library(palmerpenguins)</code> ואז להריץ את <code>head(penguins)</code>.</p>
+<p>אם תרצו להריץ את הקוד הזה אצלכם במחשב, יכול להיות שתצטרכו קודם להתקין את החבילה על ידי שימוש בפקודה <code>install.packages("palmerpenguins")</code>.</p>
+</section>
+</section>
+<section id="פעולות-להצצה-על-הנתונים" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="פעולות-להצצה-על-הנתונים"><span class="header-section-number">3.2</span> פעולות להצצה על הנתונים</h2>
+</section>
+<section id="פעולות-שמשנות-ערכים-טרנספורמציות" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="פעולות-שמשנות-ערכים-טרנספורמציות"><span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</h2>
+</section>
+<section id="פעולות-על-שורות-סינון" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="פעולות-על-שורות-סינון"><span class="header-section-number">3.4</span> פעולות על שורות (סינון)</h2>
+</section>
+<section id="פעולות-לפי-קיבוצים-סיכום" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="פעולות-לפי-קיבוצים-סיכום"><span class="header-section-number">3.5</span> פעולות לפי קיבוצים (סיכום)</h2>
+</section>
+<section id="חיבור-בין-טבלאות" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="חיבור-בין-טבלאות"><span class="header-section-number">3.6</span> חיבור בין טבלאות</h2>
 
 
 </section>
