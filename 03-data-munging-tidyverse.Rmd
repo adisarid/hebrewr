@@ -78,11 +78,11 @@ palmerpenguins::penguins
 
 </div>
 
-נקרא כעת את טבלת הPenguins שראינו בחלק הקודם.
+נקרא כעת את טבלת הPenguins שראינו בחלק הקודם. שימו לב שאנחנו משתמשים במיקום קובץ באינטרנט, אבל ניתן גם לקרוא קבצים שנמצאים מקומית על המחשב.
 
-```{r reading penguins}
+```{r reading penguins, cache=TRUE}
 library(readr)
-penguins <- read_csv("data/penguins.csv")
+penguins <- read_csv("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv")
 ```
 
 ## פעולות שמשנות ערכים (טרנספורמציות)

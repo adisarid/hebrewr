@@ -216,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#דוגמה-לדאטה-לא-מסודר" id="toc-דוגמה-לדאטה-לא-מסודר" class="nav-link" data-scroll-target="#דוגמה-לדאטה-לא-מסודר"> <span class="header-section-number">3.1.1</span> דוגמה לדאטה לא מסודר</a></li>
   <li><a href="#דוגמה-לדאטה-מסודר" id="toc-דוגמה-לדאטה-מסודר" class="nav-link" data-scroll-target="#דוגמה-לדאטה-מסודר"> <span class="header-section-number">3.1.2</span> דוגמה לדאטה מסודר</a></li>
   </ul></li>
-  <li><a href="#פעולות-להצצה-על-הנתונים" id="toc-פעולות-להצצה-על-הנתונים" class="nav-link" data-scroll-target="#פעולות-להצצה-על-הנתונים"> <span class="header-section-number">3.2</span> פעולות להצצה על הנתונים</a></li>
+  <li><a href="#הצצה-ראשונית-על-הנתונים" id="toc-הצצה-ראשונית-על-הנתונים" class="nav-link" data-scroll-target="#הצצה-ראשונית-על-הנתונים"> <span class="header-section-number">3.2</span> הצצה ראשונית על הנתונים</a></li>
   <li><a href="#פעולות-שמשנות-ערכים-טרנספורמציות" id="toc-פעולות-שמשנות-ערכים-טרנספורמציות" class="nav-link" data-scroll-target="#פעולות-שמשנות-ערכים-טרנספורמציות"> <span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</a></li>
   <li><a href="#פעולות-על-שורות-סינון" id="toc-פעולות-על-שורות-סינון" class="nav-link" data-scroll-target="#פעולות-על-שורות-סינון"> <span class="header-section-number">3.4</span> פעולות על שורות (סינון)</a></li>
   <li><a href="#פעולות-לפי-קיבוצים-סיכום" id="toc-פעולות-לפי-קיבוצים-סיכום" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים-סיכום"> <span class="header-section-number">3.5</span> פעולות לפי קיבוצים (סיכום)</a></li>
@@ -305,10 +305,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>אנחנו רואים שהאובייקט הוא מסוג tibble (טבלה שהיא גרסה מודרנית יותר של ה-<code>data.frame</code> הבסיסי ב-R). לטבלה הזו יש 344 תצפיות (פינגוינים), ויש לה 8 עמודות (משתנים) שכוללים את הזן של הפינגוין, מאיזה אי הוא, אורך ועומד המקור, אורך הכנף, מסה, מין, והשנה שבה נצפתה הדגימה. הדאטה הזה מסודר ועומד בכללים שהגדרנו.</p>
 <p>לגבי הקוד עצמו שבו השתמשנו: השימוש בנקודותיים <code>::</code> אומר ל-R לקחת את האובייקט <code>penguins</code> שנמצא בתוך חבילת <code>palmerpenguins</code> (אפשר גם היה לפצל את הקוד וקודם להשתמש ב-<code>library(palmerpenguins)</code> ואז להריץ את <code>head(penguins)</code>.</p>
 <p>אם תרצו להריץ את הקוד הזה אצלכם במחשב, יכול להיות שתצטרכו קודם להתקין את החבילה על ידי שימוש בפקודה <code>install.packages("palmerpenguins")</code>.</p>
+<p>כעת לאחר שלמדנו קצת על מה הוא דאטה מסודר, נראה איך אפשר לקרוא נתונים ו”להציץ” בנתונים, כדי לקבל מושג מה יש בנתונים ואיך לגשת אליהם.</p>
 </section>
 </section>
-<section id="פעולות-להצצה-על-הנתונים" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="פעולות-להצצה-על-הנתונים"><span class="header-section-number">3.2</span> פעולות להצצה על הנתונים</h2>
+<section id="הצצה-ראשונית-על-הנתונים" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="הצצה-ראשונית-על-הנתונים"><span class="header-section-number">3.2</span> הצצה ראשונית על הנתונים</h2>
+<p>בדרך כלל לפני הצצה ראשונית על הנתונים, אנחנו נידרש לקרוא אותם. קריאת הנתונים יכולה להתבצע ממגוון פורמטים. לדוגמה:</p>
+<ul>
+<li><p>קריאה מפורמט של CSV (Comma Separated Values, קרי קובץ טקסט המפריד ערכים באמצעות פסיקים), באמצעות פונקציות כגון <code>read.csv</code>, <code>readr::read_csv</code>.</p></li>
+<li><p>קריאה מפורמט של אקסל באמצעות פונקציה כגון: <code>readxl::read_excel</code>.</p></li>
+<li><p>קריאה מפורמט של תוכנות סטטיסטיות אחרות כגון SPSS או SAS באמצעות פקודות מחבילת <code>haven</code>.</p></li>
+<li><p>פורמטים וכלים נוספים.</p></li>
+</ul>
+<p>נתמקד בקבצי CSV, הפקודה המועדפת עלי היא <code>readr::read_csv</code> (בהשוואה ל-<code>read.csv</code> שנמצאת ב-Base R). הפקודה <code>read_csv</code> מעט מהירה ונוחה יותר מבחינת השליטה שהיא מאפשרת בקריאת הנתונים.</p>
+<div class="question">
+<p>קראו את התיעוד של <code>read.csv</code> ושל <code>read_csv</code>. איזה הבדלים אתם מזהים בין הפקודות?</p>
+<p>לצורך קריאת התיעוד ניתן לכתוב ב-Console <code>?read.csv</code>, <code>?readr::read_csv</code>.</p>
+</div>
+<p>נקרא כעת את טבלת הPenguins שראינו בחלק הקודם. שימו לב שאנחנו משתמשים במיקום קובץ באינטרנט, אבל ניתן גם לקרוא קבצים שנמצאים מקומית על המחשב.</p>
+<div class="cell" data-hash="03-data-munging-tidyverse_cache/html/reading penguins_b5d87dad9cffbc493dd6f04f58c08e8c">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 344 Columns: 8── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): species, island, sex
+dbl (5): bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
 </section>
 <section id="פעולות-שמשנות-ערכים-טרנספורמציות" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="פעולות-שמשנות-ערכים-טרנספורמציות"><span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</h2>
