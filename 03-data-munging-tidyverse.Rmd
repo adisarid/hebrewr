@@ -89,9 +89,35 @@ penguins <- read_csv("https://raw.githubusercontent.com/allisonhorst/palmerpengu
 
 -   הפקודה `glimpse` תציג את הערכים הראשונים של כל אחד מהמשתנים, כמו גם את שמות המשתנים, ואת סוגם.
 
--   הפקודה `head` תציג טבלה המוגבלת לשש התצפיות הראשונות.
+-   הפקודה `head` תציג טבלה המוגבלת לשש התצפיות הראשונות. אפשר להשתמש בארגומנט של הפונקציה על מנת להציג יותר שורות. הפקודה `tail` עובדת באופן דומה (רק מתחתית הטבלה).
 
 -   לכתוב ב-Console את שם הטבלה וללחוץ על Enter פשוט יציג את הטבלה (אם מדובר בtibble אז היא תוצג בפורמט קומפקטי ונוח).
+
+```{r view data set examples}
+#| warning: false
+#| message: false
+library(tidyverse)
+glimpse(penguins)
+head(penguins)
+head(penguins, 10)
+penguins
+```
+
+<div class="question">
+
+עברו על הפלט וודאו שאתם מצליחים להבין אילו חלקים בכל אחד מהפלטים מספק את המידע: סוג המשתנה, שם המשתנה, גודל הטבלה.
+
+</div>
+
+במבט על הפלט של כל אחת מהפקודות להלן ניתן כבר להבין את הפרטים הבאים:
+
+-   האובייקט שאנחנו בוחנים הוא טבלה מסוג tibble, בגודל של 344 שורות (תצפיות), ו-8 עמודות (משתנים).
+
+-   סוגי המשתנים הם מחרוזות (character - chr), מספרים ממשיים (double - dbl).
+
+    -   מחרוזות: species, island, sex
+
+    -   מספרים ממשיים: bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year.
 
 ## פעולות שמשנות ערכים (טרנספורמציות)
 
