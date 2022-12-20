@@ -218,9 +218,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#הצצה-ראשונית-על-הנתונים" id="toc-הצצה-ראשונית-על-הנתונים" class="nav-link" data-scroll-target="#הצצה-ראשונית-על-הנתונים"> <span class="header-section-number">3.2</span> הצצה ראשונית על הנתונים</a></li>
   <li><a href="#פעולות-שמשנות-ערכים-טרנספורמציות" id="toc-פעולות-שמשנות-ערכים-טרנספורמציות" class="nav-link" data-scroll-target="#פעולות-שמשנות-ערכים-טרנספורמציות"> <span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</a></li>
-  <li><a href="#פעולות-על-שורות-סינון" id="toc-פעולות-על-שורות-סינון" class="nav-link" data-scroll-target="#פעולות-על-שורות-סינון"> <span class="header-section-number">3.4</span> פעולות על שורות (סינון)</a></li>
-  <li><a href="#פעולות-לפי-קיבוצים-סיכום" id="toc-פעולות-לפי-קיבוצים-סיכום" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים-סיכום"> <span class="header-section-number">3.5</span> פעולות לפי קיבוצים (סיכום)</a></li>
-  <li><a href="#חיבור-בין-טבלאות" id="toc-חיבור-בין-טבלאות" class="nav-link" data-scroll-target="#חיבור-בין-טבלאות"> <span class="header-section-number">3.6</span> חיבור בין טבלאות</a></li>
+  <li><a href="#בחירת-ושינוי-שם-משתנים-עמודות" id="toc-בחירת-ושינוי-שם-משתנים-עמודות" class="nav-link" data-scroll-target="#בחירת-ושינוי-שם-משתנים-עמודות"> <span class="header-section-number">3.4</span> בחירת ושינוי שם משתנים (עמודות)</a></li>
+  <li><a href="#פעולות-על-שורות-סינון" id="toc-פעולות-על-שורות-סינון" class="nav-link" data-scroll-target="#פעולות-על-שורות-סינון"> <span class="header-section-number">3.5</span> פעולות על שורות (סינון)</a></li>
+  <li><a href="#פעולות-לפי-קיבוצים-סיכום" id="toc-פעולות-לפי-קיבוצים-סיכום" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים-סיכום"> <span class="header-section-number">3.6</span> פעולות לפי קיבוצים (סיכום)</a></li>
+  <li><a href="#חיבור-בין-טבלאות" id="toc-חיבור-בין-טבלאות" class="nav-link" data-scroll-target="#חיבור-בין-טבלאות"> <span class="header-section-number">3.7</span> חיבור בין טבלאות</a></li>
   </ul>
 </nav>
     </div>
@@ -419,18 +420,68 @@ $ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <li><p>מספרים ממשיים: bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year.</p></li>
 </ul></li>
 </ul>
+<p>כעת, לאחר שלמדנו איך להבין את מבנה הדאטה באופן ראשוני, נציג פונקציות שמשמשות לשינוי משתנים (טרנספורמציות).</p>
 </section>
 <section id="פעולות-שמשנות-ערכים-טרנספורמציות" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="פעולות-שמשנות-ערכים-טרנספורמציות"><span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</h2>
+<p>טרנספורמציה היא פעולה (פונקציה) על משתנה או צירוף של משתנים המניבה משתנה עם ערך חדש. היא יכולה להיות פעולה מתמטית פשוטה כמו לוגריתם, פונקציה טריגונומטרית, או מכפלה בסקלר (ערך כלשהו).</p>
+<p>גם פעולה על מחרוזת היא טרנספורמציה, כגון החזרת אורך המחרוזת או חלק ממחרוזת.</p>
+<p>טרנספורמציות ב-R יבוצעו באמצעות הפקודה <code>mutate</code>, והן יכולות לדרוס ערך קיים או להוסיף משתנה חדש לטבלה. התוצאה תוחזר בטבלה חדשה לגמרי (ולא תדרוס את הטבלה שהוזנה לתוך הפונציה <code>mutate</code>.</p>
+<p>בנוסף, על מנת להפעיל את הטרנספורמציה עם פקודת mutate (ובאופן כללי בשימוש ב-tidyverse) נשתמש באופרטור הנקרא pipe (מקטרת או צינור) ומטרתו להפוך את הקוד ליותר ברור. ישנם שני אופרטורים מסוג pipe: <code>%&gt;%</code> ו-<code>|&gt;</code>. בספר זה נשתמש בנוסח הראשון (הנוסח השני נמצא ב-Base R החל מגרסה 4.0.0).</p>
+<p>להלן דוגמה המייצרת משתנה חדש (עמודה נוספת) ל-penguins, של משקל בקילוגרמים.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>new_penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_kg =</span> body_mass_g<span class="sc">/</span><span class="dv">1000</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(new_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 9
+$ species           &lt;chr&gt; "Adelie", "Adelie", "Adelie", "Adelie", "Adelie", "A…
+$ island            &lt;chr&gt; "Torgersen", "Torgersen", "Torgersen", "Torgersen", …
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+$ flipper_length_mm &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;chr&gt; "male", "female", "female", NA, "female", "male", "f…
+$ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
+$ body_mass_kg      &lt;dbl&gt; 3.750, 3.800, 3.250, NA, 3.450, 3.650, 3.625, 4.675,…</code></pre>
+</div>
+</div>
+<p>כפי שניתן לראות האובייקט <code>new_penguins</code> דומה מאוד לאובייקט המקורי <code>penguins</code> (שלא השתנה). האובייקט החדש מכיל עמודה נוספת שהיא המשקל של התצפית בק”ג.</p>
+<p>האופרטור pipe מסמן ל-R להכניס את הדאטה penguins כארגומנט ראשון בפונקציה <code>mutate</code>. זה שקול לכתיב הבא: <code>mutate(penguins, body_mass_kg = body_mass_g/1000)</code>. היתרון בשימוש ב-pipe יבוא לידי ביטוי כאשר נרצה לשרשר מספר רב של פקודות, וללא שימוש ב-pipe נצטרך להכניס פונקציה בתוך פונקציה או להגדיר הרבה אובייקטי ביניים.</p>
+<p>להלן דוגמה נוספת, הפעם עם טרנספורמציה של מחרוזת, באמצעות פונקציה <code>str_sub</code> (מחבילת <code>stringr</code>) אשר <strong>דורסת</strong> את המשתנה sex והופכת male ל-m ו-female ל-f.&nbsp;המשתנה נדרס משום שהשם שהגדרנו בתוך הפקודה <code>mutate</code> הינו השם של המשתנה הקיים במקום שם משתנה חדש כפי שעשינו בדוגמה של משקל התצפית.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>new_gender_penguin <span class="ot">&lt;-</span> new_penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">str_sub</span>(sex, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">1</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(new_gender_penguin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 9
+$ species           &lt;chr&gt; "Adelie", "Adelie", "Adelie", "Adelie", "Adelie", "A…
+$ island            &lt;chr&gt; "Torgersen", "Torgersen", "Torgersen", "Torgersen", …
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+$ flipper_length_mm &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;chr&gt; "m", "f", "f", NA, "f", "m", "f", "m", NA, NA, NA, N…
+$ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
+$ body_mass_kg      &lt;dbl&gt; 3.750, 3.800, 3.250, NA, 3.450, 3.650, 3.625, 4.675,…</code></pre>
+</div>
+</div>
 </section>
-<section id="פעולות-על-שורות-סינון" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="פעולות-על-שורות-סינון"><span class="header-section-number">3.4</span> פעולות על שורות (סינון)</h2>
+<section id="בחירת-ושינוי-שם-משתנים-עמודות" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="בחירת-ושינוי-שם-משתנים-עמודות"><span class="header-section-number">3.4</span> בחירת ושינוי שם משתנים (עמודות)</h2>
 </section>
-<section id="פעולות-לפי-קיבוצים-סיכום" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="פעולות-לפי-קיבוצים-סיכום"><span class="header-section-number">3.5</span> פעולות לפי קיבוצים (סיכום)</h2>
+<section id="פעולות-על-שורות-סינון" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="פעולות-על-שורות-סינון"><span class="header-section-number">3.5</span> פעולות על שורות (סינון)</h2>
 </section>
-<section id="חיבור-בין-טבלאות" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="חיבור-בין-טבלאות"><span class="header-section-number">3.6</span> חיבור בין טבלאות</h2>
+<section id="פעולות-לפי-קיבוצים-סיכום" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="פעולות-לפי-קיבוצים-סיכום"><span class="header-section-number">3.6</span> פעולות לפי קיבוצים (סיכום)</h2>
+</section>
+<section id="חיבור-בין-טבלאות" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="חיבור-בין-טבלאות"><span class="header-section-number">3.7</span> חיבור בין טבלאות</h2>
 
 
 </section>
