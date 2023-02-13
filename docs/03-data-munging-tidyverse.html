@@ -219,9 +219,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#הצצה-ראשונית-על-הנתונים" id="toc-הצצה-ראשונית-על-הנתונים" class="nav-link" data-scroll-target="#הצצה-ראשונית-על-הנתונים"> <span class="header-section-number">3.2</span> הצצה ראשונית על הנתונים</a></li>
   <li><a href="#פעולות-שמשנות-ערכים-טרנספורמציות" id="toc-פעולות-שמשנות-ערכים-טרנספורמציות" class="nav-link" data-scroll-target="#פעולות-שמשנות-ערכים-טרנספורמציות"> <span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</a></li>
   <li><a href="#בחירת-ושינוי-שם-משתנים-עמודות" id="toc-בחירת-ושינוי-שם-משתנים-עמודות" class="nav-link" data-scroll-target="#בחירת-ושינוי-שם-משתנים-עמודות"> <span class="header-section-number">3.4</span> בחירת ושינוי שם משתנים (עמודות)</a></li>
-  <li><a href="#פעולות-על-שורות-סינון" id="toc-פעולות-על-שורות-סינון" class="nav-link" data-scroll-target="#פעולות-על-שורות-סינון"> <span class="header-section-number">3.5</span> פעולות על שורות (סינון)</a></li>
-  <li><a href="#פעולות-לפי-קיבוצים-סיכום" id="toc-פעולות-לפי-קיבוצים-סיכום" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים-סיכום"> <span class="header-section-number">3.6</span> פעולות לפי קיבוצים (סיכום)</a></li>
-  <li><a href="#חיבור-בין-טבלאות" id="toc-חיבור-בין-טבלאות" class="nav-link" data-scroll-target="#חיבור-בין-טבלאות"> <span class="header-section-number">3.7</span> חיבור בין טבלאות</a></li>
+  <li><a href="#בחירת-משתנים-מתקדמת" id="toc-בחירת-משתנים-מתקדמת" class="nav-link" data-scroll-target="#בחירת-משתנים-מתקדמת"> <span class="header-section-number">3.5</span> בחירת משתנים מתקדמת</a></li>
+  <li><a href="#פעולות-על-שורות-סינון" id="toc-פעולות-על-שורות-סינון" class="nav-link" data-scroll-target="#פעולות-על-שורות-סינון"> <span class="header-section-number">3.6</span> פעולות על שורות (סינון)</a></li>
+  <li><a href="#פעולות-לפי-קיבוצים-סיכום" id="toc-פעולות-לפי-קיבוצים-סיכום" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים-סיכום"> <span class="header-section-number">3.7</span> פעולות לפי קיבוצים (סיכום)</a></li>
+  <li><a href="#חיבור-בין-טבלאות" id="toc-חיבור-בין-טבלאות" class="nav-link" data-scroll-target="#חיבור-בין-טבלאות"> <span class="header-section-number">3.8</span> חיבור בין טבלאות</a></li>
   </ul>
 </nav>
     </div>
@@ -473,15 +474,100 @@ $ body_mass_kg      &lt;dbl&gt; 3.750, 3.800, 3.250, NA, 3.450, 3.650, 3.625, 4.
 </section>
 <section id="בחירת-ושינוי-שם-משתנים-עמודות" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="בחירת-ושינוי-שם-משתנים-עמודות"><span class="header-section-number">3.4</span> בחירת ושינוי שם משתנים (עמודות)</h2>
+<p>בחירת ושינוי שם משתנים היא פעולה שקוראת הרבה במהלך ניתוח נתונים, ובפרט אם הקובץ המקורי שלנו הוא עם כותרות (headers) בעברית, אז אחד הדברים הראשונים שנרצה לעשות הוא לשנות את שמות העמודות לאנגלית, על מנת שיהיה יותר קל לעבוד עם הנתונים.</p>
+<p>על מנת לבחור משתנים ניתן להשתמש בפונקציה <code>select</code> ועל מנת לשנות שמות של משתנים ניתן להשתמש בפונקציה <code>rename</code>, לדוגמה, הקוד הבא משנה את שם המשתנה <code>sex</code> ל-<code>gender</code> ואז בוחר אותו.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>penguin_gender <span class="ot">&lt;-</span> new_gender_penguin <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">gender =</span> sex)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguin_gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 1
+$ gender &lt;chr&gt; "m", "f", "f", NA, "f", "m", "f", "m", NA, NA, NA, NA, "f", "m"…</code></pre>
+</div>
+</div>
+<p>כאשר עובדים עם קובץ שבו כותרות המקור היו בעברית, נצטרך להשתמש ב-Back ticks (המרכאה שנמצאת מעל מקש ה-Tab) על מנת לבחור או לשנות את שם המשתנה. לדוגמה נניח שיש לנו שם של משתנה שנקרא”מגדר” ואנחנו רוצים לשנות אותו ל-<code>gender</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_hebrew_data <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">gender =</span> <span class="st">`</span><span class="at">מגדר</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>לאחר שינוי השם ל-gender ניתן יהיה לוותר על ה-Back ticks.</p>
 </section>
-<section id="פעולות-על-שורות-סינון" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="פעולות-על-שורות-סינון"><span class="header-section-number">3.5</span> פעולות על שורות (סינון)</h2>
+<section id="בחירת-משתנים-מתקדמת" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="בחירת-משתנים-מתקדמת"><span class="header-section-number">3.5</span> בחירת משתנים מתקדמת</h2>
+<p>ישנן פונקציות עזר שמאפשרות לנו לבחור בצורה חכמה את המשתנים שעליהם ברצוננו להכיל פעולות מסוימות (כגון טרנספורמציות, שינוי שם, או אפילו רק לבחור משתנים בצורה חכמה). הפונקציות המרכזיות שישמשו אותנו בבחירת משתנים מתקדמת הינן:</p>
+<ul>
+<li><p><code>where</code> כדי להכיל תנאים על סוג המשתנה, לדוגמה משתנה שהוא מספרי או תווים;</p></li>
+<li><p><code>ends_with</code>, <code>starts_with</code>, <code>contains</code>, <code>any_of</code>, <code>matches</code> כדי לבחור משתנים לפי תת-מחרוזת שמופיעה בהם;</p></li>
+<li><p><code>across</code> על מנת להחיל טרנספורמציות על כל המשתנים שעונים על קריטריונים שהוגדרו עם הפונקציות לעיל.</p></li>
+</ul>
+<p>נמחיש באמצעות שתי דוגמאות.</p>
+<p><strong>דוגמה ראשונה:</strong> נניח שברצוננו לחלק ב-10 את כל המשתנים שמסתיימים ב-“mm” (בעצם להחליף מיחידות של מילימטר ליחידות של ס”מ). אז ניעזר בפונקציה <code>ends_with("mm")</code> בשביל לזהות את המשתנים הללו, ובפונקציה <code>across</code> על מנת להפעיל עליהם את הטרנספורמציה <code>~{.x/10}</code> (שזו דרך סימבולית לבנות פונקציה שמחלקת מספר ב-10). התוצאה הסופית תיראה כך. לבסוף נרצה לשנות את “mm<em>”</em> ל- <em>”</em>cm”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguin_cm <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"mm"</span>), <span class="sc">~</span>{.x<span class="sc">/</span><span class="dv">10</span>})) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">str_replace</span>(.x, <span class="st">"mm"</span>, <span class="st">"cm"</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">ends_with</span>(<span class="st">"mm"</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguin_cm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 8
+$ species           &lt;chr&gt; "Adelie", "Adelie", "Adelie", "Adelie", "Adelie", "A…
+$ island            &lt;chr&gt; "Torgersen", "Torgersen", "Torgersen", "Torgersen", …
+$ bill_length_cm    &lt;dbl&gt; 3.91, 3.95, 4.03, NA, 3.67, 3.93, 3.89, 3.92, 3.41, …
+$ bill_depth_cm     &lt;dbl&gt; 1.87, 1.74, 1.80, NA, 1.93, 2.06, 1.78, 1.96, 1.81, …
+$ flipper_length_cm &lt;dbl&gt; 18.1, 18.6, 19.5, NA, 19.3, 19.0, 18.1, 19.5, 19.3, …
+$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;chr&gt; "male", "female", "female", NA, "female", "male", "f…
+$ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+</div>
+</div>
+<p>שימו לב שהשתמשנו בפונקציה <code>rename_with</code> שמאפשרת להגדיר שינוי של קבוצת משתנים בבת אחת במקום משתנים ספציפיים אחד-אחד (המתבצע באמצעות <code>rename</code>).</p>
+<p><strong>דוגמה שניה:</strong> נניח שברצוננו לחתוך את כל המשתנים שהן מחרוזות רק לשלושת התווים הראשונים שלהם. הפונקציה באמצעותה חותכים מחרוזות היא <code>str_sub</code> ונשתמש ב-<code>where(is.character)</code> בשביל לאתר את כל המשתנים שהם מחרוזות. נפעיל זאת על התוצאה של החישוב מהדוגמה הקודמת (על מנת לקבל טבלה חדשה שמכילה את כל השינויים במצטבר), באופן הבא:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguin_short <span class="ot">&lt;-</span> penguin_cm <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span><span class="fu">str_sub</span>(.x, <span class="at">start =</span> 1L, <span class="at">end =</span> 3L)))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguin_short)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 8
+$ species           &lt;chr&gt; "Ade", "Ade", "Ade", "Ade", "Ade", "Ade", "Ade", "Ad…
+$ island            &lt;chr&gt; "Tor", "Tor", "Tor", "Tor", "Tor", "Tor", "Tor", "To…
+$ bill_length_cm    &lt;dbl&gt; 3.91, 3.95, 4.03, NA, 3.67, 3.93, 3.89, 3.92, 3.41, …
+$ bill_depth_cm     &lt;dbl&gt; 1.87, 1.74, 1.80, NA, 1.93, 2.06, 1.78, 1.96, 1.81, …
+$ flipper_length_cm &lt;dbl&gt; 18.1, 18.6, 19.5, NA, 19.3, 19.0, 18.1, 19.5, 19.3, …
+$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;chr&gt; "mal", "fem", "fem", NA, "fem", "mal", "fem", "mal",…
+$ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+</div>
+</div>
+<div class="question">
+<p>עדכנו את הטבלה כך שלכל המשתנים שהינם מסוג מחרוזת תתווסף הסיומת “_chr”.</p>
+<p>בצעו זאת בשתי דרכים:</p>
+<ol type="1">
+<li>באמצעות <code>rename</code>;</li>
+<li>בבת אחת על ידי שימוש ב-<code>where</code>, וב-<code>paste0</code>, בתוך פקודת <code>rename_with</code>.</li>
+</ol>
+<p>כעת השתמשו בפונקציה <code>mutate</code> על מנת להמיר את המשתנה <code>body_mass_g</code> מגרמים לקילוגרמים. בצעו זאת בשתי דרכים:</p>
+<ol type="1">
+<li>באמצעות <code>mutate</code> על ידי רשימת הטרנספורמציה ישירות על המשתנה;</li>
+<li>באמצעות <code>mutate</code> על ידי שימוש בפונקציות בחירה (לדוגמה <code>ends_with("_g")</code>, ביחד עם <code>across</code>).</li>
+</ol>
+</div>
 </section>
-<section id="פעולות-לפי-קיבוצים-סיכום" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="פעולות-לפי-קיבוצים-סיכום"><span class="header-section-number">3.6</span> פעולות לפי קיבוצים (סיכום)</h2>
+<section id="פעולות-על-שורות-סינון" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="פעולות-על-שורות-סינון"><span class="header-section-number">3.6</span> פעולות על שורות (סינון)</h2>
 </section>
-<section id="חיבור-בין-טבלאות" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="חיבור-בין-טבלאות"><span class="header-section-number">3.7</span> חיבור בין טבלאות</h2>
+<section id="פעולות-לפי-קיבוצים-סיכום" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="פעולות-לפי-קיבוצים-סיכום"><span class="header-section-number">3.7</span> פעולות לפי קיבוצים (סיכום)</h2>
+</section>
+<section id="חיבור-בין-טבלאות" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="חיבור-בין-טבלאות"><span class="header-section-number">3.8</span> חיבור בין טבלאות</h2>
 
 
 </section>
