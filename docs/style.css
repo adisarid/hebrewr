@@ -1,21 +1,24 @@
 .warning, .information, .question, .note {
   padding: 1em 1em 1em 4em;
   margin-bottom: 10px;
-  background: #edf9fe 5px center/3em no-repeat;
-  background-color: #edf9fe;
   border-radius: 10px;
+  background: #feeded 5px center/3em no-repeat;
 }
 .warning {
   background-image: url("images/exclamation_mark.png");
+  background-color: #feeded;
 }
 .information {
   background-image: url("images/information_mark.png");
+  background-color: #edfeee;
 }
 .question {
   background-image: url("images/question_mark.png");
+  background-color: #f5edfe;
 }
 .note {
   background-image: url("images/note.png");
+  background-color: #edf9fe;
 }
 
 body {
@@ -46,4 +49,13 @@ ul {
 
 .anchorjs-link {
   float: left;
+}
+
+/*Replace chapter back and fwd icons*/
+.bi-arrow-left-short {
+  transform: rotate(180deg);
+}
+
+.bi-arrow-right-short {
+  transform: rotate(180deg);
 }

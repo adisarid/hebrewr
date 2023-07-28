@@ -184,27 +184,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
+  <a href="./05-pivot-and-join.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבנה וחיבור נתונים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
+  <a href="./06-hypothesis-tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">מודלים</span></a>
+  <a href="./07-linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  <a href="./08-advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
+  <a href="./09-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
   </div>
 </li>
     </ul>
@@ -216,22 +221,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#הפילוסופיה-מאחורי-tidyverse" id="toc-הפילוסופיה-מאחורי-tidyverse" class="nav-link active" data-scroll-target="#הפילוסופיה-מאחורי-tidyverse"><span class="toc-section-number">3.1</span>  הפילוסופיה מאחורי <code>tidyverse</code></a>
+  <li><a href="#קצת-פילוסופיה" id="toc-קצת-פילוסופיה" class="nav-link active" data-scroll-target="#קצת-פילוסופיה"><span class="toc-section-number">3.1</span>  קצת פילוסופיה</a>
   <ul class="collapse">
-  <li><a href="#דוגמה-לדאטה-לא-מסודר" id="toc-דוגמה-לדאטה-לא-מסודר" class="nav-link" data-scroll-target="#דוגמה-לדאטה-לא-מסודר"><span class="toc-section-number">3.1.1</span>  דוגמה לדאטה לא מסודר</a></li>
-  <li><a href="#דוגמה-לדאטה-מסודר" id="toc-דוגמה-לדאטה-מסודר" class="nav-link" data-scroll-target="#דוגמה-לדאטה-מסודר"><span class="toc-section-number">3.1.2</span>  דוגמה לדאטה מסודר</a></li>
+  <li><a href="#דאטה-untidy" id="toc-דאטה-untidy" class="nav-link" data-scroll-target="#דאטה-untidy"><span class="toc-section-number">3.1.1</span>  דאטה untidy</a></li>
+  <li><a href="#דאטה-tidy" id="toc-דאטה-tidy" class="nav-link" data-scroll-target="#דאטה-tidy"><span class="toc-section-number">3.1.2</span>  דאטה tidy</a></li>
   </ul></li>
-  <li><a href="#הצצה-ראשונית-על-הנתונים" id="toc-הצצה-ראשונית-על-הנתונים" class="nav-link" data-scroll-target="#הצצה-ראשונית-על-הנתונים"><span class="toc-section-number">3.2</span>  הצצה ראשונית על הנתונים</a></li>
-  <li><a href="#פעולות-שמשנות-ערכים-טרנספורמציות" id="toc-פעולות-שמשנות-ערכים-טרנספורמציות" class="nav-link" data-scroll-target="#פעולות-שמשנות-ערכים-טרנספורמציות"><span class="toc-section-number">3.3</span>  פעולות שמשנות ערכים (טרנספורמציות)</a></li>
-  <li><a href="#בחירת-ושינוי-שם-משתנים-עמודות" id="toc-בחירת-ושינוי-שם-משתנים-עמודות" class="nav-link" data-scroll-target="#בחירת-ושינוי-שם-משתנים-עמודות"><span class="toc-section-number">3.4</span>  בחירת ושינוי שם משתנים (עמודות)</a></li>
-  <li><a href="#בחירת-משתנים-מתקדמת" id="toc-בחירת-משתנים-מתקדמת" class="nav-link" data-scroll-target="#בחירת-משתנים-מתקדמת"><span class="toc-section-number">3.5</span>  בחירת משתנים מתקדמת</a></li>
-  <li><a href="#פעולות-על-שורות-סינון" id="toc-פעולות-על-שורות-סינון" class="nav-link" data-scroll-target="#פעולות-על-שורות-סינון"><span class="toc-section-number">3.6</span>  פעולות על שורות (סינון)</a></li>
-  <li><a href="#פעולות-לפי-קיבוצים-סיכום" id="toc-פעולות-לפי-קיבוצים-סיכום" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים-סיכום"><span class="toc-section-number">3.7</span>  פעולות לפי קיבוצים (סיכום)</a>
+  <li><a href="#הצצה-ראשונית" id="toc-הצצה-ראשונית" class="nav-link" data-scroll-target="#הצצה-ראשונית"><span class="toc-section-number">3.2</span>  הצצה ראשונית</a></li>
+  <li><a href="#טרנספורמציות" id="toc-טרנספורמציות" class="nav-link" data-scroll-target="#טרנספורמציות"><span class="toc-section-number">3.3</span>  טרנספורמציות</a></li>
+  <li><a href="#שמות-ובחירה" id="toc-שמות-ובחירה" class="nav-link" data-scroll-target="#שמות-ובחירה"><span class="toc-section-number">3.4</span>  שמות ובחירה</a></li>
+  <li><a href="#בחירה-מתקדמת" id="toc-בחירה-מתקדמת" class="nav-link" data-scroll-target="#בחירה-מתקדמת"><span class="toc-section-number">3.5</span>  בחירה מתקדמת</a></li>
+  <li><a href="#פעולות-סינון" id="toc-פעולות-סינון" class="nav-link" data-scroll-target="#פעולות-סינון"><span class="toc-section-number">3.6</span>  פעולות סינון</a></li>
+  <li><a href="#פעולות-לפי-קיבוצים" id="toc-פעולות-לפי-קיבוצים" class="nav-link" data-scroll-target="#פעולות-לפי-קיבוצים"><span class="toc-section-number">3.7</span>  פעולות לפי קיבוצים</a>
   <ul class="collapse">
   <li><a href="#פעולות-סיכום-מורכבות" id="toc-פעולות-סיכום-מורכבות" class="nav-link" data-scroll-target="#פעולות-סיכום-מורכבות"><span class="toc-section-number">3.7.1</span>  פעולות סיכום מורכבות</a></li>
   </ul></li>
-  <li><a href="#חיבור-בין-טבלאות" id="toc-חיבור-בין-טבלאות" class="nav-link" data-scroll-target="#חיבור-בין-טבלאות"><span class="toc-section-number">3.8</span>  חיבור בין טבלאות</a></li>
-  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">3.9</span>  סיכום</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">3.8</span>  סיכום</a></li>
   </ul>
 </nav>
     </div>
@@ -257,8 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>הכנת נתונים, או כמו שהיא מכונה באנגלית, Data Munging, היא סדר הפעולות שיש לעשות לנתונים על מנת שאפשר יהיה להשתמש בהם בכלל שלבי המחקר, כגון הצגת נתונים (ויז’ואליזציה), מידול, ובפעולות נוספות במהלך המחקר. בספר זה, אנחנו עושים שימוש רב בחבילת <code>tidyverse</code> על מנת להכין את הנתונים.</p>
 <p>ראשית, נעמוד על הפילוסופיה מאחורי <code>tidyverse</code>.</p>
-<section id="הפילוסופיה-מאחורי-tidyverse" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="הפילוסופיה-מאחורי-tidyverse"><span class="header-section-number">3.1</span> הפילוסופיה מאחורי <code>tidyverse</code></h2>
+<section id="קצת-פילוסופיה" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="קצת-פילוסופיה"><span class="header-section-number">3.1</span> קצת פילוסופיה</h2>
 <p>החבילה ב-R שנקראת <code>tidyverse</code> היא למעשה “חבילה של חבילות”.<br>
 היא מכילה מקבץ חבילות לעבודה עם נתונים כמו <code>dplyr</code>, וכמו <code>tidyr</code> שהן חבילות מאוד שימושיות במניפולציה על נתונים, וסידור נתונים, אבל היא מכילה גם חבילות שממוקדות סביב עולמות תוכן אחרים, כמו <code>stringr</code> לעבודה עם מחרוזות, <code>lubridate</code> לעבודה עם תאריכים, ו-<code>forcats</code> לעבודה עם פקטורים. כפי שחדי העין ישימו לב, לרוב שם של חבילה ירמוז לגבי מהות החבילה (לעיתים עם האות r איפשהו, ולעיתים עם קורטוב של הומור). הפירוט המלא של תוכן החבילה <code>tidyverse</code>והחבילות שמוכלות בה זמין <a href="https://www.tidyverse.org/">בקישור</a>.</p>
 <p>על מנת להתקין את החבילה נשתמש בפקודה <code>install.packages("tidyverse")</code>, ועל מנת לטעון אותה לאחר ההתקנה, נשתמש בפקודה <code>library(tidyverse)</code>. שימו לב שבהתקנה צריך להשתמש במרכאות אבל בקריאה לאחר מכן אין צורך במרכאות. את ההתקנה צריך לעשות רק פעם אחת (והיא לוקחת המון זמן), ואת הקריאה לספריה צריך לעשות כל פעם שמפעילים מחדש את R.</p>
@@ -270,8 +274,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>אם הדאטה המקורי שלנו לא במבנה הזה - אז כהכנה נרצה להביא אותו למבנה כזה, ואם הוא כבר במבנה המסודר הזה, אז כל פעולה שנעשה, עדיין תשמור את הדאטה במבנה מסודר. המבנה הזה מכונה באנגלית tidy (ומכאן השם tidyverse). אנחנו פשוט נכנה אותו פה מבנה “מסודר”.</p>
 <p>ניתן שתי דוגמאות לדאטה, אחד מסודר ואחר לא מסודר. נתחיל בדוגמה לדאטה לא מסודר.</p>
-<section id="דוגמה-לדאטה-לא-מסודר" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="דוגמה-לדאטה-לא-מסודר"><span class="header-section-number">3.1.1</span> דוגמה לדאטה לא מסודר</h3>
+<section id="דאטה-untidy" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="דאטה-untidy"><span class="header-section-number">3.1.1</span> דאטה untidy</h3>
 <p>הלשכה המרכזית לסטטיסטיקה מנגישה הרבה נתונים לציבור באמצעות האתר שלה https://www.cbs.gov.il<br>
 מרבית הנתונים שמונגשים לציבור דרך האתר בקבצי אקסל הינם בפורמט לא מסודר. לדוגמה, קובץ שהורדתי מהכתובת <a href="https://www.cbs.gov.il/he/publications/Pages/2016/%D7%A1%D7%A4%D7%99%D7%A8%D7%95%D7%AA-%D7%AA%D7%A0%D7%95%D7%A2%D7%94-%D7%91%D7%93%D7%A8%D7%9B%D7%99%D7%9D-%D7%9C%D7%90-%D7%A2%D7%99%D7%A8%D7%95%D7%A0%D7%99%D7%95%D7%AA-2015-2010.aspx">הזו</a> והוא עוסק בנפח תנועה מסביב לכנרת בחג הפסח וסוכות.</p>
 <p>זה קובץ אקסל, והוא נראה כך:</p>
@@ -290,8 +294,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>כמו כן, יש עוד כל מיני חריגות לא ברורות בקובץ כגון תאים שמודגשים במסגרת גבול שחורה (מבלי שברור מה המסגרת אומרת), יש תאים שמכילים שתי נקודות (לא ברור מה זה, האם ערך חסר?), שמות המשתנים לעיתים מפוצלים על פני שתי שורות (כמו לדוגמה “ערב פסח” בעמודה F), ועוד בעיות.</p>
 <p>בסיכומו של עניין - אילו היינו רוצים לקלוט קובץ כזה לתוך R על מנת לחלץ את המספרים שבו, היינו צריכים להתאמץ רבות על מנת להפוך את הקובץ למסודר. באופן כללי, ניתן לומר שקבצי אקסל הם מתכון לאסון כי הם מעודדים את המשתמשים לבנות קבצים לא-מסודרים על ידי ביצוע פעולות כמו מיזוג תאים, צביעה של תאים (שזה אינדיקציה לקידוד מידע כלשהו, אבל קידוד שקשה להבין אותו ב”שפת הנתונים”), ועוד שאר בעיות שאין זה המקום לתאר.</p>
 </section>
-<section id="דוגמה-לדאטה-מסודר" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="דוגמה-לדאטה-מסודר"><span class="header-section-number">3.1.2</span> דוגמה לדאטה מסודר</h3>
+<section id="דאטה-tidy" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="דאטה-tidy"><span class="header-section-number">3.1.2</span> דאטה tidy</h3>
 <p>הנה דוגמה לדאטה מסודר מתוך חבילת <code>palmerpenguins</code>. חבילה זו מכילה נתונים של שלושה זנים של פינגוינים, ואנחנו עוד נשתמש בה בהמשך הספר. לכרגע רק נראה איך נראות עשרת השורות הראשונות בטבלת הנתונים (הסבר על הקוד והתוצר שרואים מצורף מטה):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>palmerpenguins<span class="sc">::</span>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -319,8 +323,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>כעת לאחר שלמדנו קצת על מה הוא דאטה מסודר, נראה איך אפשר לקרוא נתונים ו”להציץ” בנתונים, כדי לקבל מושג מה יש בנתונים ואיך לגשת אליהם.</p>
 </section>
 </section>
-<section id="הצצה-ראשונית-על-הנתונים" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="הצצה-ראשונית-על-הנתונים"><span class="header-section-number">3.2</span> הצצה ראשונית על הנתונים</h2>
+<section id="הצצה-ראשונית" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="הצצה-ראשונית"><span class="header-section-number">3.2</span> הצצה ראשונית</h2>
 <p>בדרך כלל לפני הצצה ראשונית על הנתונים, אנחנו נידרש לקרוא אותם. קריאת הנתונים יכולה להתבצע ממגוון פורמטים. לדוגמה:</p>
 <ul>
 <li><p>קריאה מפורמט של CSV (Comma Separated Values, קרי קובץ טקסט המפריד ערכים באמצעות פסיקים), באמצעות פונקציות כגון <code>read.csv</code>, <code>readr::read_csv</code>.</p></li>
@@ -433,8 +437,8 @@ $ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </ul>
 <p>כעת, לאחר שלמדנו איך להבין את מבנה הדאטה באופן ראשוני, נציג פונקציות שמשמשות לשינוי משתנים (טרנספורמציות).</p>
 </section>
-<section id="פעולות-שמשנות-ערכים-טרנספורמציות" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="פעולות-שמשנות-ערכים-טרנספורמציות"><span class="header-section-number">3.3</span> פעולות שמשנות ערכים (טרנספורמציות)</h2>
+<section id="טרנספורמציות" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="טרנספורמציות"><span class="header-section-number">3.3</span> טרנספורמציות</h2>
 <p>טרנספורמציה היא פעולה (פונקציה) על משתנה או צירוף של משתנים המניבה משתנה עם ערך חדש. היא יכולה להיות פעולה מתמטית פשוטה כמו לוגריתם, פונקציה טריגונומטרית, או מכפלה בסקלר (ערך כלשהו).</p>
 <p>גם פעולה על מחרוזת היא טרנספורמציה, כגון החזרת אורך המחרוזת או חלק ממחרוזת.</p>
 <p>טרנספורמציות ב-R יבוצעו באמצעות הפקודה <code>mutate</code>, והן יכולות לדרוס ערך קיים או להוסיף משתנה חדש לטבלה. התוצאה תוחזר בטבלה חדשה לגמרי (ולא תדרוס את הטבלה שהוזנה לתוך הפונציה <code>mutate</code>.</p>
@@ -482,8 +486,8 @@ $ body_mass_kg      &lt;dbl&gt; 3.750, 3.800, 3.250, NA, 3.450, 3.650, 3.625, 4.
 </div>
 </div>
 </section>
-<section id="בחירת-ושינוי-שם-משתנים-עמודות" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="בחירת-ושינוי-שם-משתנים-עמודות"><span class="header-section-number">3.4</span> בחירת ושינוי שם משתנים (עמודות)</h2>
+<section id="שמות-ובחירה" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="שמות-ובחירה"><span class="header-section-number">3.4</span> שמות ובחירה</h2>
 <p>בחירת ושינוי שם משתנים היא פעולה שקוראת הרבה במהלך ניתוח נתונים, ובפרט אם הקובץ המקורי שלנו הוא עם כותרות (headers) בעברית, אז אחד הדברים הראשונים שנרצה לעשות הוא לשנות את שמות העמודות לאנגלית, על מנת שיהיה יותר קל לעבוד עם הנתונים.</p>
 <p>על מנת לבחור משתנים ניתן להשתמש בפונקציה <code>select</code> ועל מנת לשנות שמות של משתנים ניתן להשתמש בפונקציה <code>rename</code>, לדוגמה, הקוד הבא משנה את שם המשתנה <code>sex</code> ל-<code>gender</code> ואז בוחר אותו.</p>
 <div class="cell">
@@ -505,8 +509,8 @@ $ gender &lt;chr&gt; "m", "f", "f", NA, "f", "m", "f", "m", NA, NA, NA, NA, "f",
 </div>
 <p>לאחר שינוי השם ל-gender ניתן יהיה לוותר על ה-Back ticks.</p>
 </section>
-<section id="בחירת-משתנים-מתקדמת" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="בחירת-משתנים-מתקדמת"><span class="header-section-number">3.5</span> בחירת משתנים מתקדמת</h2>
+<section id="בחירה-מתקדמת" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="בחירה-מתקדמת"><span class="header-section-number">3.5</span> בחירה מתקדמת</h2>
 <p>ישנן פונקציות עזר שמאפשרות לנו לבחור בצורה חכמה את המשתנים שעליהם ברצוננו להכיל פעולות מסוימות (כגון טרנספורמציות, שינוי שם, או אפילו רק לבחור משתנים בצורה חכמה). הפונקציות המרכזיות שישמשו אותנו בבחירת משתנים מתקדמת הינן:</p>
 <ul>
 <li><p><code>where</code> כדי להכיל תנאים על סוג המשתנה, לדוגמה משתנה שהוא מספרי או תווים;</p></li>
@@ -570,8 +574,8 @@ $ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </ol>
 </div>
 </section>
-<section id="פעולות-על-שורות-סינון" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="פעולות-על-שורות-סינון"><span class="header-section-number">3.6</span> פעולות על שורות (סינון)</h2>
+<section id="פעולות-סינון" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="פעולות-סינון"><span class="header-section-number">3.6</span> פעולות סינון</h2>
 <p>פעולה נפוצה בניתוח נתונים היא סינון של הנתונים לפי קריטריונים מסוימים. הפקודה שמסייעת לנו בסינון נקראת <code>filter</code>, ואפשר להגדיר באמצעותה קריטריונים או שילוב של קריטריונים שונים.</p>
 <p>לדוגמה, הקוד הבא יסנן מתוך הדאטה רק פינגויינים שחיים באי Dream:</p>
 <div class="cell">
@@ -638,8 +642,8 @@ $ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </ul>
 </div>
 </section>
-<section id="פעולות-לפי-קיבוצים-סיכום" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="פעולות-לפי-קיבוצים-סיכום"><span class="header-section-number">3.7</span> פעולות לפי קיבוצים (סיכום)</h2>
+<section id="פעולות-לפי-קיבוצים" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="פעולות-לפי-קיבוצים"><span class="header-section-number">3.7</span> פעולות לפי קיבוצים</h2>
 <p>בעת ניתוח נתונים, פעולה המבוצעת באופן תדיר היא פעולת סיכום לפי קיבוצים. היא שימושית במצבים בהם אנחנו רוצים להפעיל פונקציה וקטורית, כזו שמקבלת וקטור ומחזירה ערך בודד (כגון: ממוצע, מינימום, מקסימום, סטיית תקן, חציון, סכום, וכו’). פעולה לפי קיבוץ תאפשר לנו לקבל בבת אחת את הפעלת הפונקציה הוקטורית על פני קבוצות שונות המובחנות בנתונים.</p>
 <p>נמשיך עם דוגמת הפינגווינים. נניח שאנחנו רוצים להשוות בין הזנים השונים, ועבור כל זן פינגווינים לחשב את המשקל הממוצע, סטיית התקן, משקל מינימלי ומשקל מקסימלי בין התצפיות. הקוד הבא מטפל בחישובים הללו, ויש לו שתי פונקציות חשובות שנסביר עליהן: <code>group_by</code> ו-<code>summarize</code>.</p>
 <div class="cell">
@@ -729,11 +733,8 @@ $ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </div>
 </section>
 </section>
-<section id="חיבור-בין-טבלאות" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="חיבור-בין-טבלאות"><span class="header-section-number">3.8</span> חיבור בין טבלאות</h2>
-</section>
-<section id="סיכום" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">3.9</span> סיכום</h2>
+<section id="סיכום" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">3.8</span> סיכום</h2>
 
 
 </section>
