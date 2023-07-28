@@ -53,9 +53,9 @@ ul {
 
 /*Replace chapter back and fwd icons*/
 .bi-arrow-left-short {
-  transform: rotate(180deg);
+  rotate: 180deg;
 }
 
 .bi-arrow-right-short {
-  transform: rotate(180deg);
+  rotate: 180deg;
 }
