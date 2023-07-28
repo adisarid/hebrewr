@@ -221,12 +221,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#מבנה-רחבארוך" id="toc-מבנה-רחבארוך" class="nav-link active" data-scroll-target="#מבנה-רחבארוך"><span class="toc-section-number">5.1</span>  מבנה רחב/ארוך</a></li>
-  <li><a href="#רחב-לארוך" id="toc-רחב-לארוך" class="nav-link" data-scroll-target="#רחב-לארוך"><span class="toc-section-number">5.2</span>  רחב לארוך</a></li>
-  <li><a href="#ארוך-לרחב" id="toc-ארוך-לרחב" class="nav-link" data-scroll-target="#ארוך-לרחב"><span class="toc-section-number">5.3</span>  ארוך לרחב</a></li>
-  <li><a href="#חיבור-טבלאות" id="toc-חיבור-טבלאות" class="nav-link" data-scroll-target="#חיבור-טבלאות"><span class="toc-section-number">5.4</span>  חיבור טבלאות</a>
+  <li><a href="#מבנה-רחבארוך" id="toc-מבנה-רחבארוך" class="nav-link active" data-scroll-target="#מבנה-רחבארוך"><span class="toc-section-number">5.1</span>  מבנה רחב/ארוך</a>
   <ul class="collapse">
-  <li><a href="#סינון-מטבלה-באמצעות-join" id="toc-סינון-מטבלה-באמצעות-join" class="nav-link" data-scroll-target="#סינון-מטבלה-באמצעות-join"><span class="toc-section-number">5.4.1</span>  סינון מטבלה באמצעות join</a></li>
+  <li><a href="#רחב-לארוך" id="toc-רחב-לארוך" class="nav-link" data-scroll-target="#רחב-לארוך"><span class="toc-section-number">5.1.1</span>  רחב לארוך</a></li>
+  <li><a href="#ארוך-לרחב" id="toc-ארוך-לרחב" class="nav-link" data-scroll-target="#ארוך-לרחב"><span class="toc-section-number">5.1.2</span>  ארוך לרחב</a></li>
+  </ul></li>
+  <li><a href="#חיבור-טבלאות" id="toc-חיבור-טבלאות" class="nav-link" data-scroll-target="#חיבור-טבלאות"><span class="toc-section-number">5.2</span>  חיבור טבלאות</a>
+  <ul class="collapse">
+  <li><a href="#סינון-מטבלה-באמצעות-join" id="toc-סינון-מטבלה-באמצעות-join" class="nav-link" data-scroll-target="#סינון-מטבלה-באמצעות-join"><span class="toc-section-number">5.2.1</span>  סינון מטבלה באמצעות join</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -254,9 +256,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="מבנה-רחבארוך" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="מבנה-רחבארוך"><span class="header-section-number">5.1</span> מבנה רחב/ארוך</h2>
 <p>אחת מהפעולות השימושיות היא העברה של דאטה בין פורמט ארוך לפורמט רחב. לדוגמה כשרוצים שמשתנים מסוימים יהפכו לתצפיות נוספות, או להיפך. נדגים זאת עם הנתונים של <code>penguins</code>, שראינו בפרקים הקודמים. נוסיף שינוי קטן לקובץ שמזהה כל תצפית באמצעות מזהה <code>penguin_id</code> לשם כך אנו משתמשים בפונקציה <code>seq_along</code> שפשוט נותנת וקטור של מספר רץ בהתאם לתצפיות.</p>
-</section>
-<section id="רחב-לארוך" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="רחב-לארוך"><span class="header-section-number">5.2</span> רחב לארוך</h2>
+<section id="רחב-לארוך" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="רחב-לארוך"><span class="header-section-number">5.1.1</span> רחב לארוך</h3>
 <p>המבנה הסטנדרטי של הקובץ הוא מבנה רחב - כל פינגויין מופיע בשורה אחת עם כל המשתנים שלו. נניח שאנחנו רוצים להפוך את המבנה לארוך, ושכל פינגויין יופיע מספר פעמים בטבלה, בהתאם לסוג המידע המדווח עליו. לצורך זה נשתמש ב-<code>pivot_longer</code>. הנה תזכורת על המבנה הקיים, והקוד שהופך את המבנה למבנה ארוך:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -310,8 +311,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>הארגומנט הראשון קובע את המשתנים שהולכים לעבור “pivot”. במקרה הזה הגדרנו אותו על דרך השלילה (<code>-species</code> אומר שכל המשתנים צריכים להשתתף ב-pivot למעט המשתנה species שנותר כעמודה מופרדת).</p>
 <p>הארגומנט <code>names_to</code> קובע את שם העמודה שתכיל את שמות המשתנים במקור, והארגומנט <code>values_to</code> קובע את שם העמודה שתכיל את הערכים שהכילו המשתנים במקור.</p>
 </section>
-<section id="ארוך-לרחב" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="ארוך-לרחב"><span class="header-section-number">5.3</span> ארוך לרחב</h2>
+<section id="ארוך-לרחב" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="ארוך-לרחב"><span class="header-section-number">5.1.2</span> ארוך לרחב</h3>
 <p>הפעולה ההפוכה (הפיכת טבלה ארוכה לטבלה רחבה) יכולה להיעשות באמצעות הפונקציה <code>pivot_wider</code>, באופן הבא:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>longer_penguins <span class="sc">%&gt;%</span> </span>
@@ -341,8 +342,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>מה שונה בפלט של כל אחת מהפקודות, ומדוע?</p>
 </div>
 </section>
-<section id="חיבור-טבלאות" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="חיבור-טבלאות"><span class="header-section-number">5.4</span> חיבור טבלאות</h2>
+</section>
+<section id="חיבור-טבלאות" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="חיבור-טבלאות"><span class="header-section-number">5.2</span> חיבור טבלאות</h2>
 <p>לעיתים בעבודה עם נתונים נדרש חיבור של נתונים ממקורות שונים (או מאותו מקור המאוחסן בטבלאות שונות). זה מאוד מקובל בעבודה עם דאטהבייס. לדוגמה (בהפשטה) חשבו על חברת אשראי שמצד אחד מאחסנת נתונים על לקוחות (גיל, מגדר, כתובת), ומצד שני מאחסנת נתונים של טראנזקציות (פעולות, קרי, חיובי אשראי. שדות כגון מיקום החיוב וסכום החיוב).</p>
 <p>אין סיבה שהטבלה שמאחסנת נתונים של טראנזקציות תכיל גם נתונים של גיל, מגדר, וכתובת, משום שאלו לרוב לא משתנים בין חיוב לחיוב.</p>
 <p>אבל יש מקרים שבהם נרצה לחבר בין הנתונים כדי לנתח אותם ביחד. לדוגמה בשביל לחשב מה ממוצע ההוצאה של גברים לעומת נשים. זה דורש חיבור של טבלת הנתונים על לקוחות עם טבלת הטראנזקציות.</p>
@@ -451,8 +453,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>כמו כן גם הטקסט עצמו בעברית בפלט משתבש.</p>
 <p>זה בגלל עניין היישור של הקוד משמאל לימין. זו בעיה נפוצה, כשמערבים עברית ואנגלית בקוד, ולוקח זמן להתרגל אליה. תתחילו להתאמן.</p>
 </div>
-<section id="סינון-מטבלה-באמצעות-join" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="סינון-מטבלה-באמצעות-join"><span class="header-section-number">5.4.1</span> סינון מטבלה באמצעות join</h3>
+<section id="סינון-מטבלה-באמצעות-join" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="סינון-מטבלה-באמצעות-join"><span class="header-section-number">5.2.1</span> סינון מטבלה באמצעות join</h3>
 <p>ניתן להשתמש בפקודות <code>anti_join</code> ו-<code>semi_join</code> על מנת לסנן שורות. למעשה פקודות אלו אינן מחברות נתונים, אלא רק מסננות שורות.</p>
 <p>לדוגמה, הקוד הבא משתמש ב-<code>anti_join</code> בשביל לחלץ את הלקוחות שאינם מופיעים בטבלת הפעולות:</p>
 <div class="cell">
