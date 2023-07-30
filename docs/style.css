@@ -59,3 +59,8 @@ ul {
 .bi-arrow-right-short {
   rotate: 180deg;
 }
+
+/* Modify references to appear left to write (most are in English)*/
+#refs {
+  direction: ltr;
+}

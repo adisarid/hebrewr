@@ -20,6 +20,88 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -141,12 +223,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  <a href="./09-purrr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">לולאות מיוחדות</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
+  <a href="./10-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
   </div>
 </li>
     </ul>
@@ -154,7 +241,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">בעמוד זה</h2>
+   
+  <ul>
+  <li><a href="#הבסיס" id="toc-הבסיס" class="nav-link active" data-scroll-target="#הבסיס"><span class="toc-section-number">4.1</span>  הבסיס</a></li>
+  <li><a href="#מיפויים-נוספים" id="toc-מיפויים-נוספים" class="nav-link" data-scroll-target="#מיפויים-נוספים"><span class="toc-section-number">4.2</span>  מיפויים נוספים</a></li>
+  <li><a href="#כותרות-גרף-וצירים" id="toc-כותרות-גרף-וצירים" class="nav-link" data-scroll-target="#כותרות-גרף-וצירים"><span class="toc-section-number">4.3</span>  כותרות גרף וצירים</a></li>
+  <li><a href="#הגדרת-תמות" id="toc-הגדרת-תמות" class="nav-link" data-scroll-target="#הגדרת-תמות"><span class="toc-section-number">4.4</span>  הגדרת תמות</a></li>
+  <li><a href="#גיאומטריות-נוספות" id="toc-גיאומטריות-נוספות" class="nav-link" data-scroll-target="#גיאומטריות-נוספות"><span class="toc-section-number">4.5</span>  גיאומטריות נוספות</a>
+  <ul class="collapse">
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="toc-section-number">4.5.1</span>  Boxplot</a></li>
+  </ul></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">4.6</span>  סיכום</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -176,9 +277,212 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>TBD</p>
+<p>ויז’ואליזציות הן כלי קריטי בהבנה ובתקשור של נתונים (וחוץ מזה, הן כיפיות 😊). בפרק זה נלמד איך להפיק ויז’ואליזציות באמצעות חבילת <code>ggplot2</code>.</p>
+<p>חבילת <code>ggplot2</code> מבוססת על תיאוריה שנקראת דקדוק של גרפיקה <span class="citation" data-cites="wickham2010">(<a href="11-references.html#ref-wickham2010" role="doc-biblioref">Wickham 2010</a>)</span>. עקרונות התיאוריה מניחים את קווי היסוד הבאים לבניה של כל גרף. בקווים כלליים:</p>
+<ol type="1">
+<li>כל משתנה ממופה למאפיין מסוים על הגרף (“אסטטיקה”), לדוגמה, משתנה יכול להיות ממופה לציר X לציר Y, והוא יכול להיות ממופה לצבע, גודל, שקיפות, צורה, ועוד.</li>
+<li>לאחר המיפוי מתווספות שכבות שנקראות גיאומטריות. ישנן גיאומטריות רבות והן קובעות כיצד יראה הגרף, לדוגמה נקודות (דיאגרמת פיזור), קווים, עמודות (bars), אריחים (tiles), קופסאות התפלגות (boxplots), ועוד.</li>
+<li>לבסוף מולבשים על הגרף עוד “קישוטים” כמו כותרות, מקרא, צירים, וכל מה שנדרש בשביל לשדרג לו את הניראות ואת הנהירות.</li>
+</ol>
+<p>בחבילת <code>ggplot2</code> יש עשרות רבות של גיאומטריות, והיא מאפשרת גמישות מירבית לייצר כמעט כל גרף שתצטרכו.</p>
+<p>נדגים זאת כעת בסט הנתונים של הפינגויינים, תוך שאנחנו משתמשים בויז’ואליזציות על מנת להבין מה הקשר בין אורך לרוחב המקור.</p>
+<section id="הבסיס" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="הבסיס"><span class="header-section-number">4.1</span> הבסיס</h2>
+<p>נתחיל בגרף פשוט, ונתקדם ממנו לסדרה של גרפים.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/penguins vis 1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>ראשית מבחינת הנתונים המוצגים, לא ניתן להבחין בקשר משמעותי. במידה מסוימת נראה שעליה במשתנה bill_length_mm מעידה על ירידה במשתנה bill_depth_mm (כי ככל שמתקדמים בציר ה-x יש ירידה קלה של התצפיות בציר ה-y). זוהי מסקנה שגויה, ותיכף נבין למה, אבל לפני כן, עוד מספר הסברים</p>
+<p>הודעת האזהרה שמופיעה מעל הגרף מיידעת אותנו שיש שתי שורות שאינן באות לידי ביטוי בתרשים בשל ערכים חסרים (חסר נתון על אורך או עומק או שניהם).</p>
+<p>בנוגע לתחביר:</p>
+<ul>
+<li><p>הפונקציה <code>ggplot</code> מגדירה תרשים.</p></li>
+<li><p>הארגומנט הראשון שלה הוא הדאטה עצמו (<code>penguins</code>), שנכנס באמצעות האופרטור <code>%&gt;%</code>.</p></li>
+<li><p>הארגומנט השני נכנס כפונקציה <code>aes()</code> שמגדירה אסטטיקות. במקרה זה מוגדרים שני מיפויי אסטטיקות, לציר x ולציר y.</p></li>
+<li><p>לאחר מכן יש חיבור <code>+</code> על מנת להוסיף שכבה של גיאומטריה מסוג נקודה <code>geom_point</code>, וקיבלנו גרף.</p></li>
+</ul>
+</section>
+<section id="מיפויים-נוספים" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="מיפויים-נוספים"><span class="header-section-number">4.2</span> מיפויים נוספים</h2>
+<p>כעת ניזכר שבדאטה מיוצגים שלושה זנים של פינגויינים, וייתכן שהקשר גם מושפע מעובדה זו. נוסיף מיפוי של זן הפינגויין לצבע של הנקודות. הוספה זו תתבצע עם הארגומנט <code>color=species</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> bill_depth_mm,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/penguins vis 2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>כעת לאחר הוספת הצבע ניתן להבחין בבירור בכך שבכל אחד מהזנים <strong>עליה</strong> במשתנה <code>bill_length_mm</code> מביאה לעלייה במשתנה <code>bill_depth_mm</code> (וזה בעצם הפוך למה שחשבנו כשהסתכלנו על התרשים מבלי לחלק לזנים של הפינגויינים השונים). זו תובנה מאוד משמעותית, שנקראת בשפה המקצועית “אינטראקציה”. יש אינטראקציה בין אורך המקור לבין זן הפינגויין בהשפעתם על עומק המקור. ניגע באינטראקציות גם בהמשך (בפרק על רגרסיה לינארית).</p>
+<div class="note">
+<p><strong>כדאי להכיר - “פרדוס סימפסון”:</strong> התופעה שבה הבחנו בשינוי המשמעות של הקשר בין המשתנים כאשר מוסיפים אינטראקציה או זיהוי של הקבוצה, תוארה על ידי סימפסון <span class="citation" data-cites="simpson1951">(<a href="11-references.html#ref-simpson1951" role="doc-biblioref">Simpson 1951</a>)</span>. אחד מהגילגולים המודרנים של הפרדוקס הזה נמצא בדאטהסט שנוצר על ידי סימולציה ונקרא Datasaurus dozen <span class="citation" data-cites="murray2021">(ראו <a href="11-references.html#ref-murray2021" role="doc-biblioref">Murray and Wilson 2021</a>)</span>.</p>
+<p>ב-Datasaurus משתמשים בסימולציה כדי לייצר שנים עשר קבוצות שבפני עצמן נראות זהות בפרמטרים מסוימים (ממוצע בציר x, ממוצע בציר y, סטיית תקן, קורלציה, וכו’), אבל כשמציגים את הנקודות בדיאגרמת פיזור, באופן מובחן בין הקבוצות, מקבלים את התרשים הבא:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>datasaurus_dozen <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dataset) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(x),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(y),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sd</span>(x),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sd</span>(y),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">cor</span>(x, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 6
+   dataset    `mean(x)` `mean(y)` `sd(x)` `sd(y)` `cor(x, y)`
+   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;
+ 1 away            54.3      47.8    16.8    26.9     -0.0641
+ 2 bullseye        54.3      47.8    16.8    26.9     -0.0686
+ 3 circle          54.3      47.8    16.8    26.9     -0.0683
+ 4 dino            54.3      47.8    16.8    26.9     -0.0645
+ 5 dots            54.3      47.8    16.8    26.9     -0.0603
+ 6 h_lines         54.3      47.8    16.8    26.9     -0.0617
+ 7 high_lines      54.3      47.8    16.8    26.9     -0.0685
+ 8 slant_down      54.3      47.8    16.8    26.9     -0.0690
+ 9 slant_up        54.3      47.8    16.8    26.9     -0.0686
+10 star            54.3      47.8    16.8    26.9     -0.0630
+11 v_lines         54.3      47.8    16.8    26.9     -0.0694
+12 wide_lines      54.3      47.8    16.8    26.9     -0.0666
+13 x_shape         54.3      47.8    16.8    26.9     -0.0656</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datasaurus_dozen <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/datasaurus dozen example-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>בתרשים זה השתמשנו גם בפונקציות שראינו קודם, וגם בפונקציה נוספת שנקראת <code>facet_wrap</code> שמפרקת את התרשים לתתי-תרשימים, בכל אחד נמצאים הנתונים של קבוצה אחרת (מהמשתנה <code>dataset</code>).</p>
+</div>
+</section>
+<section id="כותרות-גרף-וצירים" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="כותרות-גרף-וצירים"><span class="header-section-number">4.3</span> כותרות גרף וצירים</h2>
+<p>כעת נייפה את הגרף עם כותרות:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> bill_depth_mm,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Bill length [mm]"</span>) <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Bill depth [mm]"</span>) <span class="sc">+</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Relationship of bill length and depth in penguins"</span>, </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">"Interaction with species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/penguins vis 3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="הגדרת-תמות" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="הגדרת-תמות"><span class="header-section-number">4.4</span> הגדרת תמות</h2>
+<p>ניתן להגדיר תמות (Themes) שיתנו לגרף חזות אחרת. בחבילת <code>ggplot2</code> יש כמה תמות מוגדרות מראש שניתן להתחיל מהם וגם לעצב אותן מחדש. כדוגמה, נשתמש בתמה מסוג <code>linedraw</code> ונגדיר מחדש את מיקום המקרא ואת גודל הטקסט של הכותרות.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> bill_depth_mm,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Bill length [mm]"</span>) <span class="sc">+</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Bill depth [mm]"</span>) <span class="sc">+</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Relationship of bill length and depth"</span>, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">"Interaction with species"</span>) <span class="sc">+</span> </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">linewidth =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/examples of themes-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="information">
+<p>רוב הרכיבים בתוך התרשים נשלטים בתוך הפונקציה<code>theme</code> באמצעות פונקציות הכוונה כגון <code>element_text</code> (מאפייני טקסט), <code>element_rect</code> (מאפייני תחום מרובע), <code>element_line</code> (מאפייני קווים), וכו’. בתיעוד הפקודה <code>theme</code> ניתן לעיין באפשרויות השונות.</p>
+</div>
+<div class="question">
+<p>השתמשו בפקודה <code>facet_wrap</code> כשכבה נוספת לתרשים הקודם על מנת לפצל את הזנים השונים לתתי-תרשימים. הדגמה לשימוש בפקודה נמצאת בחלק הקודם של פרק זה (בקוד שמסביר על פרדוקס סימפסון).</p>
+</div>
+</section>
+<section id="גיאומטריות-נוספות" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="גיאומטריות-נוספות"><span class="header-section-number">4.5</span> גיאומטריות נוספות</h2>
+<p>נדגים מספר גיאומטריות נוספות מההיצע הרב שיש בחבילת <code>ggplot2</code>.</p>
+<section id="boxplot" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">4.5.1</span> Boxplot</h3>
+<p>דיאגרמה מסוג Boxplot עוזרת לנו להבין את צורת ההתפלגות. הדיאגרמה מציגה “קופסה” שתוחמת 50% מהנתונים (החלק התחתון של הקופסה הוא רבעון ראשון, והחלק העליון של הקופסה הוא רבעון שלישי). במרכזה של הקופסה מוצג החציון קקו עבה (מחלק את התצפיות לחצי-חצי). ערכי קיצון, אם ישנם, מופיעים כנקודות. במידה ומופיעה קופסה שאינה סימטרית סביב החציון, הדבר מעיד על כך שההתפלגות אינה התפלגות נורמלית.</p>
+<p>נציג את התפלגות המשקל של הפינגויינים בתרשים, בהפרדה לפי זן הפינגויינים, ומיד לאחריו נציג את החציון, ורבעונים של כל קבוצה.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> body_mass_g, <span class="at">x =</span> species)) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Penguin weight"</span>) <span class="sc">+</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Species"</span>) <span class="sc">+</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Mass [grams]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/boxplot example-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">median_mass =</span> <span class="fu">median</span>(body_mass_g),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1_mass =</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.25</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3_mass =</span> <span class="fu">quantile</span>(body_mass_g, <span class="fl">0.75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  species   median_mass q1_mass q3_mass
+  &lt;fct&gt;           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Adelie           3700   3350     4000
+2 Chinstrap        3700   3488.    3950
+3 Gentoo           5000   4700     5500</code></pre>
+</div>
+</div>
+<div class="note">
+<p>ערכי קיצון היא בעיה בפני עצמה ואפשר להקדיש לה פרק שלם, ואפילו ספר שלם. יש לערכי קיצון השלכות משמעותיות במגוון שימושים, החל ממודלים וחישובים שונים, דרך זיהוי אנומליות.</p>
+<p>ערכי הקיצון מחושבים כ-1.5*טווח בין רבעוני מהרבעון הראשון מטה או מהרבעון השלישי מעלה, כלומר נקודות אשר מרוחקות לפחות פי 1.5 הטווח הבין רבעוני (הטווח “הסביר”) ביחס לרבעונים.</p>
+</div>
+</section>
+</section>
+<section id="סיכום" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">4.6</span> סיכום</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-murray2021" class="csl-entry" role="doc-biblioentry">
+Murray, Lori L., and John G. Wilson. 2021. <span>“Generating Data Sets for Teaching the Importance of Regression Analysis.”</span> <em>Decision Sciences Journal of Innovative Education</em> 19 (2): 157–66. <a href="https://doi.org/10.1111/dsji.12233">https://doi.org/10.1111/dsji.12233</a>.
+</div>
+<div id="ref-simpson1951" class="csl-entry" role="doc-biblioentry">
+Simpson, E. H. 1951. <span>“The Interpretation of Interaction in Contingency Tables.”</span> <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 13 (2): 238–41. <a href="https://doi.org/10.1111/j.2517-6161.1951.tb00088.x">https://doi.org/10.1111/j.2517-6161.1951.tb00088.x</a>.
+</div>
+<div id="ref-wickham2010" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,0 +1,5 @@
+# לולאות מיוחדות {#about}
+
+פרק על purrr ופרק על tidy evaluation.
+
+TBD.

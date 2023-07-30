@@ -12,13 +12,14 @@ book:
     - 01-introduction.qmd
     - 02-base-R.Rmd
     - 03-data-munging-tidyverse.Rmd
-    - 04-visualizations-ggplot2.Rmd
+    - 04-visualizations-ggplot2.qmd
     - 05-pivot-and-join.qmd
     - 06-hypothesis-tests.Rmd
     - 07-linear-regression.Rmd
     - 08-advanced-models.Rmd
-    - 09-about.Rmd
-    - 10-references.qmd
+    - 09-purrr.qmd
+    - 10-about.Rmd
+    - 11-references.qmd
 
 bibliography: references.bib
 
