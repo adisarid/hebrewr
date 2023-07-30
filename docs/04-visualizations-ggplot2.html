@@ -252,6 +252,9 @@ div.csl-indent {
   <li><a href="#גיאומטריות-נוספות" id="toc-גיאומטריות-נוספות" class="nav-link" data-scroll-target="#גיאומטריות-נוספות"><span class="toc-section-number">4.5</span>  גיאומטריות נוספות</a>
   <ul class="collapse">
   <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="toc-section-number">4.5.1</span>  Boxplot</a></li>
+  <li><a href="#צפיפות" id="toc-צפיפות" class="nav-link" data-scroll-target="#צפיפות"><span class="toc-section-number">4.5.2</span>  צפיפות</a></li>
+  <li><a href="#היסטוגרמה" id="toc-היסטוגרמה" class="nav-link" data-scroll-target="#היסטוגרמה"><span class="toc-section-number">4.5.3</span>  היסטוגרמה</a></li>
+  <li><a href="#בארים" id="toc-בארים" class="nav-link" data-scroll-target="#בארים"><span class="toc-section-number">4.5.4</span>  בארים</a></li>
   </ul></li>
   <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">4.6</span>  סיכום</a></li>
   </ul>
@@ -461,10 +464,102 @@ div.csl-indent {
 3 Gentoo           5000   4700     5500</code></pre>
 </div>
 </div>
-<div class="note">
-<p>ערכי קיצון היא בעיה בפני עצמה ואפשר להקדיש לה פרק שלם, ואפילו ספר שלם. יש לערכי קיצון השלכות משמעותיות במגוון שימושים, החל ממודלים וחישובים שונים, דרך זיהוי אנומליות.</p>
+<p><strong>איך מזהים ערכי קיצון?</strong></p>
+<p>ערכי קיצון היא בעיה בפני עצמה ואפשר להקדיש לה פרק, ואפילו ספר שלם. יש לערכי קיצון השלכות משמעותיות במגוון שימושים, החל ממודלים (כמו רגרסיה שנלמד עליה בספר זה) וחישובים שונים (ממוצע לדוגמה מושפע מאוד מערכי קיצון), דרך זיהוי אנומליות.</p>
 <p>ערכי הקיצון מחושבים כ-1.5*טווח בין רבעוני מהרבעון הראשון מטה או מהרבעון השלישי מעלה, כלומר נקודות אשר מרוחקות לפחות פי 1.5 הטווח הבין רבעוני (הטווח “הסביר”) ביחס לרבעונים.</p>
+<p>אם נמחיש זאת על קבוצת הפינגויינים מסוג Chinstrap. הרבעון הראשון מתקבל ב-3488 גרם, והרבעון השלישי מתקבל ב-3950 גרם. הטווח הבין רבעון לכן הינו 462. כלומר הטווח הבין רבעוני כפול 1.5 הינו 693.</p>
+<p>כלומר, כל נקודה שנמצאת מחוץ לתחום של [3950+693, 3488-693] תיחשב כערך חריג ותסומן כנקודה.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>extreme_hinges <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3488-693</span>, <span class="dv">3950</span><span class="sc">+</span><span class="dv">693</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>extreme_hinges</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2795 4643</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(body_mass_g <span class="sc">&lt;</span> extreme_hinges[<span class="dv">1</span>] <span class="sc">|</span> body_mass_g <span class="sc">&gt;</span> extreme_hinges[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 8
+  species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Chinstrap Dream            52            20.7               210        4800
+2 Chinstrap Dream            46.9          16.6               192        2700
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="צפיפות" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="צפיפות"><span class="header-section-number">4.5.2</span> צפיפות</h3>
+<p>תרשים נוסף שיכול לסייע בהבנת צורת ההתפלגות הינו תרשים שמציג את הצפיפות (תזכורת: פונקצית צפיפות הינה הפונקציה שהשטח שמתחת לה מהווה את פונקצית ההתפלגות. לגובה של פונקצית צפיפות אין משמעות בערך בפני עצמו, אלא רק בכך שסך האינטגרל מתחת לפונקצית הצפיפות שווה 1). הצפיפות יכולה להראות לנו האם ההתפלגות סימטרית, האם היא בעלת מודל אחד (פיק יחיד כמו בהתפלגות נורמלית) או בי-מודלית (שני פיקים, כמו בהרכבה של שתי התפלגויות נורמליות), וכן היא יכולה לסייע לנו להבין האם יש התפלגות אחרת שמתאימה לתיאור הנתונים. הפקודה שמייצרת גרף צפיפות היא <code>geom_density</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Penguin weight: density functions"</span>) <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Body mass [grams]"</span>) <span class="sc">+</span> </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite values (`stat_density()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/density-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>כמה הבדלים בולטים מהתרשים:</p>
+<ol type="1">
+<li>ניתן לראות שהשונות (הפיזור) במשקל הגוף גדול יותר בסוג Gentoo, וגם ב-Adelie קצת יותר מב-Chinstrap.</li>
+<li>ניתן לראות שב-Gentoo יש התפלגות בי-מודלית (שתי גבעות).</li>
+<li>ניתן לראות ששני הזנים Adelie ו-Chinstrap בעלי התפלגות סביב אותו משקל גוף.</li>
+</ol>
+<div class="question">
+<p>נסו לשער מה מקור ההתפלגות הבי-מודלית בפינגויינים מזן Gentoo. בדקו את השערתכם עם תרשימים מתאימים.</p>
+<p>רמז - נסו לבחון האם פיצול ה-Gentoo לפי משתנה נוסף מייצג שני גרפים בעלי דמיון רב יותר להתפלגות נורמלית (סימטרית ובעלת פיק יחיד).</p>
+</div>
+</section>
+<section id="היסטוגרמה" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="היסטוגרמה"><span class="header-section-number">4.5.3</span> היסטוגרמה</h3>
+<p>היסטוגרמה הוא גרף נוסף שנועד להציג התפלגות של משתנים רציפים, על ידי שבירה של הערכים הרציפים לערכים בדידים (קבוצות טווחים), בשונה מהגרפים הקודמים.</p>
+<p>בנייה של היסטגרמה תתבצע באמצעות הפונקציה <code>geom_histogram</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Penguin weight: histogram"</span>) <span class="sc">+</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Body mass [grams]"</span>) <span class="sc">+</span> </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Counts [# observations]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite values (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/histogram example-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>ניתן לשלוט במספר העמודות (ה-bins) על ידי הגדרה של הארגומנט <code>bins=</code> בתוך הפונקציה <code>geom_histogram</code>. הערך ברירת המחדל הינו 30 בינים.</p>
+</section>
+<section id="בארים" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="בארים"><span class="header-section-number">4.5.4</span> בארים</h3>
+<p>בארים הם גרף עמודות. יש שתי גיאומטריות שמסייעות לנו בגרף עמודות: <code>geom_bar</code> ו-<code>geom_col</code>. ההבדל המרכזי ביניהן הוא ש-<code>geom_bar</code> מקבלת דאטה גולמי וסופרת, בעוד ש-<code>geom_col</code> מקבלת מוצר סופי. נמחיש זאת בדוגמה שמתארת את מספר התצפיות מכל סוג:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(species)) <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of penguins of eash species (geom_bar)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/geom bars and cols-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> n)) <span class="sc">+</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of penguins of eash species (geom_col)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/geom bars and cols-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>שתי הפקודות עם אותו הפלט בדיוק. אני באופן אישי מעדיף את השימוש ב-<code>geom_col</code> משום שיותר קל לעשות לה debug (בכך שנראה מה הדאטה שנכנס פנימה).</p>
 </section>
 </section>
 <section id="סיכום" class="level2" data-number="4.6">
