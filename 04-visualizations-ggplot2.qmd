@@ -231,4 +231,36 @@ penguins %>%
 
 שתי הפקודות עם אותו הפלט בדיוק. אני באופן אישי מעדיף את השימוש ב-`geom_col` משום שיותר קל לעשות לה debug (בכך שנראה מה הדאטה שנכנס פנימה).
 
+גרף בארים יכול להציג גם יותר ממשתנה אחד, לדוגמה אפשר להשתמש בו על מנת להציג את ההתפלגות של משתנה מסוים כפונקציה של משתנים אחר (קשר בין שני משתנים בדידים). נדגים זאת בתרשים הבא שיציג את התפלגות הדגימות של זנים שונים כפונקציה של מגדר.
+
+```{r bar plot species vs gender}
+penguins %>% 
+  filter(!is.na(sex)) %>% 
+  count(species, sex) %>% 
+  ggplot(aes(x = sex, fill = species, y = n)) + 
+  geom_col(position = position_fill()) + 
+  ggtitle("Distribution of species for each gender") + 
+  scale_y_continuous(labels = scales::percent) + 
+  ylab("Proportion [%]") + 
+  xlab("Sex")
+```
+
+ניתן לראות מהתרשים שהתפלגות הדגימה של הזנים דומה בין שני המגדרים תמהיל של כ-20% מסוג Chinstrap, 36% מסוג Gentoo, והיתר ממין Adelie.
+
+הפונקציה `position_fill` מגדירה שיש לערום את הבארים אחד על השני כך שיסתכמו ל-100%, ישנן שתי אפשרויות נוספות: `position_dodge`, ו-`position_stack`.
+
+<div class="question">
+
+נסו להחליף את הפונקציה `position_fill` בפונקציות האחרות (`position_dodge`, `position_stack`). באילו מקרים תשמשו בכל אחת מהפונקציות הללו?
+
+</div>
+
+<div class="question">
+
+צרו תרשים הפוך שבו מוצגת התפלגות המין של הפנגויינים לפי הזן (להפוך את התפקידים של ציר ה-x והמילוי של העמודות).
+
+</div>
+
+## שליפים
+
 ## סיכום

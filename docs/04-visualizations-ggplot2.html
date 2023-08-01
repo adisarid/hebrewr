@@ -256,7 +256,8 @@ div.csl-indent {
   <li><a href="#היסטוגרמה" id="toc-היסטוגרמה" class="nav-link" data-scroll-target="#היסטוגרמה"><span class="toc-section-number">4.5.3</span>  היסטוגרמה</a></li>
   <li><a href="#בארים" id="toc-בארים" class="nav-link" data-scroll-target="#בארים"><span class="toc-section-number">4.5.4</span>  בארים</a></li>
   </ul></li>
-  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">4.6</span>  סיכום</a></li>
+  <li><a href="#שליפים" id="toc-שליפים" class="nav-link" data-scroll-target="#שליפים"><span class="toc-section-number">4.6</span>  שליפים</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">4.7</span>  סיכום</a></li>
   </ul>
 </nav>
     </div>
@@ -560,10 +561,36 @@ div.csl-indent {
 </div>
 </div>
 <p>שתי הפקודות עם אותו הפלט בדיוק. אני באופן אישי מעדיף את השימוש ב-<code>geom_col</code> משום שיותר קל לעשות לה debug (בכך שנראה מה הדאטה שנכנס פנימה).</p>
+<p>גרף בארים יכול להציג גם יותר ממשתנה אחד, לדוגמה אפשר להשתמש בו על מנת להציג את ההתפלגות של משתנה מסוים כפונקציה של משתנים אחר (קשר בין שני משתנים בדידים). נדגים זאת בתרשים הבא שיציג את התפלגות הדגימות של זנים שונים כפונקציה של מגדר.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">fill =</span> species, <span class="at">y =</span> n)) <span class="sc">+</span> </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_fill</span>()) <span class="sc">+</span> </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of species for each gender"</span>) <span class="sc">+</span> </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span> </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion [%]"</span>) <span class="sc">+</span> </span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Sex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/bar plot species vs gender-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>ניתן לראות מהתרשים שהתפלגות הדגימה של הזנים דומה בין שני המגדרים תמהיל של כ-20% מסוג Chinstrap, 36% מסוג Gentoo, והיתר ממין Adelie.</p>
+<p>הפונקציה <code>position_fill</code> מגדירה שיש לערום את הבארים אחד על השני כך שיסתכמו ל-100%, ישנן שתי אפשרויות נוספות: <code>position_dodge</code>, ו-<code>position_stack</code>.</p>
+<div class="question">
+<p>נסו להחליף את הפונקציה <code>position_fill</code> בפונקציות האחרות (<code>position_dodge</code>, <code>position_stack</code>). באילו מקרים תשמשו בכל אחת מהפונקציות הללו?</p>
+</div>
+<div class="question">
+<p>צרו תרשים הפוך שבו מוצגת התפלגות המין של הפנגויינים לפי הזן (להפוך את התפקידים של ציר ה-x והמילוי של העמודות).</p>
+</div>
 </section>
 </section>
-<section id="סיכום" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">4.6</span> סיכום</h2>
+<section id="שליפים" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="שליפים"><span class="header-section-number">4.6</span> שליפים</h2>
+</section>
+<section id="סיכום" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">4.7</span> סיכום</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
