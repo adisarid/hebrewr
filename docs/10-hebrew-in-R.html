@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - 1&nbsp; מבוא</title>
+<title>המדריך העברי למשתמש ב-R - 10&nbsp; עברית ב-R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,25 +83,6 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 
@@ -112,8 +93,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-base-R.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./about.html" rel="next">
+<link href="./09-purrr.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -153,7 +134,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">עברית ב-R</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -183,7 +164,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></a>
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -228,7 +209,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-hebrew-in-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">עברית ב-R</span></a>
+  <a href="./10-hebrew-in-R.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">עברית ב-R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -250,9 +231,9 @@ div.csl-indent {
     <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#תהליך-ניתוח-נתונים" id="toc-תהליך-ניתוח-נתונים" class="nav-link active" data-scroll-target="#תהליך-ניתוח-נתונים"><span class="toc-section-number">1.1</span>  תהליך ניתוח נתונים</a></li>
-  <li><a href="#איך-מתקינים-את-r" id="toc-איך-מתקינים-את-r" class="nav-link" data-scroll-target="#איך-מתקינים-את-r"><span class="toc-section-number">1.2</span>  איך מתקינים את R?</a></li>
-  <li><a href="#איך-משתמשים-ב-rstudio" id="toc-איך-משתמשים-ב-rstudio" class="nav-link" data-scroll-target="#איך-משתמשים-ב-rstudio"><span class="toc-section-number">1.3</span>  איך משתמשים ב-RStudio?</a></li>
+  <li><a href="#שימוש-ב-ide" id="toc-שימוש-ב-ide" class="nav-link active" data-scroll-target="#שימוש-ב-ide"><span class="toc-section-number">10.1</span>  שימוש ב-IDE</a></li>
+  <li><a href="#קידוד-קבצים" id="toc-קידוד-קבצים" class="nav-link" data-scroll-target="#קידוד-קבצים"><span class="toc-section-number">10.2</span>  קידוד קבצים</a></li>
+  <li><a href="#יישור-לימין" id="toc-יישור-לימין" class="nav-link" data-scroll-target="#יישור-לימין"><span class="toc-section-number">10.3</span>  יישור לימין</a></li>
   </ul>
 </nav>
     </div>
@@ -261,7 +242,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></span></h1>
+<h1 class="title"><span id="sec-hebrew-tips" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">עברית ב-R</span></span></h1>
 </div>
 
 
@@ -276,69 +257,90 @@ div.csl-indent {
 
 </header>
 
-<section id="תהליך-ניתוח-נתונים" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="תהליך-ניתוח-נתונים"><span class="header-section-number">1.1</span> תהליך ניתוח נתונים</h2>
-<p>בספר הזה אני מאמץ את נקודת ההשקפה של <span class="citation" data-cites="wickham2016r">(<a href="references.html#ref-wickham2016r" role="doc-biblioref">Wickham and Grolemund 2016</a>)</span> שמציגים את אבני הבניין של עבודת מדען הנתונים כפי שמומחש באיור הבא:</p>
-<div id="fig:ds-workflow" class="quarto-figure quarto-figure-center anchored">
+<p>השילוב בין קידוד ב-R לבין השפה העברית טומן בחובו מספר אתגרים. מטרת הפרק לתת כמה טיפים שיעזרו לכם לייעל את העבודה ב-R, גם כשצריך לשלב עברית, בין אם בכותרות של גרפים, בכתיבת דוחות ומסמכים, בקידודי קבצים, בשמות משתנים, ועוד.</p>
+<p>הפרק מתחלק לשלושה חלקים:</p>
+<ul>
+<li><p>שימוש ב-RStudio IDE עם עברית</p></li>
+<li><p>קידוד קבצים: קריאה וכתיבה של קבצים הכוללים עברית</p></li>
+<li><p>יישור לימין: באפליקציות shiny, מסמכי quarto/rmarkdown, ובגרפים</p></li>
+</ul>
+<section id="שימוש-ב-ide" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="שימוש-ב-ide"><span class="header-section-number">10.1</span> שימוש ב-IDE</h2>
+<p>ה-IDE הנפוץ לשימוש ב-R הוא RStudio IDE (סביבת פיתוח - Integrated Development Environment). שילוב של עברית ב-IDE דורש קצת מיומנות והתרגלות, לדוגמה, כך נראית כתיבת שורות אלו ב-IDE:</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<figure class="figure">
-<img src="images/ds_workflow_he.svg" title="תהליך ניתוח הנתונים" class="img-fluid figure-img">
-</figure>
-<p></p><figcaption class="figure-caption">המחשה של תהליך ניתוח הנתונים</figcaption><p></p>
+<p><img src="images/Hebrew-in-rstudio1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">כתיבה בעברית ב-RStudio IDE</figcaption><p></p>
 </figure>
 </div>
-<p>כל תהליך ניתוח נתונים מורכב מיבוא סט הנתונים, סידור שלהם בצורה שנוח לעבוד איתה, לאחר מכן מחקר על הנתונים, שהוא תהליך איטרטיבי (חוזר על עצמו) שמורכב מהתמרות שונות על הנתונים (טרנספורמציות), המחשות בתרשימים (ויז’ואליזציות), ומידול של הנתונים. לבסוף, התהליך עובר למסמך, מצגת או אמצעי אחר, ומוצג למקבלי החלטות.</p>
-<p>בספר זה נדון בשלבים של יבוא הנתונים, סידור, וכלל שלבי המחקר (טרנספורמציות, ויז’ואליזציות, ומידול). אך ראשית, לפני שנתחיל בצעדים הראשונים (למידת בסיס השפה), נראה כיצד להתקין את R.</p>
-</section>
-<section id="איך-מתקינים-את-r" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="איך-מתקינים-את-r"><span class="header-section-number">1.2</span> איך מתקינים את R?</h2>
-<p>התקנת התוכנה פשוטה מאוד. R היא שפה בקוד פתוח (Open Source) מה שאומר שכל אחד יכול להתקין אותה ללא עלות. כמו כן, ישנה סביבת פיתוח, גם היא חינמית ובקוד פתוח, הנקראת RStudio IDE.</p>
-<p>על מנת להתקין את R עליכם להיכנס לכתובת <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> ולבחור בגרסה המתאימה למערכת ההפעלה שלכם. לאחר מכן, כדי להתקין את RStudio היכנסו לכתובת <a href="https://rstudio.com/products/rstudio/download/." class="uri">https://rstudio.com/products/rstudio/download/.</a> הגרסה החינמית של RStudio נקראת RStudio Desktop והיא זמינה לכל צורך (כולל לשימוש במסגרת מסחרית).</p>
-<p>הסיבה שאנחנו מתקינים גם את R וגם את RStudio היא שבהתקנת R בלבד, מקבלים ממשק משתמש בסיסי ביותר, בעוד שלאחר התקנת RStudio ניתן יהיה לעבוד עם ממשק משתמש נוח שיש לו הרבה אפשרויות שיקלו עליכם את הלמידה ואת העבודה השוטפת ב-R.</p>
-</section>
-<section id="איך-משתמשים-ב-rstudio" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="איך-משתמשים-ב-rstudio"><span class="header-section-number">1.3</span> איך משתמשים ב-RStudio?</h2>
-<p>לאחר ההתקנה, כשתפעילו את RStudio, תראו חלון המפוצל לשלושה (או אולי ארבעה) חלקים. החלק הגדול בצד שמאל הוא ה-Console, הוא סביבת ה-R המריצה את הקוד שלכם. אתם יכולים לנסות לרשום בו קוד ולראות מה קורה, לדוגמה תנסו לרשום <code>2+2</code> וללחוץ Enter או לרשום <code>pi</code> וללחוץ Enter.</p>
+<p>כפי שניתן לראות, למרות שהשורות עצמן בספר מיושרות לימין (כמו שצריך בעברית), בכעת הכתיבה השורות לא מיושרות, וסדר המשפט מתהפך כאשר משלבים עברית ואנגלית. בחלק השלישי של הפרק נסביר איך “קורה הקסם” שהתוצר עצמו כן מיושר לימין. אבל הנה כמה טיפים שיעזרו לכם לשלב עברית בעבודה השוטפת עם RStudio:</p>
+<ol type="1">
+<li><strong>עבודה עם ה-Visual Editor:</strong> בכתיבת מסמכים (מסוג RMarkdown או quarto) לעבוד עם ה-Visual editor במקום ה-Source editor (בצד שמאל למעלה בחירה ב-Visual). איכשהו, העורך הויזואלי מצליח לסדר קצת יותר טוב את העברית, ובמקרה ונדרש לערוך מסמך, מצליח לשים את הסמן במקום הנכון. בצילום המסך הבא מוצג עורך קוד המקור (באדום מסומן הכפתור שמאפשר לעבור לעורך הויזואלי). אם תנסו לשים את הסמן במקום המתאים בעורך קוד המקור תראו שהוא מציב את הסמן במקום הלא נכון.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Hebrew-in-rstudio2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">מעבר לעורך ויזואלי</figcaption><p></p>
+</figure>
+</div>
+<p>לצערנו, העורך הויזואלי זמין רק במסמכים מסוג RMarkdown ו-quarto. בכתיבת סקריפט רגיל (קובץ קוד בלבד עם סיומת .R), חייבים להשתמש בעורך קוד המקור, מה שמוביל אותנו לנקודה השניה:</p>
+<ol start="2" type="1">
+<li><strong>שימוש בשבירת שורות כשנדרש לשלב עברית בקוד:</strong> כאשר כותבים קוד ונדרש לשלב עברית, עדיף לשבור שורה (בכתיבת קוד לרוב שבירת שורה לא משפיעה על הפונקציונליות של הקוד), ואת העברית לשים בשורה נפרדת. זה יקל על עריכת הקוד במידה וצריך. לדוגמה, הקוד הבא מכיל שבירת שורה, ולכן יקל על עריכות במידה ונדרשות:</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_table <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(my_var <span class="sc">==</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">"המשתנה שלי"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>במקום הקוד:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_table <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(my_var <span class="sc">==</span> <span class="st">"המשתנה שלי"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li><strong>שמירת קבצים באנגלית:</strong> תעשו לעצמכם ולאחרים טובה, ולכל הקבצים (והתיקיות) תתנו שמות באנגלית ולא בעברית.</li>
+<li><strong>שמות משתנים באנגלית:</strong> אם יש לכם קובץ נתונים שבו שמות המשתנים (הכותרות) הם בעברית, מומלץ להעביר את כולם לאנגלית, לעבוד באנגלית, ואם צריך להעביר לעברית בסוף (לצורך דיווח ו/או תרשימים). יש דרכים שונות להחליף שמות, לדוגמה הגדרה בתוך הפקודה שקוראת את הקובץ. הפקודה <code>read_csv</code> ו-<code>readxl::read_excel</code> תומכות שתיהן בארגומנט שנקרא <code>col_names</code> ומאפשר להגדיר שמות (אבל השימוש בארגומנט מניח שסדר העמודות עקבי וידוע מראש). הדוגמה הבאה מחליפה שמות של עמודות באמצעות הפקודה <code>rename</code>, שמגדירה שם של עמודה באופן מדויק, גם אם הסדר שלהן אינו לפי סדר ההגדרה.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>init_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">`</span><span class="at">שם</span><span class="st">`</span> <span class="ot">=</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">c</span>(<span class="st">"איתן"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"נעמי"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"אביב"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">גיל</span><span class="st">`</span> <span class="ot">=</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">5</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>init_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code># A tibble: 3 × 2
+  שם      גיל
+  &lt;chr&gt; &lt;dbl&gt;
+1 איתן     11
+2 נעמי      9
+3 אביב      5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>init_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">age =</span> <span class="st">`</span><span class="at">גיל</span><span class="st">`</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">name =</span> <span class="st">`</span><span class="at">שם</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.141593</code></pre>
+<pre><code># A tibble: 3 × 2
+  name    age
+  &lt;chr&gt; &lt;dbl&gt;
+1 איתן     11
+2 נעמי      9
+3 אביב      5</code></pre>
 </div>
 </div>
-<p>בצד ימין למעלה ישנה חלונית המחולקת לטאבים. בין הטאבים שמופיעים בה תוכלו לראות את:</p>
-<ul>
-<li><p>Environment - משתנים או פונקציות שנטענו לסביבה</p></li>
-<li><p>History - היסטורית הפקודות שהרצתם</p></li>
-<li><p>Connections - חיבורים למקורות נתונים</p></li>
-<li><p>Tutorial - הצגה של מדריכים שונים שמלמדים איך להשתמש בחבילות של R</p></li>
-</ul>
-<p>בצד ימין למטה תופיעה חלונית נוספת המחולקת גם היא לטאבים:</p>
-<ul>
-<li><p>Files - תוכן התיקייה הנוכחית</p></li>
-<li><p>Plots - תרשימים שנכין יופיעו בטאב זה</p></li>
-<li><p>Packages - חבילות שזמינות לנו או שנטענו לסביבה (יסומנו ב-V)</p></li>
-<li><p>Help - חלונית עזרה על פקודות</p></li>
-<li><p>Viewer - צפיה בתכנים שונים שנכין (בעיקר תכנים אינטראקטיביים כמו טבלאות html תרשימים אינטראקטיביים, ואפליקציות).</p></li>
-</ul>
-<p>בתוך משתמשים מתחילים נשתמש בחלק קטן מאלו, אך ככל שיעבור זמן תראו שאתם משתמשים ביותר ויותר אפשרויות, וגם אפשרויות נוספות שכרגע אינן מופיעות לכם.</p>
-<p>עוד כמה פינות חשובות שנמצאות ב-RStudio:</p>
-<ul>
-<li><p>אם תלחצו על Help-&gt;Cheat sheets תוכלו לראות רשימה של “שליפים”. דפים שימושיים שמרכזים פקודות שונות של R וחבילות של R. לדוגמה, אחד מהשליפים ששם נקרא RStudio IDE Cheat Sheet, והוא מכיל הרבה הסברים נוספים על הממשק משתמש של RStudio.</p></li>
-<li><p>בתפריט File -&gt; New File ישנה אפשרות לפתוח קובץ חדש. מומלץ שתנסו לפתוח קובץ חדש מסוג R Script, שישמש אותנו לפרק הבא.</p></li>
-</ul>
-<p><strong>שימו לב</strong>: לאחר שפתחתם Script חדש, וכתבתם בו קוד, על מנת להריץ את הקוד צריך לסמן אותו וללחוץ Ctrl+Enter. זה יגרום ל-R להריץ את כל הקוד המסומן.</p>
-<p>כעת אנחנו מוכנים לפרק הבא, שבו נלמד את בסיס השפה, מה שמכונה גם Base R.</p>
+<p>שימו לב אגב שבפלט הטקסט בעברית מופיע הפוך, אבל העתיקו את הקוד ונסו. ניתן להשתמש בפקודה <code>View</code> על מנת לראות את התוצר הסופי בצורה מסודרת (פשוט הוסיפו <code>%&gt;% View()</code> בסוף השורה האחרונה של הקוד).</p>
+</section>
+<section id="קידוד-קבצים" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="קידוד-קבצים"><span class="header-section-number">10.2</span> קידוד קבצים</h2>
+</section>
+<section id="יישור-לימין" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="יישור-לימין"><span class="header-section-number">10.3</span> יישור לימין</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-wickham2016r" class="csl-entry" role="doc-biblioentry">
-Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. "O’Reilly Media, Inc.".
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -477,13 +479,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">הקדמה</span>
+      <a href="./09-purrr.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">לולאות מיוחדות</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-base-R.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./about.html" class="pagination-link">
+        <span class="nav-page-text">על הכותב</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

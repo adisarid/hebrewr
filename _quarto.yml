@@ -18,8 +18,9 @@ book:
     - 07-linear-regression.Rmd
     - 08-advanced-models.Rmd
     - 09-purrr.qmd
-    - 10-about.Rmd
-    - 11-references.qmd
+    - 10-hebrew-in-R.qmd
+    - about.Rmd
+    - references.qmd
   page-footer: 
     center:
        - text: '<script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>'

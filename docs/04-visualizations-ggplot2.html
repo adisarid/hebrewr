@@ -228,12 +228,17 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  <a href="./10-hebrew-in-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">עברית ב-R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-references.html" class="sidebar-item-text sidebar-link">מקורות</a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">מקורות</a>
   </div>
 </li>
     </ul>
@@ -282,7 +287,7 @@ div.csl-indent {
 </header>
 
 <p>ויז’ואליזציות הן כלי קריטי בהבנה ובתקשור של נתונים (וחוץ מזה, הן כיפיות 😊). בפרק זה נלמד איך להפיק ויז’ואליזציות באמצעות חבילת <code>ggplot2</code>.</p>
-<p>חבילת <code>ggplot2</code> מבוססת על תיאוריה שנקראת דקדוק של גרפיקה <span class="citation" data-cites="wickham2010">(<a href="11-references.html#ref-wickham2010" role="doc-biblioref">Wickham 2010</a>)</span>. עקרונות התיאוריה מניחים את קווי היסוד הבאים לבניה של כל גרף. בקווים כלליים:</p>
+<p>חבילת <code>ggplot2</code> מבוססת על תיאוריה שנקראת דקדוק של גרפיקה <span class="citation" data-cites="wickham2010">(<a href="references.html#ref-wickham2010" role="doc-biblioref">Wickham 2010</a>)</span>. עקרונות התיאוריה מניחים את קווי היסוד הבאים לבניה של כל גרף. בקווים כלליים:</p>
 <ol type="1">
 <li>כל משתנה ממופה למאפיין מסוים על הגרף (“אסטטיקה”), לדוגמה, משתנה יכול להיות ממופה לציר X לציר Y, והוא יכול להיות ממופה לצבע, גודל, שקיפות, צורה, ועוד.</li>
 <li>לאחר המיפוי מתווספות שכבות שנקראות גיאומטריות. ישנן גיאומטריות רבות והן קובעות כיצד יראה הגרף, לדוגמה נקודות (דיאגרמת פיזור), קווים, עמודות (bars), אריחים (tiles), קופסאות התפלגות (boxplots), ועוד.</li>
@@ -337,7 +342,7 @@ div.csl-indent {
 </div>
 <p>כעת לאחר הוספת הצבע ניתן להבחין בבירור בכך שבכל אחד מהזנים <strong>עליה</strong> במשתנה <code>bill_length_mm</code> מביאה לעלייה במשתנה <code>bill_depth_mm</code> (וזה בעצם הפוך למה שחשבנו כשהסתכלנו על התרשים מבלי לחלק לזנים של הפינגויינים השונים). זו תובנה מאוד משמעותית, שנקראת בשפה המקצועית “אינטראקציה”. יש אינטראקציה בין אורך המקור לבין זן הפינגויין בהשפעתם על עומק המקור. ניגע באינטראקציות גם בהמשך (בפרק על רגרסיה לינארית).</p>
 <div class="note">
-<p><strong>כדאי להכיר - “פרדוס סימפסון”:</strong> התופעה שבה הבחנו בשינוי המשמעות של הקשר בין המשתנים כאשר מוסיפים אינטראקציה או זיהוי של הקבוצה, תוארה על ידי סימפסון <span class="citation" data-cites="simpson1951">(<a href="11-references.html#ref-simpson1951" role="doc-biblioref">Simpson 1951</a>)</span>. אחד מהגילגולים המודרנים של הפרדוקס הזה נמצא בדאטהסט שנוצר על ידי סימולציה ונקרא Datasaurus dozen <span class="citation" data-cites="murray2021">(ראו <a href="11-references.html#ref-murray2021" role="doc-biblioref">Murray and Wilson 2021</a>)</span>.</p>
+<p><strong>כדאי להכיר - “פרדוס סימפסון”:</strong> התופעה שבה הבחנו בשינוי המשמעות של הקשר בין המשתנים כאשר מוסיפים אינטראקציה או זיהוי של הקבוצה, תוארה על ידי סימפסון <span class="citation" data-cites="simpson1951">(<a href="references.html#ref-simpson1951" role="doc-biblioref">Simpson 1951</a>)</span>. אחד מהגילגולים המודרנים של הפרדוקס הזה נמצא בדאטהסט שנוצר על ידי סימולציה ונקרא Datasaurus dozen <span class="citation" data-cites="murray2021">(ראו <a href="references.html#ref-murray2021" role="doc-biblioref">Murray and Wilson 2021</a>)</span>.</p>
 <p>ב-Datasaurus משתמשים בסימולציה כדי לייצר שנים עשר קבוצות שבפני עצמן נראות זהות בפרמטרים מסוימים (ממוצע בציר x, ממוצע בציר y, סטיית תקן, קורלציה, וכו’), אבל כשמציגים את הנקודות בדיאגרמת פיזור, באופן מובחן בין הקבוצות, מקבלים את התרשים הבא:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span>
