@@ -336,6 +336,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="קידוד-קבצים" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="קידוד-קבצים"><span class="header-section-number">10.2</span> קידוד קבצים</h2>
+<p>קבצי טקסט בפורמטים שונים (כגון txt או csv) יכולים להכיל אינדיקציה לקידוד, שמאפשרת לתוכנות שונות (ביניהן R ו-Excel) להבין איך לפתוח את הקובץ כך שניתן יהיה לקרוא אותו באופן תקין.</p>
+<p>נתייחס לפקודת <code>read_csv</code> (פקודות אחרות בחבילת <code>readr</code> עובדות באופן דומה). כברירת מחדל, הפקודה תצליח לקרוא טוב קבצים ששמורים עם קידוד של UTF-8, ולרוב הקבצים זה מספיק.</p>
+<p>במידה והקריאה אינה עובדת, ניתן להיעזר בפקודה <code>guess_encoding</code> גם היא מחבילת <code>readr</code>.</p>
+<p>לדוגמה:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">"files/utf8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  encoding confidence
+  &lt;chr&gt;         &lt;dbl&gt;
+1 UTF-8          1   
+2 KOI8-R         0.98</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  encoding     confidence
+  &lt;chr&gt;             &lt;dbl&gt;
+1 windows-1251        0.5</code></pre>
+</div>
+</div>
+<p>הקובץ הראשון מקודד ב-UTF-8 ולכן שימוש פשוט בפקודה <code>read_csv</code> יקרא אותו באופן תקין. הקובץ השני שמור בפורמט ISO-8859-8 (והפקודה גם לא מצליחה “לנחש” אותו), ולכן יהיה קצת יותר מאתגר לקרוא אותו בלי ידע מוקדם על הקידוד. הפעלת פקודת הקריאה על הקובץ השני מבלי הגדרה מתאימה של הקידוד, תציג טקסט שגוי או הודעת שגיאה של <span style="color: red;">Error: Invalid multibyte sequence</span>. הטקסט בעברית בדוגמאות להלן יופיע משמאל לימין (הפוך), אבל אם תנסו להריץ אותו ב-R תראו שהנתונים נקראים באופן תקין, בפקודה הראשונה והשלישית להלן:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/utf8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2 Columns: 1
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): שלום
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  שלום 
+  &lt;chr&gt;
+1 יום  
+2 טוב  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"windows-1251"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2 Columns: 1
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): щмен
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  щмен 
+  &lt;chr&gt;
+1 йен  
+2 иеб  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-8"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2 Columns: 1
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): שלום
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  שלום 
+  &lt;chr&gt;
+1 יום  
+2 טוב  </code></pre>
+</div>
+</div>
+<p>על מנת לשמור קבצים עם קידוד, מומלץ להשתמש בפקודה <code>write_excel_csv</code> במקום הפקודה <code>write_csv</code>, במיוחד אם מתכננים לקרוא את הקובץ שנשמר באמצעות אקסל. הפקודה של <code>write_excel_csv</code> כוללת “הנחיות קידוד” כך שפתיחה באקסל תציג עברית באופן תקין (התוצר הוא עדיין קובץ טקסט). לעומת זאת, שמירה של <code>write_csv</code> עם נתונים בעברית, תציג ג’יבריש בעת פתיחת אקסל רגילה (אגב, אפשר לייבא נתונים באקסל ולהגדיר UTF-8 כקידוד, ואז ניתן לקרוא גם קבצים כאלו באופן תקין).</p>
+<div class="note">
+<p>פורמט אקסל (קובץ xlsx) הוא פורמט נוח מבחינת קידוד, משום שהוא שומר את הקידוד באופן מובנה. עם זאת, הוא פורמט פחות נוח לעבודה בהרבה מקרים. ניתן לקרוא קבצי אקסל באמצעות <code>readxl::read_excel</code> ואז לא צריך להתעסק עם קידוד. שמירה של קבצי אקסל תיעשה באמצעות אחת מהפקודות הבאות <code>openxlsx::write.xlsx</code> או <code>writexl::write_xlsx</code>.</p>
+</div>
 </section>
 <section id="יישור-לימין" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="יישור-לימין"><span class="header-section-number">10.3</span> יישור לימין</h2>
