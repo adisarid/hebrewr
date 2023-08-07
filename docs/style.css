@@ -64,3 +64,8 @@ ul {
 #refs {
   direction: ltr;
 }
+
+/* Fix direction of code output in Hebrew*/
+.code-out-hebrew > .cell > .cell-output code {
+  direction: rtl;
+}
