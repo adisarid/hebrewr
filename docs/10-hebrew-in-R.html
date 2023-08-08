@@ -83,6 +83,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -415,8 +434,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="יישור-לימין" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="יישור-לימין"><span class="header-section-number">10.3</span> יישור לימין</h2>
+<p>תוצרים ב-R המבוססים על html, קרי, מסמכים שהם תוצר של RMarkdown, quarto, ואפליקציות shiny, יציגו עברית בכיוון הפוך (משמאל לימין), אלא אם יוגדר להם עיצוב מתאים.</p>
+<p>עיצוב ב-html נשלט על ידי קוד CSS (Cascade Style Sheet). לדוגמה, לספר זה יש עיצוב המוגדר בקובץ style.css ובו מופיע (בין היתר) הקוד הבא:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">direction</span>: <span class="dv">rtl</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>הקוד שולט בכל התגיות שנמצאות בתוך גוף המסמך (תגיות html שמופיעות בין <code>&lt;body&gt;</code> לבין התגית הסוגרת <code>&lt;/body&gt;</code>. התכונה אותה אנחנו רוצים לעדכן נקראת כיוון (direction), והוא יכול לקבל שני ערכים (כברירת מחדל שמאל לימין ltr, ובאמצעות הקוד אנחנו משנים אותו ל-rtl.</p>
+<p>בשביל להטמיע זאת במסמך quarto או RMarkdown רק צריך להוסיף את הקוד הבא במסמך:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>```{css}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>   direction: rtl;</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>ניתן לקרוא מידע נוסף לגבי שילוב CSS במקורות הבאים:</p>
+<ul>
+<li><p><a href="https://quarto.org/docs/output-formats/html-themes.html">לגבי שימוש ב-CSS במסמכי quarto</a></p>
+<ul>
+<li>quarto.org</li>
+</ul></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown-cookbook/html-css.html">שילוב CSS במסמכי RMarkdown</a></p>
+<ul>
+<li><span class="citation" data-cites="xie2018r">(<a href="references.html#ref-xie2018r" role="doc-biblioref">Xie, Allaire, and Grolemund 2018</a>)</span></li>
+</ul></li>
+<li><p><a href="https://mastering-shiny.org/action-layout.html">שילוב CSS באפליקציות Shiny</a></p>
+<ul>
+<li><span class="citation" data-cites="wickham2021mastering">(<a href="references.html#ref-wickham2021mastering" role="doc-biblioref">Wickham 2021</a>)</span></li>
+</ul></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-wickham2021mastering" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2021. <em>Mastering Shiny</em>. " O’Reilly Media, Inc.".
+</div>
+<div id="ref-xie2018r" class="csl-entry" role="doc-biblioentry">
+Xie, Yihui, Joseph J Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. CRC Press.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

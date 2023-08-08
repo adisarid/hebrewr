@@ -83,13 +83,11 @@ guess_encoding("files/utf8_encoding_example_file.csv")
 
 ניתן לראות שהפקודה `guess_encoding` מצליחה לזהות שהקידוד הוא UTF-8, וקריאה "רגילה" של הקובץ (בלי ארגומנטים מיוחדים) תצליח:
 
-<div class="code-out-hebrew">
-
+::: code-out-hebrew
 ```{r sucssesful reading, message=FALSE}
 read_csv("files/utf8_encoding_example_file.csv")
 ```
-
-</div>
+:::
 
 לעומת זאת, הקובץ הבא מקודד בקידוד אחר (קידוד iso8859-8), הפקודה `guess_encoding` מזהה קידוד שגוי, והשימוש בו לא יניב תוצאות רצויות:
 
@@ -101,14 +99,12 @@ read_csv("files/iso8859-8_encoding_example_file.csv",
 
 הקובץ הראשון מקודד ב-UTF-8 ולכן שימוש פשוט בפקודה `read_csv` קורא אותו באופן תקין. הקובץ השני שמור בפורמט ISO-8859-8 (והפקודה גם לא מצליחה "לנחש" אותו), ולכן יותר מאתגר לקרוא אותו בלי ידע מוקדם על הקידוד. הפעלת פקודת הקריאה על הקובץ השני מבלי הגדרה מתאימה של הקידוד, תציג טקסט שגוי או הודעת שגיאה של [Error: Invalid multibyte sequence]{style="color: red;"}. הטקסט בעברית בדוגמאות להלן יופיע משמאל לימין (הפוך), אבל אם תנסו להריץ אותו ב-R תראו שהנתונים נקראים באופן תקין, בפקודה הראשונה והשלישית להלן:
 
-<div class="code-out-hebrew">
-
+::: code-out-hebrew
 ```{r reading examples with specified encoding, message=FALSE}
 read_csv("files/iso8859-8_encoding_example_file.csv", 
          locale = locale(encoding = "ISO-8859-8"))
 ```
-
-</div>
+:::
 
 לידיעה, יש מספר פורמטים רלוונטיים לקריאת עברית, הראשונים שאני ממליץ לנסות הם UTF-8 (כלומר בלי ארגומנטים מיוחדים), אחריו Windows-1255, ואחריו ISO-8859-8, כמובן תוך שילוב הפקודה `guess_encoding` שיכולה להיות שימושית לעיתים.
 
@@ -123,3 +119,39 @@ read_csv("files/iso8859-8_encoding_example_file.csv",
 :::
 
 ## יישור לימין
+
+תוצרים ב-R המבוססים על html, קרי, מסמכים שהם תוצר של RMarkdown, quarto, ואפליקציות shiny, יציגו עברית בכיוון הפוך (משמאל לימין), אלא אם יוגדר להם עיצוב מתאים.
+
+עיצוב ב-html נשלט על ידי קוד CSS (Cascade Style Sheet). לדוגמה, לספר זה יש עיצוב המוגדר בקובץ style.css ובו מופיע (בין היתר) הקוד הבא:
+
+```{css, eval=FALSE}
+body {
+  direction: rtl;
+}
+```
+
+הקוד שולט בכל התגיות שנמצאות בתוך גוף המסמך (תגיות html שמופיעות בין `<body>` לבין התגית הסוגרת `</body>`. התכונה אותה אנחנו רוצים לעדכן נקראת כיוון (direction), והוא יכול לקבל שני ערכים (כברירת מחדל שמאל לימין ltr, ובאמצעות הקוד אנחנו משנים אותו ל-rtl.
+
+בשביל להטמיע זאת במסמך quarto או RMarkdown רק צריך להוסיף את הקוד הבא במסמך:
+
+````{verbatim}
+```{css}
+body {
+   direction: rtl;
+}
+```
+````
+
+ניתן לקרוא מידע נוסף לגבי שילוב CSS במקורות הבאים:
+
+-   [לגבי שימוש ב-CSS במסמכי quarto](https://quarto.org/docs/output-formats/html-themes.html)
+
+    -   quarto.org
+
+-   [שילוב CSS במסמכי RMarkdown](https://bookdown.org/yihui/rmarkdown-cookbook/html-css.html)
+
+    -   [@xie2018r]
+
+-   [שילוב CSS באפליקציות Shiny](https://mastering-shiny.org/action-layout.html)
+
+    -   [@wickham2021mastering]
