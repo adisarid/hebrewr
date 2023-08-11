@@ -14,7 +14,7 @@ book:
     - 03-data-munging-tidyverse.Rmd
     - 04-visualizations-ggplot2.qmd
     - 05-pivot-and-join.qmd
-    - 06-hypothesis-tests.Rmd
+    - 06-hypothesis-tests.qmd
     - 07-linear-regression.Rmd
     - 08-advanced-models.Rmd
     - 09-purrr.qmd

@@ -57,7 +57,13 @@ init_tbl <- tibble(`שם` =
                        "אביב"),
                    `גיל` = 
                      c(11, 9, 5))
+```
+::: code-out-hebrew
+```{r renaming with hebrew code}
 init_tbl
+```
+:::
+```{r}
 init_tbl %>% 
   rename(age = `גיל`,
          name = `שם`)
@@ -155,3 +161,13 @@ body {
 -   [שילוב CSS באפליקציות Shiny](https://mastering-shiny.org/action-layout.html)
 
     -   [@wickham2021mastering]
+
+## סיכום
+
+בפרק זה למדנו טיפים וטריקים שיעזרו לנו בפרויקטים בהם עלינו לשלב עברית ואנגלית. בפרט:
+
+   * שימוש בסביבת הפיתוח RStudio תוך שילוב עברית.
+   
+   * קידודים של קבצים בעברית (בקריאה ובכתיבה של קבצים).
+   
+   * יישור לימין בתוצרי ניתוח שכוללים html, באמצעות שימוש ב-CSS.

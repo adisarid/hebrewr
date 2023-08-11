@@ -257,6 +257,7 @@ div.csl-indent {
   <li><a href="#שמירת-קבצים" id="toc-שמירת-קבצים" class="nav-link" data-scroll-target="#שמירת-קבצים"><span class="toc-section-number">10.2.2</span>  שמירת קבצים</a></li>
   </ul></li>
   <li><a href="#יישור-לימין" id="toc-יישור-לימין" class="nav-link" data-scroll-target="#יישור-לימין"><span class="toc-section-number">10.3</span>  יישור לימין</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">10.4</span>  סיכום</a></li>
   </ul>
 </nav>
     </div>
@@ -333,8 +334,11 @@ div.csl-indent {
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"נעמי"</span>,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"אביב"</span>),</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">גיל</span><span class="st">`</span> <span class="ot">=</span> </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">5</span>))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>init_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-out-hebrew">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>init_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   שם      גיל
@@ -343,9 +347,12 @@ div.csl-indent {
 2 נעמי      9
 3 אביב      5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>init_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">age =</span> <span class="st">`</span><span class="at">גיל</span><span class="st">`</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">name =</span> <span class="st">`</span><span class="at">שם</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>init_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">age =</span> <span class="st">`</span><span class="at">גיל</span><span class="st">`</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">name =</span> <span class="st">`</span><span class="at">שם</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   name    age
@@ -366,7 +373,7 @@ div.csl-indent {
 <p>במידה והקריאה אינה עובדת, ניתן להיעזר בפקודה <code>guess_encoding</code> גם היא מחבילת <code>readr</code>.</p>
 <p>לדוגמה:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">"files/utf8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">"files/utf8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   encoding confidence
@@ -378,7 +385,7 @@ div.csl-indent {
 <p>ניתן לראות שהפקודה <code>guess_encoding</code> מצליחה לזהות שהקידוד הוא UTF-8, וקריאה “רגילה” של הקובץ (בלי ארגומנטים מיוחדים) תצליח:</p>
 <div class="code-out-hebrew">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/utf8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/utf8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 1
   שלום 
@@ -390,15 +397,15 @@ div.csl-indent {
 </div>
 <p>לעומת זאת, הקובץ הבא מקודד בקידוד אחר (קידוד iso8859-8), הפקודה <code>guess_encoding</code> מזהה קידוד שגוי, והשימוש בו לא יניב תוצאות רצויות:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   encoding     confidence
   &lt;chr&gt;             &lt;dbl&gt;
 1 windows-1251        0.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"windows-1251"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"windows-1251"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 1
   щмен 
@@ -410,8 +417,8 @@ div.csl-indent {
 <p>הקובץ הראשון מקודד ב-UTF-8 ולכן שימוש פשוט בפקודה <code>read_csv</code> קורא אותו באופן תקין. הקובץ השני שמור בפורמט ISO-8859-8 (והפקודה גם לא מצליחה “לנחש” אותו), ולכן יותר מאתגר לקרוא אותו בלי ידע מוקדם על הקידוד. הפעלת פקודת הקריאה על הקובץ השני מבלי הגדרה מתאימה של הקידוד, תציג טקסט שגוי או הודעת שגיאה של <span style="color: red;">Error: Invalid multibyte sequence</span>. הטקסט בעברית בדוגמאות להלן יופיע משמאל לימין (הפוך), אבל אם תנסו להריץ אותו ב-R תראו שהנתונים נקראים באופן תקין, בפקודה הראשונה והשלישית להלן:</p>
 <div class="code-out-hebrew">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>, </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-8"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"files/iso8859-8_encoding_example_file.csv"</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-8"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 1
   שלום 
@@ -437,17 +444,17 @@ div.csl-indent {
 <p>תוצרים ב-R המבוססים על html, קרי, מסמכים שהם תוצר של RMarkdown, quarto, ואפליקציות shiny, יציגו עברית בכיוון הפוך (משמאל לימין), אלא אם יוגדר להם עיצוב מתאים.</p>
 <p>עיצוב ב-html נשלט על ידי קוד CSS (Cascade Style Sheet). לדוגמה, לספר זה יש עיצוב המוגדר בקובץ style.css ובו מופיע (בין היתר) הקוד הבא:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>body {</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">direction</span>: <span class="dv">rtl</span><span class="op">;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">direction</span>: <span class="dv">rtl</span><span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>הקוד שולט בכל התגיות שנמצאות בתוך גוף המסמך (תגיות html שמופיעות בין <code>&lt;body&gt;</code> לבין התגית הסוגרת <code>&lt;/body&gt;</code>. התכונה אותה אנחנו רוצים לעדכן נקראת כיוון (direction), והוא יכול לקבל שני ערכים (כברירת מחדל שמאל לימין ltr, ובאמצעות הקוד אנחנו משנים אותו ל-rtl.</p>
 <p>בשביל להטמיע זאת במסמך quarto או RMarkdown רק צריך להוסיף את הקוד הבא במסמך:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>```{css}</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>body {</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>   direction: rtl;</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>```{css}</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>   direction: rtl;</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>ניתן לקרוא מידע נוסף לגבי שילוב CSS במקורות הבאים:</p>
 <ul>
 <li><p><a href="https://quarto.org/docs/output-formats/html-themes.html">לגבי שימוש ב-CSS במסמכי quarto</a></p>
@@ -462,6 +469,15 @@ div.csl-indent {
 <ul>
 <li><span class="citation" data-cites="wickham2021mastering">(<a href="references.html#ref-wickham2021mastering" role="doc-biblioref">Wickham 2021</a>)</span></li>
 </ul></li>
+</ul>
+</section>
+<section id="סיכום" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">10.4</span> סיכום</h2>
+<p>בפרק זה למדנו טיפים וטריקים שיעזרו לנו בפרויקטים בהם עלינו לשלב עברית ואנגלית. בפרט:</p>
+<ul>
+<li><p>שימוש בסביבת הפיתוח RStudio תוך שילוב עברית.</p></li>
+<li><p>קידודים של קבצים בעברית (בקריאה ובכתיבה של קבצים).</p></li>
+<li><p>יישור לימין בתוצרי ניתוח שכוללים html, באמצעות שימוש ב-CSS.</p></li>
 </ul>
 
 
