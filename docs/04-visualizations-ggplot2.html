@@ -261,7 +261,10 @@ div.csl-indent {
   <li><a href="#היסטוגרמה" id="toc-היסטוגרמה" class="nav-link" data-scroll-target="#היסטוגרמה"><span class="toc-section-number">4.5.3</span>  היסטוגרמה</a></li>
   <li><a href="#בארים" id="toc-בארים" class="nav-link" data-scroll-target="#בארים"><span class="toc-section-number">4.5.4</span>  בארים</a></li>
   </ul></li>
-  <li><a href="#שליפים" id="toc-שליפים" class="nav-link" data-scroll-target="#שליפים"><span class="toc-section-number">4.6</span>  שליפים</a></li>
+  <li><a href="#בחירת-התרשים" id="toc-בחירת-התרשים" class="nav-link" data-scroll-target="#בחירת-התרשים"><span class="toc-section-number">4.6</span>  בחירת התרשים</a>
+  <ul class="collapse">
+  <li><a href="#דוגמה-למתקדמים" id="toc-דוגמה-למתקדמים" class="nav-link" data-scroll-target="#דוגמה-למתקדמים"><span class="toc-section-number">4.6.1</span>  דוגמה למתקדמים</a></li>
+  </ul></li>
   <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="toc-section-number">4.7</span>  סיכום</a></li>
   </ul>
 </nav>
@@ -437,7 +440,7 @@ div.csl-indent {
 </section>
 <section id="גיאומטריות-נוספות" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="גיאומטריות-נוספות"><span class="header-section-number">4.5</span> גיאומטריות נוספות</h2>
-<p>נדגים מספר גיאומטריות נוספות מההיצע הרב שיש בחבילת <code>ggplot2</code>.</p>
+<p>נדגים מספר גיאומטריות נוספות מההיצע הרב שיש בחבילת <code>ggplot2</code>. שימו לב, בסוף הפרק מדריך שיסייע לכם להחליט באיזה תרשים כדאי להשתמש לפי סוג המשתנים או היחס בין משתנים שאתם רוצים להדגים.</p>
 <section id="boxplot" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">4.5.1</span> Boxplot</h3>
 <p>דיאגרמה מסוג Boxplot עוזרת לנו להבין את צורת ההתפלגות. הדיאגרמה מציגה “קופסה” שתוחמת 50% מהנתונים (החלק התחתון של הקופסה הוא רבעון ראשון, והחלק העליון של הקופסה הוא רבעון שלישי). במרכזה של הקופסה מוצג החציון קקו עבה (מחלק את התצפיות לחצי-חצי). ערכי קיצון, אם ישנם, מופיעים כנקודות. במידה ומופיעה קופסה שאינה סימטרית סביב החציון, הדבר מעיד על כך שההתפלגות אינה התפלגות נורמלית.</p>
@@ -591,12 +594,579 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="שליפים" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="שליפים"><span class="header-section-number">4.6</span> שליפים</h2>
-<p>מכיוון שחבילת <code>ggplot2</code> היא חבילה עשירה מאוד בפיצ’רים, אנחנו לא מתיימרים להציג את כלל מנעד היכולות שלה. בכל מקרה, ובמיוחד בשלבי הלמידה וההתנסויות הראשונות עם יצירת תרשימים, מומלץ להיעזר גם ב-Cheatsheet שהפיקו בחברת Posit (לשעבר RStudio), שמאפשר לראות מה סוג התרשים הנדרש לכל סיטואציה (לדוגמה, איזה תרשים, ומה הקוד של תרשים, שיציג “קשר בין שני משתנים אחד רציף והשני בדיד”). <a href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">קישור ל-Cheatsheet</a>.</p>
+<section id="בחירת-התרשים" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="בחירת-התרשים"><span class="header-section-number">4.6</span> בחירת התרשים</h2>
+<p>על מנת לייצר תרשים טוב, עליכם לענות על השאלות הבאות:</p>
+<ol type="1">
+<li>כמה משתנים אנחנו רוצים לתאר בתרשים (האם אנחנו רוצים לתאר התפלגות של משתנה אחד, קשר בין שני משתנים, או אולי קשר בין שלושה משתנים)?</li>
+<li>מהם סוגי המשתנים שאנחנו מתארים (בדידים או רציפים)?</li>
+<li>אילו גיאומטריות יכולות לשמש אותנו לתיאור זה, ואיזה משתנה ימופה לאן (לאיזו אסטטיקה)?</li>
+</ol>
+<p>החלקים 1-2 נובעים מהבנה טובה של הדאטה, והצורך המחקרי/העסקי שלכם. בשביל חלק 3 תוכלו להיעזר ב-Cheatsheet שהכינו בחברת Posit (לשעבר RStudio). הוא מאפשר להבין לכל סיטואציה איזה סוג תרשים ידרש: <a href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">קישור ל-Cheatsheet</a>.</p>
+<p>עברנו את התהליך הזה בדוגמאות שכבר ראינו בפרק זה, מבלי לציין זאת:</p>
+<ul>
+<li><p>ב-Boxplot תיארנו קשר בין שני משתנים: המסה של הפינגויין (משתנה רציף) כתלות בזן של הפינגויין (משתנה בדיד), ולשם כך השתמשנו ב-<code>geom_boxplot</code>.</p></li>
+<li><p>גם בצפיפות וגם בהיסטוגרמה תיארנו קשר זה של משתנה רציף למשתנה בדיד (רק צורת הצגה שונה- <code>geom_density</code> או <code>geom_histogram</code> בהתאמה).</p></li>
+</ul>
+<p>כל אחת מהדוגמאות הנ”ל יכלו לשמש אותנו גם על מנת לתאר התפלגות של משתנה רציף יחיד, וגם על מנת לתאר קשר בין משתנה בדיד לבין משתנה רציף.</p>
+<ul>
+<li>בתרשימי הבארים השתמשנו על מנת לתאר התפלגות של משתנה בדיד יחיד (כגון זני הפינגויינים במדגם), או קשר בין התפלגויות של שני משתנים בדידים (מין הפינגויין למול זן הפינגויין).</li>
+</ul>
+<section id="דוגמה-למתקדמים" class="level3 note" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="דוגמה-למתקדמים"><span class="header-section-number">4.6.1</span> דוגמה למתקדמים</h3>
+<p>נדגים דוגמה נוספת, הפעם כזו שמתארת קשר בין ארבעה משתנים. הקשר בין אורך המקור, עומק המקור, ומשקל של הפינגויין. מכיוון שלמדנו שישנו הבדל בין זנים שונים, אז גם נבצע אבחנה בין הזנים.</p>
+<ul>
+<li><p>יש לנו שלושה משתנים רציפים (אורך, עומק, ומשקל)</p></li>
+<li><p>יש לנו משתנה בדיד (זן)</p></li>
+<li><p>מהסתכלות ב-<a href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">Cheatsheet</a> (פינה ימנית תחתונה בעמוד הראשון) נראה שישנן מספר גיאומטריות מתאימות <code>geom_contour</code>, <code>geom_countour_filled</code>, <code>geom_raster</code>, <code>geom_tile</code>.</p></li>
+</ul>
+<p>המשתנה התלוי שלנו הוא המשקל, ואנחנו רוצים לחקור איך הוא מושפע ממימדי המקור. לכן נמפה את אורך ועומק המקור לצירים x ו-y, ואת המשקל לצבע. באמצעות <code>facet_wrap</code> נייצר שלושה תתי-תרשימים (אחר לכל זן פינגויין).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">fill =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/three dimension ggplot first approach-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>כפי שניתן לראות יש לנו בעיית רזולוציה, מכיוון שיש יחסית מעט תצפיות, כל פינגויין מסומן כמלבן עם המשקל שלו מסומן כצבע. התרשים לא מאוד אינפורמטיבי, ולא כל כך תורם להבנה. יש לגיאומטריה של <code>geom_raster</code> ארגומנט שנקרא <code>interpolate</code>, שאמור לעשות אינטרפולציה בין נקודות, אבל גם אם נפעיל אותו נקבל גרף מטושטש ולא ברור (הנקודות רחוקות מדי אחת מהשניה).</p>
+<p>במקרה זה, אפשר לבנות לנו “אינטרפולציה משלנו”. נתאים מודל (נשתמש במודל רגרסיה לינארית פשוטה), של אורך מקור, עומק מקור, וזן הפינגויין.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>penguins_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> species, </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> penguins)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>penguin_ranges <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(bill_length_mm, bill_depth_mm), </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="at">min =</span> <span class="sc">~</span><span class="fu">min</span>(., <span class="at">na.rm =</span> T),</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="sc">~</span><span class="fu">max</span>(., <span class="at">na.rm =</span> T))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+הטבלה הבאה מציגה את טווחי אורך המקור, עומק המקור, ומשקל, עבור כל אחד מזני הפינגויינים.
+<div style="zoom:80%; direction:ltr;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(penguin_ranges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="clbyallkvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#clbyallkvy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#clbyallkvy thead, #clbyallkvy tbody, #clbyallkvy tfoot, #clbyallkvy tr, #clbyallkvy td, #clbyallkvy th {
+  border-style: none;
+}
+
+#clbyallkvy p {
+  margin: 0;
+  padding: 0;
+}
+
+#clbyallkvy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#clbyallkvy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#clbyallkvy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#clbyallkvy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#clbyallkvy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#clbyallkvy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#clbyallkvy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#clbyallkvy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#clbyallkvy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#clbyallkvy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#clbyallkvy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#clbyallkvy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#clbyallkvy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#clbyallkvy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#clbyallkvy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#clbyallkvy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#clbyallkvy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#clbyallkvy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#clbyallkvy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#clbyallkvy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#clbyallkvy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#clbyallkvy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#clbyallkvy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#clbyallkvy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#clbyallkvy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#clbyallkvy .gt_left {
+  text-align: left;
+}
+
+#clbyallkvy .gt_center {
+  text-align: center;
+}
+
+#clbyallkvy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#clbyallkvy .gt_font_normal {
+  font-weight: normal;
+}
+
+#clbyallkvy .gt_font_bold {
+  font-weight: bold;
+}
+
+#clbyallkvy .gt_font_italic {
+  font-style: italic;
+}
+
+#clbyallkvy .gt_super {
+  font-size: 65%;
+}
+
+#clbyallkvy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#clbyallkvy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#clbyallkvy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#clbyallkvy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#clbyallkvy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#clbyallkvy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#clbyallkvy .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="species">species</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="bill_length_mm_min">bill_length_mm_min</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="bill_length_mm_max">bill_length_mm_max</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="bill_depth_mm_min">bill_depth_mm_min</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="bill_depth_mm_max">bill_depth_mm_max</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="species" class="gt_row gt_center">Adelie</td>
+<td headers="bill_length_mm_min" class="gt_row gt_right">32.1</td>
+<td headers="bill_length_mm_max" class="gt_row gt_right">46.0</td>
+<td headers="bill_depth_mm_min" class="gt_row gt_right">15.5</td>
+<td headers="bill_depth_mm_max" class="gt_row gt_right">21.5</td></tr>
+    <tr><td headers="species" class="gt_row gt_center">Chinstrap</td>
+<td headers="bill_length_mm_min" class="gt_row gt_right">40.9</td>
+<td headers="bill_length_mm_max" class="gt_row gt_right">58.0</td>
+<td headers="bill_depth_mm_min" class="gt_row gt_right">16.4</td>
+<td headers="bill_depth_mm_max" class="gt_row gt_right">20.8</td></tr>
+    <tr><td headers="species" class="gt_row gt_center">Gentoo</td>
+<td headers="bill_length_mm_min" class="gt_row gt_right">40.9</td>
+<td headers="bill_length_mm_max" class="gt_row gt_right">59.6</td>
+<td headers="bill_depth_mm_min" class="gt_row gt_right">13.1</td>
+<td headers="bill_depth_mm_max" class="gt_row gt_right">17.3</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>נשתמש בנתוני הטבלה כדי לבנות טבלה חדשה שבה נמצאים כל הערכים האפשריים, וחיזוי שלהם על בסיס מודל הרגרסיה הלוגיסטית שבנינו.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>step <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>penguin_grid <span class="ot">&lt;-</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_grid</span>(<span class="at">length =</span> <span class="fu">seq</span>(<span class="fl">32.1</span>, <span class="dv">46</span>, step),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">depth =</span> <span class="fu">seq</span>(<span class="fl">15.5</span>, <span class="fl">21.5</span>, step),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">species =</span> <span class="st">"Adelie"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_grid</span>(<span class="at">length =</span> <span class="fu">seq</span>(<span class="fl">40.9</span>, <span class="dv">58</span>, step),</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">depth =</span> <span class="fu">seq</span>(<span class="fl">16.4</span>, <span class="fl">20.8</span>, step),</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">species =</span> <span class="st">"Chinstrap"</span>),</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_grid</span>(<span class="at">length =</span> <span class="fu">seq</span>(<span class="fl">40.9</span>, <span class="fl">59.6</span>, step),</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">depth =</span> <span class="fu">seq</span>(<span class="fl">13.1</span>, <span class="fl">17.3</span>, step),</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">species =</span> <span class="st">"Gentoo"</span>)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">bill_length_mm =</span> length,</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">bill_depth_mm =</span> depth)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>penguin_grid<span class="sc">$</span>body_mass_g <span class="ot">&lt;-</span> <span class="fu">predict</span>(penguins_model, <span class="at">newdata =</span> penguin_grid)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>penguin_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">fill =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">interpolate =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> </span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Raster pixels are placed at uneven horizontal intervals and will be shifted
+ℹ Consider using `geom_tile()` instead.
+Raster pixels are placed at uneven horizontal intervals and will be shifted
+ℹ Consider using `geom_tile()` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-visualizations-ggplot2_files/figure-html/three dimension ggplot with a model-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>כעת ניתן להצמיד פרשנות למודל על ידי עיון בגרף. נראה שסוג הפינגויין משפיע ביותר על המשקל: ל-Gentoo המשקל הגבוה ביותר, המתקבל כאשר האורך והעומק של המקור עולים (בפינה הימנית העליונה של התרשים הימני). פרטים של פינגויינים מזן ה-Chinstrap יכולים להיות בעלי מימדי מקור דומים, אך עדיין לא מגיעים לאותו המשקל כפי שנצפה ב-Gentoo.</p>
+<p>בכל המקרים עלייה במימדי המקור (עומק ואורך) מצביעה על עלייה במשקל (בגלל זה לפינה העליונה הימנית בכל אחד מתתי התרשימים נצבעת בצבע יותר בהיר).</p>
+</section>
 </section>
 <section id="סיכום" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">4.7</span> סיכום</h2>
+<p>בפרק זה למדנו להפיק תרשימים באמצעות חבילת <code>ggplot2</code>. דנו בייחודיות של החבילה בהיבט התיאוריה שמבססת אותה (the grammar of graphics), והבנו כיצד יש לתכנן תרשים (באמצעות מיפויים, גיאומטריות, והגדרות נוספות).</p>
+<p>ראינו דוגמאות לגיאומטריות מסוימות כגון boxplot, היסטוגרמה, צפיפויות, וגרף בארים.</p>
+<p>לבסוף ראינו כיצד ניתן לתכנן תרשים באמצעות בחינה של סוגי המשתנים והקשרים שאנחנו רוצים לזהות, וראינו דוגמה לתרשים אשר קושר בין ארבעה משתנים שונים, ומבוסס על מודל של רגרסיה לינארית.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
