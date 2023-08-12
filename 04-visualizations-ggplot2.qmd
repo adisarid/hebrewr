@@ -298,7 +298,8 @@ penguins %>%
 penguins %>% 
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, fill = body_mass_g)) + 
   geom_raster() +
-  facet_wrap(~species)
+  facet_wrap(~species) +
+  ggtitle("Bad example for geom_raster (due to low density)")
 ```
 
 כפי שניתן לראות יש לנו בעיית רזולוציה, מכיוון שיש יחסית מעט תצפיות, כל פינגויין מסומן כמלבן עם המשקל שלו מסומן כצבע. התרשים לא מאוד אינפורמטיבי, ולא כל כך תורם להבנה. יש לגיאומטריה של `geom_raster` ארגומנט שנקרא `interpolate`, שאמור לעשות אינטרפולציה בין נקודות, אבל גם אם נפעיל אותו נקבל גרף מטושטש ולא ברור (הנקודות רחוקות מדי אחת מהשניה).
@@ -348,7 +349,8 @@ penguin_grid %>%
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, fill = body_mass_g)) + 
   geom_raster(interpolate = TRUE) + 
   scale_fill_viridis_c() + 
-  facet_wrap(~species)
+  facet_wrap(~species) + 
+  ggtitle("Bill length, depth, and mass for various species", subtitle = "Based on a linear regression model")
 ```
 
 כעת ניתן להצמיד פרשנות למודל על ידי עיון בגרף. נראה שסוג הפינגויין משפיע ביותר על המשקל: ל-Gentoo המשקל הגבוה ביותר, המתקבל כאשר האורך והעומק של המקור עולים (בפינה הימנית העליונה של התרשים הימני). פרטים של פינגויינים מזן ה-Chinstrap יכולים להיות בעלי מימדי מקור דומים, אך עדיין לא מגיעים לאותו המשקל כפי שנצפה ב-Gentoo.
