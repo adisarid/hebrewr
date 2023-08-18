@@ -20,6 +20,88 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -61,6 +143,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -164,7 +247,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">בעמוד זה</h2>
+   
+  <ul>
+  <li><a href="#מבחני-השערות-על-תוחלת" id="toc-מבחני-השערות-על-תוחלת" class="nav-link active" data-scroll-target="#מבחני-השערות-על-תוחלת"><span class="toc-section-number">6.1</span>  מבחני השערות על תוחלת</a>
+  <ul class="collapse">
+  <li><a href="#מבחן-השערות-על-מדגם-אחד" id="toc-מבחן-השערות-על-מדגם-אחד" class="nav-link" data-scroll-target="#מבחן-השערות-על-מדגם-אחד"><span class="toc-section-number">6.1.1</span>  מבחן השערות על מדגם אחד</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -187,8 +279,73 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>בפרק זה נלמד על מבחני השערות פשוטים שניתן להפעיל ב-R. מטבע הדברים, מכיוון ש-R היא שפה סטטיסטית יש ערב רב של מבחני השערות פרמטרים וא-פרמטריים, שבוחנים השערות שונות במצבים שונים, אבל בספר זה נתמקד במבחני ההשערות שיימצאו בקורס מבוא לסטטיסטיקה (ואולי עוד קצת).</p>
+<p>מטרת הפרק היא לא לספק את התיאוריה. לצורך השלמות תיאורתיות, אני ממליץ לקרוא את <span class="citation" data-cites="walpole1993probability">(<a href="references.html#ref-walpole1993probability" role="doc-biblioref">Walpole et al. 1993</a>)</span>.</p>
+<p>מטרת הפרק שלפניכם היא לתת כלים מעשיים לביצוע מבחני השערות, בפרט נדון במקרים הבאים:</p>
+<ul>
+<li><p>מבחני השערות על תוחלת</p></li>
+<li><p>מבחני השערות על שונות</p></li>
+<li><p>מבחני השערות על אי-תלות</p></li>
+<li><p>מבחני השערות על התפלגות</p></li>
+</ul>
+<section id="מבחני-השערות-על-תוחלת" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="מבחני-השערות-על-תוחלת"><span class="header-section-number">6.1</span> מבחני השערות על תוחלת</h2>
+<p>אחד מהפרמטרים החשובים של התפלגויות הוא התוחלת. לתוחלת ולממוצע יש קשר הדוק ביניהם - כאשר אנחנו מבצעים דגימה מתוך אוכלוסיה, ממוצע המדגם הוא אמד המייצג את התוחלת.</p>
+<p>נדגים זאת בעזרת מדגם הפינגויינים שראינו בפרק הקודם:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_length =</span> <span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sample_size =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species   avg_length sample_size
+  &lt;fct&gt;          &lt;dbl&gt;       &lt;int&gt;
+1 Adelie          38.8         151
+2 Chinstrap       48.8          68
+3 Gentoo          47.5         123</code></pre>
+</div>
+</div>
+<p>לכל אחד מזני הפינגויינים ממוצע שונה לאורך המקור. לדוגמה, פינגויינים מסוג Adelie הם בעלי מקור באורך ממוצע 38.8 מ”מ. בפועל מדובר בממוצע המחושב על מדגם של 151 תצפיות, וסביר להניח שהתוחלת בכלל אוכלוסית הפינגויים מזן Adelie היא קצת שונה. לדוגמה, תוחלת של 38 מ”מ, יכולה להביא לכך שממוצע על פני דגימה של 151 תצפיות יהיה 38.8 מ”מ.</p>
+<p>המטרה של מבחן השערות על התוחלת היא לעזור לנו לקבוע ברמת שגיאה של <span class="math inline">\(\alpha\)</span> (אשר בדרך כלל נקבעת כ-5% שגיאה), <em>האם התוחלת היא בעלת ערך מסוים</em> <span class="math inline">\(\mu_0\)</span>, <em>בהינתן תוצאות המדגם</em> שלנו.</p>
+<p>צורת הסתכלות אחרת היא בניית רווח בר סמך לתוחלת, או במילים אחרות, <em>מה הטווח הסביר שבו נמצאת התוחלת בהינתן תוצאות המדגם</em>.</p>
+<p>בשלב זה נתייחס למדגם אחד, ומיד נכליל את ההסתכלות לשני מדגמים.</p>
+<section id="מבחן-השערות-על-מדגם-אחד" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="מבחן-השערות-על-מדגם-אחד"><span class="header-section-number">6.1.1</span> מבחן השערות על מדגם אחד</h3>
+<p>נשתמש בפקודת <code>t.test</code> על מנת לייצר רווח בר סמך לתוחלת אורך המקור של פינגויינים מזן Adelie.</p>
+<p>את רווח בר הסמך ברמת ביטחון של 95% (כלומר רמת הוודאות של הדיווח שנקבל היא 95%, או 5% שגיאה).</p>
+<p>כמו כן, נבחן האם ייתכן שהתוחלת הינה 38, למרות שהתצפיות במדגם בעלות ממוצע של 38.8.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>adelie <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(adelie<span class="sc">$</span>bill_length_mm, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">38</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  adelie$bill_length_mm
+t = 3.6513, df = 150, p-value = 0.0003598
+alternative hypothesis: true mean is not equal to 38
+95 percent confidence interval:
+ 38.36312 39.21966
+sample estimates:
+mean of x 
+ 38.79139 </code></pre>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-walpole1993probability" class="csl-entry" role="doc-biblioentry">
+Walpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993. <em>Probability and Statistics for Engineers and Scientists</em>. Vol. 5. Macmillan New York.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
