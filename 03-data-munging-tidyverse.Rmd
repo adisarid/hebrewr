@@ -78,9 +78,13 @@ palmerpenguins::penguins
 
 נקרא כעת את טבלת הPenguins שראינו בחלק הקודם. שימו לב שאנחנו משתמשים במיקום קובץ באינטרנט, אבל ניתן גם לקרוא קבצים שנמצאים מקומית על המחשב.
 
-```{r reading penguins, cache=TRUE}
+```{r reading penguins, eval=FALSE}
 library(readr)
 penguins <- read_csv("https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv")
+```
+
+```{r reading penguins from package, include = FALSE}
+library(palmerpenguins)
 ```
 
 על מנת להציץ בדאטה יש מספר פקודות שניתן להשתמש בהן:
