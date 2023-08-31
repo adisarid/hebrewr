@@ -255,6 +255,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#מבחן-השערות-על-מדגם-אחד" id="toc-מבחן-השערות-על-מדגם-אחד" class="nav-link" data-scroll-target="#מבחן-השערות-על-מדגם-אחד"><span class="toc-section-number">6.1.1</span>  מבחן השערות על מדגם אחד</a></li>
   </ul></li>
+  <li><a href="#שני-מדגמים-לא-מזווגים" id="toc-שני-מדגמים-לא-מזווגים" class="nav-link" data-scroll-target="#שני-מדגמים-לא-מזווגים"><span class="toc-section-number">6.2</span>  שני מדגמים לא-מזווגים</a></li>
   </ul>
 </nav>
     </div>
@@ -312,17 +313,28 @@ div.csl-indent {
 <p>בשלב זה נתייחס למדגם אחד, ומיד נכליל את ההסתכלות לשני מדגמים.</p>
 <section id="מבחן-השערות-על-מדגם-אחד" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="מבחן-השערות-על-מדגם-אחד"><span class="header-section-number">6.1.1</span> מבחן השערות על מדגם אחד</h3>
-<p>נשתמש בפקודת <code>t.test</code> על מנת לייצר רווח בר סמך לתוחלת אורך המקור של פינגויינים מזן Adelie.</p>
-<p>את רווח בר הסמך ברמת ביטחון של 95% (כלומר רמת הוודאות של הדיווח שנקבל היא 95%, או 5% שגיאה).</p>
-<p>כמו כן, נבחן האם ייתכן שהתוחלת הינה 38, למרות שהתצפיות במדגם בעלות ממוצע של 38.8.</p>
+<p>התרשים הבא מציג את התפלגות אורך המקור של פינגויינים מזן Adelie באמצעות היסטוגרמה.</p>
+<p>על ההיסטוגרמה הלבשנו שני קווים אנכיים: הממוצע בפועל בירוק (38.3913), והערך שאותו נבחן כתוחלת (38) באמצעות מבחן השערות.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>adelie <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(adelie<span class="sc">$</span>bill_length_mm, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">38</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(adelie, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">38</span>, <span class="at">color =</span> <span class="st">"#E41A1C"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(adelie<span class="sc">$</span>bill_length_mm), <span class="at">color =</span> <span class="st">"#4DAF4A"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Adelie bill length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-hypothesis-tests_files/figure-html/adelie bill length histogram-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>נשתמש בפקודת <code>t.test</code> על מנת לייצר רווח בר סמך (או מבחן השערות) לתוחלת אורך המקור של פינגויינים מזן Adelie.</p>
+<p>נבנה את רווח בר הסמך ברמת ביטחון של 95% (כלומר רמת הוודאות של הדיווח שנקבל היא 95%, או 5% שגיאה). כמו כן, נבחן האם ייתכן שהתוחלת הינה 38, למרות שהתצפיות במדגם בעלות ממוצע של 38.8.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(adelie<span class="sc">$</span>bill_length_mm, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">38</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -337,6 +349,82 @@ mean of x
  38.79139 </code></pre>
 </div>
 </div>
+<p><strong>פרשנות תוצאות המבחן: אנו דוחים את השערת ה-0 שהתוחלת הינה 38.</strong> להלן הסבר מפורט לפלט:</p>
+<ol type="1">
+<li>בראש הפלט מופיע סוג המבחן שהופעל (One Sample t-test), כלומר מבחן t עבור מדגם יחיד (יש גם מבחנים עבור שני מדגמים מזווגים, ושני מדגמים לא-מזווגים, מיד נדגים).</li>
+<li>בשורה השניה מופיע הדאטה שבו השתמשנו.</li>
+<li>בשורה השלישית ההשערה האלטרנטיבית שנבחנה (המכונה <span class="math inline">\(H_1\)</span> . במקרה זה הגדרנו בארגומנט <code>alternative</code> מבחן השערה דו-צדדי, כלומר: <span class="math inline">\(H_1: \mu\neq38\)</span>.</li>
+<li>בשורה הרביעית ערך <span class="math inline">\(T\)</span> של המבחן (המכונה גם סטטיסטי המבחן), במקרה זה ערכו הוא 3.6513, ובנוסף מספר דרגות החופש (df), וערך המובהקות (p-value). ערך p-value במקרה זה הינו מתחת ל-0.05 מה שמעיד על כך שעלינו לדחות את השערת ה-0 (<span class="math inline">\(H_0: \mu=38\)</span>).</li>
+<li>בשורה הבאה (ובזו שאחריה) מופיע הרווח בר סמך לתוחלת. במקרה זה הרווח בר סמך ברמת בטחון של 95% מעיד על כך שתוחלת אורך המקור של הפינגויין מהזן הנבחן נמצאת בין 38.36 לבין 39.22. ניתן לשים לב שהתוחלת אותה בחנו בהשערת ה-0 ($\mu=38$) נמצאת מחוץ לטווח זה, וזה עולה בקנה אחד עם הדחיה שתיארנו בסעיף קודם בהתייחס לערך ה-p-value.</li>
+<li>לבסוף מופיע הממוצע עצמו של המשתנה (38.7914).</li>
+</ol>
+<div class="question">
+<p>היעזרו בתיעוד הפקודה <code>t-test</code> ושנו את הארגומנט <code>alternative</code> על מנת לבצע את המבחן הסטטיסטי:</p>
+<p><span class="math display">\[
+H_0: \mu=38\\
+H_1: \mu&gt;38
+\]</span></p>
+<p>מה תוצאת המבחן? מה המסקנה?</p>
+</div>
+</section>
+</section>
+<section id="שני-מדגמים-לא-מזווגים" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="שני-מדגמים-לא-מזווגים"><span class="header-section-number">6.2</span> שני מדגמים לא-מזווגים</h2>
+<p>כעת נפנה למבחן t-test שבו נשתמש כאשר ברצוננו להשוות בין שני מדגמים, לא מזווגים. לדוגמה על מנת לבחן האם ניתן לדחות את ההשערה שאורך המקור של פינגויינים מזן Chinstrap ואורך המקור של פינגויינים מזן Gentoo שווים (כפי שראינו ערכיהם דומים יחסית).</p>
+<p>ראשית, נציג את ההתפלגות של שני הזנים בתרשים הבא:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chin_gentoo <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Adelie"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chin_gentoo,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Chinstrap and Gentoo bill length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-hypothesis-tests_files/figure-html/distribution of chinstrap and gentoo bill length-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>כעת נשתמש בפקודה <code>t-test</code> אך בצורת הפעלה מעט שונה מזו שבה השתמשנו במקרה של מדגם יחיד.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> bill_length_mm <span class="sc">~</span> species,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> chin_gentoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  bill_length_mm by species
+t = 2.706, df = 129.22, p-value = 0.00773
+alternative hypothesis: true difference in means between group Chinstrap and group Gentoo is not equal to 0
+95 percent confidence interval:
+ 0.3572698 2.3006212
+sample estimates:
+mean in group Chinstrap    mean in group Gentoo 
+               48.83382                47.50488 </code></pre>
+</div>
+</div>
+<p>צורת ההפעלה שבה השתמשנו מגדירה נוסחה ודאטה. הנוסחה היא <code>bill_length_mm ~ species</code>, כלומר בחן את אורך המקור לפי המשתנה species (במקרה זה, חייבים שלמשתנה המסביר <code>species</code> יהיו בדיוק שתי רמות, אחרת נקבל שגיאה).</p>
+<p><strong>קיבלנו דחיה של השערת ה-0, כלומר ניתן לדחות את ההשערה שתוחלת אורך המקור בין שני הזנים שווה.</strong> ברמת מובהקות של 0.00773.</p>
+<p>הרווח בר סמך מתייחס להפרש בין התוחלות, קרי, ברמת ביטחון של 95% ההפרש בין התוחלות נע בין 0.357 לבין 2.301 (לטובת Chinstrap שבעלי אורך מקור גדול יותר).</p>
+<p>הפקודה שהרצנו משתמשת במבחן המניח שונות שונה, ניתן לשנות זאת על ידי הוספת הארגומנט <code>var.equal=TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> bill_length_mm <span class="sc">~</span> species,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> chin_gentoo,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  bill_length_mm by species
+t = 2.7694, df = 189, p-value = 0.006176
+alternative hypothesis: true difference in means between group Chinstrap and group Gentoo is not equal to 0
+95 percent confidence interval:
+ 0.3823625 2.2755285
+sample estimates:
+mean in group Chinstrap    mean in group Gentoo 
+               48.83382                47.50488 </code></pre>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -344,7 +432,6 @@ mean of x
 Walpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993. <em>Probability and Statistics for Engineers and Scientists</em>. Vol. 5. Macmillan New York.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->
