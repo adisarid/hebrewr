@@ -162,13 +162,11 @@ t.test(x = penguins$bill_length_mm,
 
 ניתן לראות שההבדל בין אורך לעומק המקור עומד על 26.1 ועד 27.4 מ"מ, ברווח בר סמך של 95%.
 
-<div class="question">
-
+::: question
 היעזרו בפקודה `t.test` על מנת לבחון את ההשערה שההבדל בין אורך לעומק המקור עומד על 26.5 מ"מ.
 
 לשם כך השתמשו במבחן מזווג עם הארגומנט `mu` (מה צריך להיות ערכו של הארגומנט?).
-
-</div>
+:::
 
 ## מבחן לשיוויון שונויות
 
@@ -212,10 +210,13 @@ var.test(formula = bill_length_mm ~ species,
 
 ```{r distribution adelie bill length}
 
+length_mu <- mean(adelie$bill_length_mm)
+length_sd <- sd(adelie$bill_length_mm)
+
 theoretical_bill_length <- tibble(x = seq(32, 46, 0.1)) %>% 
   mutate(length_dens = dnorm(x = x,
-                             mean = mean(adelie$bill_length_mm),
-                             sd = sd(adelie$bill_length_mm)))
+                             mean = length_mu,
+                             sd = length_sd))
 
 ggplot(adelie, aes(x = bill_length_mm)) + 
   geom_density(color = "blue") +
@@ -231,11 +232,86 @@ ggplot(adelie, aes(x = bill_length_mm)) +
 
 התוצאה נראית כמו שני גרפי צפיפויות דומים אחד לשני, עם חריגה מסוימת (באדום הצפיפות התיאורתית ובכחול האמפירית). דומים, אבל לא זהים. האם הם "שונים מספיק" על מנת שנדחה את השערת האפס (שהם אותה ההתפלגות)?
 
-צעד אחד נוסף לפני שנבצע את מבחן טיב ההתאמה, נציג סוג תרשים נוסף, הנותן לנו כלי להשוות בין התפלגויות. תרשים מסוג Q-Q-Plot.
+צעד אחד מקדים לפני שנבצע את מבחן טיב ההתאמה, הוא לבנות תרשים הנותן לנו כלי להשוות בין התפלגויות. תרשים מסוג Q-Q-Plot.
 
-### תרשים Q-Q-Plot
+#### תרשים Q-Q-Plot
 
 בתרשים מסוג Q-Q-Plot המחשב מציב אחוזונים של שתי התפלגויות כנקודות במרחב (התפלגות אחת בציר X והשניה בציר Y). אם הנקודות המוצגות מתלבשות על אלכסון הדבר מעיד על כך שהן מגיעות מאותן התפלגות. ככל שהנקודות מתרחקות מהאלכסון, הדבר מעיד על כך שההתפלגויות אינן זהות. התרשים מהווה כלי ויזואלי שיכול לתמוך את התיאור של מבחן טיב ההתאמה.
+
+```{r qqplot demonstration}
+adelie %>% 
+  ggplot(aes(sample = bill_length_mm)) + 
+  geom_qq(distribution = stats::qnorm) + 
+  stat_qq_line()
+```
+
+בתרשים אנחנו יכולים לראות שמרבית הנקודות שבמרכז ההתפלגות פחות-או-יותר חופפות עם הקו שמוצג בתרשים, אך בקצוות (במיוחד בקצה התחתון) רואים שלהתפלגות האמפירית (המוצגת בציר y) יש ערכים מעט גבוהים מהמצופה ונשאלת השאלה האם חריגה זו מספיקה על מנת לדחות את ההשערה שאורך המקור מתפלג נורמלית (הנקודות שנמצאות מתחת ל-1- בציר ה-x נמצאות מעל הקו הישר המוצג בתרשים). כעת נפעיל מבחן סטטיסטי על מנת לבחון את טיב ההתאמה של ההתפלגות להתפלגות נורמלית עם הפרמטרים של תוחלת וסטיית תקן, כפי שמחושבים מהנתונים של אורך המקור.
+
+#### ביצוע מבחן טיב ההתאמה
+
+במבחן טיב ההתאמה עלינו לחלק את ההתפלגות האמפירית לתאים סטטיסטיים (שבדרך כלל מקובל לסמן ב-\$O_i\$ מלשון Observed), ולהשוות למול תאים בהתפלגות התיאורתית (שמקובל לסמן באות $E_i$ מלשון Expected). אחד התנאים לשימוש במבחן הוא שבכל תא סטטיסטי מספר התצפיות הצפוי יהיה לפחות 5 תצפיות.
+
+```{r showing goodness of fit}
+
+distribution_breaks <- c(0, 35, 37, 39, 41, 50)
+
+observed_expected_counts <- adelie %>% 
+  mutate(length_groups = cut(bill_length_mm, 
+                             breaks = distribution_breaks)) %>% 
+  count(length_groups, name = "observed") %>% 
+  mutate(probability_upper = 
+           pnorm(q = distribution_breaks[-1], mean = length_mu, sd = length_sd),
+         probability_lower = 
+           pnorm(q = distribution_breaks[-6], mean = length_mu, sd = length_sd)
+  ) %>% 
+  mutate(expected_prob = (probability_upper - probability_lower)) %>% 
+  mutate(expected_counts = expected_prob * sum(observed))
+
+observed_expected_counts
+
+chisq.test(x = observed_expected_counts$observed,
+           p = observed_expected_counts$expected_prob, 
+           rescale.p = TRUE)
+
+
+```
+
+ראשית נקבעו הגבולות של הקבוצות בהתפלגות (הדיסקרטיזציה, יצירת התפלגות בדידה), כך שההתפלגות תכיל את כל תוצאות ההתפלגות האפשריות מ-0 ועד 1.
+
+החלק השני של הקוד מייצר את טבלת התצפיות בפועל ואת מספר התצפיות הצפוי (על ידי חישוב ההסתברות מתוך הממוצע וסטיית התקן של המדגם), והכפלה בסך התצפיות במדגם.
+
+לאחר מכן אנחנו משתמשים בפקודה `chisq.test`. שימו לב שלמעשה לא השתמשנו במספר התצפיות הצפוי אלא בהתפלגות שלהם (הארגומנט `p`), שמעיד מה ההסתברות לקבל דגימות בתאים הסטטיסטיים הנבחנים.
+
+<div class="note">
+
+במרבית ספרי הסטטיסטיקה תתיקלו בנוסחה הבאה עבור מבחן חי-בריבוע.
+
+ראשית מחשבים את הסטטיסטי:\
+$$
+X=\sum_{i=1}^l\frac{\left(O_i-E_i\right)^2}{E_i}
+$$
+
+כאשר $l$ הוא מספר התאים הסטטיסטיים (בדוגמה הקודמת 5), ומספר דרגות החופש בהתפלגות יהיה $df=l-1$.
+
+לאחר מכן מחשבים את ה-p-value לפי ערכו של הסטטיסטי:
+
+$$
+\Pr\left(X>\chi^2_{df}\right)
+$$
+
+הפקודה שהרצנו למעשה מבצעת חישוב זה בדיוק. ניתן להדגים זאת על ידי ביצוע החישוב באופן ישיר.
+
+```{r chi sq direct computation}
+X <- ((observed_expected_counts$observed - 
+        observed_expected_counts$expected_counts)^2) / 
+  observed_expected_counts$expected_counts
+
+p.value <- pchisq(q = sum(X), df = 4, 
+                  lower.tail = F)
+p.value
+```
+
+</div>
 
 ### מבחן אי-תלות
 
