@@ -24,6 +24,9 @@ book:
   page-footer: 
     center:
        - text: '<script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>'
+  site-url: https://www.hebrewr.co.il
+  repo-url: https://www.github.com/adisarid/hebrewr
+  navbar: true
 
 bibliography: references.bib
 
@@ -38,5 +41,7 @@ format:
       body-width: 900px
       margin-width: 300px
       
+callout-appearance: default
+
 
 editor: visual
