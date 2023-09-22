@@ -70,7 +70,7 @@ palmerpenguins::penguins
 
 נתמקד בקבצי CSV, הפקודה המועדפת עלי היא `readr::read_csv` (בהשוואה ל-`read.csv` שנמצאת ב-Base R). הפקודה `read_csv` מעט מהירה ונוחה יותר מבחינת השליטה שהיא מאפשרת בקריאת הנתונים.
 
-::: question
+::: callout-tip
 קראו את התיעוד של `read.csv` ושל `read_csv`. איזה הבדלים אתם מזהים בין הפקודות?
 
 לצורך קריאת התיעוד ניתן לכתוב ב-Console `?read.csv`, `?readr::read_csv`.
@@ -107,7 +107,7 @@ head(penguins, 10)
 penguins
 ```
 
-::: question
+::: callout-tip
 עברו על הפלט וודאו שאתם מצליחים להבין אילו חלקים בכל אחד מהפלטים מספק את המידע: סוג המשתנה, שם המשתנה, גודל הטבלה.
 :::
 
@@ -214,7 +214,7 @@ penguin_short <- penguin_cm %>%
 glimpse(penguin_short)
 ```
 
-::: question
+::: callout-tip
 עדכנו את הטבלה כך שלכל המשתנים שהינם מסוג מחרוזת תתווסף הסיומת "\_chr".
 
 בצעו זאת בשתי דרכים:
@@ -263,7 +263,7 @@ penguins %>%
          island == "Dream") 
 ```
 
-::: question
+::: callout-tip
 היעזרו בפקודה `filter` וכתבו קוד שיחלץ את כל הפינגווינים מסוג Adelie או Chinstrap, בשלוש דרכים שונות:
 
 -   על ידי שימוש באופרטור `%in%` (בתוך...)
@@ -299,11 +299,11 @@ penguins %>%
 
 בפקודה `group_by` ניתן להגדיר קיבוצים לפי מספר משתנים.
 
-::: question
+::: callout-tip
 שנו את הקוד בדוגמה האחרונה כך שתתקבל טבלה עם שש שורות, הכוללת חישובים עבור כל זן ומין הפינגויין.
 :::
 
-::: question
+::: callout-tip
 הסבירו מדוע הקוד הבא אינו עובד:
 
 ```{r double summarize not working, eval=FALSE}
