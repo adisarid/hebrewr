@@ -118,7 +118,7 @@ penguins %>%
         legend.box.background = element_rect(linetype = 1, linewidth = 1))
 ```
 
-::: information
+::: callout-note
 רוב הרכיבים בתוך התרשים נשלטים בתוך הפונקציה`theme` באמצעות פונקציות הכוונה כגון `element_text` (מאפייני טקסט), `element_rect` (מאפייני תחום מרובע), `element_line` (מאפייני קווים), וכו'. בתיעוד הפקודה `theme` ניתן לעיין באפשרויות השונות.
 :::
 
