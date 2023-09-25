@@ -41,6 +41,7 @@ pre {
 
 pre code {
   white-space: inherit;
+  direction: ltr;
 }
 
 ul {
@@ -49,6 +50,11 @@ ul {
 
 .anchorjs-link {
   float: left;
+}
+
+/* Edit source code chunks (for quarto 1.4 onwards) */
+.sourceCode {
+  direction: ltr;
 }
 
 /*Replace chapter back and fwd icons*/

@@ -26,7 +26,6 @@ book:
        - text: '<script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>'
   site-url: https://www.hebrewr.co.il
   repo-url: https://www.github.com/adisarid/hebrewr
-  navbar: true
 
 bibliography: references.bib
 
