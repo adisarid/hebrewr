@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.262">
+<meta name="generator" content="quarto-1.4.376">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,11 +17,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -46,48 +47,20 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -101,8 +74,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -130,6 +102,12 @@ div.csl-indent {
   "panel-placement": "start",
   "type": "textbox",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -139,10 +117,12 @@ div.csl-indent {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="style.css">
@@ -152,11 +132,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-hypothesis-tests.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -164,98 +149,125 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">המדריך העברי למשתמש ב-R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://www.github.com/adisarid/hebrewr" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">הקדמה</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">הקדמה</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></a>
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-base-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></a>
+  <a href="./02-base-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-data-munging-tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">הכנת נתונים</span></a>
+  <a href="./03-data-munging-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">הכנת נתונים</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-visualizations-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציות</span></a>
+  <a href="./04-visualizations-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציות</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-pivot-and-join.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבנה וחיבור נתונים</span></a>
+  <a href="./05-pivot-and-join.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבנה וחיבור נתונים</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-hypothesis-tests.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a>
+  <a href="./06-hypothesis-tests.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-linear-regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></a>
+  <a href="./07-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-advanced-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים</span></a>
+  <a href="./08-advanced-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-purrr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">לולאות מיוחדות</span></a>
+  <a href="./09-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">לולאות מיוחדות</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-hebrew-in-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">עברית ב-R</span></a>
+  <a href="./10-hebrew-in-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">עברית ב-R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">על הכותב</a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">על הכותב</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">מקורות</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">מקורות</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#מבחני-השערות-על-תוחלת" id="toc-מבחני-השערות-על-תוחלת" class="nav-link active" data-scroll-target="#מבחני-השערות-על-תוחלת"><span class="toc-section-number">6.1</span>  מבחני השערות על תוחלת</a>
+  <li><a href="#מבחן-השערות-על-תוחלת" id="toc-מבחן-השערות-על-תוחלת" class="nav-link active" data-scroll-target="#מבחן-השערות-על-תוחלת"><span class="header-section-number">6.1</span> מבחן השערות על תוחלת</a></li>
+  <li><a href="#שני-מדגמים-לא-מזווגים" id="toc-שני-מדגמים-לא-מזווגים" class="nav-link" data-scroll-target="#שני-מדגמים-לא-מזווגים"><span class="header-section-number">6.2</span> שני מדגמים לא-מזווגים</a></li>
+  <li><a href="#שני-מדגמים-מזווגים" id="toc-שני-מדגמים-מזווגים" class="nav-link" data-scroll-target="#שני-מדגמים-מזווגים"><span class="header-section-number">6.3</span> שני מדגמים מזווגים</a></li>
+  <li><a href="#מבחן-לשיוויון-שונויות" id="toc-מבחן-לשיוויון-שונויות" class="nav-link" data-scroll-target="#מבחן-לשיוויון-שונויות"><span class="header-section-number">6.4</span> מבחן לשיוויון שונויות</a></li>
+  <li><a href="#מבחן-חי-בריבוע-טיב-התאמה-אי-תלות" id="toc-מבחן-חי-בריבוע-טיב-התאמה-אי-תלות" class="nav-link" data-scroll-target="#מבחן-חי-בריבוע-טיב-התאמה-אי-תלות"><span class="header-section-number">6.5</span> מבחן חי-בריבוע (טיב התאמה, אי-תלות)</a>
   <ul class="collapse">
-  <li><a href="#מבחן-השערות-על-מדגם-אחד" id="toc-מבחן-השערות-על-מדגם-אחד" class="nav-link" data-scroll-target="#מבחן-השערות-על-מדגם-אחד"><span class="toc-section-number">6.1.1</span>  מבחן השערות על מדגם אחד</a></li>
+  <li><a href="#מבחן-טיב-התאמה" id="toc-מבחן-טיב-התאמה" class="nav-link" data-scroll-target="#מבחן-טיב-התאמה"><span class="header-section-number">6.5.1</span> מבחן טיב התאמה</a></li>
+  <li><a href="#מבחן-אי-תלות" id="toc-מבחן-אי-תלות" class="nav-link" data-scroll-target="#מבחן-אי-תלות"><span class="header-section-number">6.5.2</span> מבחן אי-תלות</a></li>
   </ul></li>
-  <li><a href="#שני-מדגמים-לא-מזווגים" id="toc-שני-מדגמים-לא-מזווגים" class="nav-link" data-scroll-target="#שני-מדגמים-לא-מזווגים"><span class="toc-section-number">6.2</span>  שני מדגמים לא-מזווגים</a></li>
+  <li><a href="#מבחן-פרופורציות" id="toc-מבחן-פרופורציות" class="nav-link" data-scroll-target="#מבחן-פרופורציות"><span class="header-section-number">6.6</span> מבחן פרופורציות</a></li>
+  <li><a href="#מבחן-פרופורציות-עם-מדגם-יחיד" id="toc-מבחן-פרופורציות-עם-מדגם-יחיד" class="nav-link" data-scroll-target="#מבחן-פרופורציות-עם-מדגם-יחיד"><span class="header-section-number">6.7</span> מבחן פרופורציות עם מדגם יחיד</a></li>
+  <li><a href="#מבחן-פרופורציות-לשני-מדגמים" id="toc-מבחן-פרופורציות-לשני-מדגמים" class="nav-link" data-scroll-target="#מבחן-פרופורציות-לשני-מדגמים"><span class="header-section-number">6.8</span> מבחן פרופורציות לשני מדגמים</a></li>
+  <li><a href="#מבחן-קולמוגורוב-סמירנוב-ks-test-להתפלגות" id="toc-מבחן-קולמוגורוב-סמירנוב-ks-test-להתפלגות" class="nav-link" data-scroll-target="#מבחן-קולמוגורוב-סמירנוב-ks-test-להתפלגות"><span class="header-section-number">6.9</span> מבחן קולמוגורוב-סמירנוב (KS test) להתפלגות</a></li>
+  <li><a href="#סידור-הפלט-של-מבחני-השערות" id="toc-סידור-הפלט-של-מבחני-השערות" class="nav-link" data-scroll-target="#סידור-הפלט-של-מבחני-השערות"><span class="header-section-number">6.10</span> סידור הפלט של מבחני השערות</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">6.11</span> סיכום</a></li>
   </ul>
 </nav>
     </div>
@@ -264,7 +276,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-hypothesis-tests" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></span></h1>
+<h1 class="title"><span id="sec-hypothesis-tests" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></span></h1>
 </div>
 
 
@@ -277,6 +289,7 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
 <p>בפרק זה נלמד על מבחני השערות פשוטים שניתן להפעיל ב-R. מטבע הדברים, מכיוון ש-R היא שפה סטטיסטית יש ערב רב של מבחני השערות פרמטרים וא-פרמטריים, שבוחנים השערות שונות במצבים שונים, אבל בספר זה נתמקד במבחני ההשערות שיימצאו בקורס מבוא לסטטיסטיקה (ואולי עוד קצת).</p>
@@ -288,8 +301,8 @@ div.csl-indent {
 <li><p>מבחני השערות על אי-תלות</p></li>
 <li><p>מבחני השערות על התפלגות</p></li>
 </ul>
-<section id="מבחני-השערות-על-תוחלת" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="מבחני-השערות-על-תוחלת"><span class="header-section-number">6.1</span> מבחני השערות על תוחלת</h2>
+<section id="מבחן-השערות-על-תוחלת" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="מבחן-השערות-על-תוחלת"><span class="header-section-number">6.1</span> מבחן השערות על תוחלת</h2>
 <p>אחד מהפרמטרים החשובים של התפלגויות הוא התוחלת. לתוחלת ולממוצע יש קשר הדוק ביניהם - כאשר אנחנו מבצעים דגימה מתוך אוכלוסיה, ממוצע המדגם הוא אמד המייצג את התוחלת.</p>
 <p>נדגים זאת בעזרת מדגם הפינגויינים שראינו בפרק הקודם:</p>
 <div class="cell">
@@ -310,9 +323,7 @@ div.csl-indent {
 <p>לכל אחד מזני הפינגויינים ממוצע שונה לאורך המקור. לדוגמה, פינגויינים מסוג Adelie הם בעלי מקור באורך ממוצע 38.8 מ”מ. בפועל מדובר בממוצע המחושב על מדגם של 151 תצפיות, וסביר להניח שהתוחלת בכלל אוכלוסית הפינגויים מזן Adelie היא קצת שונה. לדוגמה, תוחלת של 38 מ”מ, יכולה להביא לכך שממוצע על פני דגימה של 151 תצפיות יהיה 38.8 מ”מ.</p>
 <p>המטרה של מבחן השערות על התוחלת היא לעזור לנו לקבוע ברמת שגיאה של <span class="math inline">\(\alpha\)</span> (אשר בדרך כלל נקבעת כ-5% שגיאה), <em>האם התוחלת היא בעלת ערך מסוים</em> <span class="math inline">\(\mu_0\)</span>, <em>בהינתן תוצאות המדגם</em> שלנו.</p>
 <p>צורת הסתכלות אחרת היא בניית רווח בר סמך לתוחלת, או במילים אחרות, <em>מה הטווח הסביר שבו נמצאת התוחלת בהינתן תוצאות המדגם</em>.</p>
-<p>בשלב זה נתייחס למדגם אחד, ומיד נכליל את ההסתכלות לשני מדגמים.</p>
-<section id="מבחן-השערות-על-מדגם-אחד" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="מבחן-השערות-על-מדגם-אחד"><span class="header-section-number">6.1.1</span> מבחן השערות על מדגם אחד</h3>
+<p>בשלב זה נתייחס למדגם אחד, ולאחר מכן נכליל את ההסתכלות לשני מדגמים.</p>
 <p>התרשים הבא מציג את התפלגות אורך המקור של פינגויינים מזן Adelie באמצעות היסטוגרמה.</p>
 <p>על ההיסטוגרמה הלבשנו שני קווים אנכיים: הממוצע בפועל בירוק (38.3913), והערך שאותו נבחן כתוחלת (38) באמצעות מבחן השערות.</p>
 <div class="cell">
@@ -326,15 +337,23 @@ div.csl-indent {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(adelie<span class="sc">$</span>bill_length_mm), <span class="at">color =</span> <span class="st">"#4DAF4A"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Adelie bill length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-hypothesis-tests_files/figure-html/adelie bill length histogram-1.png" class="img-fluid" width="672"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="06-hypothesis-tests_files/figure-html/adelie bill length histogram-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
 </div>
 </div>
 <p>נשתמש בפקודת <code>t.test</code> על מנת לייצר רווח בר סמך (או מבחן השערות) לתוחלת אורך המקור של פינגויינים מזן Adelie.</p>
 <p>נבנה את רווח בר הסמך ברמת ביטחון של 95% (כלומר רמת הוודאות של הדיווח שנקבל היא 95%, או 5% שגיאה). כמו כן, נבחן האם ייתכן שהתוחלת הינה 38, למרות שהתצפיות במדגם בעלות ממוצע של 38.8.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(adelie<span class="sc">$</span>bill_length_mm, </span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>adeliettest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(adelie<span class="sc">$</span>bill_length_mm, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">38</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">38</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>adeliettest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -358,15 +377,26 @@ mean of x
 <li>בשורה הבאה (ובזו שאחריה) מופיע הרווח בר סמך לתוחלת. במקרה זה הרווח בר סמך ברמת בטחון של 95% מעיד על כך שתוחלת אורך המקור של הפינגויין מהזן הנבחן נמצאת בין 38.36 לבין 39.22. ניתן לשים לב שהתוחלת אותה בחנו בהשערת ה-0 ($\mu=38$) נמצאת מחוץ לטווח זה, וזה עולה בקנה אחד עם הדחיה שתיארנו בסעיף קודם בהתייחס לערך ה-p-value.</li>
 <li>לבסוף מופיע הממוצע עצמו של המשתנה (38.7914).</li>
 </ol>
-<div class="question">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+מעבר ממבחן דו-צדדי למבחן חד-צדדי
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>היעזרו בתיעוד הפקודה <code>t-test</code> ושנו את הארגומנט <code>alternative</code> על מנת לבצע את המבחן הסטטיסטי:</p>
 <p><span class="math display">\[
-H_0: \mu=38\\
+H_0: \mu=38
+\]</span></p>
+<p><span class="math display">\[
 H_1: \mu&gt;38
 \]</span></p>
 <p>מה תוצאת המבחן? מה המסקנה?</p>
 </div>
-</section>
+</div>
 </section>
 <section id="שני-מדגמים-לא-מזווגים" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="שני-מדגמים-לא-מזווגים"><span class="header-section-number">6.2</span> שני מדגמים לא-מזווגים</h2>
@@ -382,13 +412,20 @@ H_1: \mu&gt;38
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Chinstrap and Gentoo bill length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-hypothesis-tests_files/figure-html/distribution of chinstrap and gentoo bill length-1.png" class="img-fluid" width="672"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="06-hypothesis-tests_files/figure-html/distribution of chinstrap and gentoo bill length-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img" width="672">
+</div>
+</figure>
 </div>
 </div>
-<p>כעת נשתמש בפקודה <code>t-test</code> אך בצורת הפעלה מעט שונה מזו שבה השתמשנו במקרה של מדגם יחיד.</p>
+</div>
+<p>התרשים ממחיש לנו הבדלים בין התפלגות אורך המקור של שני הזנים (ובהמשך הפרק נראה איך בוחנים הבדלים בין שתי התפלגויות), אך כעת נרצה לבחון את ההבדלים בין ממוצעי אורך המקור של כל זן. נשתמש בפקודה <code>t-test</code> אך בצורת הפעלה מעט שונה מזו שבה השתמשנו במקרה של מדגם יחיד.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> bill_length_mm <span class="sc">~</span> species,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> chin_gentoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chin_gentoo_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">formula =</span> bill_length_mm <span class="sc">~</span> species,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> chin_gentoo)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>chin_gentoo_ttest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -408,9 +445,10 @@ mean in group Chinstrap    mean in group Gentoo
 <p>הרווח בר סמך מתייחס להפרש בין התוחלות, קרי, ברמת ביטחון של 95% ההפרש בין התוחלות נע בין 0.357 לבין 2.301 (לטובת Chinstrap שבעלי אורך מקור גדול יותר).</p>
 <p>הפקודה שהרצנו משתמשת במבחן המניח שונות שונה, ניתן לשנות זאת על ידי הוספת הארגומנט <code>var.equal=TRUE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> bill_length_mm <span class="sc">~</span> species,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> chin_gentoo,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>chin_gentoo_nonequal_var_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">formula =</span> bill_length_mm <span class="sc">~</span> species,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> chin_gentoo,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>chin_gentoo_nonequal_var_ttest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -425,10 +463,1010 @@ mean in group Chinstrap    mean in group Gentoo
                48.83382                47.50488 </code></pre>
 </div>
 </div>
+</section>
+<section id="שני-מדגמים-מזווגים" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="שני-מדגמים-מזווגים"><span class="header-section-number">6.3</span> שני מדגמים מזווגים</h2>
+<p>נדגים כעת מבחן t-test שבו משתמשים כאשר יש לנו שני מדגמים אשר מזווגים ביניהם. מדגמים מזווגים הם מדגמים אשר לכל ערך במדגם הראשון ניתן לזווג ערך במדגם השני (באופן חד-חד ערכי). משום כך, מדגמים מזווגים תמיד יהיו שווים בגודלם. הדוגמה ה”קלאסית” למדגמים מזווגים הם מחקר שבו יש שלב של “לפני” ושלב של “אחרי”: הם מזווגים משום שניתן להצמיד אחרי-לפני עבור כל נדגם. במקרים בהם רוצים לבחון התערבות מסוימת אז אפשר להשוות את ההפרשים של אחרי-לפני ולראות האם ההפרשים שונים באופן מובהק מ-0 (ואז זה אומר שיש אפקט עם כיוון מסוים להתערבות).</p>
+<p>נמחיש זאת על ידי השוואה בין אורך המקור לעומק המקור (<code>bill_length_mm</code>, <code>bill_depth_mm</code>). מדובר בשני מדגמים, אך הם קשורים ביניהם (משום שכל תצפית של אורך קשורה לתצפית מסוימת של עומק).</p>
+<p>ראשית נשתמש בתרשים על מנת להמחיש את ההתפלגויות של המשתנים:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">specimen =</span> <span class="fu">seq_along</span>(species)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(specimen, bill_length_mm, bill_depth_mm) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>specimen, <span class="at">names_to =</span> <span class="st">"measurement_type"</span>, <span class="at">values_to =</span> <span class="st">"mm"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mm, <span class="at">color =</span> measurement_type)) <span class="sc">+</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 4 rows containing non-finite values (`stat_density()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="06-hypothesis-tests_files/figure-html/length and depth distribution-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>כפי שניתן לראות, ההתפלגויות שונות מאוד (האורך ארוך משמעותי מן העומק), ולכן ניתן להעריך שגם מבחן המובהקות יגלה זאת.</p>
+<p>נשתמש שוב בפקודת <code>t.test</code> עם שינוי נוסף.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>paired_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> penguins<span class="sc">$</span>bill_length_mm,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> penguins<span class="sc">$</span>bill_depth_mm, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>paired_ttest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
 
+data:  penguins$bill_length_mm and penguins$bill_depth_mm
+t = 79.505, df = 341, p-value &lt; 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 26.10846 27.43306
+sample estimates:
+mean difference 
+       26.77076 </code></pre>
+</div>
+</div>
+<p>הפלט מאוד דומה לפלטים שכבר ראינו (שימו לב שבכותרת Paired t-test המציין שמדובר במבחן מזווג), ובמקרה זה המבחן מובהק סטטיסטית.</p>
+<p>ניתן לראות שההבדל בין אורך לעומק המקור עומד על 26.1 ועד 27.4 מ”מ, ברווח בר סמך של 95%.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>היעזרו בפקודה <code>t.test</code> על מנת לבחון את ההשערה שההבדל בין אורך לעומק המקור עומד על 26.5 מ”מ.</p>
+<p>לשם כך השתמשו במבחן מזווג עם הארגומנט <code>mu</code> (מה צריך להיות ערכו של הארגומנט?).</p>
+</div>
+</div>
+</section>
+<section id="מבחן-לשיוויון-שונויות" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="מבחן-לשיוויון-שונויות"><span class="header-section-number">6.4</span> מבחן לשיוויון שונויות</h2>
+<p>השונות מתארת את פיזור התצפיות, והיא מעניינת ממגוון סיבות. בפרט, כפי שראינו בפקודת <code>t.test</code> לעיתים נרצה להגדיר לפקודה האם להניח שונויות שוות או שונות (וזה משפיע על המבחן, כלומר הנוסחאות, שהפקודה מבצעת). באפשרותנו להשתמש בפקודה <code>var.test</code> על מנת לבחון האם השונויות של שני מדגמים שוות (השערת האפס הינה שיוויון השונויות, וההשערה האלטרנטיבית היא שהשונויות אינן שוות).</p>
+<p>המבחן שבו נשתמש בוחן את היחס בין השונויות, וכן הוא מניח ששתי השונויות הן של משתנים מקריים הלקוחים מהתפלגות נורמלית. המבחן נקרא מבחן F. נדגים את המבחן על השונות של אורך המקור של Gentoo לעומת אורך המקור של Chinstrap.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>chin_gentoo_vartest <span class="ot">&lt;-</span> <span class="fu">var.test</span>(<span class="at">formula =</span> bill_length_mm <span class="sc">~</span> species,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">data =</span> chin_gentoo)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>chin_gentoo_vartest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-walpole1993probability" class="csl-entry" role="doc-biblioentry">
+data:  bill_length_mm by species
+F = 1.174, num df = 67, denom df = 122, p-value = 0.4411
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.778208 1.818704
+sample estimates:
+ratio of variances 
+          1.174017 </code></pre>
+</div>
+</div>
+<p>שימו לב שאופן השימוש בפקודה מאוד דומה לאופן השימוש בפקודה <code>t.test</code> (ראו בחלק של מדגמים לא מזווגים). להלן הסבר על פלט הפקודה:</p>
+<ul>
+<li><p>השורה הראשונה של הפלט מציינת שמדובר במבחן F.</p></li>
+<li><p>בשורה השלישית אנחנו רואים את נתוני המבחן (הסטטיסטי, דרגות חופש במונה ובמכנה, וכן את ה-p-value המחושב) כפי שניתן לראות p-value &gt; 0.05, ולכן לא ניתן לדחות את השערת האפס שהשונויות שוות בין שני המדגמים.</p></li>
+<li><p>בשורה הבאה ניתן לראות מה בחן המבחן (ההשערה האלטרנטיבית היא שהיחס בין השונויות שונה מ-1).</p></li>
+<li><p>לאחר מכן מופיע רווח בר סמך ליחס בין השונויות <span class="math inline">\((0.778, 1.819)\)</span>. ניתן לראות רווח בר הסמך כולל את הערך 1 (שקול לאי-דחיית השערת ה-0).</p></li>
+<li><p>בשורה האחרונה הפקודה מספקת לנו אמד ליחס בין השונויות (1.17).</p></li>
+</ul>
+</section>
+<section id="מבחן-חי-בריבוע-טיב-התאמה-אי-תלות" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="מבחן-חי-בריבוע-טיב-התאמה-אי-תלות"><span class="header-section-number">6.5</span> מבחן חי-בריבוע (טיב התאמה, אי-תלות)</h2>
+<p>מבחן חי-בריבוע ($\Chi^2$) יכול לשמש אותנו לשתי מטרות מרכזיות (שתיהן בוחנות את השונות):</p>
+<ol type="1">
+<li>מבחן טיב התאמה</li>
+<li>מבחן אי-תלות</li>
+</ol>
+<p>כאמור, אין הכוונה להיכנס בספר זה לתיאוריה העומדת מאחורי המבחן, אך בבסיסה עומד העיקרון של פירוק המדגם לתאים סטטיסטיים, שבכל אחד “ספירה של תצפיות”. הסטטיסטי שמבוסס על ספירה זו של תצפיות הוא סכום של ריבועי משתנים מקריים, ולכן מתפלג חי-בריבוע.</p>
+<section id="מבחן-טיב-התאמה" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="מבחן-טיב-התאמה"><span class="header-section-number">6.5.1</span> מבחן טיב התאמה</h3>
+<p>במבחן טיב התאמה אנחנו מנסים לראות האם התפלגות מסוימת הנצפית בנתונים האמפיריים תואמת להתפלגות אחרת תיאורתית. השערת האפס הינה שההתפלגות האמפירית לקוחה מתוך התפלגות תיאורתית ידועה, לעומת ההשערה האלטרנטיבית (שאינה לקוחה מהתפלגות זו). לכן מכונה המבחן טיב-התאמה (או באנגלית goodness-of-fit).</p>
+<p>נחזור לדוגמה על זן ה-Adelie ונבחן את ההשערה שהתפלגות אורך המקור לקוחה מהתפלגות נורמלית.</p>
+<p>נלביש את ההתפלגות הנצפית וההתפלגות התיאורתית (עם ממוצע וסטיית תקן לפי הממוצע וסטיית התקן הנאמדים מהנתונים).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>length_mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(adelie<span class="sc">$</span>bill_length_mm)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>length_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(adelie<span class="sc">$</span>bill_length_mm)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>theoretical_bill_length <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">32</span>, <span class="dv">46</span>, <span class="fl">0.1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length_dens =</span> <span class="fu">dnorm</span>(<span class="at">x =</span> x,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">mean =</span> length_mu,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">sd =</span> length_sd))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(adelie, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> theoretical_bill_length, </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> length_dens), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Density of Adelie bill length with theoretical density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="06-hypothesis-tests_files/figure-html/distribution adelie bill length-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>השלבים שבוצעו בקוד כללו ראשית בניית טבלה של צפיפות של ההתפלגות הנורמלית עם ממוצע 38.79, וסטיית תקן 2.66, הם האמדים מהנתונים האמפיריים של תוחלת וסטיית תקן אורך המקור של פינגויינים מזן Adelie. הפונקציה <code>dnorm</code> משמשת לחישוב הצפיפות הנורמלית.</p>
+<p>לאחר מכן השתמשנו ב<code>ggplot</code>, שאליו הוספנו שכבה נוספת של <code>geom_line</code> אשר לא משתמשת בדאטה הראשי (<code>adelie</code>) אלא בטבלה המשנית שחישבנו בשלב קודם (<code>theoretical_bill_length</code>). השתמשנו בארגומנטים <code>data = theoretical_bill_length</code> וב-<code>inherit.aes = FALSE</code> , על מנת להנחות את הפקודה של <code>geom_line</code> להשתמש בדאטה שונה, ובהגדרות אסטטיקה שונות.</p>
+<p>התוצאה נראית כמו שני גרפי צפיפויות דומים אחד לשני, עם חריגה מסוימת (באדום הצפיפות התיאורתית ובכחול האמפירית). דומים, אבל לא זהים. האם הם “שונים מספיק” על מנת שנדחה את השערת האפס (שהם אותה ההתפלגות)?</p>
+<p>צעד אחד מקדים לפני שנבצע את מבחן טיב ההתאמה, הוא לבנות תרשים הנותן לנו כלי להשוות בין התפלגויות. תרשים מסוג Q-Q-Plot.</p>
+<section id="תרשים-q-q-plot" class="level4" data-number="6.5.1.1">
+<h4 data-number="6.5.1.1" class="anchored" data-anchor-id="תרשים-q-q-plot"><span class="header-section-number">6.5.1.1</span> תרשים Q-Q-Plot</h4>
+<p>בתרשים מסוג Q-Q-Plot המחשב מציב אחוזונים של שתי התפלגויות כנקודות במרחב (התפלגות אחת בציר X והשניה בציר Y). אם הנקודות המוצגות מתלבשות על אלכסון הדבר מעיד על כך שהן מגיעות מאותן התפלגות. ככל שהנקודות מתרחקות מהאלכסון, הדבר מעיד על כך שההתפלגויות אינן זהות. התרשים מהווה כלי ויזואלי שיכול לתמוך את התיאור של מבחן טיב ההתאמה.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>adelie <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> bill_length_mm)) <span class="sc">+</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">distribution =</span> stats<span class="sc">::</span>qnorm) <span class="sc">+</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="06-hypothesis-tests_files/figure-html/qqplot demonstration-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>בתרשים אנחנו יכולים לראות שמרבית הנקודות שבמרכז ההתפלגות פחות-או-יותר חופפות עם הקו שמוצג בתרשים, אך בקצוות (במיוחד בקצה התחתון) רואים שלהתפלגות האמפירית (המוצגת בציר y) יש ערכים מעט גבוהים מהמצופה ונשאלת השאלה האם חריגה זו מספיקה על מנת לדחות את ההשערה שאורך המקור מתפלג נורמלית (הנקודות שנמצאות מתחת ל-1- בציר ה-x נמצאות מעל הקו הישר המוצג בתרשים). כעת נפעיל מבחן סטטיסטי על מנת לבחון את טיב ההתאמה של ההתפלגות להתפלגות נורמלית עם הפרמטרים של תוחלת וסטיית תקן, כפי שמחושבים מהנתונים של אורך המקור.</p>
+</section>
+<section id="ביצוע-מבחן-טיב-ההתאמה" class="level4" data-number="6.5.1.2">
+<h4 data-number="6.5.1.2" class="anchored" data-anchor-id="ביצוע-מבחן-טיב-ההתאמה"><span class="header-section-number">6.5.1.2</span> ביצוע מבחן טיב ההתאמה</h4>
+<p>במבחן טיב ההתאמה עלינו לחלק את ההתפלגות האמפירית לתאים סטטיסטיים (שבדרך כלל מקובל לסמן ב-$O_i$ מלשון Observed), ולהשוות למול תאים בהתפלגות התיאורתית (שמקובל לסמן באות <span class="math inline">\(E_i\)</span> מלשון Expected). אחד התנאים לשימוש במבחן הוא שבכל תא סטטיסטי מספר התצפיות הצפוי יהיה לפחות 5 תצפיות.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>distribution_breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">35</span>, <span class="dv">37</span>, <span class="dv">39</span>, <span class="dv">41</span>, <span class="dv">50</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>observed_expected_counts <span class="ot">&lt;-</span> adelie <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length_groups =</span> <span class="fu">cut</span>(bill_length_mm, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">breaks =</span> distribution_breaks)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(length_groups, <span class="at">name =</span> <span class="st">"observed"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probability_upper =</span> </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">pnorm</span>(<span class="at">q =</span> distribution_breaks[<span class="sc">-</span><span class="dv">1</span>], <span class="at">mean =</span> length_mu, <span class="at">sd =</span> length_sd),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">probability_lower =</span> </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>           <span class="fu">pnorm</span>(<span class="at">q =</span> distribution_breaks[<span class="sc">-</span><span class="dv">6</span>], <span class="at">mean =</span> length_mu, <span class="at">sd =</span> length_sd)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">expected_prob =</span> (probability_upper <span class="sc">-</span> probability_lower)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">expected_counts =</span> expected_prob <span class="sc">*</span> <span class="fu">sum</span>(observed))</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>observed_expected_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  length_groups observed probability_upper probability_lower expected_prob
+  &lt;fct&gt;            &lt;int&gt;             &lt;dbl&gt;             &lt;dbl&gt;         &lt;dbl&gt;
+1 (0,35]              11            0.0773          2.36e-48        0.0773
+2 (35,37]             31            0.251           7.73e- 2        0.173 
+3 (37,39]             40            0.531           2.51e- 1        0.281 
+4 (39,41]             36            0.797           5.31e- 1        0.265 
+5 (41,50]             33            1.00            7.97e- 1        0.203 
+# ℹ 1 more variable: expected_counts &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>goodness_of_fit_chisqtest <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(<span class="at">x =</span> observed_expected_counts<span class="sc">$</span>observed,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">p =</span> observed_expected_counts<span class="sc">$</span>expected_prob,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">rescale.p =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>goodness_of_fit_chisqtest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  observed_expected_counts$observed
+X-squared = 1.6432, df = 4, p-value = 0.801</code></pre>
+</div>
+</div>
+<p>ראשית נקבעו הגבולות של הקבוצות בהתפלגות (הדיסקרטיזציה, יצירת התפלגות בדידה), כך שההתפלגות תכיל את כל תוצאות ההתפלגות האפשריות מ-0 ועד 1.</p>
+<p>החלק השני של הקוד מייצר את טבלת התצפיות בפועל ואת מספר התצפיות הצפוי (על ידי חישוב ההסתברות מתוך הממוצע וסטיית התקן של המדגם), והכפלה בסך התצפיות במדגם.</p>
+<p>לאחר מכן אנחנו משתמשים בפקודה <code>chisq.test</code>. שימו לב שלמעשה לא השתמשנו במספר התצפיות הצפוי אלא בהתפלגות שלהם (הארגומנט <code>p</code>), שמעיד מה ההסתברות לקבל דגימות בתאים הסטטיסטיים הנבחנים.</p>
+<p>במקרה זה קיבלנו <code>p.value=0.801</code> כלומר לא ניתן לדחות את השערת האפס שההתפלגות הנדונה היא התפלגות נורמלית (לכן נאמר שיש בסיס להתייחס להתפלגות כהתפלגות נורמלית).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>במרבית ספרי הסטטיסטיקה תתיקלו בנוסחה הבאה עבור מבחן חי-בריבוע.</p>
+<p>ראשית מחשבים את הסטטיסטי:<br>
+<span class="math display">\[
+X=\sum_{i=1}^l\frac{\left(O_i-E_i\right)^2}{E_i}
+\]</span></p>
+<p>כאשר <span class="math inline">\(l\)</span> הוא מספר התאים הסטטיסטיים (בדוגמה הקודמת 5), ומספר דרגות החופש בהתפלגות יהיה <span class="math inline">\(df=l-1\)</span>.</p>
+<p>לאחר מכן מחשבים את ה-p-value לפי ערכו של הסטטיסטי:</p>
+<p><span class="math display">\[
+\Pr\left(X&gt;\chi^2_{df}\right)
+\]</span></p>
+<p>הפקודה שהרצנו למעשה מבצעת חישוב זה בדיוק. ניתן להדגים זאת על ידי ביצוע החישוב באופן ישיר.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> ((observed_expected_counts<span class="sc">$</span>observed <span class="sc">-</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>        observed_expected_counts<span class="sc">$</span>expected_counts)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  observed_expected_counts<span class="sc">$</span>expected_counts</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(<span class="at">q =</span> <span class="fu">sum</span>(X), <span class="at">df =</span> <span class="dv">4</span>, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">lower.tail =</span> F)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8010082</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="מבחן-אי-תלות" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="מבחן-אי-תלות"><span class="header-section-number">6.5.2</span> מבחן אי-תלות</h3>
+<p>מבחן אי-תלות משמש אותנו על מנת להבחין האם שני משתנים מקריים כלשהם הם בעלי תלות מסוימת או לא, כאשר שניהם משתנים קטגוריאליים. נדגים את השימוש במבחן: בנתוני הפינגויינים שעמם אנחנו עובדים בדוגמאות ישנם מספר משתנים קטגוריאליים (זן, אי, מין, ושנת המדידה שחרף היותו מספרי ניתן להתייחס אליו גם כקטגוריה). נרצה לבחון באמצעות מבחן אי-תלות האם יש קשר בין זן הפינגויינים לבין שנת המדידה: כלומר האם החוקרים שאספו את הדאטה נתנו דגשים על איסוף נתונים של זנים מסוימים בשנים מסוימים או שעבדו באופן אחיד בדגימת פינגויינים מכל שלושת הזנים בכל שלושת השנים בדאטה (2007-2009). נתחיל ביצירת תרשים שיציג את התפלגות הזנים בכל שנת דגימה.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, species) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(year), <span class="at">y =</span> prop, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_fill</span>()) <span class="sc">+</span> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span> </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Sample distribution"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Sample distribution of species over years"</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{round(prop*100)}%"</span>)),</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_fill</span>(), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="06-hypothesis-tests_files/figure-html/year and island penguin sampling-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>כפי שניתן להבחין בתרשים, ישנם הבדלים מסוימים. לדוגמה, בשנת 2007 רק 31% מהדגימות הם של פינגויינים מזן Gentoo לעומת שנת 2008 שם 40% מהדגימות הן מזן Gentoo. השערת האפס שלנו היא שהמשתנה שנה והמשתנה זן הפינגויין הם בלתי תלויים, וההשערה האלטרנטיבית הינה שהם תלויים.</p>
+<p>גם במקרה זה נשתמש בפונקציה <code>chisq.test</code>. נדגים שתי שיטות להפעיל את הפונקציה, שתיהן מביאות אותה התוצאה. השיטה הראשונה היא להזין את הפונקציה בשני וקטורים של המשתנים:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>independent_chisqtest <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(<span class="at">x =</span> penguins<span class="sc">$</span>year, <span class="at">y =</span> penguins<span class="sc">$</span>species)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>independent_chisqtest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  penguins$year and penguins$species
+X-squared = 3.2156, df = 4, p-value = 0.5224</code></pre>
+</div>
+</div>
+<p>השיטה השניה היא ראשית לבנות מטריצה (בגודל 3 על 3 במקרה שלנו, כי לכל משתנה שלושה ערכים אפשריים), ואז להזין אותה לפונקציה כך:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>penguin_species_year_counts <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.character</span>(year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, species) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> species, <span class="at">values_from =</span> n) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="at">x =</span> penguin_species_year_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  penguin_species_year_counts
+X-squared = 3.2156, df = 4, p-value = 0.5224</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+למה התוצאות זהות?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>תוצאות המבחן בשני המקרים כמובן זהות, משום שבוריאציה הראשונה הפונקציה מבצעת באופן פנימי את הספירה שביצענו בוריאציה השניה. הסיבה שהצגנו את שתי האפשרויות היא שלעיתים הנתונים שיש בידינו הם רק הספירות ולא הפקטורים המקוריים (ואז נהיה חייבים להשתמש באפשרות השניה).</p>
+</div>
+</div>
+<p>מבחינת פרשנות- ניתן לראות שערך ה-<code>p.value</code> הינו 0.5224, ולכן לא ניתן לדחות את השערת האפס (כלומר ייתכן שהמשתנים בלתי תלויים).</p>
+</section>
+</section>
+<section id="מבחן-פרופורציות" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="מבחן-פרופורציות"><span class="header-section-number">6.6</span> מבחן פרופורציות</h2>
+<p>במקרים בהם אנחנו רוצים להשוות פרופורציות בין שתי קבוצות (שני מדגמים), או לבצע מבחן השערות על פרופורציות בקבוצה מסוימת, נשתמש במבחן פרופורציות.</p>
+</section>
+<section id="מבחן-פרופורציות-עם-מדגם-יחיד" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="מבחן-פרופורציות-עם-מדגם-יחיד"><span class="header-section-number">6.7</span> מבחן פרופורציות עם מדגם יחיד</h2>
+<p>ראשית נדגים מבחן פרופורציות עם מדגם יחיד: נבצע מבחן סטטיסטי על פרופורצית הפינגויינים ששוקלים מעל 4 ק”ג, ונבחן האם פרופורציה זו שונה באופן מובהק מ-50%.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_above_4kg =</span> body_mass_g <span class="sc">&gt;=</span> <span class="dv">4000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">tot_above_4kg =</span> <span class="fu">sum</span>(is_above_4kg),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">tot_under_4kg =</span> <span class="fu">sum</span>(<span class="sc">!</span>is_above_4kg),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">total_specimens =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  tot_above_4kg tot_under_4kg total_specimens
+          &lt;int&gt;         &lt;int&gt;           &lt;int&gt;
+1           177           165             342</code></pre>
+</div>
+</div>
+<p>כפי שניתן לראות יש 165 פרטים עם משקל מתחת ל-4 ק”ג, ו-177 פרטים עם משקל מעל 4 ק”ג. סה”כ 342 פרטים. נשתמש בפקודה <code>prop.test</code> על מנת לבחון את ההשערה של חלוקה שווה (פרופורציה 50%).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>penguin_prop <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">177</span>, <span class="at">n =</span> <span class="dv">342</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>penguin_prop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    1-sample proportions test with continuity correction
+
+data:  177 out of 342, null probability 0.5
+X-squared = 0.3538, df = 1, p-value = 0.552
+alternative hypothesis: true p is not equal to 0.5
+95 percent confidence interval:
+ 0.4632340 0.5714533
+sample estimates:
+        p 
+0.5175439 </code></pre>
+</div>
+</div>
+<p>כפי שניתן לראות בפלט הפקודה, ערך ה-p-value הינו 0.552, ולכן לא ניתן לדחות את השערת האפס של חלוקה חצי/חצי. רווח בר סמך לפרופורציה של הפינגויינים בעלי משקל מעל 4 ק”ג עומד על בין 0.463 ועד 0.571.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+נקודות למחשבה
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>נסו לבצע את המבחן עם פרופורצית הפרטים מתחת למשקל 4 ק”ג. האם מתקבלת אותה התוצאה? מה שונה ומה דומה בפלט? הסבירו.</p>
+</div>
+</div>
+</section>
+<section id="מבחן-פרופורציות-לשני-מדגמים" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="מבחן-פרופורציות-לשני-מדגמים"><span class="header-section-number">6.8</span> מבחן פרופורציות לשני מדגמים</h2>
+<p>נבצע מבחן המשווה את שיעור הפרטים בעלי משקל מעל 4.5 ק”ג המשווה בין זן ה-Gentoo ליתר הזנים.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gentoo_weight <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_gentoo =</span> species <span class="sc">==</span> <span class="st">"Gentoo"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(is_gentoo) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">above_4.5kg =</span> <span class="fu">sum</span>(body_mass_g <span class="sc">&gt;=</span> <span class="dv">4500</span>),</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">under_4.5kg =</span> <span class="fu">sum</span>(body_mass_g <span class="sc">&lt;</span> <span class="dv">4500</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">tot =</span> <span class="fu">n</span>())</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>gentoo_weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  is_gentoo above_4.5kg under_4.5kg   tot
+  &lt;lgl&gt;           &lt;int&gt;       &lt;int&gt; &lt;int&gt;
+1 FALSE              11         208   219
+2 TRUE              107          16   123</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>twosample_prop <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">107</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">219</span>, <span class="dv">123</span>))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>twosample_prop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(11, 107) out of c(219, 123)
+X-squared = 230.56, df = 1, p-value &lt; 2.2e-16
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.8921516 -0.7472291
+sample estimates:
+    prop 1     prop 2 
+0.05022831 0.86991870 </code></pre>
+</div>
+</div>
+<p>כפי שניתן לראות על פי תוצאות המבחן, יש שיעור של כ-5% מהפינגויינים שאינם מזן Gentoo שיש להם משקל מעל 4.5 ק”ג, לעומת 87% מהפינגויינים שהם כן מזן Gentoo ובעלי משקל מעל 4.5 ק”ג. הבדל זה מובהק סטטיסטית עם p-value &lt; 2.2e-16 (כלומר קטן מהמספר הקטן ביותר שהמחשב יכול להציג).</p>
+<p>רווח בר סמך להפרש בין אחוזים אלו עומד על בין 0.747 ועד 0.892 (בשורה בפלט זה מופיע בסימן שלילי משום שהפקודה מחסרת את הפרופורציה הראשונה מהשניה ובמקרה זה הפרופורציה הראשונה נמוכה מהשניה - 11 מתוך 219 לעומת 107 מתוך 123).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+הקשר שבין מבחני פרופורציות ומבחן חי-בריבוע לאי-תלות
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>נסו להשתמש במבחן חי-בריבוע <code>chisq.test</code> על מנת לבצע את מבחן הפרופורציות מהסעיף הקודם</p>
+<p>רמז: עליכם לבנות מטריצה 2*2 כאשר השורות הן מעל/מתחת למשקל שנקבע והעמודות הם שני הסוגים של הפינגויינים (כן/לא מסוג Gentoo.</p>
+<p>האם קיבלתם את אותה התוצאה כמו במבחן הפרופורציות? (מה שונה ומה דומה?)</p>
+<p>הוסיפו ארגומנט למבחן הפרופורציות: <code>correct = FALSE</code>, ארגומנט זה מבטל תיקון (מניפולציה) שמבצעת הפונקציה. האם כעת התוצאות זהות?</p>
+</div>
+</div>
+</section>
+<section id="מבחן-קולמוגורוב-סמירנוב-ks-test-להתפלגות" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="מבחן-קולמוגורוב-סמירנוב-ks-test-להתפלגות"><span class="header-section-number">6.9</span> מבחן קולמוגורוב-סמירנוב (KS test) להתפלגות</h2>
+<p>מבחן קולמוגורוב-סמירנוב משמש להשוואה בין שתי התפלגויות, בדומה למבחן חי-בריבוע לטיב התאמה, אך הוא אינו דורש התפלגויות בדידות (כפי שמבחן חי-בריבוע דורש).</p>
+<p>אפשר להפעיל אותו על מנת להשוות בין שתי התפלגויות רציפות נתונות או בין התפלגות רציפה נתונה לבין התפלגות רציפה תיאורתית. לדוגמה, נשוואה את אורך המקור של פינגויינים מזן Adelie להתפלגות רציפה תיאורתית נורמלית עם תוחלת 38.79, וסטיית תקן 2.66:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ks_test_output <span class="ot">&lt;-</span> <span class="fu">ks.test</span>(adelie<span class="sc">$</span>bill_length_mm, <span class="st">"pnorm"</span>, <span class="at">mean =</span> length_mu, <span class="at">sd =</span> length_sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ks.test.default(adelie$bill_length_mm, "pnorm", mean = length_mu, :
+ties should not be present for the Kolmogorov-Smirnov test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ks_test_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Asymptotic one-sample Kolmogorov-Smirnov test
+
+data:  adelie$bill_length_mm
+D = 0.042489, p-value = 0.948
+alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+<p>תוצאת המבחן במקרה זה הינה שלא ניתן לדחות את השערת האפס (שההתפלגות הינה התפלגות נורמלית עם תוחלת וסטיית תקן כפי שחושבו מהדאטה). בדומה לממצא שקיבלנו ממבחן טיב ההתאמה מסוג חי-בריבוע.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+הודעת האזהרה של פלט המבחן <code>ks.test</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>במסגרת המבחן שהרצנו קיבלנו הודעת אזהרה:</p>
+<p>ties should not be present for the Kolmogorob-Smirnov test.</p>
+<p>מבחן קולמוגורוב-סמירנוב משתמש בסטטיסטי אחר מהסטטיסטיים שהצגנו עד כה (סטטיסטי t וסטטיסטי חי-בריבוע). במסגרת חישוב הסטטיסטי של מבחן קולמוגורוב-סמירנוב מסודרים הערכים שבמדגם. אם מחושבת ההתפלגות האמפירית ומשוות להתפלגות התיאורתית. הודעת האזהרה מעידה על כך שיש ערכים זהים שלא ניתן לסדרם, אך המבחן עדיין עובד ומחזיר את תוצאת החישוב. ככל שבהתפלגות האמפירית ישנם הרבה ערכים זהים, זה מהווה אינדיקציה לכך שההתפלגות אינה רציפה, וייתכן שמבחן טיב התאמה עשוי להיות מתאים יותר (ואשר משווה להתפלגות בדידה).</p>
+</div>
+</div>
+</section>
+<section id="סידור-הפלט-של-מבחני-השערות" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="סידור-הפלט-של-מבחני-השערות"><span class="header-section-number">6.10</span> סידור הפלט של מבחני השערות</h2>
+<p>בכל המקרים שבחנו בפרק זה הזנו למבחנים נתונים בפורמט מסודר של טבלאות (אם הפעלנו את ארגומנט ה-<code>data</code> וה-<code>formula</code> או בפורמט של וקטורים). תוצאות המבחנים הוצגו כפלט טקסטואלי, אך בפועל היו רשימה (list) עם רכיבים שונים שניתן להפריד אותם. לדוגמה במבחן האחרון שהרצנו (<code>ks.test</code>) ניתן היה לקרוא רק לערכו של ה-p-value על ידי שימוש בקוד: <code>ks_test_output$p.value</code>. ישנה חבילה הנקראת <code>broom</code> ובה פקודה הנקראת <code>tidy</code> שמסייעת לנו להפוך את הפלט של הפקודות השונות לטבלה (פחות או יותר אחידה).</p>
+<p>נדגים זאת על חלק מהפלטים שראינו בפרק (כולל סידור של פורמט העמודות בטבלה באמצעות חבילת <code>gt</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(adeliettest),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(paired_ttest),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(independent_chisqtest),</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(penguin_prop),</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(ks_test_output)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="zoom:80%; direction:ltr;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="ihftsrtxfw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ihftsrtxfw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ihftsrtxfw thead, #ihftsrtxfw tbody, #ihftsrtxfw tfoot, #ihftsrtxfw tr, #ihftsrtxfw td, #ihftsrtxfw th {
+  border-style: none;
+}
+
+#ihftsrtxfw p {
+  margin: 0;
+  padding: 0;
+}
+
+#ihftsrtxfw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ihftsrtxfw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ihftsrtxfw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ihftsrtxfw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ihftsrtxfw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ihftsrtxfw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ihftsrtxfw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ihftsrtxfw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ihftsrtxfw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ihftsrtxfw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ihftsrtxfw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ihftsrtxfw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ihftsrtxfw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ihftsrtxfw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ihftsrtxfw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihftsrtxfw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ihftsrtxfw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ihftsrtxfw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ihftsrtxfw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihftsrtxfw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ihftsrtxfw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihftsrtxfw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ihftsrtxfw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihftsrtxfw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ihftsrtxfw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihftsrtxfw .gt_left {
+  text-align: left;
+}
+
+#ihftsrtxfw .gt_center {
+  text-align: center;
+}
+
+#ihftsrtxfw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ihftsrtxfw .gt_font_normal {
+  font-weight: normal;
+}
+
+#ihftsrtxfw .gt_font_bold {
+  font-weight: bold;
+}
+
+#ihftsrtxfw .gt_font_italic {
+  font-style: italic;
+}
+
+#ihftsrtxfw .gt_super {
+  font-size: 65%;
+}
+
+#ihftsrtxfw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ihftsrtxfw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ihftsrtxfw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ihftsrtxfw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ihftsrtxfw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ihftsrtxfw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ihftsrtxfw .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+<th id="parameter" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">parameter</th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.low</th>
+<th id="conf.high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.high</th>
+<th id="method" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">method</th>
+<th id="alternative" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">alternative</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="estimate">38.79</td>
+<td class="gt_row gt_right" headers="statistic">3.65</td>
+<td class="gt_row gt_right" headers="p.value">3.598478e-04</td>
+<td class="gt_row gt_right" headers="parameter">150.00</td>
+<td class="gt_row gt_right" headers="conf.low">38.36</td>
+<td class="gt_row gt_right" headers="conf.high">39.22</td>
+<td class="gt_row gt_left" headers="method">One Sample t-test</td>
+<td class="gt_row gt_left" headers="alternative">two.sided</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="estimate">26.77</td>
+<td class="gt_row gt_right" headers="statistic">79.51</td>
+<td class="gt_row gt_right" headers="p.value">3.594279e-222</td>
+<td class="gt_row gt_right" headers="parameter">341.00</td>
+<td class="gt_row gt_right" headers="conf.low">26.11</td>
+<td class="gt_row gt_right" headers="conf.high">27.43</td>
+<td class="gt_row gt_left" headers="method">Paired t-test</td>
+<td class="gt_row gt_left" headers="alternative">two.sided</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="estimate">NA</td>
+<td class="gt_row gt_right" headers="statistic">3.22</td>
+<td class="gt_row gt_right" headers="p.value">5.224226e-01</td>
+<td class="gt_row gt_right" headers="parameter">4.00</td>
+<td class="gt_row gt_right" headers="conf.low">NA</td>
+<td class="gt_row gt_right" headers="conf.high">NA</td>
+<td class="gt_row gt_left" headers="method">Pearson's Chi-squared test</td>
+<td class="gt_row gt_left" headers="alternative">NA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="estimate">0.52</td>
+<td class="gt_row gt_right" headers="statistic">0.35</td>
+<td class="gt_row gt_right" headers="p.value">5.519692e-01</td>
+<td class="gt_row gt_right" headers="parameter">1.00</td>
+<td class="gt_row gt_right" headers="conf.low">0.46</td>
+<td class="gt_row gt_right" headers="conf.high">0.57</td>
+<td class="gt_row gt_left" headers="method">1-sample proportions test with continuity correction</td>
+<td class="gt_row gt_left" headers="alternative">two.sided</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="estimate">NA</td>
+<td class="gt_row gt_right" headers="statistic">0.04</td>
+<td class="gt_row gt_right" headers="p.value">9.480165e-01</td>
+<td class="gt_row gt_right" headers="parameter">NA</td>
+<td class="gt_row gt_right" headers="conf.low">NA</td>
+<td class="gt_row gt_right" headers="conf.high">NA</td>
+<td class="gt_row gt_left" headers="method">Asymptotic one-sample Kolmogorov-Smirnov test</td>
+<td class="gt_row gt_left" headers="alternative">two-sided</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>גישה זו שימושית במיוחד כאשר מריצים הרבה מבחנים זהים על קבוצות שונות, כפי שנדגים ב <a href="09-purrr.html" class="quarto-xref">פרק&nbsp;<span>9</span></a>.</p>
+</section>
+<section id="סיכום" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">6.11</span> סיכום</h2>
+<p>בפרק זה בחנו מבחנים סטטיסטיים מסוגים שונים:</p>
+<p>התחלנו במבחני השערות על תוחלת של מדגם יחיד, מבחני השערות על תוחלת עבור שני מדגמים לא-מזווגים ועבור שני מדגמים מזווגים.</p>
+<p>למדנו על מבחן לשיוויון שונויות, ומבחני חי-בריבוע לטיב התאמה ולאי-תלות.</p>
+<p>לאחר מכן למדנו להשתמש במבחני פרופורציות (מדגם יחיד, ושני מדגמים), ועל מבחן קולמוגורוב-סמירנוב להתפלגות.</p>
+<p>לבסוף למדנו כיצד ניתן להעביר את הפלט של המבחנים לפלט טבלאי מסודר.</p>
+<div class="end-page">
+
+</div>
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-walpole1993probability" class="csl-entry" role="listitem">
 Walpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993. <em>Probability and Statistics for Engineers and Scientists</em>. Vol. 5. Macmillan New York.
 </div>
 </div>
@@ -462,9 +1500,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -500,10 +1552,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -513,8 +1564,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -529,6 +1589,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -583,15 +1832,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">
-        <ul class="footer-items list-unstyled">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
     <li class="nav-item">
  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>
   </li>  
 </ul>
-      </div>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
+
 
 
 
