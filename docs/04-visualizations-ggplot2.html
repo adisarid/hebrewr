@@ -299,10 +299,11 @@ div.csl-indent {
 <p>נדגים זאת כעת בסט הנתונים של הפינגויינים, תוך שאנחנו משתמשים בויז’ואליזציות על מנת להבין מה הקשר בין אורך לרוחב המקור.</p>
 <section id="הבסיס" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="הבסיס"><span class="header-section-number">4.1</span> הבסיס</h2>
-<p>נתחיל בגרף פשוט, ונתקדם ממנו לסדרה של גרפים.</p>
+<p>נתחיל בגרף פשוט, ונתקדם ממנו לסדרה של גרפים. ראשית נטען את החבילות הנדרשות לנו לפרק, ונגדיר את התמה – עיצוב הגרפים – שבו נשתמש (הסבר נוסף על תמות בהמשך פרק זה).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">theme_set</span>(ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
@@ -790,23 +791,23 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(penguin_ranges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ecqmodcrsw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ecqmodcrsw table {
+<div id="wukuxoortr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wukuxoortr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ecqmodcrsw thead, #ecqmodcrsw tbody, #ecqmodcrsw tfoot, #ecqmodcrsw tr, #ecqmodcrsw td, #ecqmodcrsw th {
+#wukuxoortr thead, #wukuxoortr tbody, #wukuxoortr tfoot, #wukuxoortr tr, #wukuxoortr td, #wukuxoortr th {
   border-style: none;
 }
 
-#ecqmodcrsw p {
+#wukuxoortr p {
   margin: 0;
   padding: 0;
 }
 
-#ecqmodcrsw .gt_table {
+#wukuxoortr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -832,12 +833,12 @@ Tip
   border-left-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_caption {
+#wukuxoortr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ecqmodcrsw .gt_title {
+#wukuxoortr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -849,7 +850,7 @@ Tip
   border-bottom-width: 0;
 }
 
-#ecqmodcrsw .gt_subtitle {
+#wukuxoortr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -861,7 +862,7 @@ Tip
   border-top-width: 0;
 }
 
-#ecqmodcrsw .gt_heading {
+#wukuxoortr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -873,13 +874,13 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_bottom_border {
+#wukuxoortr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_col_headings {
+#wukuxoortr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -894,7 +895,7 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_col_heading {
+#wukuxoortr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -914,7 +915,7 @@ Tip
   overflow-x: hidden;
 }
 
-#ecqmodcrsw .gt_column_spanner_outer {
+#wukuxoortr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -926,15 +927,15 @@ Tip
   padding-right: 4px;
 }
 
-#ecqmodcrsw .gt_column_spanner_outer:first-child {
+#wukuxoortr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ecqmodcrsw .gt_column_spanner_outer:last-child {
+#wukuxoortr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ecqmodcrsw .gt_column_spanner {
+#wukuxoortr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -946,11 +947,11 @@ Tip
   width: 100%;
 }
 
-#ecqmodcrsw .gt_spanner_row {
+#wukuxoortr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ecqmodcrsw .gt_group_heading {
+#wukuxoortr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -976,7 +977,7 @@ Tip
   text-align: left;
 }
 
-#ecqmodcrsw .gt_empty_group_heading {
+#wukuxoortr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -991,15 +992,15 @@ Tip
   vertical-align: middle;
 }
 
-#ecqmodcrsw .gt_from_md > :first-child {
+#wukuxoortr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ecqmodcrsw .gt_from_md > :last-child {
+#wukuxoortr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ecqmodcrsw .gt_row {
+#wukuxoortr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1018,7 +1019,7 @@ Tip
   overflow-x: hidden;
 }
 
-#ecqmodcrsw .gt_stub {
+#wukuxoortr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1031,7 +1032,7 @@ Tip
   padding-right: 5px;
 }
 
-#ecqmodcrsw .gt_stub_row_group {
+#wukuxoortr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1045,15 +1046,15 @@ Tip
   vertical-align: top;
 }
 
-#ecqmodcrsw .gt_row_group_first td {
+#wukuxoortr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ecqmodcrsw .gt_row_group_first th {
+#wukuxoortr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ecqmodcrsw .gt_summary_row {
+#wukuxoortr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1063,16 +1064,16 @@ Tip
   padding-right: 5px;
 }
 
-#ecqmodcrsw .gt_first_summary_row {
+#wukuxoortr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_first_summary_row.thick {
+#wukuxoortr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ecqmodcrsw .gt_last_summary_row {
+#wukuxoortr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1082,7 +1083,7 @@ Tip
   border-bottom-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_grand_summary_row {
+#wukuxoortr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1092,7 +1093,7 @@ Tip
   padding-right: 5px;
 }
 
-#ecqmodcrsw .gt_first_grand_summary_row {
+#wukuxoortr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1102,7 +1103,7 @@ Tip
   border-top-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_last_grand_summary_row_top {
+#wukuxoortr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1112,11 +1113,11 @@ Tip
   border-bottom-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_striped {
+#wukuxoortr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ecqmodcrsw .gt_table_body {
+#wukuxoortr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1125,7 +1126,7 @@ Tip
   border-bottom-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_footnotes {
+#wukuxoortr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1139,7 +1140,7 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_footnote {
+#wukuxoortr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1148,7 +1149,7 @@ Tip
   padding-right: 5px;
 }
 
-#ecqmodcrsw .gt_sourcenotes {
+#wukuxoortr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1162,7 +1163,7 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#ecqmodcrsw .gt_sourcenote {
+#wukuxoortr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1170,63 +1171,63 @@ Tip
   padding-right: 5px;
 }
 
-#ecqmodcrsw .gt_left {
+#wukuxoortr .gt_left {
   text-align: left;
 }
 
-#ecqmodcrsw .gt_center {
+#wukuxoortr .gt_center {
   text-align: center;
 }
 
-#ecqmodcrsw .gt_right {
+#wukuxoortr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ecqmodcrsw .gt_font_normal {
+#wukuxoortr .gt_font_normal {
   font-weight: normal;
 }
 
-#ecqmodcrsw .gt_font_bold {
+#wukuxoortr .gt_font_bold {
   font-weight: bold;
 }
 
-#ecqmodcrsw .gt_font_italic {
+#wukuxoortr .gt_font_italic {
   font-style: italic;
 }
 
-#ecqmodcrsw .gt_super {
+#wukuxoortr .gt_super {
   font-size: 65%;
 }
 
-#ecqmodcrsw .gt_footnote_marks {
+#wukuxoortr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ecqmodcrsw .gt_asterisk {
+#wukuxoortr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ecqmodcrsw .gt_indent_1 {
+#wukuxoortr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ecqmodcrsw .gt_indent_2 {
+#wukuxoortr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ecqmodcrsw .gt_indent_3 {
+#wukuxoortr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ecqmodcrsw .gt_indent_4 {
+#wukuxoortr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ecqmodcrsw .gt_indent_5 {
+#wukuxoortr .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
