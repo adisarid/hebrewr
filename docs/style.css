@@ -34,6 +34,10 @@ p code {
   white-space: inherit;
 }
 
+code {
+  color: #2780e3;
+}
+
 pre {
   word-break: normal;
   word-wrap: normal;
