@@ -15,7 +15,7 @@ book:
     - 04-visualizations-ggplot2.qmd
     - 05-pivot-and-join.qmd
     - 06-hypothesis-tests.qmd
-    - 07-linear-regression.Rmd
+    - 07-linear-regression.qmd
     - 08-advanced-models.Rmd
     - 09-purrr.qmd
     - 10-hebrew-in-R.qmd

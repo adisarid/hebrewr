@@ -1,4 +1,4 @@
-# לולאות מיוחדות {#about}
+# לולאות מיוחדות {#sec-purrr-explained}
 
 פרק על purrr ופרק על tidy evaluation.
 
