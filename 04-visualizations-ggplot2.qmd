@@ -31,7 +31,7 @@ penguins %>%
   geom_point()
 ```
 
-ראשית מבחינת הנתונים המוצגים, לא ניתן להבחין בקשר משמעותי. במידה מסוימת נראה שעליה במשתנה bill_length_mm מעידה על ירידה במשתנה bill_depth_mm (כי ככל שמתקדמים בציר ה-x יש ירידה קלה של התצפיות בציר ה-y). זוהי מסקנה שגויה, ותיכף נבין למה, אבל לפני כן, עוד מספר הסברים
+ראשית מבחינת הנתונים המוצגים, לא ניתן להבחין בקשר משמעותי. במידה מסוימת נראה שעליה במשתנה bill_length_mm מעידה על ירידה במשתנה bill_depth_mm (כי ככל שמתקדמים בציר ה-x יש ירידה קלה של התצפיות בציר ה-y). זוהי מסקנה שגויה, ותיכף נבין למה, אבל לפני כן, עוד מספר הסברים:
 
 הודעת האזהרה שמופיעה מעל הגרף מיידעת אותנו שיש שתי שורות שאינן באות לידי ביטוי בתרשים בשל ערכים חסרים (חסר נתון על אורך או עומק או שניהם).
 
@@ -50,7 +50,7 @@ penguins %>%
 כעת ניזכר שבדאטה מיוצגים שלושה זנים של פינגויינים, וייתכן שהקשר גם מושפע מעובדה זו. נוסיף מיפוי של זן הפינגויין לצבע של הנקודות. הוספה זו תתבצע עם הארגומנט `color=species`:
 
 ```{r penguins vis 2}
-penguins %>% 
+base_penguins_chart <- penguins %>% 
   ggplot(aes(x = bill_length_mm,
              y = bill_depth_mm,
              color = species)) + 
@@ -58,6 +58,13 @@ penguins %>%
 ```
 
 כעת לאחר הוספת הצבע ניתן להבחין בבירור בכך שבכל אחד מהזנים **עליה** במשתנה `bill_length_mm` מביאה לעלייה במשתנה `bill_depth_mm` (וזה בעצם הפוך למה שחשבנו כשהסתכלנו על התרשים מבלי לחלק לזנים של הפינגויינים השונים). זו תובנה מאוד משמעותית, שנקראת בשפה המקצועית "אינטראקציה". יש אינטראקציה בין אורך המקור לבין זן הפינגויין בהשפעתם על עומק המקור. ניגע באינטראקציות גם בהמשך (בפרק על רגרסיה לינארית).
+
+נוסיף לגרף גם שלושה קווי רגרסיה לינארית, עבור כל אחת מהקבוצות:
+
+```{r pengions vis 3 with linear regression lines}
+base_penguins_chart + 
+  stat_smooth(method = "lm", se = FALSE)
+```
 
 ::: callout-note
 **כדאי להכיר - "פרדוס סימפסון":** התופעה שבה הבחנו בשינוי המשמעות של הקשר בין המשתנים כאשר מוסיפים אינטראקציה או זיהוי של הקבוצה, תוארה על ידי סימפסון [@simpson1951]. אחד מהגילגולים המודרנים של הפרדוקס הזה נמצא בדאטהסט שנוצר על ידי סימולציה ונקרא Datasaurus dozen [ראו @murray2021].
@@ -87,15 +94,14 @@ datasaurus_dozen %>%
 כעת נייפה את הגרף עם כותרות:
 
 ```{r penguins vis 3}
-penguins %>% 
-  ggplot(aes(x = bill_length_mm,
-             y = bill_depth_mm,
-             color = species)) + 
-  geom_point() + 
+pebguin_chart_w_lm <- base_penguins_chart +
+  stat_smooth(method = "lm", se = FALSE) +
   xlab("Bill length [mm]") + 
   ylab("Bill depth [mm]") + 
   ggtitle("Relationship of bill length and depth in penguins", 
-          subtitle = "Interaction with species")
+          subtitle = "Interaction with species (with linear regression)")
+
+pebguin_chart_w_lm
 ```
 
 ## הגדרת תמות
@@ -103,15 +109,7 @@ penguins %>%
 ניתן להגדיר תמות (Themes) שיתנו לגרף חזות אחרת. בחבילת `ggplot2` יש כמה תמות מוגדרות מראש שניתן להתחיל מהם וגם לעצב אותן מחדש. כדוגמה, נשתמש בתמה מסוג `linedraw` ונגדיר מחדש את מיקום המקרא ואת גודל הטקסט של הכותרות.
 
 ```{r examples of themes}
-penguins %>% 
-  ggplot(aes(x = bill_length_mm,
-             y = bill_depth_mm,
-             color = species)) + 
-  geom_point() + 
-  xlab("Bill length [mm]") + 
-  ylab("Bill depth [mm]") + 
-  ggtitle("Relationship of bill length and depth", 
-          subtitle = "Interaction with species") + 
+pebguin_chart_w_lm +
   theme_linedraw() + 
   theme(legend.position = "top",
         plot.title = element_text(size = 22),
