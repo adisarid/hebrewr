@@ -253,8 +253,14 @@ div.csl-indent {
     <h2 id="toc-title">בעמוד זה</h2>
    
   <ul>
-  <li><a href="#פלט-הפקודה-lm" id="toc-פלט-הפקודה-lm" class="nav-link active" data-scroll-target="#פלט-הפקודה-lm"><span class="header-section-number">7.1</span> פלט הפקודה <code>lm</code></a></li>
-  <li><a href="#סכום-ריבועי-השגיאות" id="toc-סכום-ריבועי-השגיאות" class="nav-link" data-scroll-target="#סכום-ריבועי-השגיאות"><span class="header-section-number">7.2</span> סכום ריבועי השגיאות</a></li>
+  <li><a href="#פלט-הפקודה-lm" id="toc-פלט-הפקודה-lm" class="nav-link active" data-scroll-target="#פלט-הפקודה-lm"><span class="header-section-number">7.1</span> פלט הפקודה <code>lm</code></a>
+  <ul class="collapse">
+  <li><a href="#השאריות" id="toc-השאריות" class="nav-link" data-scroll-target="#השאריות"><span class="header-section-number">7.1.1</span> השאריות</a></li>
+  <li><a href="#טבלת-המקדמים" id="toc-טבלת-המקדמים" class="nav-link" data-scroll-target="#טבלת-המקדמים"><span class="header-section-number">7.1.2</span> טבלת המקדמים</a></li>
+  <li><a href="#שונות-מוסברת" id="toc-שונות-מוסברת" class="nav-link" data-scroll-target="#שונות-מוסברת"><span class="header-section-number">7.1.3</span> שונות מוסברת</a></li>
+  <li><a href="#סטטיסטי-f" id="toc-סטטיסטי-f" class="nav-link" data-scroll-target="#סטטיסטי-f"><span class="header-section-number">7.1.4</span> סטטיסטי F</a></li>
+  </ul></li>
+  <li><a href="#המחשה-של-שגיאות-המודל" id="toc-המחשה-של-שגיאות-המודל" class="nav-link" data-scroll-target="#המחשה-של-שגיאות-המודל"><span class="header-section-number">7.2</span> המחשה של שגיאות המודל</a></li>
   <li><a href="#בדיקת-הנחות-הרגרסיה" id="toc-בדיקת-הנחות-הרגרסיה" class="nav-link" data-scroll-target="#בדיקת-הנחות-הרגרסיה"><span class="header-section-number">7.3</span> בדיקת הנחות הרגרסיה</a></li>
   <li><a href="#סידור-פלט-הפקודה" id="toc-סידור-פלט-הפקודה" class="nav-link" data-scroll-target="#סידור-פלט-הפקודה"><span class="header-section-number">7.4</span> סידור פלט הפקודה</a></li>
   </ul>
@@ -359,6 +365,8 @@ F-statistic: 26.97 on 1 and 149 DF,  p-value: 6.674e-07</code></pre>
 <section id="פלט-הפקודה-lm" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="פלט-הפקודה-lm"><span class="header-section-number">7.1</span> פלט הפקודה <code>lm</code></h2>
 <p>החלק הראשון בפלט (call) מתאר את הפקודה שבה השתמשנו על מנת לקבל את המודל.</p>
+<section id="השאריות" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="השאריות"><span class="header-section-number">7.1.1</span> השאריות</h3>
 <p>החלק השני (residuals) מתאר את שאריות המודל. השאריות הן ההפרש בין הערך האמיתי של y לבין תוצאת המודל (במקרה זה הערך של אורך המקור פחות חיזוי המודל לאורך המקור). בפלט המודל ניתן לראות את המינימום, ואת הרבעונים (ביניהם החציון), ואת המקסימום. ניתן גם לחלץ את השאריות עצמן על ידי הקריאה <code>adelie_lm$residuals</code>. באופן כזה ניתן גם להסתכל בהתפלגות עצמה (נבחן זאת בהמשך הפרק).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -373,9 +381,23 @@ Note
 <p>שימו לב שבשאריות לא מופיע ממוצע השגיאות. הסיבה לכך היא שבמודל רגרסיה לינארית ממוצע השגיאות הוא תמיד אפס. למעוניינים, ניתן למצוא הוכחות מתמטיות בספרות, וגם במקורות שונים באינטרנט, לדוגמה <a href="https://math.stackexchange.com/questions/494181/why-the-sum-of-residuals-equals-0-when-we-do-a-sample-regression-by-ols#:~:text=company%20blog-,Why%20the%20sum%20of%20residuals%20equals%200%20when,a%20sample%20regression%20by%20OLS%3F&amp;text=From%20a%20geometric%20point%20of,0%2C%20and%20we%20are%20done.">בקישור זה</a>.</p>
 </div>
 </div>
+<p>אם נקפוץ רגע לתחתית הפלט, נראה שבשורה השלישית מלמטה יש את ה-Residual standard error, שהיא טעות התקן של השאריות. הערך שמופיע בצמוד (149) הוא מספר דרגות החופש של המודל, קרי מספר התצפיות פחות מספר הפרמטרים של המודל, וניתן לחלץ אותו על ידי קריאה ל-<code>adelie_lm$df.residual</code>.<br>
+נסו לחשב את <code>sqrt(sum(adelie_lm$residuals^2)/adelie_lm$df.residual))</code> על מנת לשחזר את החישוב המופיע בשורה הזו.</p>
 </section>
-<section id="סכום-ריבועי-השגיאות" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="סכום-ריבועי-השגיאות"><span class="header-section-number">7.2</span> סכום ריבועי השגיאות</h2>
+<section id="טבלת-המקדמים" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="טבלת-המקדמים"><span class="header-section-number">7.1.2</span> טבלת המקדמים</h3>
+<p>הטבלה שמתחת לשאריות מציגה את מקדמי הרגרסיה, כאשר ה-Intercept הוא החותך (<span class="math inline">\(\beta_0\)</span>) והשורות הבאות מתייחסות למקדמים של המשתנים (במקרה הזה המקדם של המשתנה <code>bill_length_mm</code>. העמודה <code>Estimate</code> מתייחסת לערך עצמו של המקדם (למעשה מדובר באמד למקדם), העמודה השניה לטעות התקן של המקדם, ושתי העמודות האחרונות מתייחסות למבחן סטטסטי מסוג T-test הבוחן האם המקדם שווה ל-0 (בהשערת האפשר) או שונה מאפס (השערה אלטרנטיבית). העמודה <code>t value</code> מתייחסת לערך סטטיסטי T והעמודה <code>Pr(&lt;|t|)</code> מתייחסת לערך ה-p-value של המבחן.<br>
+מימין לעמודת ה-p-value ישנו מקרא של ערכי p-value, שמתואר גם מתחת לטבלה, ועוזר לנו לזהות מיידית מקדמים מובהקים (שימושי בטבלאות ארוכות עם הרבה מקדמים).</p>
+</section>
+<section id="שונות-מוסברת" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="שונות-מוסברת"><span class="header-section-number">7.1.3</span> שונות מוסברת</h3>
+</section>
+<section id="סטטיסטי-f" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="סטטיסטי-f"><span class="header-section-number">7.1.4</span> סטטיסטי F</h3>
+</section>
+</section>
+<section id="המחשה-של-שגיאות-המודל" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="המחשה-של-שגיאות-המודל"><span class="header-section-number">7.2</span> המחשה של שגיאות המודל</h2>
 <p>TBD.</p>
 </section>
 <section id="בדיקת-הנחות-הרגרסיה" class="level2" data-number="7.3">
@@ -401,23 +423,23 @@ Note
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(adelie_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="vjoifutppw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vjoifutppw table {
+<div id="qtqcocweii" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qtqcocweii table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vjoifutppw thead, #vjoifutppw tbody, #vjoifutppw tfoot, #vjoifutppw tr, #vjoifutppw td, #vjoifutppw th {
+#qtqcocweii thead, #qtqcocweii tbody, #qtqcocweii tfoot, #qtqcocweii tr, #qtqcocweii td, #qtqcocweii th {
   border-style: none;
 }
 
-#vjoifutppw p {
+#qtqcocweii p {
   margin: 0;
   padding: 0;
 }
 
-#vjoifutppw .gt_table {
+#qtqcocweii .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -443,12 +465,12 @@ Note
   border-left-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_caption {
+#qtqcocweii .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vjoifutppw .gt_title {
+#qtqcocweii .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -460,7 +482,7 @@ Note
   border-bottom-width: 0;
 }
 
-#vjoifutppw .gt_subtitle {
+#qtqcocweii .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -472,7 +494,7 @@ Note
   border-top-width: 0;
 }
 
-#vjoifutppw .gt_heading {
+#qtqcocweii .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -484,13 +506,13 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_bottom_border {
+#qtqcocweii .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_col_headings {
+#qtqcocweii .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -505,7 +527,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_col_heading {
+#qtqcocweii .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -525,7 +547,7 @@ Note
   overflow-x: hidden;
 }
 
-#vjoifutppw .gt_column_spanner_outer {
+#qtqcocweii .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -537,15 +559,15 @@ Note
   padding-right: 4px;
 }
 
-#vjoifutppw .gt_column_spanner_outer:first-child {
+#qtqcocweii .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vjoifutppw .gt_column_spanner_outer:last-child {
+#qtqcocweii .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vjoifutppw .gt_column_spanner {
+#qtqcocweii .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -557,11 +579,11 @@ Note
   width: 100%;
 }
 
-#vjoifutppw .gt_spanner_row {
+#qtqcocweii .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vjoifutppw .gt_group_heading {
+#qtqcocweii .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -587,7 +609,7 @@ Note
   text-align: left;
 }
 
-#vjoifutppw .gt_empty_group_heading {
+#qtqcocweii .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -602,15 +624,15 @@ Note
   vertical-align: middle;
 }
 
-#vjoifutppw .gt_from_md > :first-child {
+#qtqcocweii .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vjoifutppw .gt_from_md > :last-child {
+#qtqcocweii .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vjoifutppw .gt_row {
+#qtqcocweii .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -629,7 +651,7 @@ Note
   overflow-x: hidden;
 }
 
-#vjoifutppw .gt_stub {
+#qtqcocweii .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -642,7 +664,7 @@ Note
   padding-right: 5px;
 }
 
-#vjoifutppw .gt_stub_row_group {
+#qtqcocweii .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -656,15 +678,15 @@ Note
   vertical-align: top;
 }
 
-#vjoifutppw .gt_row_group_first td {
+#qtqcocweii .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vjoifutppw .gt_row_group_first th {
+#qtqcocweii .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vjoifutppw .gt_summary_row {
+#qtqcocweii .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -674,16 +696,16 @@ Note
   padding-right: 5px;
 }
 
-#vjoifutppw .gt_first_summary_row {
+#qtqcocweii .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_first_summary_row.thick {
+#qtqcocweii .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vjoifutppw .gt_last_summary_row {
+#qtqcocweii .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -693,7 +715,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_grand_summary_row {
+#qtqcocweii .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -703,7 +725,7 @@ Note
   padding-right: 5px;
 }
 
-#vjoifutppw .gt_first_grand_summary_row {
+#qtqcocweii .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -713,7 +735,7 @@ Note
   border-top-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_last_grand_summary_row_top {
+#qtqcocweii .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -723,11 +745,11 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_striped {
+#qtqcocweii .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vjoifutppw .gt_table_body {
+#qtqcocweii .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -736,7 +758,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_footnotes {
+#qtqcocweii .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -750,7 +772,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_footnote {
+#qtqcocweii .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -759,7 +781,7 @@ Note
   padding-right: 5px;
 }
 
-#vjoifutppw .gt_sourcenotes {
+#qtqcocweii .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -773,7 +795,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#vjoifutppw .gt_sourcenote {
+#qtqcocweii .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -781,63 +803,63 @@ Note
   padding-right: 5px;
 }
 
-#vjoifutppw .gt_left {
+#qtqcocweii .gt_left {
   text-align: left;
 }
 
-#vjoifutppw .gt_center {
+#qtqcocweii .gt_center {
   text-align: center;
 }
 
-#vjoifutppw .gt_right {
+#qtqcocweii .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vjoifutppw .gt_font_normal {
+#qtqcocweii .gt_font_normal {
   font-weight: normal;
 }
 
-#vjoifutppw .gt_font_bold {
+#qtqcocweii .gt_font_bold {
   font-weight: bold;
 }
 
-#vjoifutppw .gt_font_italic {
+#qtqcocweii .gt_font_italic {
   font-style: italic;
 }
 
-#vjoifutppw .gt_super {
+#qtqcocweii .gt_super {
   font-size: 65%;
 }
 
-#vjoifutppw .gt_footnote_marks {
+#qtqcocweii .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vjoifutppw .gt_asterisk {
+#qtqcocweii .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vjoifutppw .gt_indent_1 {
+#qtqcocweii .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vjoifutppw .gt_indent_2 {
+#qtqcocweii .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vjoifutppw .gt_indent_3 {
+#qtqcocweii .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vjoifutppw .gt_indent_4 {
+#qtqcocweii .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vjoifutppw .gt_indent_5 {
+#qtqcocweii .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

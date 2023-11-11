@@ -394,7 +394,7 @@
     "href": "07-linear-regression.html#פלט-הפקודה-lm",
     "title": "7  רגרסיה לינארית",
     "section": "7.1 פלט הפקודה lm",
-    "text": "7.1 פלט הפקודה lm\nהחלק הראשון בפלט (call) מתאר את הפקודה שבה השתמשנו על מנת לקבל את המודל.\nהחלק השני (residuals) מתאר את שאריות המודל. השאריות הן ההפרש בין הערך האמיתי של y לבין תוצאת המודל (במקרה זה הערך של אורך המקור פחות חיזוי המודל לאורך המקור). בפלט המודל ניתן לראות את המינימום, ואת הרבעונים (ביניהם החציון), ואת המקסימום. ניתן גם לחלץ את השאריות עצמן על ידי הקריאה adelie_lm$residuals. באופן כזה ניתן גם להסתכל בהתפלגות עצמה (נבחן זאת בהמשך הפרק).\n\n\n\n\n\n\nNote\n\n\n\nשימו לב שבשאריות לא מופיע ממוצע השגיאות. הסיבה לכך היא שבמודל רגרסיה לינארית ממוצע השגיאות הוא תמיד אפס. למעוניינים, ניתן למצוא הוכחות מתמטיות בספרות, וגם במקורות שונים באינטרנט, לדוגמה בקישור זה.",
+    "text": "7.1 פלט הפקודה lm\nהחלק הראשון בפלט (call) מתאר את הפקודה שבה השתמשנו על מנת לקבל את המודל.\n\n7.1.1 השאריות\nהחלק השני (residuals) מתאר את שאריות המודל. השאריות הן ההפרש בין הערך האמיתי של y לבין תוצאת המודל (במקרה זה הערך של אורך המקור פחות חיזוי המודל לאורך המקור). בפלט המודל ניתן לראות את המינימום, ואת הרבעונים (ביניהם החציון), ואת המקסימום. ניתן גם לחלץ את השאריות עצמן על ידי הקריאה adelie_lm$residuals. באופן כזה ניתן גם להסתכל בהתפלגות עצמה (נבחן זאת בהמשך הפרק).\n\n\n\n\n\n\nNote\n\n\n\nשימו לב שבשאריות לא מופיע ממוצע השגיאות. הסיבה לכך היא שבמודל רגרסיה לינארית ממוצע השגיאות הוא תמיד אפס. למעוניינים, ניתן למצוא הוכחות מתמטיות בספרות, וגם במקורות שונים באינטרנט, לדוגמה בקישור זה.\n\n\nאם נקפוץ רגע לתחתית הפלט, נראה שבשורה השלישית מלמטה יש את ה-Residual standard error, שהיא טעות התקן של השאריות. הערך שמופיע בצמוד (149) הוא מספר דרגות החופש של המודל, קרי מספר התצפיות פחות מספר הפרמטרים של המודל, וניתן לחלץ אותו על ידי קריאה ל-adelie_lm$df.residual.\nנסו לחשב את sqrt(sum(adelie_lm$residuals^2)/adelie_lm$df.residual)) על מנת לשחזר את החישוב המופיע בשורה הזו.\n\n\n7.1.2 טבלת המקדמים\nהטבלה שמתחת לשאריות מציגה את מקדמי הרגרסיה, כאשר ה-Intercept הוא החותך (\\(\\beta_0\\)) והשורות הבאות מתייחסות למקדמים של המשתנים (במקרה הזה המקדם של המשתנה bill_length_mm. העמודה Estimate מתייחסת לערך עצמו של המקדם (למעשה מדובר באמד למקדם), העמודה השניה לטעות התקן של המקדם, ושתי העמודות האחרונות מתייחסות למבחן סטטסטי מסוג T-test הבוחן האם המקדם שווה ל-0 (בהשערת האפשר) או שונה מאפס (השערה אלטרנטיבית). העמודה t value מתייחסת לערך סטטיסטי T והעמודה Pr(&lt;|t|) מתייחסת לערך ה-p-value של המבחן.\nמימין לעמודת ה-p-value ישנו מקרא של ערכי p-value, שמתואר גם מתחת לטבלה, ועוזר לנו לזהות מיידית מקדמים מובהקים (שימושי בטבלאות ארוכות עם הרבה מקדמים).\n\n\n7.1.3 שונות מוסברת\n\n\n7.1.4 סטטיסטי F",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>רגרסיה לינארית</span>"
     ]
@@ -507,6 +507,16 @@
     "text": "Murray, Lori L., and John G. Wilson. 2021. “Generating Data Sets\nfor Teaching the Importance of Regression Analysis.” Decision\nSciences Journal of Innovative Education 19 (2): 157–66. https://doi.org/10.1111/dsji.12233.\n\n\nSimpson, E. H. 1951. “The Interpretation of Interaction in\nContingency Tables.” Journal of the Royal Statistical\nSociety: Series B (Methodological) 13 (2): 238–41. https://doi.org/10.1111/j.2517-6161.1951.tb00088.x.\n\n\nWalpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993.\nProbability and Statistics for Engineers and Scientists. Vol.\n5. Macmillan New York.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.”\nJournal of Computational and Graphical Statistics 19 (1): 3–28.\nhttps://doi.org/10.1198/jcgs.2009.07098.\n\n\n———. 2021. Mastering Shiny. \"O’Reilly Media, Inc.\".\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \"O’Reilly\nMedia, Inc.\".\n\n\nXie, Yihui, Joseph J Allaire, and Garrett Grolemund. 2018. R\nMarkdown: The Definitive Guide. CRC Press.",
     "crumbs": [
       "מקורות"
+    ]
+  },
+  {
+    "objectID": "07-linear-regression.html#המחשה-של-שגיאות-המודל",
+    "href": "07-linear-regression.html#המחשה-של-שגיאות-המודל",
+    "title": "7  רגרסיה לינארית",
+    "section": "7.2 המחשה של שגיאות המודל",
+    "text": "7.2 המחשה של שגיאות המודל\nTBD.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>רגרסיה לינארית</span>"
     ]
   }
 ]
