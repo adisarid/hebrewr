@@ -22,8 +22,17 @@ book:
     - about.Rmd
     - references.qmd
   page-footer: 
+    background: "#40b3f6"
+    foreground: "#ffffff"
     center:
-       - text: '<script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>'
+       - text: >
+          <strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד
+          בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a>
+    left:
+       - text: >
+           <script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script>
+           <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9");
+           </script>
   site-url: https://www.hebrewr.co.il
   repo-url: https://www.github.com/adisarid/hebrewr
   #navbar: true

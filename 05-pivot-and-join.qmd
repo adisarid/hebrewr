@@ -153,3 +153,5 @@ customers %>%
 
 השתמשו בפקודה `semi_join` במקום `anti_join`. מה עושה הפקודה?
 :::
+
+::: end-page

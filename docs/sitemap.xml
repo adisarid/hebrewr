@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.hebrewr.co.il/index.html</loc>
-    <lastmod>2023-11-10T07:10:47.012Z</lastmod>
+    <lastmod>2023-11-25T18:06:40.741Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/01-introduction.html</loc>
-    <lastmod>2023-06-29T09:24:38.194Z</lastmod>
+    <lastmod>2023-11-25T18:06:50.625Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/02-base-R.html</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/03-data-munging-tidyverse.html</loc>
-    <lastmod>2023-11-10T06:59:51.134Z</lastmod>
+    <lastmod>2023-11-25T17:35:34.968Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/04-visualizations-ggplot2.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/05-pivot-and-join.html</loc>
-    <lastmod>2023-11-10T06:59:51.134Z</lastmod>
+    <lastmod>2023-11-25T17:35:51.192Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/06-hypothesis-tests.html</loc>
@@ -34,11 +34,11 @@
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/08-advanced-models.html</loc>
-    <lastmod>2023-06-29T09:24:38.194Z</lastmod>
+    <lastmod>2023-11-25T17:35:31.612Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/09-purrr.html</loc>
-    <lastmod>2023-11-10T06:59:51.142Z</lastmod>
+    <lastmod>2023-11-25T17:36:14.852Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/10-hebrew-in-R.html</loc>
