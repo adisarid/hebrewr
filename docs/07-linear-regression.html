@@ -270,8 +270,8 @@ div.csl-indent {
   <li><a href="#רגרסיה-מרובת-משתנים" id="toc-רגרסיה-מרובת-משתנים" class="nav-link" data-scroll-target="#רגרסיה-מרובת-משתנים"><span class="header-section-number">7.5</span> רגרסיה מרובת משתנים</a>
   <ul class="collapse">
   <li><a href="#אינטראקציה-של-משתנים" id="toc-אינטראקציה-של-משתנים" class="nav-link" data-scroll-target="#אינטראקציה-של-משתנים"><span class="header-section-number">7.5.1</span> אינטראקציה של משתנים</a></li>
-  <li><a href="#המחשה-של-מקדמי-הרגרסיה" id="toc-המחשה-של-מקדמי-הרגרסיה" class="nav-link" data-scroll-target="#המחשה-של-מקדמי-הרגרסיה"><span class="header-section-number">7.5.2</span> המחשה של מקדמי הרגרסיה</a></li>
   </ul></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">7.6</span> סיכום</a></li>
   </ul>
 </nav>
     </div>
@@ -1068,7 +1068,7 @@ group   3  0.8096 0.4904
 </div>
 </div>
 <p>חבילות נוספות הינן <code>stargazer</code> לטבלאות, ו-<code>jtools</code> לויז’ואליזציות.<br>
-לא נדון בחבילות אלו בפרק זה, אך הקורא המעוניין מוזמן להתעמק בחבילות וביכולות.</p>
+לא נדון בחבילות אלו בפרק זה, אך הקורא המעוניין מוזמן להתעמק בחבילות וביכולות. בחלק האחרון בפרק זה נדגים ויז’ואליציה של מקדמי רגרסיה.</p>
 </section>
 <section id="רגרסיה-מרובת-משתנים" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="רגרסיה-מרובת-משתנים"><span class="header-section-number">7.5</span> רגרסיה מרובת משתנים</h2>
@@ -1107,13 +1107,116 @@ Multiple R-squared:  0.4009,    Adjusted R-squared:  0.3839
 F-statistic: 23.58 on 4 and 141 DF,  p-value: 6.06e-15</code></pre>
 </div>
 </div>
+<p>ראשית, נשים לב לאופן ההתייחסות של המודל למשתנה <code>sex</code> שהוא משתנה מסוג פקטור (factor). למשתנה זה ישנם שני ערכים אפשריים (male/female). הפקודה הופכת את המשתנה למשתנה דמה (dummy variable), אשר מקבל את הערך 1 כאשר הפרט ממין זכר (ומקבל 0 כאשר הפרט ממין נקבה). לכן בטבלת הפלט בשורה הרלוונטית המתייחסת למשתנה <code>sex</code>, מופיע גם הערך שממופה על ידי הפקודה ל-1 (כ-<code>sexmale</code>).</p>
+<p>פלט הפקודה מלמד אותנו את התכונות הבאות של המודל:</p>
+<ul>
+<li><p>המודל מסביר כ-40% מהשונות (<code>Multiple R-squared:  0.4009</code>)</p></li>
+<li><p>הרגרסיה מובהקת (כלומר לפחות אחד מהמקדמים שונה מאפס), על בסיס ה-p-value שמדווח בתחתית הפלט (<code>p-value: 6.06e-15</code>)</p></li>
+<li><p>המשתנים המובהקים הינם <code>body_mass_g</code>, וכן <code>sex</code>:</p>
+<ul>
+<li><p>כאשר משקל הפרט עולה בגרם, אז עומק המקור (המשתנה התלוי) גדל ב-0.0007625 ס”מ (בהתאם למקדם של המשקל)</p></li>
+<li><p>כאשר הפינגויין הינו זכר, אז עומק המקור גדל ב-0.903 (בהתאם למקדם של <code>sex</code>).</p></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: פקטורים מרובי ערכים ברגרסיה לינארית
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>בדוגמה שלהלן ראינו משתנה פקטוריאלי שמקבל שני ערכים אפשריים, ובא לידי ביטוי בפלט הפקודה בשורה של <code>sexmale</code>.</p>
+<ul>
+<li><p>מה צפוי לקרות במקרה של משתנה פקטוריאלי שיש לו יותר ערכים אפשריים?</p></li>
+<li><p>כמה משתני דמה נקבל במקרה של משתנה פקטור שיש לו t ערכים מקוריים אפשריים?</p></li>
+<li><p>האם תוכלו ליצור מהנתונים הקיימים (<code>penguins</code>) מודל רגרסיה המכיל משתנה פקטוריאלי עם יותר משני ערכים אפשריים?</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: בחינת הנחות מודל הרגרסיה
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>השתמשו בכלים שנידונו בסעיף “בדיקת הנחות הרגרסיה” על מנת לבחון את הנחות הרגרסיה שלעיל:</p>
+<ul>
+<li><p>האם מתקיימת הנחת הומוסקדסטיות?</p></li>
+<li><p>האם מתקיימת הנחת ההתפלגות הנורמלית של השאריות?</p></li>
+</ul>
+</div>
+</div>
 <section id="אינטראקציה-של-משתנים" class="level3" data-number="7.5.1">
 <h3 data-number="7.5.1" class="anchored" data-anchor-id="אינטראקציה-של-משתנים"><span class="header-section-number">7.5.1</span> אינטראקציה של משתנים</h3>
-<p>TBD</p>
+<p>רגרסיה לינארית מניחה מודל לינארי (סכום של משתנים המוכפלים במקדמים), אך בפועל ניתן להשתמש בה גם על מנת לבטא קשרים שאינם לינאריים. לדוגמה מכפלה של משתנים, חזקות, ועוד קשרים פונקציונליים. התאמה זו ניתן לבצע על ידי הגדרה של משתנים נוספים שהם טרנספורמציה של משתנים קיימים, או לעיתים על ידי שימוש בארגומנט ה-<code>formula</code> בפונקציה <code>lm</code>. אחת הדוגמאות למקרים כאלו היא אינטראקציה בין משתנים, קרי כאשר היחס בין משתנה תלוי למשתנים הבלתי תלויים תלוי במכפלה בין המשתנים הבלתי תלויים.</p>
+<p>ניתן למצוא דוגמה לאינטראקציה גם בנתונים של הפינגויינים, ולמעשה, ראינו דוגמה דומה בפרק קודם שעסק בויז’ואליזציות (<a href="04-visualizations-ggplot2.html" class="quarto-xref">פרק&nbsp;<span>4</span></a>). נמחיש זאת באמצעות התרשים הבא שמציג את הקשר בין אורך הכנף, סוג הפינגויין, והשפעתם על עומק המקור.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">y =</span> bill_depth_mm, <span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Illustration of interaction between flipper_lenth_mm and species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="07-linear-regression_files/figure-html/showing interactions-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>כפי שניתן לראות בתרשים, לכל סוג פינגויינים קשר שונה בין עומק המקור ואורך הכנף. אם ננסה לבנות מודל שלא מביא בחשבון את האינטראקציה בין סוג הפינגויין לאורך הכנף, נקבל מודל מטעה שיציג קשר שלילי בין עומק המקור ואורך הכנף. למעשה, ניתן לראות שעבור פינגויינים מסוג Adelie ומסוג Chinstrap הקשר דומה, אך פינגויינים מסוג Gentoo ממחישים קשר שונה.</p>
+<p>על מנת להביא בחשבון את האינטראקציה המתוארת נשתמש בנוסחה הבאה: <code>bill_depth_mm ~ flipper_length_mm * species</code> להלן:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>interaction_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_depth_mm <span class="sc">~</span> flipper_length_mm <span class="sc">*</span> species, <span class="at">data =</span> penguins)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(interaction_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = bill_depth_mm ~ flipper_length_mm * species, data = penguins)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.73455 -0.66057 -0.02039  0.65146  2.92206 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                          7.47494    2.30556   3.242  0.00131 ** 
+flipper_length_mm                    0.05723    0.01213   4.718 3.50e-06 ***
+speciesChinstrap                    -7.14033    3.99381  -1.788  0.07470 .  
+speciesGentoo                      -15.71179    3.74181  -4.199 3.44e-05 ***
+flipper_length_mm:speciesChinstrap   0.03513    0.02059   1.706  0.08900 .  
+flipper_length_mm:speciesGentoo      0.04968    0.01820   2.730  0.00667 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9715 on 336 degrees of freedom
+  (2 observations deleted due to missingness)
+Multiple R-squared:  0.7615,    Adjusted R-squared:  0.758 
+F-statistic: 214.6 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>פרשנות הטבלה כעת תביא בחשבון את האינטראקציה:</p>
+<ul>
+<li><p>עבור פרטים מסוג Adelie, הקשר בין אורך הכנף לבין עומק המקור מתבטא במקדם של <code>flipper_length_mm</code>: כל תוספת של יחידה אחת לאורך הכנף מתבטא בתוספת של 0.05 מ”מ לעומק המקור.</p></li>
+<li><p>עבור פרטים מסוג Gentoo, יש להביא בחשבון את המקדם שמסומן בטבלה בשורה האחרונה (<code>flipper_length_mm:speciesGentoo</code>) כאשר כל תוספת של יחידה אחת לאורך הכנף מתבטא בתוספת של 0.11 מ”מ לעומק המקור (0.05723 + 0.04968).</p>
+<ul>
+<li>כמובן שלקשרים אלו ולצורך חיזוי עומק המקור, יש להביא בחשבון גם את המקדמים של <code>speciesGentoo</code> (אך זה אינו משפיע על “השיפוע” של הקשר אלא רק על “החותך” של קו הרגרסיה).</li>
+</ul></li>
+</ul>
 </section>
-<section id="המחשה-של-מקדמי-הרגרסיה" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="המחשה-של-מקדמי-הרגרסיה"><span class="header-section-number">7.5.2</span> המחשה של מקדמי הרגרסיה</h3>
-<p>TBD</p>
+</section>
+<section id="סיכום" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">7.6</span> סיכום</h2>
 <div class="end-page">
 
 <div class="hidden" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
@@ -1126,7 +1229,6 @@ F-statistic: 23.58 on 4 and 141 DF,  p-value: 6.06e-15</code></pre>
 Walpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993. <em>Probability and Statistics for Engineers and Scientists</em>. Vol. 5. Macmillan New York.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->
