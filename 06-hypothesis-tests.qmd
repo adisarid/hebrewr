@@ -339,8 +339,8 @@ penguins %>%
   scale_y_continuous(labels = scales::percent) + 
   ylab("Sample distribution") + xlab("") +
   ggtitle("Sample distribution of species over years") +
-  geom_label(aes(label = glue::glue("{round(prop*100)}%")),
-             position = position_fill(), show.legend = FALSE)
+  geom_text(aes(label = glue::glue("{round(prop*100)}%")),
+            position = position_fill(vjust = 0.5), show.legend = FALSE)
 ```
 
 כפי שניתן להבחין בתרשים, ישנם הבדלים מסוימים. לדוגמה, בשנת 2007 רק 31% מהדגימות הם של פינגויינים מזן Gentoo לעומת שנת 2008 שם 40% מהדגימות הן מזן Gentoo. השערת האפס שלנו היא שהמשתנה שנה והמשתנה זן הפינגויין הם בלתי תלויים, וההשערה האלטרנטיבית הינה שהם תלויים.
