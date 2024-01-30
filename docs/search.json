@@ -444,7 +444,7 @@
     "href": "07-linear-regression.html#סיכום",
     "title": "7  רגרסיה לינארית",
     "section": "7.6 סיכום",
-    "text": "7.6 סיכום\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד\n\n\n\n\n\nWalpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993. Probability and Statistics for Engineers and Scientists. Vol. 5. Macmillan New York.",
+    "text": "7.6 סיכום\nבפרק זה דנו באחד המודלים היסודיים בסטטיסטיקה - רגרסיה לינארית. למדנו איך נראה המודל כאשר ממחישים אותו בדו-מימד, למדנו איך מפעילים את פקודת lm כדי להריץ רגרסיה לינארית, והעמקנו בפלט הפקודה (מקדמים, שונות מוסברת, סטטיסטי F, ועוד).\nראינו דוגמה לאופן ההמחשה של שאריות המודל באמצעים ויזואליים (כגון QQ plot), והבנו את החשיבות שלהם כאשר אנחנו בוחנים את הנחות מודל הרגרסיה (התפלגות נורמלית של השגיאות, והומוסקדסטיות של השגיאות). כמו כן, ראינו דוגמה לסידור פלט הפקודה.\nלבסוף הדגמנו את השימוש באינטראקציה ומתי הוא עשוי להתאים.\nבפרק הבא נדון במודלים מורכבים יותר, ובפרט נלמד את השימוש בtidymodel כחבילה שמסייעת לנו בבניית “מתכון” ותהליך עבודה סדור בפיתוח ותחקור מודלים.\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד\n\n\n\n\n\nWalpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993. Probability and Statistics for Engineers and Scientists. Vol. 5. Macmillan New York.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>רגרסיה לינארית</span>"
     ]
