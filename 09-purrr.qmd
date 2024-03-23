@@ -1,7 +1,186 @@
 # לולאות מיוחדות {#sec-purrr-explained}
 
-פרק על purrr ופרק על tidy evaluation.
+בפרק זה נלמד על השימוש בחבילת `purrr` לצורך בניית לולאות. הפונקציות שזמינות לנו בחבילה זו מחליפות את רוב השימושים בהם נרצה להפעיל את `for` (שהוזכרה ב[פרק @sec-base-r]).
 
-TBD.
+היתרונות בשימוש בפונקציות מחבילת `purrr` על פני לולאות `for` הינם:
+
+-   מהירות - יש מקרים בהם השימוש בפונקציות אלו יניב תוצאות מהירות משמעותית מהשימוש בלולאות `for`
+
+-   קריאות - הקוד יוצא הרבה יותר ברור
+
+-   שילוביות - ניתן לשלב את הפונקציות הללו בתוך תחביר של `tidyverse` יחסית בקלות
+
+-   הכללה למקביליות - קל להפוך את הקוד למקבילי באמצעות הרחבות (חבילת `furrr)`
+
+הפונקציה המרכזית ב-`purrr` היא `map`. היא מקבלת שני ארגומנטים: האובייקט שעליו רוצים להריץ את הלולאה (וקטור או רשימה), והפונקציה שרוצים להריץ על אך איבר באובייקט שהוכנס בארגומנט הראשון.
+
+נראה דוגמה לשימוש ב-`map` על גבי הדאטה של `penguins` ליצירת שלושה מודלי רגרסיה לינארית, עבור כל זן פינגויינים.
+
+## סידור הדאטה
+
+ראשית ניקח את הדאטה, ונעביר אותו לפורמט עבודה נוח:
+
+```{r setup}
+#| include: false
+ggplot2::theme_set(ggplot2::theme_bw())
+```
+
+```{r map with penguins prep}
+#| warning: false
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+
+penguins_nested <- penguins %>% 
+  select(contains("mm"), species, contains("mass"), sex) %>% 
+  group_by(species) %>% 
+  nest()
+
+glimpse(penguins_nested)
+```
+
+בעמודה האחרונה שנוצרה לנו בטבלת `penguins_nested` (שנקראת `data`), קיבלנו את הדאטה עבור כל אחד מסוגי הפינגויינים (זו למעשה טבלה בת שלוש שורות ושתי עמודות, העמודה השניה מכילה טבלאות עם המשתנים המקוריים שהיו בדאטה, למעט משתנה ה-Species).
+
+## הדגמה לבניית מודלים
+
+כעת נבנה מודל רגרסיה לינארית, לחיזוי `bill_length_mm` על בסיס כל יתר המשתנים:
+
+```{r map with penguins}
+
+penguins_nested_lm <- map(penguins_nested$data,
+                          function(x){lm(bill_length_mm ~ ., data = x)})
+```
+
+כעת קיבלנו שלושה מודלים, הנה המודל הראשון:
+
+```{r model illustration}
+summary(penguins_nested_lm[[1]])
+```
+
+::: callout-tip
+## תרגיל למחשבה
+
+נסו להריץ את הפקודה של בניית המודלים על הדאטה אך מבלי שמבוצעת בו הבחירה:
+
+`select(contains("mm"), species, contains("mass"), sex)`
+
+מתקבלת הודעת שגיאה. איזה משתנה יצר את הבעיה ומדוע?
+:::
+
+::: callout-note
+# צורות נוספות להגדרת פונקציה
+
+שימו לב שבתוך פקודת ה-`map` הגדרנו את הפונקציה בארגומנט השני, בתוך הקוד "inline".
+
+ניתן היה להגדיר פונקציה מחוץ ל-map ואז פשוט להכניס את השם שלה, כך:
+
+```{r}
+#| eval: false
+create_model <- function(x){lm(bill_length_mm ~ ., data = x)}
+penguins_nested_lm <- map(penguins_nested$data, create_model)
+```
+
+כמו כן, סינטקס נוסף להגדרת פונקציות ב-"inline" הוא שימוש בתו `~`, באופן הבא:
+
+```{r}
+#| eval: false
+penguins_nested_lm <- map(penguins_nested$data,
+                          ~ {lm(bill_length_mm ~ ., data = .x)})
+```
+
+שימו לב בחלק השני לשימוש ב-`.x` אשר מסמל בהגדרה זו היכן יש להכניס את הרכיב עצמו מתוך האובייקט עליו מבצעים את הלולאה.
+:::
+
+## סידור תוצאות המודלים
+
+ניתן להשתמש בפקודה `broom::tidy` על מנת לקבל את תוצאות הפקודה באופן מסודר. במקרה זה נשתמש בסינטקס מלא של `tidyverse` ונטמיע את השימוש בפקודה `map` בתוך פקודת `mutate` שמופעלת על עמודת ה-`data` שראינו קודם.
+
+```{r model illustration tidy}
+penguins_nested_lm_tidy <- penguins_nested %>% 
+  mutate(linear_model_res = map(data, 
+                                function(x){
+                                  lm(bill_length_mm ~ ., data = x) %>% 
+                                    broom::tidy()
+                                  })) %>% 
+  unnest(linear_model_res)
+
+penguins_nested_lm_tidy
+```
+
+בתוצאת הטבלה ניתן לראות 15 שורות, עבור כל מין של פינגויינים יש חמש שורות כאשר כל שורה מתייחסת לערכיו של משתנה ספציפי (מקדם, טעות תקן, ערך הסטטיסטי, ורמת מובהקות). ניתן לסדר את הטבלה לפורמט רחב באופן הבא, נניח שיציג מקדמים ורמת מובהקות בלבד:
+
+```{r model to wider}
+penguins_nested_lm_tidy_wide <- penguins_nested_lm_tidy %>% 
+  select(species, term, estimate, p.value) %>% 
+  pivot_wider(id_cols = species, names_from = term, values_from = c(estimate, p.value))
+
+penguins_nested_lm_tidy_wide
+glimpse(penguins_nested_lm_tidy_wide)
+```
+
+## הדגמה לויז'ואליזציות
+
+כעת נדגים יצירה של ויז'ואליזציות עבור התפלגות שאריות המודלים, גם תוך שימוש ב-`map`.
+
+ראשית נגדיר פונקציה אשר מייצרת ויז'ואליזציה לשאריות בהתבסס על המודל. ראינו דוגמה כזו ב[פרק @sec-linear-regression]:
+
+```{r create residuals distribution}
+plot_residuals <- function(lm_res){
+  ggplot(tibble(resid = lm_res$residuals)) + 
+    geom_qq(aes(sample = resid)) + 
+    ggtitle("Model Residuals qq-plot")
+}
+```
+
+כעת, נריץ את הפונקציה על כל אחד מהמודלים שקיבלנו, תוך שימוש בפונקציה `map`:
+
+```{r generate all residual plots}
+#| fig-width: 4
+#| fig-height: 4
+penguins_nested_resid_plots <- map(penguins_nested_lm,
+                                   plot_residuals)
+
+penguins_nested_resid_plots
+```
+
+::: callout-tip
+# תרגיל: הצגת התפלגות השאריות בתרשים אחד
+
+כתבו קוד, תוך שימוש ב-`map` לצורך סידור השאריות של המודלים, על מנת לייצר את התרשים הבא:
+
+```{r residuals hidden plot}
+#| include: true
+#| echo: false
+penguins_nested_lm_residuals <- penguins_nested %>% 
+  mutate(linear_model_res = map(data, 
+                                function(x){
+                                  tmp <- lm(bill_length_mm ~ ., data = x)
+                                  tmp$residuals
+                                  })) %>% 
+  select(-data) %>% 
+  unnest(linear_model_res) %>% 
+  ggplot(aes(sample = linear_model_res, color = species)) + 
+  geom_qq() + 
+  ggtitle("Linear model residuals (qq-plot)")
+
+penguins_nested_lm_residuals
+```
+:::
+
+## פונקציות נוספות בחבילת `purrr`
+
+פונקצית `map` היא אולי בין הפונקציות השימושיות ביותר בחבילת `purrr`, אך ישנן מספר פונקציות נוספות שימושיות:
+
+-   הפונקציה `walk` שימושית כאשר רוצים להריץ לולאה לא בשביל תוצאת החישוב אלא בשביל הפעולה של הפונקציה. לדוגמה, במקרה שרוצים להפיק דוחות מרובים של RMarkdown, או אם נניח רוצים לשלוח הרבה מיילים באוטומציה (הפונקציה הבסיסית שולחת מייל והוקטור עליו רצים הוא וקטור של כתובות מייל);
+
+-   הפונקציה `map2` והפונקציה `pmap` מאפשרות להריץ לולאה על פני מספר רכיבים. הלולאה רצה על השילובים הקיימים של הרכיבים לפי הסדר (אבל לא על ההצלבה ביניהם);
+
+-   פונקציה נוספת שימושית היא `list_rbind` כאשר הפונקציה `map` מחזירה רשימה שבה רכיבים בודדים ורוצים להפוך אותה לוקטור של ערכים (לדוגמה, כחלק מסינטקס של tidyverse);
+
+-   ארגומנט נוסף שימושי בפונקציה `map` הוא `progress` המאפשר להציג את ההתקדמות של הלולאה ("progress bar"). מספיק להוסיף ארגומנט `progress=True` והפקודה תציג את ההתקדמות, בהנחה שהפעולה לוקחת מספיק זמן.
+
+## סיכום
+
+בפרק זה למדנו על השימוש בחבילת `purrr` ובפרט בפונקציה `map` בחבילה זו. השימוש בחבילה זו מאפשר לנו לבנות לולאות אשר נראות מסודרות יותר מלולאות `for`, בעלות פוטנציאל לרוץ מהר יותר, ומשתלבות יפה בסינטקס של tidyverse. בפרק ראיתם "טעימה קטנה" מהשימוש בפונקציות, אך ככל שתיתקלו במקרים כאלו ותנסו את הפונקציות הללו תיווכחו לראות שהן מועילות מאוד. נדרש קצת זמן להתרגל אליהן, אך זה שווה את המאמץ.
 
 ::: end-page

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -193,7 +227,18 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">בעמוד זה</h2>
+   
+  <ul>
+  <li><a href="#סידור-הדאטה" id="toc-סידור-הדאטה" class="nav-link active" data-scroll-target="#סידור-הדאטה"><span class="header-section-number">9.1</span> סידור הדאטה</a></li>
+  <li><a href="#הדגמה-לבניית-מודלים" id="toc-הדגמה-לבניית-מודלים" class="nav-link" data-scroll-target="#הדגמה-לבניית-מודלים"><span class="header-section-number">9.2</span> הדגמה לבניית מודלים</a></li>
+  <li><a href="#סידור-תוצאות-המודלים" id="toc-סידור-תוצאות-המודלים" class="nav-link" data-scroll-target="#סידור-תוצאות-המודלים"><span class="header-section-number">9.3</span> סידור תוצאות המודלים</a></li>
+  <li><a href="#הדגמה-לויזואליזציות" id="toc-הדגמה-לויזואליזציות" class="nav-link" data-scroll-target="#הדגמה-לויזואליזציות"><span class="header-section-number">9.4</span> הדגמה לויז’ואליזציות</a></li>
+  <li><a href="#פונקציות-נוספות-בחבילת-purrr" id="toc-פונקציות-נוספות-בחבילת-purrr" class="nav-link" data-scroll-target="#פונקציות-נוספות-בחבילת-purrr"><span class="header-section-number">9.5</span> פונקציות נוספות בחבילת <code>purrr</code></a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">9.6</span> סיכום</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -216,8 +261,283 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>פרק על purrr ופרק על tidy evaluation.</p>
-<p>TBD.</p>
+<p>בפרק זה נלמד על השימוש בחבילת <code>purrr</code> לצורך בניית לולאות. הפונקציות שזמינות לנו בחבילה זו מחליפות את רוב השימושים בהם נרצה להפעיל את <code>for</code> (שהוזכרה ב<a href="02-base-R.html" class="quarto-xref">פרק&nbsp;<span>2</span></a>).</p>
+<p>היתרונות בשימוש בפונקציות מחבילת <code>purrr</code> על פני לולאות <code>for</code> הינם:</p>
+<ul>
+<li><p>מהירות - יש מקרים בהם השימוש בפונקציות אלו יניב תוצאות מהירות משמעותית מהשימוש בלולאות <code>for</code></p></li>
+<li><p>קריאות - הקוד יוצא הרבה יותר ברור</p></li>
+<li><p>שילוביות - ניתן לשלב את הפונקציות הללו בתוך תחביר של <code>tidyverse</code> יחסית בקלות</p></li>
+<li><p>הכללה למקביליות - קל להפוך את הקוד למקבילי באמצעות הרחבות (חבילת <code>furrr)</code></p></li>
+</ul>
+<p>הפונקציה המרכזית ב-<code>purrr</code> היא <code>map</code>. היא מקבלת שני ארגומנטים: האובייקט שעליו רוצים להריץ את הלולאה (וקטור או רשימה), והפונקציה שרוצים להריץ על אך איבר באובייקט שהוכנס בארגומנט הראשון.</p>
+<p>נראה דוגמה לשימוש ב-<code>map</code> על גבי הדאטה של <code>penguins</code> ליצירת שלושה מודלי רגרסיה לינארית, עבור כל זן פינגויינים.</p>
+<section id="סידור-הדאטה" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="סידור-הדאטה"><span class="header-section-number">9.1</span> סידור הדאטה</h2>
+<p>ראשית ניקח את הדאטה, ונעביר אותו לפורמט עבודה נוח:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>penguins_nested <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"mm"</span>), species, <span class="fu">contains</span>(<span class="st">"mass"</span>), sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins_nested)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3
+Columns: 2
+Groups: species [3]
+$ species &lt;fct&gt; Adelie, Gentoo, Chinstrap
+$ data    &lt;list&gt; [&lt;tbl_df[152 x 5]&gt;], [&lt;tbl_df[124 x 5]&gt;], [&lt;tbl_df[68 x 5]&gt;]</code></pre>
+</div>
+</div>
+<p>בעמודה האחרונה שנוצרה לנו בטבלת <code>penguins_nested</code> (שנקראת <code>data</code>), קיבלנו את הדאטה עבור כל אחד מסוגי הפינגויינים (זו למעשה טבלה בת שלוש שורות ושתי עמודות, העמודה השניה מכילה טבלאות עם המשתנים המקוריים שהיו בדאטה, למעט משתנה ה-Species).</p>
+</section>
+<section id="הדגמה-לבניית-מודלים" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="הדגמה-לבניית-מודלים"><span class="header-section-number">9.2</span> הדגמה לבניית מודלים</h2>
+<p>כעת נבנה מודל רגרסיה לינארית, לחיזוי <code>bill_length_mm</code> על בסיס כל יתר המשתנים:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins_nested_lm <span class="ot">&lt;-</span> <span class="fu">map</span>(penguins_nested<span class="sc">$</span>data,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">function</span>(x){<span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> ., <span class="at">data =</span> x)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>כעת קיבלנו שלושה מודלים, הנה המודל הראשון:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(penguins_nested_lm[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = bill_length_mm ~ ., data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.3921 -1.4294 -0.0276  1.4291  5.3977 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       26.3151542  5.9906398   4.393 2.18e-05 ***
+bill_depth_mm     -0.0121755  0.1868468  -0.065   0.9481    
+flipper_length_mm  0.0388034  0.0305910   1.268   0.2067    
+body_mass_g        0.0011487  0.0006183   1.858   0.0653 .  
+sexmale            2.1964106  0.5473780   4.013 9.71e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.124 on 141 degrees of freedom
+  (6 observations deleted due to missingness)
+Multiple R-squared:  0.3814,    Adjusted R-squared:  0.3639 
+F-statistic: 21.74 on 4 and 141 DF,  p-value: 5.464e-14</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל למחשבה
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>נסו להריץ את הפקודה של בניית המודלים על הדאטה אך מבלי שמבוצעת בו הבחירה:</p>
+<p><code>select(contains("mm"), species, contains("mass"), sex)</code></p>
+<p>מתקבלת הודעת שגיאה. איזה משתנה יצר את הבעיה ומדוע?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+צורות נוספות להגדרת פונקציה
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>שימו לב שבתוך פקודת ה-<code>map</code> הגדרנו את הפונקציה בארגומנט השני, בתוך הקוד “inline”.</p>
+<p>ניתן היה להגדיר פונקציה מחוץ ל-map ואז פשוט להכניס את השם שלה, כך:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>create_model <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> ., <span class="at">data =</span> x)}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>penguins_nested_lm <span class="ot">&lt;-</span> <span class="fu">map</span>(penguins_nested<span class="sc">$</span>data, create_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>כמו כן, סינטקס נוסף להגדרת פונקציות ב-“inline” הוא שימוש בתו <code>~</code>, באופן הבא:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>penguins_nested_lm <span class="ot">&lt;-</span> <span class="fu">map</span>(penguins_nested<span class="sc">$</span>data,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                          <span class="sc">~</span> {<span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> ., <span class="at">data =</span> .x)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>שימו לב בחלק השני לשימוש ב-<code>.x</code> אשר מסמל בהגדרה זו היכן יש להכניס את הרכיב עצמו מתוך האובייקט עליו מבצעים את הלולאה.</p>
+</div>
+</div>
+</section>
+<section id="סידור-תוצאות-המודלים" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="סידור-תוצאות-המודלים"><span class="header-section-number">9.3</span> סידור תוצאות המודלים</h2>
+<p>ניתן להשתמש בפקודה <code>broom::tidy</code> על מנת לקבל את תוצאות הפקודה באופן מסודר. במקרה זה נשתמש בסינטקס מלא של <code>tidyverse</code> ונטמיע את השימוש בפקודה <code>map</code> בתוך פקודת <code>mutate</code> שמופעלת על עמודת ה-<code>data</code> שראינו קודם.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>penguins_nested_lm_tidy <span class="ot">&lt;-</span> penguins_nested <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">linear_model_res =</span> <span class="fu">map</span>(data, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                <span class="cf">function</span>(x){</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> ., <span class="at">data =</span> x) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                    broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                  })) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(linear_model_res)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>penguins_nested_lm_tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 7
+# Groups:   species [3]
+   species   data               term        estimate std.error statistic p.value
+   &lt;fct&gt;     &lt;list&gt;             &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Adelie    &lt;tibble [152 × 5]&gt; (Intercept) 26.3      5.99        4.39   2.18e-5
+ 2 Adelie    &lt;tibble [152 × 5]&gt; bill_depth… -0.0122   0.187      -0.0652 9.48e-1
+ 3 Adelie    &lt;tibble [152 × 5]&gt; flipper_le…  0.0388   0.0306      1.27   2.07e-1
+ 4 Adelie    &lt;tibble [152 × 5]&gt; body_mass_g  0.00115  0.000618    1.86   6.53e-2
+ 5 Adelie    &lt;tibble [152 × 5]&gt; sexmale      2.20     0.547       4.01   9.71e-5
+ 6 Gentoo    &lt;tibble [124 × 5]&gt; (Intercept)  0.611    8.64        0.0707 9.44e-1
+ 7 Gentoo    &lt;tibble [124 × 5]&gt; bill_depth…  0.674    0.339       1.99   4.90e-2
+ 8 Gentoo    &lt;tibble [124 × 5]&gt; flipper_le…  0.133    0.0466      2.86   5.11e-3
+ 9 Gentoo    &lt;tibble [124 × 5]&gt; body_mass_g  0.00150  0.000727    2.07   4.09e-2
+10 Gentoo    &lt;tibble [124 × 5]&gt; sexmale      0.525    0.731       0.719  4.74e-1
+11 Chinstrap &lt;tibble [68 × 5]&gt;  (Intercept) 29.4     10.8         2.72   8.49e-3
+12 Chinstrap &lt;tibble [68 × 5]&gt;  bill_depth…  0.807    0.410       1.97   5.36e-2
+13 Chinstrap &lt;tibble [68 × 5]&gt;  flipper_le… -0.00532  0.0573     -0.0929 9.26e-1
+14 Chinstrap &lt;tibble [68 × 5]&gt;  body_mass_g  0.00114  0.00106     1.07   2.88e-1
+15 Chinstrap &lt;tibble [68 × 5]&gt;  sexmale      2.75     0.889       3.09   2.94e-3</code></pre>
+</div>
+</div>
+<p>בתוצאת הטבלה ניתן לראות 15 שורות, עבור כל מין של פינגויינים יש חמש שורות כאשר כל שורה מתייחסת לערכיו של משתנה ספציפי (מקדם, טעות תקן, ערך הסטטיסטי, ורמת מובהקות). ניתן לסדר את הטבלה לפורמט רחב באופן הבא, נניח שיציג מקדמים ורמת מובהקות בלבד:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>penguins_nested_lm_tidy_wide <span class="ot">&lt;-</span> penguins_nested_lm_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, term, estimate, p.value) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> species, <span class="at">names_from =</span> term, <span class="at">values_from =</span> <span class="fu">c</span>(estimate, p.value))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>penguins_nested_lm_tidy_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 11
+# Groups:   species [3]
+  species   `estimate_(Intercept)` estimate_bill_depth_mm estimate_flipper_len…¹
+  &lt;fct&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+1 Adelie                    26.3                  -0.0122                0.0388 
+2 Gentoo                     0.611                 0.674                 0.133  
+3 Chinstrap                 29.4                   0.807                -0.00532
+# ℹ abbreviated name: ¹​estimate_flipper_length_mm
+# ℹ 7 more variables: estimate_body_mass_g &lt;dbl&gt;, estimate_sexmale &lt;dbl&gt;,
+#   `p.value_(Intercept)` &lt;dbl&gt;, p.value_bill_depth_mm &lt;dbl&gt;,
+#   p.value_flipper_length_mm &lt;dbl&gt;, p.value_body_mass_g &lt;dbl&gt;,
+#   p.value_sexmale &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins_nested_lm_tidy_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3
+Columns: 11
+Groups: species [3]
+$ species                    &lt;fct&gt; Adelie, Gentoo, Chinstrap
+$ `estimate_(Intercept)`     &lt;dbl&gt; 26.3151542, 0.6106378, 29.3903439
+$ estimate_bill_depth_mm     &lt;dbl&gt; -0.01217552, 0.67352164, 0.80659313
+$ estimate_flipper_length_mm &lt;dbl&gt; 0.038803444, 0.133148448, -0.005321531
+$ estimate_body_mass_g       &lt;dbl&gt; 0.001148724, 0.001504786, 0.001138851
+$ estimate_sexmale           &lt;dbl&gt; 2.196411, 0.525357, 2.752421
+$ `p.value_(Intercept)`      &lt;dbl&gt; 2.184163e-05, 9.437902e-01, 8.492353e-03
+$ p.value_bill_depth_mm      &lt;dbl&gt; 0.94813641, 0.04901556, 0.05364594
+$ p.value_flipper_length_mm  &lt;dbl&gt; 0.206723627, 0.005109499, 0.926275133
+$ p.value_body_mass_g        &lt;dbl&gt; 0.06529386, 0.04085049, 0.28771299
+$ p.value_sexmale            &lt;dbl&gt; 9.707824e-05, 4.738359e-01, 2.935314e-03</code></pre>
+</div>
+</div>
+</section>
+<section id="הדגמה-לויזואליזציות" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="הדגמה-לויזואליזציות"><span class="header-section-number">9.4</span> הדגמה לויז’ואליזציות</h2>
+<p>כעת נדגים יצירה של ויז’ואליזציות עבור התפלגות שאריות המודלים, גם תוך שימוש ב-<code>map</code>.</p>
+<p>ראשית נגדיר פונקציה אשר מייצרת ויז’ואליזציה לשאריות בהתבסס על המודל. ראינו דוגמה כזו ב<a href="07-linear-regression.html" class="quarto-xref">פרק&nbsp;<span>7</span></a>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_residuals <span class="ot">&lt;-</span> <span class="cf">function</span>(lm_res){</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">resid =</span> lm_res<span class="sc">$</span>residuals)) <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_qq</span>(<span class="fu">aes</span>(<span class="at">sample =</span> resid)) <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Model Residuals qq-plot"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>כעת, נריץ את הפונקציה על כל אחד מהמודלים שקיבלנו, תוך שימוש בפונקציה <code>map</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>penguins_nested_resid_plots <span class="ot">&lt;-</span> <span class="fu">map</span>(penguins_nested_lm,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                                   plot_residuals)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>penguins_nested_resid_plots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" width="384">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="09-purrr_files/figure-html/generate all residual plots-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" width="384">
+</div>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="384">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="09-purrr_files/figure-html/generate all residual plots-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img" width="384">
+</div>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[[3]]</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="384">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="09-purrr_files/figure-html/generate all residual plots-3.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="img-fluid figure-img" width="384">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: הצגת התפלגות השאריות בתרשים אחד
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>כתבו קוד, תוך שימוש ב-<code>map</code> לצורך סידור השאריות של המודלים, על מנת לייצר את התרשים הבא:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="09-purrr_files/figure-html/residuals hidden plot-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="פונקציות-נוספות-בחבילת-purrr" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="פונקציות-נוספות-בחבילת-purrr"><span class="header-section-number">9.5</span> פונקציות נוספות בחבילת <code>purrr</code></h2>
+<p>פונקצית <code>map</code> היא אולי בין הפונקציות השימושיות ביותר בחבילת <code>purrr</code>, אך ישנן מספר פונקציות נוספות שימושיות:</p>
+<ul>
+<li><p>הפונקציה <code>walk</code> שימושית כאשר רוצים להריץ לולאה לא בשביל תוצאת החישוב אלא בשביל הפעולה של הפונקציה. לדוגמה, במקרה שרוצים להפיק דוחות מרובים של RMarkdown, או אם נניח רוצים לשלוח הרבה מיילים באוטומציה (הפונקציה הבסיסית שולחת מייל והוקטור עליו רצים הוא וקטור של כתובות מייל);</p></li>
+<li><p>הפונקציה <code>map2</code> והפונקציה <code>pmap</code> מאפשרות להריץ לולאה על פני מספר רכיבים. הלולאה רצה על השילובים הקיימים של הרכיבים לפי הסדר (אבל לא על ההצלבה ביניהם);</p></li>
+<li><p>פונקציה נוספת שימושית היא <code>list_rbind</code> כאשר הפונקציה <code>map</code> מחזירה רשימה שבה רכיבים בודדים ורוצים להפוך אותה לוקטור של ערכים (לדוגמה, כחלק מסינטקס של tidyverse);</p></li>
+<li><p>ארגומנט נוסף שימושי בפונקציה <code>map</code> הוא <code>progress</code> המאפשר להציג את ההתקדמות של הלולאה (“progress bar”). מספיק להוסיף ארגומנט <code>progress=True</code> והפקודה תציג את ההתקדמות, בהנחה שהפעולה לוקחת מספיק זמן.</p></li>
+</ul>
+</section>
+<section id="סיכום" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">9.6</span> סיכום</h2>
+<p>בפרק זה למדנו על השימוש בחבילת <code>purrr</code> ובפרט בפונקציה <code>map</code> בחבילה זו. השימוש בחבילה זו מאפשר לנו לבנות לולאות אשר נראות מסודרות יותר מלולאות <code>for</code>, בעלות פוטנציאל לרוץ מהר יותר, ומשתלבות יפה בסינטקס של tidyverse. בפרק ראיתם “טעימה קטנה” מהשימוש בפונקציות, אך ככל שתיתקלו במקרים כאלו ותנסו את הפונקציות הללו תיווכחו לראות שהן מועילות מאוד. נדרש קצת זמן להתרגל אליהן, אך זה שווה את המאמץ.</p>
 <div class="end-page">
 
 <div class="hidden" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
@@ -225,6 +545,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
