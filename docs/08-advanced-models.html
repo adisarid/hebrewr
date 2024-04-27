@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - 8&nbsp; מודלים</title>
+<title>המדריך העברי למשתמש ב-R - 8&nbsp; מודלים מונחים (Supervised)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -81,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-advanced-models.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-advanced-models.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים מונחים (Supervised)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -160,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-advanced-models.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים מונחים (Supervised)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -193,14 +247,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">בעמוד זה</h2>
+   
+  <ul>
+  <li><a href="#הקדמה" id="toc-הקדמה" class="nav-link active" data-scroll-target="#הקדמה"><span class="header-section-number">8.1</span> הקדמה</a></li>
+  <li><a href="#תיאור-שלבי-העבודה" id="toc-תיאור-שלבי-העבודה" class="nav-link" data-scroll-target="#תיאור-שלבי-העבודה"><span class="header-section-number">8.2</span> תיאור שלבי העבודה</a></li>
+  <li><a href="#חלוקת-המדגם" id="toc-חלוקת-המדגם" class="nav-link" data-scroll-target="#חלוקת-המדגם"><span class="header-section-number">8.3</span> חלוקת המדגם</a></li>
+  <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.4</span> קריאה נוספת</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.5</span> סיכום</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-advanced-models" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים</span></span></h1>
+<h1 class="title"><span id="sec-advanced-models" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים מונחים (Supervised)</span></span></h1>
 </div>
 
 
@@ -216,7 +280,74 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>TBD</p>
+<section id="הקדמה" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="הקדמה"><span class="header-section-number">8.1</span> הקדמה</h2>
+<p>ניתן לחלק את עולם המודלים הסטטיסטיים לשני סוגים, המובחנים ביניהם בדרך שבה בונים אותם:</p>
+<ul>
+<li><p>מודלים מונחים (Supervised learning)</p></li>
+<li><p>מודלים לא מונחים (Unsupervised learning)</p></li>
+</ul>
+<p>מודלים מונחים הינם מודלים שנבנים תוך שימוש במשתנה תלוי (כפי שראינו בפרק הקודם של רגרסיה לינארית), ולעומת זאת, מודלים לא מונחים הינם מודלים שבהם אין משתנה תלוי (נניח לדוגמה כשרוצים לחלק את מרחב התצפיות לאשכולות שונים).</p>
+<p>בפרק זה נתמקד במידול מונחה, מנקודת מבט מעשית, תוך שימוש בחבילות במשפחה של <code>tidymodels</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+קריאה נוספת לצורך העמקה בתיאוריה
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ישנן משפחות רבות של מודלים מונחים, בין המוכרים כלולים גם מודלי שפה (כגון ChatGPT), אך גם מודלים לזיהוי נטישה, זיהוי הונאות, רגרסיות למיניהן, למידה עמוקה, ועוד.</p>
+<p>הספר הנוכחי אינו מתמקד בתיאוריה העומדת בבסיס המודלים השונים, אלא מהווה עזר מעשי להפעלת המודלים. אתם מוזמנים לעיין בספרים הבאים לצורך העמקה תיאורתית:</p>
+<ul>
+<li><p>The Elements of statistical learning <span class="citation" data-cites="hastie2009">(<a href="references.html#ref-hastie2009" role="doc-biblioref">Hastie, Tibshirani, and Friedman 2009</a>)</span></p></li>
+<li><p>An Introduction to Statistical Learning <span class="citation" data-cites="james2021">(<a href="references.html#ref-james2021" role="doc-biblioref">James et al. 2021</a>)</span></p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="תיאור-שלבי-העבודה" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="תיאור-שלבי-העבודה"><span class="header-section-number">8.2</span> תיאור שלבי העבודה</h2>
+<p>כפי שציינו במבוא לספר זה, תהליך ניתוח הנתונים כולל טרנספורמציה על משתנים, וויז’ואליזציות של המשתנים והקשרים שלהם, ומידול. שלב המידול עצמו כולל מספר תתי-שלבים:</p>
+<ol type="1">
+<li>חלוקה אקראית של המדגם לקבוצת אימון (training set), קבוצת ולידציה (validation set) וקבוצת מבחן (test set).</li>
+<li>בניית מתכון (recipe) להכנת הדאטה למודל. בניית המתכון משמשת להגדרת כל הטרנספורמציות הדרושות לביצוע על הדאטה, לפני שהוא נכנס למודל.</li>
+<li>הגדרת מודל/ים: בשלב זה מגדירים את המודלים בהם הולכים לעשות שימוש. גם מבחינת האלגוריתם של המודל (סוג המודל) וגם מבחינת מטרת המודל (רגרסיה לעומת סיווג).</li>
+<li>הגדרת תהליך אימון המודל (workflow).</li>
+<li>בניית המודל הראשוני (fitting).</li>
+<li>כיוונון המודל (tuning).</li>
+<li>הערכת ביצועי המודל (evaluation).</li>
+<li>שימוש במודל לחיזוי תצפיות חדשות (prediction).</li>
+</ol>
+<p>בשלב 1 אנחנו מפרקים את הנתונים לשלוש קבוצות, כאשר מטרת קבוצת האימון הינה לבנות את המודל, מטרת קבוצת הולידציה הינה לכוון את “היפר-פרמטרים” של המודל (hyper-paramters)ומטרת קבוצת המבחן היא לבחון את שגיאת המודל (על דאטה שהמודל לא תלוי בו משום שלא נלמד על בסיסו). קבוצת האימון תשתמש אותנו בשלבים 2-5, קבוצת הולידציה תשמש אותנו בשלב 6, וקבוצת המבחן תשמש אותנו בשלב 7 בלבד. שלבים 2-6 עשויים לחזור על עצמם מספר פעמים במהלך פיתוח מודלים (עם גרסאות שונות למודל או מודלים שונים לגמרי). השלב האחרון הינו השלב שבו אנחנו מפיקים ערך מהמודל, ומשתמשים בו לחיזוי עבור תצפיות חדשות.</p>
+<p>כעת נפרק כל אחד מהשלבים ונסביר עליו בפירוט. על מנת להדגים את השלבים נשתמש בדאטה שמלווה אותנו מתחילת הספר (Palmer penguins), כאשר הבעיה שנפתור בפרק זה היא סיווג של תצפית של פינגויין לזכר או נקבה לפי כל המשתנים האחרים שעומדים לרשותנו.</p>
+</section>
+<section id="חלוקת-המדגם" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="חלוקת-המדגם"><span class="header-section-number">8.3</span> חלוקת המדגם</h2>
+<p>ראשית נחלק את המדגם לשלוש הקבוצות: אימון, ולידציה, ומבחן.</p>
+<p>אנחנו קוראים את החבילות הנדרשות, מגדירים Seed, כך שנוכל להגריל חלוקה אקראית אך עקבית (תמיד כשנריץ את הקוד נקבל את אותה החלוקה האקראית), ונפצל את הדאטה לשלושת הקבוצות.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels) <span class="co"># reading the meta-package tidymodels</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># reading the palmer penguins data set which include penguins</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># set an initial seed</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>penguin_split <span class="ot">&lt;-</span> <span class="fu">initial_validation_split</span>(penguins, <span class="at">prop =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.2</span>), <span class="at">strata =</span> sex)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>penguin_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Training/Validation/Testing/Total&gt;
+&lt;205/69/70/344&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="קריאה-נוספת" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.4</span> קריאה נוספת</h2>
+<p>לצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את <span class="citation" data-cites="kuhn2022tidy">(<a href="references.html#ref-kuhn2022tidy" role="doc-biblioref">Kuhn and Silge 2022</a>)</span> המפרט על השימוש בחבילת <code>tidymodels</code> עם דוגמאות רבות. הספר <a href="https://www.tmwr.org/">זמין באינטרנט</a>.</p>
+</section>
+<section id="סיכום" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">8.5</span> סיכום</h2>
 <div class="end-page">
 
 <div class="hidden" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
@@ -224,6 +355,18 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-hastie2009" class="csl-entry" role="listitem">
+Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning</em>. Springer New York. <a href="https://doi.org/10.1007/978-0-387-84858-7">https://doi.org/10.1007/978-0-387-84858-7</a>.
+</div>
+<div id="ref-james2021" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning</em>. Springer US. <a href="https://doi.org/10.1007/978-1-0716-1418-1">https://doi.org/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-kuhn2022tidy" class="csl-entry" role="listitem">
+Kuhn, Max, and Julia Silge. 2022. <em>Tidy Modeling with r</em>. " O’Reilly Media, Inc.".
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
