@@ -83,3 +83,18 @@ ul {
 .code-out-hebrew > .cell > .cell-output code {
   direction: rtl;
 }
+
+
+/* Replace direction of curly quotes */
+.replace-curly-quotes::before {
+  content: '"';
+}
+.replace-curly-quotes::after {
+  content: '"';
+}
+.replace-straight-quotes::before {
+  content: '“';
+}
+.replace-straight-quotes::after {
+  content: '”';
+}

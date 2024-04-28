@@ -44,7 +44,7 @@
     "href": "02-base-R.html#השמת-משתנים-פעולות-אריתמטיות-ופונקציות",
     "title": "2  תחביר בסיסי",
     "section": "2.1 השמת משתנים, פעולות אריתמטיות ופונקציות",
-    "text": "2.1 השמת משתנים, פעולות אריתמטיות ופונקציות\nניתן להריץ ב-R פעולות אריתמטיות (חיבור, חיסור, כפל, חילוק), פונקציות, ולהגדיר משתנים שונים. לדוגמה, הקוד הבא מגדיר משתנה a משתנה b ומכניס את הסכום שלהם למשתנה חדש שיקרא a_plus_b.\n\na &lt;- 5\nb &lt;- 3\na_plus_b &lt;- a + b\na_plus_b\n\n[1] 8\n\n\nשימו לב שההשמה לתוך משתנה מתבצעת עם האופרטור -&gt;, ניתן גם להשתמש ב= לצורך השמה, כתיב זה פחות נפוץ. לדוגמה:\n\na_plus_b = a + b  # this form of assignment `=` is less common, don't use it (use `&lt;-`)\n\n\n2.1.1 קביעת שמות משתנים\nקודם השתמשנו בשמות a, b , ו-a_plus_b כדי לקבוע משתנים. ככלל, מומלץ להשתמש בשמות קצרים בעלי משמעות. שמות משתנים חייבים להתחיל באות באנגלית, ויכולים להכיל אותיות, מספרים, קו תחתון, ונקודה. לדוגמה gender, age, raw_data, וכו’.\n\n\n2.1.2 סוגי משתנים\nבבסיס השפה יש כמה סוגי משתנים, שקובעים מה סוג הערכים שהמשתנה יכול לקבל:\n\nמספר שלם (Integer)\nמספר רציף (Double)\nמחרוזת (Character)\nמשתנה קטגוריות (Factor)\nתאריך (Date)\nמשתנה לוגי (Logical)\n\nכל משתנה חדש אנחנו מגדירים ב-R הוא למעשה וקטור. אגב, גם כשאנחנו מגדירים משתנה כערך בודד, בעצם הוא וקטור עם איבר אחד. אנחנו יכולים להשתמש בפקודה c (קיצור של המילה combine) כדי לשלב וקטורים שונים.\nנראה דוגמאות להגדרות של וקטורים מסוגים שונים.\n\nsome_integer &lt;- c(1L, 2L, 3L)  # The L sign stands for \"Long integer\"\nsome_integer\n\n[1] 1 2 3\n\nsome_double &lt;- c(1, 2, pi, exp(1))\nsome_double\n\n[1] 1.000000 2.000000 3.141593 2.718282\n\nsome_character &lt;- c(\"This\", \"is\", \"a\", \"character\", \"vector\")\nsome_character\n\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\nsome_factor &lt;- factor(c(\"Apples\", \"Oranges\", \"Paers\", \"Mangos\", \"Apples\", \"Oranges\"))\nsome_factor\n\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_date &lt;- c(Sys.Date(), as.Date(\"1993-08-01\"))\nsome_date\n\n[1] \"2024-03-23\" \"1993-08-01\"\n\nsome_logical &lt;- c(TRUE, FALSE, FALSE, TRUE) # can also use c(T, F, F, T) is the same\nsome_logical\n\n[1]  TRUE FALSE FALSE  TRUE\n\n\nלמשתני קטגוריות יש שימוש חשוב בסטטיסטיקה שעוד נראה אותו בפרקים הבאים, ולכן הוא מובחן ממשתנה מחרוזת ומקבל מקום של כבוד. כפי שניתן לראות, כאשר מדפיסים אותו, R מדווח גם על הרמות השונות שכלולות בו.\nשימוש בפקודה typeof(some_variable) יציג את סוג המשתנה.\n\ntypeof(some_integer)\n\n[1] \"integer\"\n\ntypeof(some_double)\n\n[1] \"double\"\n\ntypeof(some_character)\n\n[1] \"character\"\n\ntypeof(some_date)\n\n[1] \"double\"\n\ntypeof(some_factor)\n\n[1] \"integer\"\n\ntypeof(some_logical)\n\n[1] \"logical\"\n\n\nניתן לשים לב ש-R מחשיב את המשתנה הקטגוריאלי כמספר שלם (integer) ואת התאריך כמספר רציף (double).\n\n\n\n\n\n\nתרגיל: חיבור של וקטורים מסוגים שונים\n\n\n\nבאמצעות הפקודה c והפקודה typeof בדקו מה קורה כאשר מחברים משתנים מסוגים שונים אחד לשני. האם התוצאה הגיונית? מה ההיגיון? האם יש מקרים בהם התוצאה של חיבור משתנים עשויה להטעות?\nבדקו את c(some_factor, some_character) ודוגמאות נוספות.\n\n\n\n\n2.1.3 קריאה לתתי וקטורים\nב-R ניתן לקרוא לחלק מסוים מתוך וקטור. לדוגמה, אם אנחנו רוצים רק את שני האיברים הראשונים מתוך הוקטור some_factor או את האיבר הראשון והרביעי מתוך some_character נשתמש בכתיב:\n\nsome_factor[1:2]\n\n[1] Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_character[c(1,4)]\n\n[1] \"This\"      \"character\"",
+    "text": "2.1 השמת משתנים, פעולות אריתמטיות ופונקציות\nניתן להריץ ב-R פעולות אריתמטיות (חיבור, חיסור, כפל, חילוק), פונקציות, ולהגדיר משתנים שונים. לדוגמה, הקוד הבא מגדיר משתנה a משתנה b ומכניס את הסכום שלהם למשתנה חדש שיקרא a_plus_b.\n\na &lt;- 5\nb &lt;- 3\na_plus_b &lt;- a + b\na_plus_b\n\n[1] 8\n\n\nשימו לב שההשמה לתוך משתנה מתבצעת עם האופרטור -&gt;, ניתן גם להשתמש ב= לצורך השמה, כתיב זה פחות נפוץ. לדוגמה:\n\na_plus_b = a + b  # this form of assignment `=` is less common, don't use it (use `&lt;-`)\n\n\n2.1.1 קביעת שמות משתנים\nקודם השתמשנו בשמות a, b , ו-a_plus_b כדי לקבוע משתנים. ככלל, מומלץ להשתמש בשמות קצרים בעלי משמעות. שמות משתנים חייבים להתחיל באות באנגלית, ויכולים להכיל אותיות, מספרים, קו תחתון, ונקודה. לדוגמה gender, age, raw_data, וכו’.\n\n\n2.1.2 סוגי משתנים\nבבסיס השפה יש כמה סוגי משתנים, שקובעים מה סוג הערכים שהמשתנה יכול לקבל:\n\nמספר שלם (Integer)\nמספר רציף (Double)\nמחרוזת (Character)\nמשתנה קטגוריות (Factor)\nתאריך (Date)\nמשתנה לוגי (Logical)\n\nכל משתנה חדש אנחנו מגדירים ב-R הוא למעשה וקטור. אגב, גם כשאנחנו מגדירים משתנה כערך בודד, בעצם הוא וקטור עם איבר אחד. אנחנו יכולים להשתמש בפקודה c (קיצור של המילה combine) כדי לשלב וקטורים שונים.\nנראה דוגמאות להגדרות של וקטורים מסוגים שונים.\n\nsome_integer &lt;- c(1L, 2L, 3L)  # The L sign stands for \"Long integer\"\nsome_integer\n\n[1] 1 2 3\n\nsome_double &lt;- c(1, 2, pi, exp(1))\nsome_double\n\n[1] 1.000000 2.000000 3.141593 2.718282\n\nsome_character &lt;- c(\"This\", \"is\", \"a\", \"character\", \"vector\")\nsome_character\n\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\nsome_factor &lt;- factor(c(\"Apples\", \"Oranges\", \"Paers\", \"Mangos\", \"Apples\", \"Oranges\"))\nsome_factor\n\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_date &lt;- c(Sys.Date(), as.Date(\"1993-08-01\"))\nsome_date\n\n[1] \"2024-04-28\" \"1993-08-01\"\n\nsome_logical &lt;- c(TRUE, FALSE, FALSE, TRUE) # can also use c(T, F, F, T) is the same\nsome_logical\n\n[1]  TRUE FALSE FALSE  TRUE\n\n\nלמשתני קטגוריות יש שימוש חשוב בסטטיסטיקה שעוד נראה אותו בפרקים הבאים, ולכן הוא מובחן ממשתנה מחרוזת ומקבל מקום של כבוד. כפי שניתן לראות, כאשר מדפיסים אותו, R מדווח גם על הרמות השונות שכלולות בו.\nשימוש בפקודה typeof(some_variable) יציג את סוג המשתנה.\n\ntypeof(some_integer)\n\n[1] \"integer\"\n\ntypeof(some_double)\n\n[1] \"double\"\n\ntypeof(some_character)\n\n[1] \"character\"\n\ntypeof(some_date)\n\n[1] \"double\"\n\ntypeof(some_factor)\n\n[1] \"integer\"\n\ntypeof(some_logical)\n\n[1] \"logical\"\n\n\nניתן לשים לב ש-R מחשיב את המשתנה הקטגוריאלי כמספר שלם (integer) ואת התאריך כמספר רציף (double).\n\n\n\n\n\n\nתרגיל: חיבור של וקטורים מסוגים שונים\n\n\n\nבאמצעות הפקודה c והפקודה typeof בדקו מה קורה כאשר מחברים משתנים מסוגים שונים אחד לשני. האם התוצאה הגיונית? מה ההיגיון? האם יש מקרים בהם התוצאה של חיבור משתנים עשויה להטעות?\nבדקו את c(some_factor, some_character) ודוגמאות נוספות.\n\n\n\n\n2.1.3 קריאה לתתי וקטורים\nב-R ניתן לקרוא לחלק מסוים מתוך וקטור. לדוגמה, אם אנחנו רוצים רק את שני האיברים הראשונים מתוך הוקטור some_factor או את האיבר הראשון והרביעי מתוך some_character נשתמש בכתיב:\n\nsome_factor[1:2]\n\n[1] Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_character[c(1,4)]\n\n[1] \"This\"      \"character\"",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>תחביר בסיסי</span>"
     ]
@@ -54,7 +54,7 @@
     "href": "02-base-R.html#רשימה-list",
     "title": "2  תחביר בסיסי",
     "section": "2.2 רשימה (list)",
-    "text": "2.2 רשימה (list)\nכעת נדון במבנה נתונים שנקרא רשימה (list). רשימה היא אובייקט מרכזי ב-R שמאפשר לנו לאחד משתנים ווקטורים מסוגים שונים, לתוך dataset שיאפשר לנו בהמשך לנתח נתונים. ישנן מספר דרכים להגדיר רשימה, אחת מהן באמצעות הפקודה list. לדוגמה, הרשימה הבאה תכיל את כל הוקטורים שהגדרנו עד כה, מבלי שהם יאבדו מהמשמעות שלהם (כפי שקורה כשמנסים לעשות חיבור רגיל).\n\nmy_list &lt;- list(my_int = some_integer,\n                my_double = some_double,\n                my_character = some_character,\n                my_factor = some_factor,\n                my_date = some_date)\nmy_list\n\n$my_int\n[1] 1 2 3\n\n$my_double\n[1] 1.000000 2.000000 3.141593 2.718282\n\n$my_character\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\n$my_factor\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\n$my_date\n[1] \"2024-03-23\" \"1993-08-01\"\n\ntypeof(my_list)\n\n[1] \"list\"\n\n\nכדי לקרוא לוקטור מסוים מתוך רשימה ניתן להשתמש ב-$ באופן הבא:\n\nmy_list$my_int\n\n[1] 1 2 3\n\n\nהחלק הסופי בהצגה שלנו הוא רשימה מסוג מאוד מסוים, data.frame. מבנה נתונים זה הוא רשימה שבה כל הוקטורים באותו האורך. הוקטורים יכולים להיות מסוגים שונים כפי שציינו, ומה שחשוב ב-data.frame הוא שהוא הולך להיות אבן הפינה שלנו בכל ניתוח נתונים סטטיסטי. בינתיים נסתפק בהדגמה קצרה של הגדרת data.frame אך נרחיב עליו בפרקים הבאים.\n\nmy_data &lt;- data.frame(name = c(\"Danny\", \"Moshe\", \"Iris\", \"Ronit\"),\n                      favorite_fruit = factor(c(\"Mango\", \"Apple\", \"Apple\", \"Paer\")),\n                      age = c(25L, 32L, 22L, 30L),\n                      height = c(1.8, 1.75, 1.6, 1.68),\n                      married = c(F, T, F, T))\nmy_data\n\n   name favorite_fruit age height married\n1 Danny          Mango  25   1.80   FALSE\n2 Moshe          Apple  32   1.75    TRUE\n3  Iris          Apple  22   1.60   FALSE\n4 Ronit           Paer  30   1.68    TRUE\n\ntypeof(my_data)\n\n[1] \"list\"",
+    "text": "2.2 רשימה (list)\nכעת נדון במבנה נתונים שנקרא רשימה (list). רשימה היא אובייקט מרכזי ב-R שמאפשר לנו לאחד משתנים ווקטורים מסוגים שונים, לתוך dataset שיאפשר לנו בהמשך לנתח נתונים. ישנן מספר דרכים להגדיר רשימה, אחת מהן באמצעות הפקודה list. לדוגמה, הרשימה הבאה תכיל את כל הוקטורים שהגדרנו עד כה, מבלי שהם יאבדו מהמשמעות שלהם (כפי שקורה כשמנסים לעשות חיבור רגיל).\n\nmy_list &lt;- list(my_int = some_integer,\n                my_double = some_double,\n                my_character = some_character,\n                my_factor = some_factor,\n                my_date = some_date)\nmy_list\n\n$my_int\n[1] 1 2 3\n\n$my_double\n[1] 1.000000 2.000000 3.141593 2.718282\n\n$my_character\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\n$my_factor\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\n$my_date\n[1] \"2024-04-28\" \"1993-08-01\"\n\ntypeof(my_list)\n\n[1] \"list\"\n\n\nכדי לקרוא לוקטור מסוים מתוך רשימה ניתן להשתמש ב-$ באופן הבא:\n\nmy_list$my_int\n\n[1] 1 2 3\n\n\nהחלק הסופי בהצגה שלנו הוא רשימה מסוג מאוד מסוים, data.frame. מבנה נתונים זה הוא רשימה שבה כל הוקטורים באותו האורך. הוקטורים יכולים להיות מסוגים שונים כפי שציינו, ומה שחשוב ב-data.frame הוא שהוא הולך להיות אבן הפינה שלנו בכל ניתוח נתונים סטטיסטי. בינתיים נסתפק בהדגמה קצרה של הגדרת data.frame אך נרחיב עליו בפרקים הבאים.\n\nmy_data &lt;- data.frame(name = c(\"Danny\", \"Moshe\", \"Iris\", \"Ronit\"),\n                      favorite_fruit = factor(c(\"Mango\", \"Apple\", \"Apple\", \"Paer\")),\n                      age = c(25L, 32L, 22L, 30L),\n                      height = c(1.8, 1.75, 1.6, 1.68),\n                      married = c(F, T, F, T))\nmy_data\n\n   name favorite_fruit age height married\n1 Danny          Mango  25   1.80   FALSE\n2 Moshe          Apple  32   1.75    TRUE\n3  Iris          Apple  22   1.60   FALSE\n4 Ronit           Paer  30   1.68    TRUE\n\ntypeof(my_data)\n\n[1] \"list\"",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>תחביר בסיסי</span>"
     ]
@@ -450,13 +450,63 @@
     ]
   },
   {
-    "objectID": "08-advanced-models.html",
-    "href": "08-advanced-models.html",
-    "title": "8  מודלים",
-    "section": "",
-    "text": "TBD\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד",
+    "objectID": "08-advanced-models.html#הקדמה",
+    "href": "08-advanced-models.html#הקדמה",
+    "title": "8  מודלים מונחים (Supervised)",
+    "section": "8.1 הקדמה",
+    "text": "8.1 הקדמה\nניתן לחלק את עולם המודלים הסטטיסטיים לשני סוגים, המובחנים ביניהם בדרך שבה בונים אותם:\n\nמודלים מונחים (Supervised learning)\nמודלים לא מונחים (Unsupervised learning)\n\nמודלים מונחים הינם מודלים שנבנים תוך שימוש במשתנה תלוי (כפי שראינו בפרק הקודם של רגרסיה לינארית), ולעומת זאת, מודלים לא מונחים הינם מודלים שבהם אין משתנה תלוי (נניח לדוגמה כשרוצים לחלק את מרחב התצפיות לאשכולות שונים).\nבפרק זה נתמקד במידול מונחה, מנקודת מבט מעשית, תוך שימוש בחבילות במשפחה של tidymodels.\n\n\n\n\n\n\nקריאה נוספת לצורך העמקה בתיאוריה\n\n\n\nישנן משפחות רבות של מודלים מונחים, בין המוכרים כלולים גם מודלי שפה (כגון ChatGPT), אך גם מודלים לזיהוי נטישה, זיהוי הונאות, רגרסיות למיניהן, למידה עמוקה, ועוד.\nהספר הנוכחי אינו מתמקד בתיאוריה העומדת בבסיס המודלים השונים, אלא מהווה עזר מעשי להפעלת המודלים. אתם מוזמנים לעיין בספרים הבאים לצורך העמקה תיאורתית:\n\nThe Elements of statistical learning (Hastie, Tibshirani, and Friedman 2009)\nAn Introduction to Statistical Learning (James et al. 2021)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
+    ]
+  },
+  {
+    "objectID": "08-advanced-models.html#תיאור-שלבי-העבודה",
+    "href": "08-advanced-models.html#תיאור-שלבי-העבודה",
+    "title": "8  מודלים מונחים (Supervised)",
+    "section": "8.2 תיאור שלבי העבודה",
+    "text": "8.2 תיאור שלבי העבודה\nכפי שציינו במבוא לספר זה, תהליך ניתוח הנתונים כולל טרנספורמציה על משתנים, וויז’ואליזציות של המשתנים והקשרים שלהם, ומידול. שלב המידול עצמו כולל מספר תתי-שלבים:\n\nחלוקה אקראית של המדגם לקבוצת אימון (training set), קבוצת ולידציה (validation set) וקבוצת מבחן (test set).\nבניית מתכון (recipe) להכנת הדאטה למודל. בניית המתכון משמשת להגדרת כל הטרנספורמציות הדרושות לביצוע על הדאטה, לפני שהוא נכנס למודל.\nהגדרת מודל/ים: בשלב זה מגדירים את המודלים בהם הולכים לעשות שימוש. גם מבחינת האלגוריתם של המודל (סוג המודל) וגם מבחינת מטרת המודל (רגרסיה לעומת סיווג).\nהגדרת תהליך אימון המודל (workflow).\nבניית המודל הראשוני (fitting).\nכיוונון המודל (tuning).\nהערכת ביצועי המודל (evaluation).\nשימוש במודל לחיזוי תצפיות חדשות (prediction).\n\nבשלב 1 אנחנו מפרקים את הנתונים לשלוש קבוצות, כאשר מטרת קבוצת האימון הינה לבנות את המודל, מטרת קבוצת הולידציה הינה לכוון את “היפר-פרמטרים” של המודל (hyper-paramters)ומטרת קבוצת המבחן היא לבחון את שגיאת המודל (על דאטה שהמודל לא תלוי בו משום שלא נלמד על בסיסו). קבוצת האימון תשתמש אותנו בשלבים 2-5, קבוצת הולידציה תשמש אותנו בשלב 6, וקבוצת המבחן תשמש אותנו בשלב 7 בלבד. שלבים 2-6 עשויים לחזור על עצמם מספר פעמים במהלך פיתוח מודלים (עם גרסאות שונות למודל או מודלים שונים לגמרי). השלב האחרון הינו השלב שבו אנחנו מפיקים ערך מהמודל, ומשתמשים בו לחיזוי עבור תצפיות חדשות.\nכעת נפרק כל אחד מהשלבים ונסביר עליו בפירוט. על מנת להדגים את השלבים נשתמש בדאטה שמלווה אותנו מתחילת הספר (Palmer penguins), כאשר הבעיה שנפתור בפרק זה היא סיווג של תצפית של פינגויין לזכר או נקבה לפי כל המשתנים האחרים שעומדים לרשותנו.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
+    ]
+  },
+  {
+    "objectID": "08-advanced-models.html#חלוקת-המדגם",
+    "href": "08-advanced-models.html#חלוקת-המדגם",
+    "title": "8  מודלים מונחים (Supervised)",
+    "section": "8.3 חלוקת המדגם",
+    "text": "8.3 חלוקת המדגם\nראשית נחלק את המדגם לשלוש הקבוצות: אימון, ולידציה, ומבחן.\nאנחנו קוראים את החבילות הנדרשות, מגדירים Seed, כך שנוכל להגריל חלוקה אקראית אך עקבית (תמיד כשנריץ את הקוד נקבל את אותה החלוקה האקראית), ונפצל את הדאטה לשלושת הקבוצות.\n\nlibrary(tidymodels) # reading the meta-package tidymodels\nlibrary(palmerpenguins) # reading the palmer penguins data set which include penguins\n\nset.seed(42) # set an initial seed\n\npenguin_split &lt;- initial_validation_split(penguins, prop = c(0.6, 0.2), strata = sex)\npenguin_split\n\n&lt;Training/Validation/Testing/Total&gt;\n&lt;205/69/70/344&gt;\n\n\nכפי שניתן לראות, המדגם חולק לקבוצת אימון בגודל של 205 תצפיות (המהווה כ-60% מהדאטה המקורי), קבוצת ולידציה בגודל 69 תצפיות (המהווה כ-20% מהדאטה המקורי), וקבוצת מבחן בגודל 70 תצפיות (המהווה כ-20%). גודל הקבוצות הוגדר באמצעות שימוש בארגומנט prop. מקובל לקבוע את קבוצת האימון כקבוצה הגדולה ביותר. ערכים מקובלים לקבוצת האימון והולידציה הם בדרך כלל 70-80% במצטבר, כאשר גודל קבוצת המבחן יהווה כ-20-30% מהדאטה בהתאמה. עם זאת, אין הגדרות חד-משמעיות בהיבט זה, וניתן לחרוג ממספרים אלו כתלות בצורך.\nעל מנת לחלץ את הדאטאות עצמם של כל אחת מהקבוצות נשתמש בפונקציות הבאות:\n\npenguin_train &lt;- training(penguin_split)\npenguin_valid &lt;- validation(penguin_split)\npenguin_test &lt;- testing(penguin_split)\n\nאת המשך הלמידה על הדאטה, כולל בניית המודל, נבצע על קבוצת האימון בלבד penguin_train.\n\n\n\n\n\n\nתרגיל: הבנת הדאטה לפני צלילה למודל\n\n\n\nבדרך כלל לאחר פיצול הדאטה נבצע ויז’ואליזציות שונות כדי להבין איך משתנים שונים משפיעים על המשתנה התלוי (לפני שרואים את השפעתם במודל עצמו). בשלב זה העבודה שתוארה בפרק 4 תהא משמעותית מאוד. לצורך תרגול, בחנו כיצד המשתנים השונים שבדאטה שלנו (penguin_train) משפיעים על מין התצפית.\n\nהשתמשו בויז’ואליזציות שונות כפי שנלמדו והודגמו בפרק על ויז’ואליזציות. לאור הבדיקה, אילו משתנים הייתם מצפים שיהיו משמעותיים במודלים שנפתח?\nישנן שלוש תצפיות בעלות ערך חסר (ללא מין) בקבוצת האימון. לא נוכל להשתמש בתצפיות אלו לצורך אימון המודל - הסבירו מדוע.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
+    ]
+  },
+  {
+    "objectID": "08-advanced-models.html#בניית-מתכון",
+    "href": "08-advanced-models.html#בניית-מתכון",
+    "title": "8  מודלים מונחים (Supervised)",
+    "section": "8.4 בניית מתכון",
+    "text": "8.4 בניית מתכון\nכפי שמיד תראו, חבילת tidymodels מאמצת ז’רגון של מטבח כמו בניית מתכון - recipe, סחיטת מיצים - juice, אפייה - bake, גזר לבן - parsnip, ועוד.\nבשלב זה נבנה “מתכון” שהמטרה שלו להגדיר את השינויים שעובר הדאטה לפני שהוא נכנס למודל. במובן מסויים, התהליך מאוד דומה לתהליך שתואר בפרק הכנת הנתונים 3 אך יש הבדל מהותי: מתכון זה יופעל אוטומטית בכל פעם שנרצה להפעיל את המודל מחדש על תצפיות חדשות, וכן הוא יופעל גם במהלך שלב הכיוונים (וגם ניתן יהיה להגדיר היפר-פרמטרים כחלק מהמתכון, ולאפשר לשלב הכיוונון לבדוק גם אותם).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
+    ]
+  },
+  {
+    "objectID": "08-advanced-models.html#קריאה-נוספת",
+    "href": "08-advanced-models.html#קריאה-נוספת",
+    "title": "8  מודלים מונחים (Supervised)",
+    "section": "8.5 קריאה נוספת",
+    "text": "8.5 קריאה נוספת\nלצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את (Kuhn and Silge 2022) המפרט על השימוש בחבילת tidymodels עם דוגמאות רבות. הספר זמין באינטרנט.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
+    ]
+  },
+  {
+    "objectID": "08-advanced-models.html#סיכום",
+    "href": "08-advanced-models.html#סיכום",
+    "title": "8  מודלים מונחים (Supervised)",
+    "section": "8.6 סיכום",
+    "text": "8.6 סיכום\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד\n\n\n\n\n\nHastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The Elements of Statistical Learning. Springer New York. https://doi.org/10.1007/978-0-387-84858-7.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning. Springer US. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nKuhn, Max, and Julia Silge. 2022. Tidy Modeling with r. \" O’Reilly Media, Inc.\".",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
     ]
   },
   {
@@ -574,69 +624,9 @@
     "href": "references.html",
     "title": "מקורות",
     "section": "",
-    "text": "Murray, Lori L., and John G. Wilson. 2021. “Generating Data Sets\nfor Teaching the Importance of Regression Analysis.” Decision\nSciences Journal of Innovative Education 19 (2): 157–66. https://doi.org/10.1111/dsji.12233.\n\n\nSimpson, E. H. 1951. “The Interpretation of Interaction in\nContingency Tables.” Journal of the Royal Statistical\nSociety: Series B (Methodological) 13 (2): 238–41. https://doi.org/10.1111/j.2517-6161.1951.tb00088.x.\n\n\nWalpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993.\nProbability and Statistics for Engineers and Scientists. Vol.\n5. Macmillan New York.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.”\nJournal of Computational and Graphical Statistics 19 (1): 3–28.\nhttps://doi.org/10.1198/jcgs.2009.07098.\n\n\n———. 2021. Mastering Shiny. \"O’Reilly Media, Inc.\".\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \"O’Reilly\nMedia, Inc.\".\n\n\nXie, Yihui, Joseph J Allaire, and Garrett Grolemund. 2018. R\nMarkdown: The Definitive Guide. CRC Press.\n\n\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד",
+    "text": "Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The\nElements of Statistical Learning. Springer New York. https://doi.org/10.1007/978-0-387-84858-7.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani.\n2021. An Introduction to Statistical Learning. Springer US. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nKuhn, Max, and Julia Silge. 2022. Tidy Modeling with r. \"\nO’Reilly Media, Inc.\".\n\n\nMurray, Lori L., and John G. Wilson. 2021. “Generating Data Sets\nfor Teaching the Importance of Regression Analysis.” Decision\nSciences Journal of Innovative Education 19 (2): 157–66. https://doi.org/10.1111/dsji.12233.\n\n\nSimpson, E. H. 1951. “The Interpretation of Interaction in\nContingency Tables.” Journal of the Royal Statistical\nSociety: Series B (Methodological) 13 (2): 238–41. https://doi.org/10.1111/j.2517-6161.1951.tb00088.x.\n\n\nWalpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993.\nProbability and Statistics for Engineers and Scientists. Vol.\n5. Macmillan New York.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.”\nJournal of Computational and Graphical Statistics 19 (1): 3–28.\nhttps://doi.org/10.1198/jcgs.2009.07098.\n\n\n———. 2021. Mastering Shiny. \"O’Reilly Media, Inc.\".\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \"O’Reilly\nMedia, Inc.\".\n\n\nXie, Yihui, Joseph J Allaire, and Garrett Grolemund. 2018. R\nMarkdown: The Definitive Guide. CRC Press.\n\n\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד",
     "crumbs": [
       "מקורות"
-    ]
-  },
-  {
-    "objectID": "08-advanced-models.html#הקדמה",
-    "href": "08-advanced-models.html#הקדמה",
-    "title": "8  מודלים מונחים (Supervised)",
-    "section": "8.1 הקדמה",
-    "text": "8.1 הקדמה\nניתן לחלק את עולם המודלים הסטטיסטיים לשני סוגים, המובחנים ביניהם בדרך שבה בונים אותם:\n\nמודלים מונחים (Supervised learning)\nמודלים לא מונחים (Unsupervised learning)\n\nמודלים מונחים הינם מודלים שנבנים תוך שימוש במשתנה תלוי (כפי שראינו בפרק הקודם של רגרסיה לינארית), ולעומת זאת, מודלים לא מונחים הינם מודלים שבהם אין משתנה תלוי (נניח לדוגמה כשרוצים לחלק את מרחב התצפיות לאשכולות שונים).\nבפרק זה נתמקד במידול מונחה, מנקודת מבט מעשית, תוך שימוש בחבילות במשפחה של tidymodels.\n\n\n\n\n\n\nקריאה נוספת לצורך העמקה בתיאוריה\n\n\n\nישנן משפחות רבות של מודלים מונחים, בין המוכרים כלולים גם מודלי שפה (כגון ChatGPT), אך גם מודלים לזיהוי נטישה, זיהוי הונאות, רגרסיות למיניהן, למידה עמוקה, ועוד.\nהספר הנוכחי אינו מתמקד בתיאוריה העומדת בבסיס המודלים השונים, אלא מהווה עזר מעשי להפעלת המודלים. אתם מוזמנים לעיין בספרים הבאים לצורך העמקה תיאורתית:\n\nThe Elements of statistical learning (Hastie, Tibshirani, and Friedman 2009)\nAn Introduction to Statistical Learning (James et al. 2021)",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
-    ]
-  },
-  {
-    "objectID": "08-advanced-models.html#שלבי-העבודה",
-    "href": "08-advanced-models.html#שלבי-העבודה",
-    "title": "8  מודלים מונחים (Supervised)",
-    "section": "8.2 שלבי העבודה",
-    "text": "8.2 שלבי העבודה\nכפי שציינו במבוא לספר זה, תהליך ניתוח הנתונים כולל טרנספורמציה על משתנים, וויז’ואליזציות של המשתנים והקשרים שלהם, ומידול. שלב המידול עצמו כולל מספר תתי-שלבים:\n\nחלוקה אקראית של המדגם לקבוצת אימון (training set), קבוצת ולידציה (validation set) וקבוצת מבחן (test set).\nבניית מתכון (recipe) להכנת הדאטה למודל. בניית המתכון משמשת להגדרת כל הטרנספורמציות הדרושות לביצוע על הדאטה, לפני שהוא נכנס למודל.\nהגדרת מודל/ים: בשלב זה מגדירים את המודלים בהם הולכים לעשות שימוש. גם מבחינת האלגוריתם של המודל (סוג המודל) וגם מבחינת מטרת המודל (רגרסיה לעומת סיווג).\nהגדרת תהליך אימון המודל (workflow).\nבניית המודל הראשוני (fitting).\nכיוונון המודל (tuning).\nהערכת ביצועי המודל (evaluation).\n\nבשלב 1 אנחנו מפרקים את הנתונים לשלוש קבוצות, כאשר מטרת קבוצת האימון הינה לבנות את המודל, מטרת קבוצת הולידציה הינה לכוון את “היפר-פרמטרים” של המודל (hyper-paramters)ומטרת קבוצת המבחן היא לבחון את שגיאת המודל (על דאטה שהמודל לא תלוי בו משום שלא נלמד על בסיסו). קבוצת האימון תשתמש אותנו בשלבים 1-5, קבוצת הולידציה תשמש אותנו בשלב 6, וקבוצת המבחן תשמש אותנו בשלב 7 בלבד. שלבים 2-6 עשויים לחזור על עצמם מספר פעמים במהלך פיתוח מודלים (עם גרסאות שונות למודל או מודלים שונים לגמרי). כעת נפרק כל אחד מהשלבים ונסביר עליו בפירוט. על מנת להדגים את השלבים נשתמש בדאטה שמלווה אותנו מתחילת הספר (Palmer penguins), כאשר הבעיה שנפתור בפרק זה היא סיווג של תצפית של פינגויין לזכר או נקבה לפי כל המשתנים האחרים שעומדים לרשותנו.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מידול מונחה</span>"
-    ]
-  },
-  {
-    "objectID": "08-advanced-models.html#קריאה-נוספת",
-    "href": "08-advanced-models.html#קריאה-נוספת",
-    "title": "8  מודלים מונחים (Supervised)",
-    "section": "8.4 קריאה נוספת",
-    "text": "8.4 קריאה נוספת\nלצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את (Kuhn and Silge 2022) המפרט על השימוש בחבילת tidymodels עם דוגמאות רבות. הספר זמין באינטרנט.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
-    ]
-  },
-  {
-    "objectID": "08-advanced-models.html#סיכום",
-    "href": "08-advanced-models.html#סיכום",
-    "title": "8  מודלים מונחים (Supervised)",
-    "section": "8.5 סיכום",
-    "text": "8.5 סיכום\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד\n\n\n\n\n\nHastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The Elements of Statistical Learning. Springer New York. https://doi.org/10.1007/978-0-387-84858-7.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning. Springer US. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nKuhn, Max, and Julia Silge. 2022. Tidy Modeling with r. \" O’Reilly Media, Inc.\".",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
-    ]
-  },
-  {
-    "objectID": "08-advanced-models.html#תיאור-שלבי-העבודה",
-    "href": "08-advanced-models.html#תיאור-שלבי-העבודה",
-    "title": "8  מודלים מונחים (Supervised)",
-    "section": "8.2 תיאור שלבי העבודה",
-    "text": "8.2 תיאור שלבי העבודה\nכפי שציינו במבוא לספר זה, תהליך ניתוח הנתונים כולל טרנספורמציה על משתנים, וויז’ואליזציות של המשתנים והקשרים שלהם, ומידול. שלב המידול עצמו כולל מספר תתי-שלבים:\n\nחלוקה אקראית של המדגם לקבוצת אימון (training set), קבוצת ולידציה (validation set) וקבוצת מבחן (test set).\nבניית מתכון (recipe) להכנת הדאטה למודל. בניית המתכון משמשת להגדרת כל הטרנספורמציות הדרושות לביצוע על הדאטה, לפני שהוא נכנס למודל.\nהגדרת מודל/ים: בשלב זה מגדירים את המודלים בהם הולכים לעשות שימוש. גם מבחינת האלגוריתם של המודל (סוג המודל) וגם מבחינת מטרת המודל (רגרסיה לעומת סיווג).\nהגדרת תהליך אימון המודל (workflow).\nבניית המודל הראשוני (fitting).\nכיוונון המודל (tuning).\nהערכת ביצועי המודל (evaluation).\nשימוש במודל לחיזוי תצפיות חדשות (prediction).\n\nבשלב 1 אנחנו מפרקים את הנתונים לשלוש קבוצות, כאשר מטרת קבוצת האימון הינה לבנות את המודל, מטרת קבוצת הולידציה הינה לכוון את “היפר-פרמטרים” של המודל (hyper-paramters)ומטרת קבוצת המבחן היא לבחון את שגיאת המודל (על דאטה שהמודל לא תלוי בו משום שלא נלמד על בסיסו). קבוצת האימון תשתמש אותנו בשלבים 2-5, קבוצת הולידציה תשמש אותנו בשלב 6, וקבוצת המבחן תשמש אותנו בשלב 7 בלבד. שלבים 2-6 עשויים לחזור על עצמם מספר פעמים במהלך פיתוח מודלים (עם גרסאות שונות למודל או מודלים שונים לגמרי). השלב האחרון הינו השלב שבו אנחנו מפיקים ערך מהמודל, ומשתמשים בו לחיזוי עבור תצפיות חדשות.\nכעת נפרק כל אחד מהשלבים ונסביר עליו בפירוט. על מנת להדגים את השלבים נשתמש בדאטה שמלווה אותנו מתחילת הספר (Palmer penguins), כאשר הבעיה שנפתור בפרק זה היא סיווג של תצפית של פינגויין לזכר או נקבה לפי כל המשתנים האחרים שעומדים לרשותנו.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
-    ]
-  },
-  {
-    "objectID": "08-advanced-models.html#חלוקת-המדגם",
-    "href": "08-advanced-models.html#חלוקת-המדגם",
-    "title": "8  מודלים מונחים (Supervised)",
-    "section": "8.3 חלוקת המדגם",
-    "text": "8.3 חלוקת המדגם\nראשית נחלק את המדגם לשלוש הקבוצות: אימון, ולידציה, ומבחן.\nאנחנו קוראים את החבילות הנדרשות, מגדירים Seed, כך שנוכל להגריל חלוקה אקראית אך עקבית (תמיד כשנריץ את הקוד נקבל את אותה החלוקה האקראית), ונפצל את הדאטה לשלושת הקבוצות.\n\nlibrary(tidymodels) # reading the meta-package tidymodels\nlibrary(palmerpenguins) # reading the palmer penguins data set which include penguins\n\nset.seed(42) # set an initial seed\n\npenguin_split &lt;- initial_validation_split(penguins, prop = c(0.6, 0.2), strata = sex)\npenguin_split\n\n&lt;Training/Validation/Testing/Total&gt;\n&lt;205/69/70/344&gt;",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים (Supervised)</span>"
     ]
   }
 ]
