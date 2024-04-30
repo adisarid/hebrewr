@@ -258,7 +258,11 @@ div.csl-indent {
   <li><a href="#חלוקת-המדגם" id="toc-חלוקת-המדגם" class="nav-link" data-scroll-target="#חלוקת-המדגם"><span class="header-section-number">8.3</span> חלוקת המדגם</a></li>
   <li><a href="#בניית-מתכון" id="toc-בניית-מתכון" class="nav-link" data-scroll-target="#בניית-מתכון"><span class="header-section-number">8.4</span> בניית מתכון</a></li>
   <li><a href="#הגדרת-המודל" id="toc-הגדרת-המודל" class="nav-link" data-scroll-target="#הגדרת-המודל"><span class="header-section-number">8.5</span> הגדרת המודל</a></li>
-  <li><a href="#הגדרת-תהליך-ובניית-המודל" id="toc-הגדרת-תהליך-ובניית-המודל" class="nav-link" data-scroll-target="#הגדרת-תהליך-ובניית-המודל"><span class="header-section-number">8.6</span> הגדרת תהליך ובניית המודל</a></li>
+  <li><a href="#הגדרת-תהליך-ובניית-המודל" id="toc-הגדרת-תהליך-ובניית-המודל" class="nav-link" data-scroll-target="#הגדרת-תהליך-ובניית-המודל"><span class="header-section-number">8.6</span> הגדרת תהליך ובניית המודל</a>
+  <ul class="collapse">
+  <li><a href="#חקירה-של-מודל-הרגרסיה-הלוגיסטית" id="toc-חקירה-של-מודל-הרגרסיה-הלוגיסטית" class="nav-link" data-scroll-target="#חקירה-של-מודל-הרגרסיה-הלוגיסטית"><span class="header-section-number">8.6.1</span> חקירה של מודל הרגרסיה הלוגיסטית</a></li>
+  <li><a href="#חקירה-של-מודל-ה-boosting" id="toc-חקירה-של-מודל-ה-boosting" class="nav-link" data-scroll-target="#חקירה-של-מודל-ה-boosting"><span class="header-section-number">8.6.2</span> חקירה של מודל ה-Boosting</a></li>
+  </ul></li>
   <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.7</span> קריאה נוספת</a></li>
   <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.8</span> סיכום</a></li>
   </ul>
@@ -523,8 +527,9 @@ $ island_Torgersen  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> penguin_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>לפעמים מודל הוא “קופסה שחורה” ולא ניתן להתעמק בו (לדוגמה, מודלי למידה עמוקה, ובפרט מודלי שפה כגון ChatGPT הם קופסה שחורה, בהיבט שקשה לחקור את המודל אך קל לחזות בתוצאותיו).<br>
-עם זאת, לעיתים ההתעמקות בתכונות של מודל יכולה לשפוך אור על הקשר שבין המשתנים (כפי שראינו ב<a href="07-linear-regression.html" class="quarto-xref">פרק&nbsp;<span>7</span></a>. לשם כך עומדות לרשותנו פונקציות שונות המאפשרות לחלץ את המודל וללמוד את תכונותיו.<br>
-לדוגמה, להלן חקירה של מודל הרגרסיה הלוגיסטית:</p>
+עם זאת, לעיתים ההתעמקות בתכונות של מודל יכולה לשפוך אור על הקשר שבין המשתנים (כפי שראינו ב<a href="07-linear-regression.html" class="quarto-xref">פרק&nbsp;<span>7</span></a>. לשם כך עומדות לרשותנו פונקציות שונות המאפשרות לחלץ את המודל וללמוד את תכונותיו. נדגים חקירה של מודל הרגרסיה הלוגיסטית ושל מודל ה-Boosting.</p>
+<section id="חקירה-של-מודל-הרגרסיה-הלוגיסטית" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="חקירה-של-מודל-הרגרסיה-הלוגיסטית"><span class="header-section-number">8.6.1</span> חקירה של מודל הרגרסיה הלוגיסטית</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguin_logistic_fit <span class="sc">%&gt;%</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> </span>
@@ -567,7 +572,11 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <li><p>במקום מבחן F וערך של <span class="math inline">\(R^2\)</span> אנחנו רואים ערך של AIC (Akaike Information Criteria) - קריטריון אחר המאפשר להשוות בין מודלים.</p></li>
 <li><p>משמעות המקדמים שונה (Estimate): ברגרסיה לוגיסטית, האקספוננט של המקדם הוא ה-Odds Ratio, כלומר פי כמה שינוי של יחידה במשתנה המסביר מעלה את הסבירות לשינוי הסיווג.</p></li>
 </ul>
+<p>TODO: להוסיף הסבר על משמעות המקדמים.</p>
 <p>מומלץ להעמיק בתכונות הרגרסיה הלוגיסטית, לדוגמה בספר של <span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="references.html#ref-hastie2009" role="doc-biblioref">2009</a>)</span>.</p>
+</section>
+<section id="חקירה-של-מודל-ה-boosting" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="חקירה-של-מודל-ה-boosting"><span class="header-section-number">8.6.2</span> חקירה של מודל ה-Boosting</h3>
 <p>להלן חקירה של מודל ה-boosting</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguin_boost_fit <span class="sc">%&gt;%</span> </span>
@@ -625,6 +634,7 @@ evaluation_log:
       15       0.08282136</code></pre>
 </div>
 </div>
+</section>
 </section>
 <section id="קריאה-נוספת" class="level2" data-number="8.7">
 <h2 data-number="8.7" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.7</span> קריאה נוספת</h2>
