@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - 8&nbsp; מודלים מונחים (Supervised)</title>
+<title>המדריך העברי למשתמש ב-R - 8&nbsp; מודלים מונחים</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -263,11 +263,17 @@ div.csl-indent {
   <li><a href="#חקירה-של-מודל-הרגרסיה-הלוגיסטית" id="toc-חקירה-של-מודל-הרגרסיה-הלוגיסטית" class="nav-link" data-scroll-target="#חקירה-של-מודל-הרגרסיה-הלוגיסטית"><span class="header-section-number">8.6.1</span> חקירה של מודל הרגרסיה הלוגיסטית</a></li>
   <li><a href="#חקירה-של-מודל-ה-boosting" id="toc-חקירה-של-מודל-ה-boosting" class="nav-link" data-scroll-target="#חקירה-של-מודל-ה-boosting"><span class="header-section-number">8.6.2</span> חקירה של מודל ה-Boosting</a></li>
   </ul></li>
+<<<<<<< HEAD
   <li><a href="#כיוונון-המודל" id="toc-כיוונון-המודל" class="nav-link" data-scroll-target="#כיוונון-המודל"><span class="header-section-number">8.7</span> כיוונון המודל</a></li>
   <li><a href="#הערכת-ביצועי-המודל" id="toc-הערכת-ביצועי-המודל" class="nav-link" data-scroll-target="#הערכת-ביצועי-המודל"><span class="header-section-number">8.8</span> הערכת ביצועי המודל</a></li>
   <li><a href="#שימוש-במודל-לחיזוי-תצפיות-חדשות" id="toc-שימוש-במודל-לחיזוי-תצפיות-חדשות" class="nav-link" data-scroll-target="#שימוש-במודל-לחיזוי-תצפיות-חדשות"><span class="header-section-number">8.9</span> שימוש במודל לחיזוי תצפיות חדשות</a></li>
   <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.10</span> קריאה נוספת</a></li>
   <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.11</span> סיכום</a></li>
+=======
+  <li><a href="#כיוונון-מודלים" id="toc-כיוונון-מודלים" class="nav-link" data-scroll-target="#כיוונון-מודלים"><span class="header-section-number">8.7</span> כיוונון מודלים</a></li>
+  <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.8</span> קריאה נוספת</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.9</span> סיכום</a></li>
+>>>>>>> e6c763bf1f2520d3e62e270fe7fcab5bd2f4f6ea
   </ul>
 </nav>
     </div>
@@ -276,7 +282,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-advanced-models" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים מונחים (Supervised)</span></span></h1>
+<h1 class="title"><span id="sec-advanced-models" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים מונחים</span></span></h1>
 </div>
 
 
@@ -434,7 +440,7 @@ predictor: 7</code></pre>
 <pre><code>• Centering and scaling for: all_numeric_predictors()</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Dummy variables from: species, island</code></pre>
+<pre><code>• Dummy variables from: species and island</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>• Variables selected: -year</code></pre>
@@ -534,9 +540,11 @@ $ island_Torgersen  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 
 <section id="חקירה-של-מודל-הרגרסיה-הלוגיסטית" class="level3" data-number="8.6.1">
 <h3 data-number="8.6.1" class="anchored" data-anchor-id="חקירה-של-מודל-הרגרסיה-הלוגיסטית"><span class="header-section-number">8.6.1</span> חקירה של מודל הרגרסיה הלוגיסטית</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguin_logistic_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>logistic_model_extract <span class="ot">&lt;-</span> penguin_logistic_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>logistic_model_extract <span class="sc">%&gt;%</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -572,48 +580,558 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <p>הפלט דומה לפלט הפקודה <code>summary</code> כאשר מריצים אותה על מודל הרגרסיה הלינארית שראינו בפרק הקודם אך עם מספר הבדלים, לדוגמה:</p>
 <ul>
 <li><p>במקום Residuals אנחנו רואים Deviance Residuals (חישוב שונה של שאריות המבוסס על פונקציית נראות במקום הפרש בין ערך התצפית בפועל לערך החזוי של התצפית).</p></li>
-<li><p>במקום מבחן F וערך של <span class="math inline">\(R^2\)</span> אנחנו רואים ערך של AIC (Akaike Information Criteria) - קריטריון אחר המאפשר להשוות בין מודלים.</p></li>
+<li><p>במקום מבחן <span class="math inline">\(F\)</span> וערך של <span class="math inline">\(R^2\)</span> אנחנו רואים ערך של AIC (Akaike Information Criteria) - קריטריון אחר המאפשר להשוות בין מודלים.</p></li>
 <li><p>משמעות המקדמים שונה (Estimate): ברגרסיה לוגיסטית, האקספוננט של המקדם הוא ה-Odds Ratio, כלומר פי כמה שינוי של יחידה במשתנה המסביר מעלה את הסבירות לשינוי הסיווג.</p></li>
 </ul>
-<p>TODO: להוסיף הסבר על משמעות המקדמים.</p>
-<p>מומלץ להעמיק בתכונות הרגרסיה הלוגיסטית, לדוגמה בספר של <span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="references.html#ref-hastie2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>נציג את ערכי האקספוננט של המקדמים. נשתמש בפונקציה <code>tbl_regression</code> מחבילת <code>gtsummary</code>, עם הארגומנט <code>exponentiate = TRUE</code> על מנת להציג את האקספוננט של המקדמים במקום המקדמים עצמם.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(logistic_model_extract, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="yljisonwcv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yljisonwcv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yljisonwcv thead, #yljisonwcv tbody, #yljisonwcv tfoot, #yljisonwcv tr, #yljisonwcv td, #yljisonwcv th {
+  border-style: none;
+}
+
+#yljisonwcv p {
+  margin: 0;
+  padding: 0;
+}
+
+#yljisonwcv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yljisonwcv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yljisonwcv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yljisonwcv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yljisonwcv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yljisonwcv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yljisonwcv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yljisonwcv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yljisonwcv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yljisonwcv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yljisonwcv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yljisonwcv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yljisonwcv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yljisonwcv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yljisonwcv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yljisonwcv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yljisonwcv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yljisonwcv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yljisonwcv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yljisonwcv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yljisonwcv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yljisonwcv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yljisonwcv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yljisonwcv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yljisonwcv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yljisonwcv .gt_left {
+  text-align: left;
+}
+
+#yljisonwcv .gt_center {
+  text-align: center;
+}
+
+#yljisonwcv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yljisonwcv .gt_font_normal {
+  font-weight: normal;
+}
+
+#yljisonwcv .gt_font_bold {
+  font-weight: bold;
+}
+
+#yljisonwcv .gt_font_italic {
+  font-style: italic;
+}
+
+#yljisonwcv .gt_super {
+  font-size: 65%;
+}
+
+#yljisonwcv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yljisonwcv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yljisonwcv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yljisonwcv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yljisonwcv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yljisonwcv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yljisonwcv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>OR</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>95% CI</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>p-value</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">bill_length_mm</td>
+<td class="gt_row gt_center" headers="estimate">37.4</td>
+<td class="gt_row gt_center" headers="ci">5.83, 458</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">bill_depth_mm</td>
+<td class="gt_row gt_center" headers="estimate">183</td>
+<td class="gt_row gt_center" headers="ci">23.8, 2,852</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">flipper_length_mm</td>
+<td class="gt_row gt_center" headers="estimate">3.11</td>
+<td class="gt_row gt_center" headers="ci">0.47, 24.0</td>
+<td class="gt_row gt_center" headers="p.value">0.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">body_mass_g</td>
+<td class="gt_row gt_center" headers="estimate">114</td>
+<td class="gt_row gt_center" headers="ci">14.7, 1,616</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">species_Chinstrap</td>
+<td class="gt_row gt_center" headers="estimate">0.00</td>
+<td class="gt_row gt_center" headers="ci">0.00, 0.01</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">species_Gentoo</td>
+<td class="gt_row gt_center" headers="estimate">0.00</td>
+<td class="gt_row gt_center" headers="ci">0.00, 0.32</td>
+<td class="gt_row gt_center" headers="p.value">0.033</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">island_Dream</td>
+<td class="gt_row gt_center" headers="estimate">2.56</td>
+<td class="gt_row gt_center" headers="ci">0.21, 35.0</td>
+<td class="gt_row gt_center" headers="p.value">0.5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">island_Torgersen</td>
+<td class="gt_row gt_center" headers="estimate">0.33</td>
+<td class="gt_row gt_center" headers="ci">0.03, 3.43</td>
+<td class="gt_row gt_center" headers="p.value">0.4</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>לדוגמה, עיון במקדם של אורך המקור (<code>bill_length_mm</code>) שערכו כ-3.62 (בטבלת הפלט הגולמית), מעיד על כך ששינוי של 1מ”מ באורך המקור, מעלה את ה-Odds Ratio (היחס בין הסבירות להשתייך לקבוצת הזכרים לסבירות להשתייך לקבוצת הנקבות) פי 37 (עמודת OR בטבלת הפלט המעובדת). ממצא זה מובהק סטטיסטית (p-value&lt;0.001).</p>
+<p>המשתנה המשמעותי ביותר כפי שעולה מתוצאות מודל הרגרסיה הלוגיסטית הינו עומק המקור (<code>bill_depth_mm</code>) עם ערך Odds Ratio של 183.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: אינטראקציות ברגרסיה לוגיסטית
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>בפרק הקודם שדן ברגרסיה לינארית הדגמנו כיצד פועלות אינטראקציות ברגרסיה לינארית. כמו כן, ראינו שישנם קשרים בין הזנים השונים של הפינגויינים לבין תכונותיהם, וכעת ראינו גם שיש קשר בין מין הפינגויינים לתכונותיהם.</p>
+<ol type="1">
+<li>העריכו כיצד הממצאים הללו עשויים להשפיע על ביצועי מודל הרגרסיה הלוגיסטית שהוצג?</li>
+<li>אילו אינטראקציות הייתם שוקלים להוסיף למודל על מנת לשפרו?</li>
+<li>הוסיפו את האינטראקציות הללו על ידי שימוש בפקודה <code>step_interact</code> במתכון שהוצג, והריצו מחדש את מודל הרגרסיה הלוגיסטית.</li>
+<li>נתחו את תוצאות המודל שקיבלתם לאחר האינטראקציה, מה אתם מסיקים מהמודל החדש?</li>
+</ol>
+</div>
+</div>
+<p>מומלץ להעמיק בתכונות הרגרסיה הלוגיסטית, לדוגמה בספר של <span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="references.html#ref-hastie2009" role="doc-biblioref">2009</a>)</span>.<br>
+נדגים כעת כיצד אנו מחלצים את מודל ה-boosting ולומדים ממנו על השפעת המשתנים על מין הפינגויין.</p>
 </section>
 <section id="חקירה-של-מודל-ה-boosting" class="level3" data-number="8.6.2">
 <h3 data-number="8.6.2" class="anchored" data-anchor-id="חקירה-של-מודל-ה-boosting"><span class="header-section-number">8.6.2</span> חקירה של מודל ה-Boosting</h3>
-<p>להלן חקירה של מודל ה-boosting</p>
+<p>ראשית, נחלץ את מודל ה-boosting:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguin_boost_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bst_model_extract <span class="ot">&lt;-</span> penguin_boost_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>bst_model_extract</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>##### xgb.Booster
-raw: 23.2 Kb 
-call:
-  xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
-    colsample_bytree = 1, colsample_bynode = 1, min_child_weight = 1, 
-    subsample = 1), data = x$data, nrounds = 15, watchlist = x$watchlist, 
-    verbose = 0, nthread = 1, objective = "binary:logistic")
-params (as set within xgb.train):
-  eta = "0.3", max_depth = "6", gamma = "0", colsample_bytree = "1", colsample_bynode = "1", min_child_weight = "1", subsample = "1", nthread = "1", objective = "binary:logistic", validate_parameters = "TRUE"
-xgb.attributes:
-  niter
-callbacks:
-  cb.evaluation.log()
-# of features: 8 
-niter: 15
-nfeatures : 8 
-evaluation_log:
-    iter training_logloss
-       1       0.50831836
-       2       0.40351493
----                      
-      14       0.08797671
-      15       0.08282136</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>penguin_boost_fit <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>##### xgb.Booster
-raw: 23.2 Kb 
+raw: 23.1 Kb 
 call:
   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
     colsample_bytree = 1, colsample_bynode = 1, min_child_weight = 1, 
@@ -637,8 +1155,29 @@ evaluation_log:
       15       0.08282136</code></pre>
 </div>
 </div>
+<p>בשונה ממודל הרגרסיה הלוגיסטית, למודל boosting אין “מקדמים” במובן של מקדמים של מודל רגרסיה לוגיסטית. עם זאת, ניתן להשתמש בו כדי לחלץ את חשיבות המשתנים השונים, קרי, דירוג של המשתנים על פי מידת ההשפעה שיש להם על רמת הדיוק של העצים של המודל (תתי-המודלים מהם מורכב מודל ה-boosting). חילוץ נתונים אלו דורש היכרות והפעלה של פקודות מחבילת <code>xgboost</code>. במקרה זה אנחנו מציגים את ה-Gain של המשתנים השונים, כלומר התרומה היחסית שלהם בבעיית הסיווג (אחוזים גבוהים יותר משמעם תרומה גבוהה יותר למודל החיזוי).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>importance_matrix <span class="ot">&lt;-</span> xgboost<span class="sc">::</span><span class="fu">xgb.importance</span>(<span class="at">model =</span> bst_model_extract)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>importance_matrix <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Feature =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(Feature, Gain)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> Feature, <span class="at">x =</span> Gain)) <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Feature Gain in the Penguin Sex Boosting Model"</span>) <span class="sc">+</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="08-advanced-models_files/figure-html/extract variable importance-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>כעת נעבור לשלב כיוונון המודלים, ונלמד מהם היפר-פרמטרים (Hyper parameters).</p>
 </section>
 </section>
+<<<<<<< HEAD
 <section id="כיוונון-המודל" class="level2" data-number="8.7">
 <h2 data-number="8.7" class="anchored" data-anchor-id="כיוונון-המודל"><span class="header-section-number">8.7</span> כיוונון המודל</h2>
 <p>TBD</p>
@@ -657,6 +1196,27 @@ evaluation_log:
 </section>
 <section id="סיכום" class="level2" data-number="8.11">
 <h2 data-number="8.11" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">8.11</span> סיכום</h2>
+=======
+<section id="כיוונון-מודלים" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="כיוונון-מודלים"><span class="header-section-number">8.7</span> כיוונון מודלים</h2>
+<p>ככל שעולה מידת המורכבות של מודלים, כך מתווספים להם פרמטרים הנקראים “היפר-פרמטרים” (Hyper parameters). יש הבדל מהותי בין המונח “פרמטר” (המתייחס לערך של האוכלוסיה שאנחנו אומדים, כגון תוחלת או סטיית תקן), לבין היפר-פרמטר. כאשר המונח היפר-פרמטר מתייחס לפרמטרים של האלגוריתם (ולא של האוכלוסיה). להלן מספר דוגמאות להיפר-פרמטרים:</p>
+<ul>
+<li><p>מספר העצים שישתתפו במודל (נניח מסוג יערות אקראיים או מסוג boosting).</p></li>
+<li><p>מספר האיטרציות המירבי שאלגוריתם צריך לעשות במהלך אימון המודל.</p></li>
+<li><p>מספר הפיצ’רים המירבי שמורשים להשתתף בכל עץ במודל יערות אקראיים.</p></li>
+<li><p>עומק העץ המירבי במודל יערות אקראיים.</p></li>
+</ul>
+<p>לעיתים, ההיפר-פרמטר יהיה תוצר של צעדי המתכון שהכנו. לדוגמה אם השתמשנו בדיסקרטיזציה (<code>step_discretize</code> הפיכה של משתנה רציף למשתנה בדיד בעל מספר ערכים מוגבל), אז מספר הערכים שאנחנו מגדירים למשתנה הבדיד הינו היפר-פרמטר (הארגומנט <code>num_breaks</code> בדוגמה). ערכים שונים שלו עשויים להניב מודלים בעלי ביצועים שונים (מעט מדי ערכים יפגעו ביכולת של המשתנה להסביר את המשתנה התלוי, ויותר מדי ערכים יכניסו למודל הרבה פיצ’רים שיביאו לתופעה של התאמת-יתר over-fitting, גם היא תניב מודל בעל ביצועיים נחותים).</p>
+<p>על כן, מהסיבות הללו ועוד, נשאלת השאלה- איך נכוון (tune) את המודל שלנו, על מנת שנצליח לבחור בסט הערכים המיטבי (שיביא את ביצועי המודל הטובים ביותר). מדובר בבעיה מורכבת שכן ברגע שיש לנו שילוב של היפר-פרמטרים, ישנם הרבה אפשרויות לבחינה (לדוגמה, חמישה פרמטרים שלכל אחד חמישה ערכים אפשריים מהווים <span class="math inline">\(5^5\)</span> צירופים שונים.</p>
+<p>נדגים כעת כיצד אנחנו מכווננים את מודל היער האקראי בהתייחס להיפר-פרמטרים mtry, trees, n_min המתארים את מספר המשתנים המסבירים שמופיעים בכל עץ, מספר העצים הכללי במודל, וגודל המדגם המינימלי לכל קודקוד בעץ (שמתחתיו לא ניתן לפצל את הקוקוד).</p>
+</section>
+<section id="קריאה-נוספת" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.8</span> קריאה נוספת</h2>
+<p>לצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את <span class="citation" data-cites="kuhn2022tidy">(<a href="references.html#ref-kuhn2022tidy" role="doc-biblioref">Kuhn and Silge 2022</a>)</span> המפרט על השימוש בחבילת <code>tidymodels</code> עם דוגמאות רבות. הספר <a href="https://www.tmwr.org/">זמין באינטרנט</a>.</p>
+</section>
+<section id="סיכום" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">8.9</span> סיכום</h2>
+>>>>>>> e6c763bf1f2520d3e62e270fe7fcab5bd2f4f6ea
 <div class="end-page">
 
 <div class="hidden" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
