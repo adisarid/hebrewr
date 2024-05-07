@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.hebrewr.co.il/index.html</loc>
-    <lastmod>2024-04-30T04:18:31.012Z</lastmod>
+    <lastmod>2023-11-25T18:06:40.741Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/01-introduction.html</loc>
@@ -34,11 +34,7 @@
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/08-advanced-models.html</loc>
-<<<<<<< HEAD
-    <lastmod>2024-05-07T06:42:20.878Z</lastmod>
-=======
-    <lastmod>2024-04-30T15:24:01.780Z</lastmod>
->>>>>>> e6c763bf1f2520d3e62e270fe7fcab5bd2f4f6ea
+    <lastmod>2024-05-07T06:48:09.480Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/09-purrr.html</loc>
