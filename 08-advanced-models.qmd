@@ -289,9 +289,119 @@ importance_matrix %>%
 
 נדגים כעת כיצד אנחנו מכווננים את מודל היער האקראי בהתייחס להיפר-פרמטרים mtry, trees, n_min המתארים את מספר המשתנים המסבירים שמופיעים בכל עץ, מספר העצים הכללי במודל, וגודל המדגם המינימלי לכל קודקוד בעץ (שמתחתיו לא ניתן לפצל את הקוקוד).
 
-## כיוונון המודל
+כיוונון המודל מתבצע על ה-Validation set, ולבסוף כאשר נמצא את סט ערכי ההיפר פרמטרים המיטבי, נבצע אימון מחודש בהתאם לסט הערכים המיטבי, על גבי ה-Train set, ונאמוד את השגיאה באמצעות ה-Test set.
+
+הפקודה הבאה מגדירה מודל, שבו רכיבים מסוימים הינם רכיבים אשר יעברו כוונון. הפונקציה `tune()` משמשת כמעין "ממלא מקום". הפונקציות בהן נשתמש בהמשך ידעו להחליף את `tune()` בערכים שונים במסגרת החיפוש המתבצע בתהליך הכיוונון.
+
+```{r defining the tune placeholders}
+# Random forest - tunning
+# We'r tunning on the following hyper-parameters (mtry, trees, min_n)
+penguin_forest_tune_spec <- rand_forest(
+  mode = "classification",
+  engine = "ranger",
+  mtry = tune(),
+  trees = tune(),
+  min_n = tune())
+
+penguin_forest_tune_spec
+```
+
+כעת נגדיר את רשת החיפוש (Search grid). המונח רשת מבטא את העובדה שישנם מספר היפר-פרמטרים וההצלבה ביניהם מייצרת מעין "רשת" שבה מתבצע החיפוש.
+
+```{r define the search grid}
+penguin_grid <- grid_regular(mtry(range = c(1, 5)), 
+                             trees(), 
+                             min_n(),
+                             levels = 3)
+
+penguin_grid
+```
+
+לחלק מהפונקציות בהם השתמשנו (`trees`, `min_n`) יש ערכי ברירת מחדל המגדירים את טווח החיפוש. \
+עבור `mtry` הגדרנו את טווח החיפוש. הארגומנט `levels` מגדיר עבור כמה ערכים בטווח זה יבוצע החיפוש. כלומר, ברשת שהגדרנו יבוצע חיפוש ברשת של $3^3=27$ נקודות (כל ההצלבות האפשריות בין ההיפר-פרמטרים).
+
+הפקודה הבאה תחלק את קבוצת ה-validation ל-`v=5` קבוצות באקראי. על כל אחת מקבוצות אלו יבנו 27 מודלים (כלומר בסך הכל 135 מודלים יבנו).
+
+```{r define the vfold cv sets}
+penguin_folds <- penguin_valid %>% 
+  na.omit() %>% 
+  vfold_cv(, v = 5, strata = sex)
+```
+
+השתמשנו ב-`na.omit` על מנת להשמיט ערכים חסרים מהמשתנה `sex`. כעת נבצע את ההרצה בפועל של בניית כלל המודלים:
+
+```{r run the validation}
+penguin_forest_tune_wf <- workflow() %>% 
+  add_model(penguin_forest_tune_spec) %>% 
+  add_recipe(penguin_recipe)
+
+penguin_forest_tune_res <- penguin_forest_tune_wf %>% 
+  tune_grid(
+    resamples = penguin_folds,
+    grid = penguin_grid
+  )
+
+penguin_forest_tune_res
+```
+
+כעת ניתן לנתח את רמת הדיוק כפונקציה של ערכי ההיפר-פרמטרים:
+
+```{r hyper-parameter analysis}
+penguin_forest_metrics <- penguin_forest_tune_res %>% 
+  collect_metrics() %>% 
+  mutate(mtry = glue::glue("mtry={mtry}")) %>% 
+  mutate(across(c(mtry, min_n), as.factor))
+
+penguin_forest_metrics
+
+penguin_forest_metrics %>% 
+  filter(.metric == "accuracy") %>% 
+  ggplot(aes(x = trees, y = mean, color = min_n)) + 
+  geom_line() + 
+  geom_point() +
+  facet_wrap(~ mtry) + 
+  theme_bw() + 
+  ylab("Accuracy") + 
+  ggtitle("Model accuracy as a function of trees, min_n, and mtry")
+
+penguin_forest_metrics %>% 
+  filter(.metric == "roc_auc") %>% 
+  ggplot(aes(x = trees, y = mean, color = min_n)) + 
+  geom_line() + 
+  geom_point() +
+  facet_wrap(~ mtry) + 
+  theme_bw() + 
+  ylab("AUC") + 
+  ggtitle("Model AUC as a function of trees, min_n, and mtry")
+```
+
+::: callout-tip
+## מהם AUC ו-Accuracy?
 
 TBD
+:::
+
+```{r select best}
+penguin_forest_tune_res %>% 
+  select_best(metric = "accuracy")
+
+penguin_forest_tune_res %>% 
+  select_best(metric = "roc_auc")
+```
+
+מניתוח שני התרשימים, נראה שהדיוק הגבוה ביותר במונחי accuracy מתקבל בעבור סט הערכים:
+
+-   `min_n`= 21
+
+-   `mtry`=5
+
+-   `trees`=2000
+
+במונחי AUC_ROC הדיוק הגבוה ביותר מתקבל כאשר מספר העצים הוא 1000 וערך min_n הינו 2, אך ביצועים אלו דומים גם לביצועים בעבור סט הערכים לעיל, ולכן יש העדפה קלה לבחירתו.
+
+ייתכן שאם היינו מגדילים את מספר העצים במודל היתה מתקבלת רמת דיוק גבוהה אף יותר (משום שנראה שיש מגמת עליה קלה ברמת הדיוק כאשר מספר העצים גדל).
+
+כעת נאמן את המודל עם ערכים אלו.
 
 ## הערכת ביצועי המודל
 

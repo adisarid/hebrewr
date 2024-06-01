@@ -264,11 +264,10 @@ div.csl-indent {
   <li><a href="#חקירה-של-מודל-ה-boosting" id="toc-חקירה-של-מודל-ה-boosting" class="nav-link" data-scroll-target="#חקירה-של-מודל-ה-boosting"><span class="header-section-number">8.6.2</span> חקירה של מודל ה-Boosting</a></li>
   </ul></li>
   <li><a href="#כיוונון-מודלים" id="toc-כיוונון-מודלים" class="nav-link" data-scroll-target="#כיוונון-מודלים"><span class="header-section-number">8.7</span> כיוונון מודלים</a></li>
-  <li><a href="#כיוונון-המודל" id="toc-כיוונון-המודל" class="nav-link" data-scroll-target="#כיוונון-המודל"><span class="header-section-number">8.8</span> כיוונון המודל</a></li>
-  <li><a href="#הערכת-ביצועי-המודל" id="toc-הערכת-ביצועי-המודל" class="nav-link" data-scroll-target="#הערכת-ביצועי-המודל"><span class="header-section-number">8.9</span> הערכת ביצועי המודל</a></li>
-  <li><a href="#שימוש-במודל-לחיזוי-תצפיות-חדשות" id="toc-שימוש-במודל-לחיזוי-תצפיות-חדשות" class="nav-link" data-scroll-target="#שימוש-במודל-לחיזוי-תצפיות-חדשות"><span class="header-section-number">8.10</span> שימוש במודל לחיזוי תצפיות חדשות</a></li>
-  <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.11</span> קריאה נוספת</a></li>
-  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.12</span> סיכום</a></li>
+  <li><a href="#הערכת-ביצועי-המודל" id="toc-הערכת-ביצועי-המודל" class="nav-link" data-scroll-target="#הערכת-ביצועי-המודל"><span class="header-section-number">8.8</span> הערכת ביצועי המודל</a></li>
+  <li><a href="#שימוש-במודל-לחיזוי-תצפיות-חדשות" id="toc-שימוש-במודל-לחיזוי-תצפיות-חדשות" class="nav-link" data-scroll-target="#שימוש-במודל-לחיזוי-תצפיות-חדשות"><span class="header-section-number">8.9</span> שימוש במודל לחיזוי תצפיות חדשות</a></li>
+  <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.10</span> קריאה נוספת</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.11</span> סיכום</a></li>
   </ul>
 </nav>
     </div>
@@ -1184,25 +1183,205 @@ evaluation_log:
 <p>לעיתים, ההיפר-פרמטר יהיה תוצר של צעדי המתכון שהכנו. לדוגמה אם השתמשנו בדיסקרטיזציה (<code>step_discretize</code> הפיכה של משתנה רציף למשתנה בדיד בעל מספר ערכים מוגבל), אז מספר הערכים שאנחנו מגדירים למשתנה הבדיד הינו היפר-פרמטר (הארגומנט <code>num_breaks</code> בדוגמה). ערכים שונים שלו עשויים להניב מודלים בעלי ביצועים שונים (מעט מדי ערכים יפגעו ביכולת של המשתנה להסביר את המשתנה התלוי, ויותר מדי ערכים יכניסו למודל הרבה פיצ’רים שיביאו לתופעה של התאמת-יתר over-fitting, גם היא תניב מודל בעל ביצועיים נחותים).</p>
 <p>על כן, מהסיבות הללו ועוד, נשאלת השאלה- איך נכוון (tune) את המודל שלנו, על מנת שנצליח לבחור בסט הערכים המיטבי (שיביא את ביצועי המודל הטובים ביותר). מדובר בבעיה מורכבת שכן ברגע שיש לנו שילוב של היפר-פרמטרים, ישנם הרבה אפשרויות לבחינה (לדוגמה, חמישה פרמטרים שלכל אחד חמישה ערכים אפשריים מהווים <span class="math inline">\(5^5\)</span> צירופים שונים.</p>
 <p>נדגים כעת כיצד אנחנו מכווננים את מודל היער האקראי בהתייחס להיפר-פרמטרים mtry, trees, n_min המתארים את מספר המשתנים המסבירים שמופיעים בכל עץ, מספר העצים הכללי במודל, וגודל המדגם המינימלי לכל קודקוד בעץ (שמתחתיו לא ניתן לפצל את הקוקוד).</p>
+<p>כיוונון המודל מתבצע על ה-Validation set, ולבסוף כאשר נמצא את סט ערכי ההיפר פרמטרים המיטבי, נבצע אימון מחודש בהתאם לסט הערכים המיטבי, על גבי ה-Train set, ונאמוד את השגיאה באמצעות ה-Test set.</p>
+<p>הפקודה הבאה מגדירה מודל, שבו רכיבים מסוימים הינם רכיבים אשר יעברו כוונון. הפונקציה <code>tune()</code> משמשת כמעין “ממלא מקום”. הפונקציות בהן נשתמש בהמשך ידעו להחליף את <code>tune()</code> בערכים שונים במסגרת החיפוש המתבצע בתהליך הכיוונון.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Random forest - tunning</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We'r tunning on the following hyper-parameters (mtry, trees, min_n)</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> <span class="st">"ranger"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> <span class="fu">tune</span>(),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> <span class="fu">tune</span>(),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> <span class="fu">tune</span>())</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Random Forest Model Specification (classification)
+
+Main Arguments:
+  mtry = tune()
+  trees = tune()
+  min_n = tune()
+
+Computational engine: ranger </code></pre>
+</div>
+</div>
+<p>כעת נגדיר את רשת החיפוש (Search grid). המונח רשת מבטא את העובדה שישנם מספר היפר-פרמטרים וההצלבה ביניהם מייצרת מעין “רשת” שבה מתבצע החיפוש.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>penguin_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">mtry</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)), </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">trees</span>(), </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">min_n</span>(),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="dv">3</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>penguin_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 3
+    mtry trees min_n
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1     1     1     2
+ 2     3     1     2
+ 3     5     1     2
+ 4     1  1000     2
+ 5     3  1000     2
+ 6     5  1000     2
+ 7     1  2000     2
+ 8     3  2000     2
+ 9     5  2000     2
+10     1     1    21
+# ℹ 17 more rows</code></pre>
+</div>
+</div>
+<p>לחלק מהפונקציות בהם השתמשנו (<code>trees</code>, <code>min_n</code>) יש ערכי ברירת מחדל המגדירים את טווח החיפוש.<br>
+עבור <code>mtry</code> הגדרנו את טווח החיפוש. הארגומנט <code>levels</code> מגדיר עבור כמה ערכים בטווח זה יבוצע החיפוש. כלומר, ברשת שהגדרנו יבוצע חיפוש ברשת של <span class="math inline">\(3^3=27\)</span> נקודות (כל ההצלבות האפשריות בין ההיפר-פרמטרים).</p>
+<p>הפקודה הבאה תחלק את קבוצת ה-validation ל-<code>v=5</code> קבוצות באקראי. על כל אחת מקבוצות אלו יבנו 27 מודלים (כלומר בסך הכל 135 מודלים יבנו).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>penguin_folds <span class="ot">&lt;-</span> penguin_valid <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vfold_cv</span>(, <span class="at">v =</span> <span class="dv">5</span>, <span class="at">strata =</span> sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>השתמשנו ב-<code>na.omit</code> על מנת להשמיט ערכים חסרים מהמשתנה <code>sex</code>. כעת נבצע את ההרצה בפועל של בניית כלל המודלים:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(penguin_forest_tune_spec) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(penguin_recipe)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_res <span class="ot">&lt;-</span> penguin_forest_tune_wf <span class="sc">%&gt;%</span> </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> penguin_folds,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> penguin_grid</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Tuning results
+# 5-fold cross-validation using stratification 
+# A tibble: 5 × 4
+  splits          id    .metrics          .notes          
+  &lt;list&gt;          &lt;chr&gt; &lt;list&gt;            &lt;list&gt;          
+1 &lt;split [50/14]&gt; Fold1 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
+2 &lt;split [51/13]&gt; Fold2 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
+3 &lt;split [51/13]&gt; Fold3 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
+4 &lt;split [52/12]&gt; Fold4 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
+5 &lt;split [52/12]&gt; Fold5 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
+</div>
+</div>
+<p>כעת ניתן לנתח את רמת הדיוק כפונקציה של ערכי ההיפר-פרמטרים:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="ot">&lt;-</span> penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mtry =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"mtry={mtry}"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(mtry, min_n), as.factor))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 54 × 9
+   mtry   trees min_n .metric  .estimator  mean     n std_err .config           
+   &lt;fct&gt;  &lt;int&gt; &lt;fct&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;             
+ 1 mtry=1     1 2     accuracy binary     0.594     5  0.0495 Preprocessor1_Mod…
+ 2 mtry=1     1 2     roc_auc  binary     0.613     5  0.0601 Preprocessor1_Mod…
+ 3 mtry=3     1 2     accuracy binary     0.718     5  0.0581 Preprocessor1_Mod…
+ 4 mtry=3     1 2     roc_auc  binary     0.735     5  0.0506 Preprocessor1_Mod…
+ 5 mtry=5     1 2     accuracy binary     0.749     5  0.0764 Preprocessor1_Mod…
+ 6 mtry=5     1 2     roc_auc  binary     0.762     5  0.0717 Preprocessor1_Mod…
+ 7 mtry=1  1000 2     accuracy binary     0.845     5  0.0384 Preprocessor1_Mod…
+ 8 mtry=1  1000 2     roc_auc  binary     0.904     5  0.0459 Preprocessor1_Mod…
+ 9 mtry=3  1000 2     accuracy binary     0.847     5  0.0377 Preprocessor1_Mod…
+10 mtry=3  1000 2     roc_auc  binary     0.918     5  0.0432 Preprocessor1_Mod…
+# ℹ 44 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trees, <span class="at">y =</span> mean, <span class="at">color =</span> min_n)) <span class="sc">+</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> mtry) <span class="sc">+</span> </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Accuracy"</span>) <span class="sc">+</span> </span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model accuracy as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="08-advanced-models_files/figure-html/hyper-parameter analysis-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"roc_auc"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trees, <span class="at">y =</span> mean, <span class="at">color =</span> min_n)) <span class="sc">+</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> mtry) <span class="sc">+</span> </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"AUC"</span>) <span class="sc">+</span> </span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model AUC as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="08-advanced-models_files/figure-html/hyper-parameter analysis-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+מהם AUC ו-Accuracy?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>TBD</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+   mtry trees min_n .config              
+  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
+1     5  2000    21 Preprocessor1_Model18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"roc_auc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+   mtry trees min_n .config              
+  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
+1     5  1000     2 Preprocessor1_Model06</code></pre>
+</div>
+</div>
+<p>מניתוח שני התרשימים, נראה שהדיוק הגבוה ביותר במונחי accuracy מתקבל בעבור סט הערכים:</p>
+<ul>
+<li><p><code>min_n</code>= 21</p></li>
+<li><p><code>mtry</code>=5</p></li>
+<li><p><code>trees</code>=2000</p></li>
+</ul>
+<p>במונחי AUC_ROC הדיוק הגבוה ביותר מתקבל כאשר מספר העצים הוא 1000 וערך min_n הינו 2, אך ביצועים אלו דומים גם לביצועים בעבור סט הערכים לעיל, ולכן יש העדפה קלה לבחירתו.</p>
+<p>ייתכן שאם היינו מגדילים את מספר העצים במודל היתה מתקבלת רמת דיוק גבוהה אף יותר (משום שנראה שיש מגמת עליה קלה ברמת הדיוק כאשר מספר העצים גדל).</p>
+<p>כעת נאמן את המודל עם ערכים אלו.</p>
 </section>
-<section id="כיוונון-המודל" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="כיוונון-המודל"><span class="header-section-number">8.8</span> כיוונון המודל</h2>
+<section id="הערכת-ביצועי-המודל" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="הערכת-ביצועי-המודל"><span class="header-section-number">8.8</span> הערכת ביצועי המודל</h2>
 <p>TBD</p>
 </section>
-<section id="הערכת-ביצועי-המודל" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="הערכת-ביצועי-המודל"><span class="header-section-number">8.9</span> הערכת ביצועי המודל</h2>
+<section id="שימוש-במודל-לחיזוי-תצפיות-חדשות" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="שימוש-במודל-לחיזוי-תצפיות-חדשות"><span class="header-section-number">8.9</span> שימוש במודל לחיזוי תצפיות חדשות</h2>
 <p>TBD</p>
 </section>
-<section id="שימוש-במודל-לחיזוי-תצפיות-חדשות" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="שימוש-במודל-לחיזוי-תצפיות-חדשות"><span class="header-section-number">8.10</span> שימוש במודל לחיזוי תצפיות חדשות</h2>
-<p>TBD</p>
-</section>
-<section id="קריאה-נוספת" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.11</span> קריאה נוספת</h2>
+<section id="קריאה-נוספת" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.10</span> קריאה נוספת</h2>
 <p>לצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את <span class="citation" data-cites="kuhn2022tidy">(<a href="references.html#ref-kuhn2022tidy" role="doc-biblioref">Kuhn and Silge 2022</a>)</span> המפרט על השימוש בחבילת <code>tidymodels</code> עם דוגמאות רבות. הספר <a href="https://www.tmwr.org/">זמין באינטרנט</a>.</p>
 </section>
-<section id="סיכום" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">8.12</span> סיכום</h2>
+<section id="סיכום" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">8.11</span> סיכום</h2>
 <div class="end-page">
 
 <div class="hidden" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
