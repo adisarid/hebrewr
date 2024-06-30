@@ -442,7 +442,7 @@ predictor: 7</code></pre>
 <pre><code>• Centering and scaling for: all_numeric_predictors()</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Dummy variables from: species, island</code></pre>
+<pre><code>• Dummy variables from: species and island</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>• Variables removed: year</code></pre>
@@ -551,10 +551,6 @@ $ island_Torgersen  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 
 <pre><code>
 Call:
 stats::glm(formula = ..y ~ ., family = stats::binomial, data = data)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--3.4113  -0.2396   0.0004   0.1720   1.8487  
 
 Coefficients:
                   Estimate Std. Error z value Pr(&gt;|z|)    
@@ -1149,12 +1145,13 @@ callbacks:
 niter: 15
 nfeatures : 8 
 evaluation_log:
-    iter training_logloss
-       1       0.52065057
-       2       0.40581751
----                      
-      14       0.10083539
-      15       0.09394717</code></pre>
+     iter training_logloss
+    &lt;num&gt;            &lt;num&gt;
+        1       0.52065057
+        2       0.40581751
+---                       
+       14       0.10083539
+       15       0.09394717</code></pre>
 </div>
 </div>
 <p>בשונה ממודל הרגרסיה הלוגיסטית, למודל boosting אין “מקדמים” במובן של מקדמים של מודל רגרסיה לוגיסטית. עם זאת, ניתן להשתמש בו כדי לחלץ את חשיבות המשתנים השונים, קרי, דירוג של המשתנים על פי מידת ההשפעה שיש להם על רמת הדיוק של העצים של המודל (תתי-המודלים מהם מורכב מודל ה-boosting). חילוץ נתונים אלו דורש היכרות והפעלה של פקודות מחבילת <code>xgboost</code>. במקרה זה אנחנו מציגים את ה-Gain של המשתנים השונים, כלומר התרומה היחסית שלהם בבעיית הסיווג (אחוזים גבוהים יותר משמעם תרומה גבוהה יותר למודל החיזוי).</p>
@@ -1258,55 +1255,57 @@ Computational engine: ranger </code></pre>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> penguin_folds,</span>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> penguin_grid</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ranger' was built under R version 4.4.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_tune_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Tuning results
 # 5-fold cross-validation using stratification 
 # A tibble: 5 × 4
   splits          id    .metrics          .notes          
   &lt;list&gt;          &lt;chr&gt; &lt;list&gt;            &lt;list&gt;          
-1 &lt;split [53/14]&gt; Fold1 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
-2 &lt;split [53/14]&gt; Fold2 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
-3 &lt;split [53/14]&gt; Fold3 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
-4 &lt;split [54/13]&gt; Fold4 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;
-5 &lt;split [55/12]&gt; Fold5 &lt;tibble [54 × 7]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
+1 &lt;split [53/14]&gt; Fold1 &lt;tibble [81 × 7]&gt; &lt;tibble [0 × 3]&gt;
+2 &lt;split [53/14]&gt; Fold2 &lt;tibble [81 × 7]&gt; &lt;tibble [0 × 3]&gt;
+3 &lt;split [53/14]&gt; Fold3 &lt;tibble [81 × 7]&gt; &lt;tibble [0 × 3]&gt;
+4 &lt;split [54/13]&gt; Fold4 &lt;tibble [81 × 7]&gt; &lt;tibble [0 × 3]&gt;
+5 &lt;split [55/12]&gt; Fold5 &lt;tibble [81 × 7]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
 </div>
 </div>
 <p>כעת ניתן לנתח את רמת הדיוק כפונקציה של ערכי ההיפר-פרמטרים:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="ot">&lt;-</span> penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mtry =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"mtry={mtry}"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(mtry, min_n), as.factor))</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="ot">&lt;-</span> penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mtry =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"mtry={mtry}"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(mtry, min_n), as.factor))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 54 × 9
-   mtry   trees min_n .metric  .estimator  mean     n std_err .config           
-   &lt;fct&gt;  &lt;int&gt; &lt;fct&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;             
- 1 mtry=1     1 2     accuracy binary     0.704     5  0.0264 Preprocessor1_Mod…
- 2 mtry=1     1 2     roc_auc  binary     0.720     5  0.0345 Preprocessor1_Mod…
- 3 mtry=3     1 2     accuracy binary     0.746     5  0.0188 Preprocessor1_Mod…
- 4 mtry=3     1 2     roc_auc  binary     0.738     5  0.0226 Preprocessor1_Mod…
- 5 mtry=5     1 2     accuracy binary     0.822     5  0.0446 Preprocessor1_Mod…
- 6 mtry=5     1 2     roc_auc  binary     0.819     5  0.0435 Preprocessor1_Mod…
- 7 mtry=1  1000 2     accuracy binary     0.838     5  0.0246 Preprocessor1_Mod…
- 8 mtry=1  1000 2     roc_auc  binary     0.932     5  0.0310 Preprocessor1_Mod…
- 9 mtry=3  1000 2     accuracy binary     0.822     5  0.0151 Preprocessor1_Mod…
-10 mtry=3  1000 2     roc_auc  binary     0.922     5  0.0344 Preprocessor1_Mod…
-# ℹ 44 more rows</code></pre>
+<pre><code># A tibble: 81 × 9
+   mtry   trees min_n .metric     .estimator  mean     n std_err .config        
+   &lt;fct&gt;  &lt;int&gt; &lt;fct&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;          
+ 1 mtry=1     1 2     accuracy    binary     0.730     5  0.0311 Preprocessor1_…
+ 2 mtry=1     1 2     brier_class binary     0.222     5  0.0369 Preprocessor1_…
+ 3 mtry=1     1 2     roc_auc     binary     0.766     5  0.0403 Preprocessor1_…
+ 4 mtry=3     1 2     accuracy    binary     0.779     5  0.0506 Preprocessor1_…
+ 5 mtry=3     1 2     brier_class binary     0.217     5  0.0539 Preprocessor1_…
+ 6 mtry=3     1 2     roc_auc     binary     0.787     5  0.0521 Preprocessor1_…
+ 7 mtry=5     1 2     accuracy    binary     0.765     5  0.0521 Preprocessor1_…
+ 8 mtry=5     1 2     brier_class binary     0.235     5  0.0521 Preprocessor1_…
+ 9 mtry=5     1 2     roc_auc     binary     0.767     5  0.0514 Preprocessor1_…
+10 mtry=1  1000 2     accuracy    binary     0.853     5  0.0591 Preprocessor1_…
+# ℹ 71 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trees, <span class="at">y =</span> mean, <span class="at">color =</span> min_n)) <span class="sc">+</span> </span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> mtry) <span class="sc">+</span> </span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Accuracy"</span>) <span class="sc">+</span> </span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model accuracy as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"accuracy"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trees, <span class="at">y =</span> mean, <span class="at">color =</span> min_n)) <span class="sc">+</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> mtry) <span class="sc">+</span> </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Accuracy"</span>) <span class="sc">+</span> </span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model accuracy as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1316,15 +1315,15 @@ Computational engine: ranger </code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"roc_auc"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trees, <span class="at">y =</span> mean, <span class="at">color =</span> min_n)) <span class="sc">+</span> </span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> mtry) <span class="sc">+</span> </span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"AUC"</span>) <span class="sc">+</span> </span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model AUC as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_metrics <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"roc_auc"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trees, <span class="at">y =</span> mean, <span class="at">color =</span> min_n)) <span class="sc">+</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> mtry) <span class="sc">+</span> </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"AUC"</span>) <span class="sc">+</span> </span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model AUC as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1336,25 +1335,25 @@ Computational engine: ranger </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_acc <span class="ot">&lt;-</span> penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_acc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-   mtry trees min_n .config              
-  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
-1     5     1    21 Preprocessor1_Model12</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_rocauc <span class="ot">&lt;-</span> penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"roc_auc"</span>)</span>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_acc <span class="ot">&lt;-</span> penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"accuracy"</span>)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_rocauc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_acc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
    mtry trees min_n .config              
   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
-1     1  1000     2 Preprocessor1_Model04</code></pre>
+1     1  2000     2 Preprocessor1_Model07</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_rocauc <span class="ot">&lt;-</span> penguin_forest_tune_res <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"roc_auc"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>penguin_rf_best_rocauc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+   mtry trees min_n .config              
+  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
+1     5  1000    21 Preprocessor1_Model15</code></pre>
 </div>
 </div>
 <p>בחלק הבא של פרק זה, נסביר מהם מדדי הדיוק (מה המשמעות של Accuracy, ROC, AUC, ועוד), בינתיים נבחין בכך שמניתוח שני התרשימים, נראה שהדיוק הגבוה ביותר במונחי accuracy מתקבל בעבור סט הערכים:</p>
@@ -1477,36 +1476,53 @@ Computational engine: ranger </code></pre>
 <h2 data-number="8.9" class="anchored" data-anchor-id="בניית-מודל-סופי"><span class="header-section-number">8.9</span> בניית מודל סופי</h2>
 <p>כפי שראינו, המודל המיטבי על פי הבחינות שביצענו הינו מודל יער, עם היפר-פרמטרים כפי שנמצאו לעיל, להלן בנייתו:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_best_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"classification"</span>,</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> <span class="st">"ranger"</span>,</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> penguin_rf_best_acc<span class="sc">$</span>mtry,</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> penguin_rf_best_acc<span class="sc">$</span>trees,</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> penguin_rf_best_acc<span class="sc">$</span>min_n)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>penguin_forest_best <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(penguin_forest_best_spec) <span class="sc">%&gt;%</span> </span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(penguin_recipe) <span class="sc">%&gt;%</span> </span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> penguin_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>penguin_forest_best_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"classification"</span>,</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine =</span> <span class="st">"ranger"</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> penguin_rf_best_acc<span class="sc">$</span>mtry,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> penguin_rf_best_acc<span class="sc">$</span>trees,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> penguin_rf_best_acc<span class="sc">$</span>min_n)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>penguin_forest_best <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(penguin_forest_best_spec) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(penguin_recipe) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> penguin_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>ניתן להציג את מטריצת הבלבול של המודל, על סט המבחן, באמצעות הקוד הבא:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>penguin_pred <span class="ot">&lt;-</span> </span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(penguin_forest_best, <span class="at">new_data =</span> penguin_test)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>penguin_conf_mat <span class="ot">&lt;-</span> penguin_test <span class="sc">%&gt;%</span> </span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred =</span> penguin_pred<span class="sc">$</span>.pred_class) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> sex, <span class="at">estimate =</span> pred)</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>penguin_conf_mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>penguin_pred <span class="ot">&lt;-</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(penguin_forest_best, <span class="at">new_data =</span> penguin_test)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>penguin_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 67 × 1
+   .pred_class
+   &lt;fct&gt;      
+ 1 male       
+ 2 female     
+ 3 male       
+ 4 male       
+ 5 male       
+ 6 female     
+ 7 female     
+ 8 female     
+ 9 female     
+10 female     
+# ℹ 57 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>penguin_conf_mat <span class="ot">&lt;-</span> penguin_test <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred =</span> penguin_pred<span class="sc">$</span>.pred_class) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> sex, <span class="at">estimate =</span> pred)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>penguin_conf_mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Truth
 Prediction female male
-    female     30    7
-    male        3   27</code></pre>
+    female     31    7
+    male        2   27</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(penguin_conf_mat) <span class="sc">+</span> </span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Confusion matrix of penguin sex predictions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(penguin_conf_mat) <span class="sc">+</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Confusion matrix of penguin sex predictions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1517,9 +1533,51 @@ Prediction female male
 </div>
 </div>
 </div>
-<p>שימו לב לשימוש שעשינו בפונקציה <code>predict</code> אשר משמשת אותנו לחיזוי עבור תצפיות חדשות.</p>
+<p>שימו לב לשימוש שעשינו בפונקציה <code>predict</code> אשר משמשת אותנו לחיזוי עבור תצפיות חדשות:<br>
+פונקציה זו יכולה להחזיר את ההסתברויות לשיוך התצפיות על ידי שימוש בארגומנט <code>type=prob</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>penguin_pred_prob <span class="ot">&lt;-</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(penguin_forest_best, <span class="at">new_data =</span> penguin_test, <span class="at">type =</span> <span class="st">"prob"</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>penguin_pred_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 67 × 2
+   .pred_female .pred_male
+          &lt;dbl&gt;      &lt;dbl&gt;
+ 1        0.362      0.638
+ 2        0.692      0.308
+ 3        0.257      0.743
+ 4        0.391      0.609
+ 5        0.499      0.501
+ 6        0.553      0.447
+ 7        0.731      0.269
+ 8        0.761      0.239
+ 9        0.772      0.228
+10        0.601      0.399
+# ℹ 57 more rows</code></pre>
+</div>
+</div>
+<p>מרבית המודלים מחזירים הסתברויות כתוצאת החישוב, כאשר מטריצת הבלבול שהצגנו קודם השתמשה בערך ברירת מחדל של 0.5. ניתן לשנות את הרגישות והסגוליות של המודל, על ידי שינוי סף זה. לדוגמה אם נציב סף של 0.25, אז יכולת המודל לזיהוי זכר תגדל, אך גם הטעות של זיהוי זכר בהינתן נקבה.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>penguin_test <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">if_else</span>(penguin_pred_prob<span class="sc">$</span>.pred_male <span class="sc">&gt;=</span> <span class="fl">0.25</span>,</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"male"</span>,</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"female"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">factor</span>(pred)) <span class="sc">%&gt;%</span> </span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> sex, <span class="at">estimate =</span> pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction female male
+    female     21    0
+    male       12   34</code></pre>
+</div>
+</div>
+<p>במטריצה הקודמת היו 7 מקרים של זיהוי נקבה למרות שהיו זכרים, וכעת מספר זה ירד ל-0. עם זאת, כעת ישנם 12 מקרים של זיהוי שגוי של זכר (קודם מספר זה היה 3). הרגישות (לזיהוי זכר) עלתה.</p>
+<p>מכיוון שסיפים שונים מייצרים מטריצת בלבול שונה, וצמד רגישות-סגוליות שונה, ניתן לאפיין מודל על ידי התחשבות בכלל הסיפים האפשריים תוך שימוש במונחים שהצגנו בשלב מוקדם יותר בפרק (ROC ו-AUC), שכעת נסביר אותם.</p>
 <section id="הצגת-ה-roc-וה-auc" class="level3" data-number="8.9.1">
 <h3 data-number="8.9.1" class="anchored" data-anchor-id="הצגת-ה-roc-וה-auc"><span class="header-section-number">8.9.1</span> הצגת ה-ROC וה-AUC</h3>
+<p>המונח ROC הוא ראשי תיבות של Receiver Operating Characteristic curve, והוא מציג בציר X את השגיאה מסוג ראשון (False-Positive rate), ובציר Y את הרגישות (True-Positive rate).<br>
+</p>
 </section>
 </section>
 <section id="קריאה-נוספת" class="level2" data-number="8.10">
