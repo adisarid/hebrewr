@@ -2,54 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.hebrewr.co.il/index.html</loc>
-    <lastmod>2023-11-25T18:06:40.741Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/01-introduction.html</loc>
-    <lastmod>2023-11-25T18:06:50.625Z</lastmod>
+    <lastmod>2024-04-30T04:18:31.012Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/02-base-R.html</loc>
-    <lastmod>2023-11-10T06:59:51.134Z</lastmod>
+    <lastmod>2023-09-25T11:53:41.080Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/03-data-munging-tidyverse.html</loc>
-    <lastmod>2023-11-25T17:35:34.968Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/04-visualizations-ggplot2.html</loc>
-    <lastmod>2023-11-10T07:21:49.810Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/05-pivot-and-join.html</loc>
-    <lastmod>2023-11-25T17:35:51.192Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/06-hypothesis-tests.html</loc>
-    <lastmod>2023-12-14T12:45:34.567Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/07-linear-regression.html</loc>
-    <lastmod>2024-01-30T07:11:27.138Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/08-advanced-models.html</loc>
-    <lastmod>2024-06-30T06:21:40.828Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/09-purrr.html</loc>
-    <lastmod>2024-03-23T19:02:09.283Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/10-hebrew-in-R.html</loc>
-    <lastmod>2023-11-10T06:59:51.142Z</lastmod>
+    <lastmod>2024-04-30T04:18:30.961Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/about.html</loc>
-    <lastmod>2024-05-07T06:53:59.758Z</lastmod>
+    <lastmod>2024-06-30T05:58:47.708Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/01-introduction.html</loc>
+    <lastmod>2024-04-30T04:18:30.961Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/04-visualizations-ggplot2.html</loc>
+    <lastmod>2024-04-30T04:18:30.962Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/05-pivot-and-join.html</loc>
+    <lastmod>2024-04-30T04:18:30.962Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/06-hypothesis-tests.html</loc>
+    <lastmod>2024-04-30T04:18:30.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/07-linear-regression.html</loc>
+    <lastmod>2024-04-30T04:18:30.964Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/08-advanced-models.html</loc>
+    <lastmod>2024-08-17T19:12:27.867Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/09-purrr.html</loc>
+    <lastmod>2024-04-30T04:18:30.966Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/10-hebrew-in-R.html</loc>
+    <lastmod>2023-09-25T11:52:47.558Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/references.html</loc>
-    <lastmod>2023-11-10T06:59:51.158Z</lastmod>
+    <lastmod>2023-09-25T11:52:45.152Z</lastmod>
   </url>
 </urlset>

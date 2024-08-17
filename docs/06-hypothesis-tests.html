@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.376">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - 6&nbsp; מבחני השערות</title>
+<title>6&nbsp; מבחני השערות – המדריך העברי למשתמש ב-R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
@@ -116,14 +116,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -134,13 +162,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-hypothesis-tests.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -149,7 +177,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">המדריך העברי למשתמש ב-R</a> 
@@ -246,7 +274,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -292,6 +320,7 @@ div.csl-indent {
 
 </header>
 
+
 <p>בפרק זה נלמד על מבחני השערות פשוטים שניתן להפעיל ב-R. מטבע הדברים, מכיוון ש-R היא שפה סטטיסטית יש ערב רב של מבחני השערות פרמטרים וא-פרמטריים, שבוחנים השערות שונות במצבים שונים, אבל בספר זה נתמקד במבחני ההשערות שיימצאו בקורס מבוא לסטטיסטיקה (ואולי עוד קצת).</p>
 <p>מטרת הפרק היא לא לספק את התיאוריה. לצורך השלמות תיאורתיות, אני ממליץ לקרוא את <span class="citation" data-cites="walpole1993probability">(<a href="references.html#ref-walpole1993probability" role="doc-biblioref">Walpole et al. 1993</a>)</span>.</p>
 <p>מטרת הפרק שלפניכם היא לתת כלים מעשיים לביצוע מבחני השערות, בפרט נדון במקרים הבאים:</p>
@@ -322,11 +351,9 @@ div.csl-indent {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(adelie<span class="sc">$</span>bill_length_mm), <span class="at">color =</span> <span class="st">"#4DAF4A"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Adelie bill length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="06-hypothesis-tests_files/figure-html/adelie bill length histogram-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="06-hypothesis-tests_files/figure-html/adelie bill length histogram-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -397,11 +424,9 @@ H_1: \mu&gt;38
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Chinstrap and Gentoo bill length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="06-hypothesis-tests_files/figure-html/distribution of chinstrap and gentoo bill length-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="06-hypothesis-tests_files/figure-html/distribution of chinstrap and gentoo bill length-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -462,14 +487,13 @@ mean in group Chinstrap    mean in group Gentoo
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mm, <span class="at">color =</span> measurement_type)) <span class="sc">+</span> </span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="06-hypothesis-tests_files/figure-html/length and depth distribution-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="06-hypothesis-tests_files/figure-html/length and depth distribution-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -487,12 +511,12 @@ mean in group Chinstrap    mean in group Gentoo
 
 data:  penguins$bill_length_mm and penguins$bill_depth_mm
 t = 79.505, df = 341, p-value &lt; 2.2e-16
-alternative hypothesis: true difference in means is not equal to 0
+alternative hypothesis: true mean difference is not equal to 0
 95 percent confidence interval:
  26.10846 27.43306
 sample estimates:
-mean of the differences 
-               26.77076 </code></pre>
+mean difference 
+       26.77076 </code></pre>
 </div>
 </div>
 <p>הפלט מאוד דומה לפלטים שכבר ראינו (שימו לב שבכותרת Paired t-test המציין שמדובר במבחן מזווג), ובמקרה זה המבחן מובהק סטטיסטית.</p>
@@ -572,11 +596,9 @@ ratio of variances
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> length_dens), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Density of Adelie bill length with theoretical density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="06-hypothesis-tests_files/figure-html/distribution adelie bill length-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="06-hypothesis-tests_files/figure-html/distribution adelie bill length-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -594,11 +616,9 @@ ratio of variances
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">distribution =</span> stats<span class="sc">::</span>qnorm) <span class="sc">+</span> </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="06-hypothesis-tests_files/figure-html/qqplot demonstration-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="06-hypothesis-tests_files/figure-html/qqplot demonstration-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -704,11 +724,9 @@ X=\sum_{i=1}^l\frac{\left(O_i-E_i\right)^2}{E_i}
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{round(prop*100)}%"</span>)),</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="06-hypothesis-tests_files/figure-html/year and island penguin sampling-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="06-hypothesis-tests_files/figure-html/year and island penguin sampling-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -876,13 +894,13 @@ sample estimates:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ks_test_output <span class="ot">&lt;-</span> <span class="fu">ks.test</span>(adelie<span class="sc">$</span>bill_length_mm, <span class="st">"pnorm"</span>, <span class="at">mean =</span> length_mu, <span class="at">sd =</span> length_sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in ks.test(adelie$bill_length_mm, "pnorm", mean = length_mu, sd =
-length_sd): ties should not be present for the Kolmogorov-Smirnov test</code></pre>
+<pre><code>Warning in ks.test.default(adelie$bill_length_mm, "pnorm", mean = length_mu, :
+ties should not be present for the one-sample Kolmogorov-Smirnov test</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ks_test_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-    One-sample Kolmogorov-Smirnov test
+    Asymptotic one-sample Kolmogorov-Smirnov test
 
 data:  adelie$bill_length_mm
 D = 0.042489, p-value = 0.948
@@ -925,23 +943,23 @@ alternative hypothesis: two-sided</code></pre>
 <div style="zoom:80%; direction:ltr;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="gwumokgrcz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gwumokgrcz table {
+<div id="abguxcibbu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#abguxcibbu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gwumokgrcz thead, #gwumokgrcz tbody, #gwumokgrcz tfoot, #gwumokgrcz tr, #gwumokgrcz td, #gwumokgrcz th {
+#abguxcibbu thead, #abguxcibbu tbody, #abguxcibbu tfoot, #abguxcibbu tr, #abguxcibbu td, #abguxcibbu th {
   border-style: none;
 }
 
-#gwumokgrcz p {
+#abguxcibbu p {
   margin: 0;
   padding: 0;
 }
 
-#gwumokgrcz .gt_table {
+#abguxcibbu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -967,12 +985,12 @@ alternative hypothesis: two-sided</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_caption {
+#abguxcibbu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gwumokgrcz .gt_title {
+#abguxcibbu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -984,7 +1002,7 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-width: 0;
 }
 
-#gwumokgrcz .gt_subtitle {
+#abguxcibbu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -996,7 +1014,7 @@ alternative hypothesis: two-sided</code></pre>
   border-top-width: 0;
 }
 
-#gwumokgrcz .gt_heading {
+#abguxcibbu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1008,13 +1026,13 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_bottom_border {
+#abguxcibbu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_col_headings {
+#abguxcibbu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1029,7 +1047,7 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_col_heading {
+#abguxcibbu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1049,7 +1067,7 @@ alternative hypothesis: two-sided</code></pre>
   overflow-x: hidden;
 }
 
-#gwumokgrcz .gt_column_spanner_outer {
+#abguxcibbu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1061,15 +1079,15 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 4px;
 }
 
-#gwumokgrcz .gt_column_spanner_outer:first-child {
+#abguxcibbu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gwumokgrcz .gt_column_spanner_outer:last-child {
+#abguxcibbu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gwumokgrcz .gt_column_spanner {
+#abguxcibbu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1081,11 +1099,11 @@ alternative hypothesis: two-sided</code></pre>
   width: 100%;
 }
 
-#gwumokgrcz .gt_spanner_row {
+#abguxcibbu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gwumokgrcz .gt_group_heading {
+#abguxcibbu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1111,7 +1129,7 @@ alternative hypothesis: two-sided</code></pre>
   text-align: left;
 }
 
-#gwumokgrcz .gt_empty_group_heading {
+#abguxcibbu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1126,15 +1144,15 @@ alternative hypothesis: two-sided</code></pre>
   vertical-align: middle;
 }
 
-#gwumokgrcz .gt_from_md > :first-child {
+#abguxcibbu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gwumokgrcz .gt_from_md > :last-child {
+#abguxcibbu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gwumokgrcz .gt_row {
+#abguxcibbu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1153,7 +1171,7 @@ alternative hypothesis: two-sided</code></pre>
   overflow-x: hidden;
 }
 
-#gwumokgrcz .gt_stub {
+#abguxcibbu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1166,7 +1184,7 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#gwumokgrcz .gt_stub_row_group {
+#abguxcibbu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1180,15 +1198,15 @@ alternative hypothesis: two-sided</code></pre>
   vertical-align: top;
 }
 
-#gwumokgrcz .gt_row_group_first td {
+#abguxcibbu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gwumokgrcz .gt_row_group_first th {
+#abguxcibbu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gwumokgrcz .gt_summary_row {
+#abguxcibbu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1198,16 +1216,16 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#gwumokgrcz .gt_first_summary_row {
+#abguxcibbu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_first_summary_row.thick {
+#abguxcibbu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gwumokgrcz .gt_last_summary_row {
+#abguxcibbu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1217,7 +1235,7 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_grand_summary_row {
+#abguxcibbu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1227,7 +1245,7 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#gwumokgrcz .gt_first_grand_summary_row {
+#abguxcibbu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1237,7 +1255,7 @@ alternative hypothesis: two-sided</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_last_grand_summary_row_top {
+#abguxcibbu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1247,11 +1265,11 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_striped {
+#abguxcibbu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gwumokgrcz .gt_table_body {
+#abguxcibbu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1260,7 +1278,7 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_footnotes {
+#abguxcibbu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1274,7 +1292,7 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_footnote {
+#abguxcibbu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1283,7 +1301,7 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#gwumokgrcz .gt_sourcenotes {
+#abguxcibbu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1297,7 +1315,7 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#gwumokgrcz .gt_sourcenote {
+#abguxcibbu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1305,68 +1323,68 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#gwumokgrcz .gt_left {
+#abguxcibbu .gt_left {
   text-align: left;
 }
 
-#gwumokgrcz .gt_center {
+#abguxcibbu .gt_center {
   text-align: center;
 }
 
-#gwumokgrcz .gt_right {
+#abguxcibbu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gwumokgrcz .gt_font_normal {
+#abguxcibbu .gt_font_normal {
   font-weight: normal;
 }
 
-#gwumokgrcz .gt_font_bold {
+#abguxcibbu .gt_font_bold {
   font-weight: bold;
 }
 
-#gwumokgrcz .gt_font_italic {
+#abguxcibbu .gt_font_italic {
   font-style: italic;
 }
 
-#gwumokgrcz .gt_super {
+#abguxcibbu .gt_super {
   font-size: 65%;
 }
 
-#gwumokgrcz .gt_footnote_marks {
+#abguxcibbu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gwumokgrcz .gt_asterisk {
+#abguxcibbu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gwumokgrcz .gt_indent_1 {
+#abguxcibbu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gwumokgrcz .gt_indent_2 {
+#abguxcibbu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gwumokgrcz .gt_indent_3 {
+#abguxcibbu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gwumokgrcz .gt_indent_4 {
+#abguxcibbu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gwumokgrcz .gt_indent_5 {
+#abguxcibbu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
 <th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
@@ -1427,7 +1445,7 @@ alternative hypothesis: two-sided</code></pre>
 <td class="gt_row gt_right" headers="parameter">NA</td>
 <td class="gt_row gt_right" headers="conf.low">NA</td>
 <td class="gt_row gt_right" headers="conf.high">NA</td>
-<td class="gt_row gt_left" headers="method">One-sample Kolmogorov-Smirnov test</td>
+<td class="gt_row gt_left" headers="method">Asymptotic one-sample Kolmogorov-Smirnov test</td>
 <td class="gt_row gt_left" headers="alternative">two-sided</td>
 </tr>
 </tbody>
@@ -1448,7 +1466,7 @@ alternative hypothesis: two-sided</code></pre>
 <p>לבסוף למדנו כיצד ניתן להעביר את הפלט של המבחנים לפלט טבלאי מסודר.</p>
 <div class="end-page">
 
-<div class="hidden" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
 <p><strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href="https://www.sarid-ins.com">מכון שריד</a></p>
 </div>
 </div>
@@ -1496,18 +1514,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1539,7 +1546,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.hebrewr\.co\.il");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1574,7 +1621,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1589,15 +1640,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1606,7 +1670,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1648,6 +1720,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1723,7 +1818,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1807,12 +1901,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05-pivot-and-join.html" class="pagination-link">
+      <a href="./05-pivot-and-join.html" class="pagination-link" aria-label="מבנה וחיבור נתונים">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבנה וחיבור נתונים</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07-linear-regression.html" class="pagination-link">
+      <a href="./07-linear-regression.html" class="pagination-link" aria-label="רגרסיה לינארית">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

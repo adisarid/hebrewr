@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.376">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>המדריך העברי למשתמש ב-R - 8&nbsp; מודלים מונחים</title>
+<title>8&nbsp; מודלים מונחים – המדריך העברי למשתמש ב-R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
@@ -116,14 +116,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -134,13 +162,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-advanced-models.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים מונחים</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -149,7 +177,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">המדריך העברי למשתמש ב-R</a> 
@@ -246,7 +274,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -273,8 +301,8 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#הצגת-ה-roc-וה-auc" id="toc-הצגת-ה-roc-וה-auc" class="nav-link" data-scroll-target="#הצגת-ה-roc-וה-auc"><span class="header-section-number">8.9.1</span> הצגת ה-ROC וה-AUC</a></li>
   </ul></li>
-  <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.10</span> קריאה נוספת</a></li>
-  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.11</span> סיכום</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.10</span> סיכום</a></li>
+  <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.11</span> קריאה נוספת</a></li>
   </ul>
 </nav>
     </div>
@@ -298,6 +326,7 @@ div.csl-indent {
 
 
 </header>
+
 
 <section id="הקדמה" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="הקדמה"><span class="header-section-number">8.1</span> הקדמה</h2>
@@ -1026,7 +1055,7 @@ Number of Fisher Scoring iterations: 7</code></pre>
 }
 </style>
 
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
 <th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
@@ -1164,11 +1193,9 @@ evaluation_log:
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Feature Gain in the Penguin Sex Boosting Model"</span>) <span class="sc">+</span></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="08-advanced-models_files/figure-html/extract variable importance-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="08-advanced-models_files/figure-html/extract variable importance-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1307,11 +1334,9 @@ Computational engine: ranger </code></pre>
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Accuracy"</span>) <span class="sc">+</span> </span>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model accuracy as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="08-advanced-models_files/figure-html/hyper-parameter analysis-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="08-advanced-models_files/figure-html/hyper-parameter analysis-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1325,11 +1350,9 @@ Computational engine: ranger </code></pre>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"AUC"</span>) <span class="sc">+</span> </span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model AUC as a function of trees, min_n, and mtry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="08-advanced-models_files/figure-html/hyper-parameter analysis-2.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="08-advanced-models_files/figure-html/hyper-parameter analysis-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1384,7 +1407,7 @@ Computational engine: ranger </code></pre>
 <p>הסגוליות היא מספר האנשים שסווגו כ-“לא לקוחות” מתוך סך הלקוחות שאינם לקוחות פוטנציאליים. הפספוסים היחידים הינם שני חצים צהובים (אנשים בעלי משקפי שמש לא אופטיים, אשר סווגו כלקוחות בטעות). כלומר, הסגוליות שלנו היא 89% (16 איש מתוך 18 איש).</p>
 <p>הדיוק הכללי (Accuracy) הוא מספר הסיווגים הנכונים, בדוגמה הוא 86%: 19 סיווגים נכונים מתוך 22 אנשים באוכלוסיה (86%).</p>
 <p>מקובל לארגן את תוצאות המודל במטריצת בלבול, שבדוגמה לעיל תיראה כך:</p>
-<table class="table">
+<table class="caption-top table">
 <caption>מטריצת בלבול - מודל המשקפים</caption>
 <colgroup>
 <col style="width: 35%">
@@ -1422,7 +1445,7 @@ Computational engine: ranger </code></pre>
 \operatorname{Type-II\ Error}=Pr\left(\operatorname{Do Not Reject }H_0|H_1\right)
 \]</span></p>
 <p>לשם פשטות נסכם את המונחים לעניין מודלי סיווג במטריצה הבאה:</p>
-<table class="table">
+<table class="caption-top table">
 <caption>מטריצת בלבול - סיכום מונחים חשובים</caption>
 <colgroup>
 <col style="width: 37%">
@@ -1524,11 +1547,9 @@ Prediction female male
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(penguin_conf_mat) <span class="sc">+</span> </span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Confusion matrix of penguin sex predictions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored" width="672">
-<figure class="quarto-float quarto-float-fig figure">
 <div>
-<img src="08-advanced-models_files/figure-html/show conf mat-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="img-fluid figure-img" width="672">
-</div>
+<figure class="figure">
+<p><img src="08-advanced-models_files/figure-html/show conf mat-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1576,22 +1597,90 @@ Prediction female male
 <p>מכיוון שסיפים שונים מייצרים מטריצת בלבול שונה, וצמד רגישות-סגוליות שונה, ניתן לאפיין מודל על ידי התחשבות בכלל הסיפים האפשריים תוך שימוש במונחים שהצגנו בשלב מוקדם יותר בפרק (ROC ו-AUC), שכעת נסביר אותם.</p>
 <section id="הצגת-ה-roc-וה-auc" class="level3" data-number="8.9.1">
 <h3 data-number="8.9.1" class="anchored" data-anchor-id="הצגת-ה-roc-וה-auc"><span class="header-section-number">8.9.1</span> הצגת ה-ROC וה-AUC</h3>
-<p>המונח ROC הוא ראשי תיבות של Receiver Operating Characteristic curve, והוא מציג בציר X את השגיאה מסוג ראשון (False-Positive rate), ובציר Y את הרגישות (True-Positive rate).<br>
-</p>
+<p>המונח ROC הוא ראשי תיבות של Receiver Operating Characteristic curve, והוא מציג בציר X את השגיאה מסוג ראשון (False-Positive rate), ובציר Y את הרגישות (True-Positive rate).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>roc_plot <span class="ot">&lt;-</span> penguin_test <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred_prob =</span> penguin_pred_prob<span class="sc">$</span>.pred_male) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(pred_prob, <span class="at">truth =</span> sex, <span class="at">event_level =</span> <span class="st">"second"</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>roc_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 69 × 3
+   .threshold specificity sensitivity
+        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1   -Inf          0                1
+ 2      0.186      0                1
+ 3      0.186      0.0303           1
+ 4      0.188      0.0606           1
+ 5      0.192      0.0909           1
+ 6      0.200      0.121            1
+ 7      0.200      0.152            1
+ 8      0.200      0.182            1
+ 9      0.200      0.212            1
+10      0.203      0.242            1
+# ℹ 59 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_plot) <span class="sc">+</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"ROC Plot for penguin sex prediction model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-advanced-models_files/figure-html/generate ROC-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>כל נקודה בתרשים (בקו הרציף העליון) מתייחסת לרף חיזוי מסוים (רף שאם תוצאת מודל החיזוי גבוהה ממנו אז התצפית מסווגת כ”כן” או כפינגויין זכר במקרה שלנו). מכיוון שבקבוצת המבחן שלנו יחסית מעט תצפיות, התרשים מקבל צורה ברורה של תרשים מדרגות.</p>
+<p>הקו המקווקו (שחוצה את התרשים באמצע) מהווה “מודל אקראי” (כלומר הקו המקווקו הוא מודל סיווג של הטלת מטבע). ככל שהקו של המודל רחוק מהמודל האקראי כלפי מעלה, כך ביצועי המודל טובים יותר.</p>
+<p>אם היינו מאמנים מספר מודלים מסוגים שונים, אז היינו יכולים לשים מספר תרשימים על גרף אחד, וכך להשוות את הביצועים ביניהם.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: הבנת תרשים ה-ROC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>מה המשמעות של הנקודה (0,1), אם המודל נוגע בה?</p></li>
+<li><p>מה המשמעות של מודל שעובר מתחת לקו המקווקו? כיצד ניתן לשפר אותו בקלות?</p></li>
+</ul>
+</div>
+</div>
+<p>המדד AUC הינו השטח מתחת לעקומת ה-ROC (Area Under the Curve), והוא מדד שמאפשר לנו השוואה בין ביצועי מודלים שונים, בהסתכלות על מספר אחר שמייצג באופן כללי את ביצועי המודל.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>roc_area <span class="ot">&lt;-</span> penguin_test <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred_prob =</span> penguin_pred_prob<span class="sc">$</span>.pred_male) <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(pred_prob, <span class="at">truth =</span> sex, <span class="at">event_level =</span> <span class="st">"second"</span>)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>roc_area</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 roc_auc binary         0.982</code></pre>
+</div>
+</div>
+<p>במקרה זה יכולת החיזוי של המודל טובה מאוד. למודל אקראי (של הטלת מטבע) יהיה AUC של 0.5, ומודל מושלם יהיה בעל AUC של 1.</p>
 </section>
 </section>
-<section id="קריאה-נוספת" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.10</span> קריאה נוספת</h2>
+<section id="סיכום" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">8.10</span> סיכום</h2>
+<p>בפרק התמקדנו במודלים מונחים (Supervised learning), באמצעות חבילת <code>tidymodels</code>. ראינו את השלבים המרכזיים בבניית מודל סטטיסטי. התחלנו בהבנת המושג מודלים מונחים, ופירטנו את תהליך העבודה הכולל חלוקת הנתונים לקבוצת אימון, ולידציה, ומבחן, בניית מתכון להכנת הדאטה, הגדרת המודל, כיוונון המודל, הערכת ביצועי המודל, ושימוש במודל לחיזוי תצפיות חדשות.</p>
+</section>
+<section id="קריאה-נוספת" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.11</span> קריאה נוספת</h2>
 <p>לצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את <span class="citation" data-cites="kuhn2022tidy">(<a href="references.html#ref-kuhn2022tidy" role="doc-biblioref">Kuhn and Silge 2022</a>)</span> המפרט על השימוש בחבילת <code>tidymodels</code> עם דוגמאות רבות. הספר <a href="https://www.tmwr.org/">זמין באינטרנט</a>.</p>
-</section>
-<section id="סיכום" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">8.11</span> סיכום</h2>
 <div class="end-page">
 
-<div class="hidden" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
+</div>
+
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
 <p><strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href="https://www.sarid-ins.com">מכון שריד</a></p>
 </div>
-</div>
+<p>:::</p>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-hastie2009" class="csl-entry" role="listitem">
@@ -1642,18 +1731,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1685,7 +1763,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.hebrewr\.co\.il");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1720,7 +1838,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1735,15 +1857,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1752,7 +1887,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1794,6 +1937,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1869,7 +2035,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1953,12 +2118,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07-linear-regression.html" class="pagination-link">
+      <a href="./07-linear-regression.html" class="pagination-link" aria-label="רגרסיה לינארית">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09-purrr.html" class="pagination-link">
+      <a href="./09-purrr.html" class="pagination-link" aria-label="לולאות מיוחדות">
         <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">לולאות מיוחדות</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -20,3 +20,5 @@ bookdown*
 tmp-pdfcrop-*
 figures
 /.quarto/
+# Ignores the .Renviron file
+.Renviron
