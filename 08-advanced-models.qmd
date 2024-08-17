@@ -51,6 +51,7 @@
 #| message: false
 library(tidymodels) # reading the meta-package tidymodels
 library(palmerpenguins) # reading the palmer penguins data set which include penguins
+theme_set(theme_bw())
 
 set.seed(42) # set an initial seed
 
@@ -562,7 +563,7 @@ autoplot(roc_plot) +
 -   מה המשמעות של מודל שעובר מתחת לקו המקווקו? כיצד ניתן לשפר אותו בקלות?
 :::
 
-המדד AUC הינו השטח מתחת לעקומת ה-ROC (Area Under the Curve), והוא מדד שמאפשר לנו השוואה בין ביצועי מודלים שונים, בהסתכלות על מספר אחר שמייצג באופן כללי את ביצועי המודל.
+המדד AUC הינו השטח מתחת לעקומת ה-ROC (Area Under the Curve), והוא מדד שמאפשר לנו השוואה בין ביצועי מודלים שונים, בהסתכלות על מספר אחר שמייצג באופן כללי את ביצועי המודל (בעצם, זה בדיוק האופן שבו השתמשנו במדד זה בשלב כיוונון המודלים).
 
 ```{r computation of the AUC}
 roc_area <- penguin_test %>%
@@ -573,6 +574,52 @@ roc_area
 ```
 
 במקרה זה יכולת החיזוי של המודל טובה מאוד. למודל אקראי (של הטלת מטבע) יהיה AUC של 0.5, ומודל מושלם יהיה בעל AUC של 1.
+
+### דוגמה להשוואה בין מודלים
+
+נדגים את ההשוואה בין שלושה מודלים: מודל הרגרסיה הלוגיסטית, מודל הבוסטינג, ומודל היער האקראי (לאחר כיוונון). הלולאות שבהן אנו משתמשים בקוד הבא מבוססת על חבילת `purrr` ומוסברת בפרק הבא.
+
+כפי שניתן להתרשם מהתרשים, לשלושת המודלים ביצועים טובים יחסית.
+
+```{r roc and auc comparison}
+roc_plot_comparison_data <- penguin_test %>%
+  mutate(rf_prob = penguin_pred_prob$.pred_male) %>%
+  mutate(glm_prob = predict(penguin_logistic_fit, new_data = penguin_test, type = "prob")$.pred_male) %>%
+  mutate(bst_prob = predict(penguin_boost_fit, new_data = penguin_test, type = "prob")$.pred_male)
+
+# Create a tibble with a data column containing the tibbles, then run roc_curve
+roc_data_all <- roc_plot_comparison_data %>%
+  pivot_longer(cols = -c(species:year)) %>%
+  group_by(name) %>%
+  nest() %>%
+  mutate(roc_plot_data = map(data, 
+                             ~{
+                                 roc_curve(.x, value, truth = sex, event_level = "second")
+                               }
+                            )) %>%
+  unnest(roc_plot_data) %>%
+  mutate(model = stringr::str_remove(name, "_prob")) %>%
+  mutate(`1 - specificity` = 1 - specificity) %>% 
+  arrange(`1 - specificity`, sensitivity) %>%
+  distinct(name, `1 - specificity`, sensitivity, .keep_all = T)
+
+roc_data_all %>%
+  ggplot(aes(x = `1 - specificity`, y = sensitivity, color = model)) + 
+  geom_step() + 
+  ggtitle("ROC Plot for penguin sex prediction", subtitle = "Model comparison")
+
+roc_plot_comparison_data %>%
+  pivot_longer(cols = -c(species:year)) %>%
+  group_by(name) %>%
+  nest() %>%
+  mutate(auc_data = map(data, 
+                             ~{
+                                 roc_auc(.x, value, truth = sex, event_level = "second")
+                               }
+                            )) %>%
+  unnest(auc_data) %>%
+  select(-data)
+```
 
 ## סיכום
 

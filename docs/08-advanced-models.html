@@ -300,6 +300,7 @@ window.Quarto = {
   <li><a href="#בניית-מודל-סופי" id="toc-בניית-מודל-סופי" class="nav-link" data-scroll-target="#בניית-מודל-סופי"><span class="header-section-number">8.9</span> בניית מודל סופי</a>
   <ul class="collapse">
   <li><a href="#הצגת-ה-roc-וה-auc" id="toc-הצגת-ה-roc-וה-auc" class="nav-link" data-scroll-target="#הצגת-ה-roc-וה-auc"><span class="header-section-number">8.9.1</span> הצגת ה-ROC וה-AUC</a></li>
+  <li><a href="#דוגמה-להשוואה-בין-מודלים" id="toc-דוגמה-להשוואה-בין-מודלים" class="nav-link" data-scroll-target="#דוגמה-להשוואה-בין-מודלים"><span class="header-section-number">8.9.2</span> דוגמה להשוואה בין מודלים</a></li>
   </ul></li>
   <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">8.10</span> סיכום</a></li>
   <li><a href="#קריאה-נוספת" id="toc-קריאה-נוספת" class="nav-link" data-scroll-target="#קריאה-נוספת"><span class="header-section-number">8.11</span> קריאה נוספת</a></li>
@@ -378,19 +379,20 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels) <span class="co"># reading the meta-package tidymodels</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># reading the palmer penguins data set which include penguins</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># set an initial seed</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the dependent var to a dummy</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>penguins_new <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex)) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the split</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>penguin_split <span class="ot">&lt;-</span> <span class="fu">initial_validation_split</span>(penguins_new, </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">prop =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.2</span>), </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">strata =</span> sex)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>penguin_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># set an initial seed</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the dependent var to a dummy</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>penguins_new <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">factor</span>(sex)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the split</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>penguin_split <span class="ot">&lt;-</span> <span class="fu">initial_validation_split</span>(penguins_new, </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">prop =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.2</span>), </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">strata =</span> sex)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>penguin_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Training/Validation/Testing/Total&gt;
 &lt;199/67/67/333&gt;</code></pre>
@@ -1649,7 +1651,7 @@ Prediction female male
 </ul>
 </div>
 </div>
-<p>המדד AUC הינו השטח מתחת לעקומת ה-ROC (Area Under the Curve), והוא מדד שמאפשר לנו השוואה בין ביצועי מודלים שונים, בהסתכלות על מספר אחר שמייצג באופן כללי את ביצועי המודל.</p>
+<p>המדד AUC הינו השטח מתחת לעקומת ה-ROC (Area Under the Curve), והוא מדד שמאפשר לנו השוואה בין ביצועי מודלים שונים, בהסתכלות על מספר אחר שמייצג באופן כללי את ביצועי המודל (בעצם, זה בדיוק האופן שבו השתמשנו במדד זה בשלב כיוונון המודלים).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>roc_area <span class="ot">&lt;-</span> penguin_test <span class="sc">%&gt;%</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred_prob =</span> penguin_pred_prob<span class="sc">$</span>.pred_male) <span class="sc">%&gt;%</span></span>
@@ -1664,6 +1666,65 @@ Prediction female male
 </div>
 </div>
 <p>במקרה זה יכולת החיזוי של המודל טובה מאוד. למודל אקראי (של הטלת מטבע) יהיה AUC של 0.5, ומודל מושלם יהיה בעל AUC של 1.</p>
+</section>
+<section id="דוגמה-להשוואה-בין-מודלים" class="level3" data-number="8.9.2">
+<h3 data-number="8.9.2" class="anchored" data-anchor-id="דוגמה-להשוואה-בין-מודלים"><span class="header-section-number">8.9.2</span> דוגמה להשוואה בין מודלים</h3>
+<p>נדגים את ההשוואה בין שלושה מודלים: מודל הרגרסיה הלוגיסטית, מודל הבוסטינג, ומודל היער האקראי (לאחר כיוונון). הלולאות שבהן אנו משתמשים בקוד הבא מבוססת על חבילת <code>purrr</code> ומוסברת בפרק הבא.</p>
+<p>כפי שניתן להתרשם מהתרשים, לשלושת המודלים ביצועים טובים יחסית.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>roc_plot_comparison_data <span class="ot">&lt;-</span> penguin_test <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rf_prob =</span> penguin_pred_prob<span class="sc">$</span>.pred_male) <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">glm_prob =</span> <span class="fu">predict</span>(penguin_logistic_fit, <span class="at">new_data =</span> penguin_test, <span class="at">type =</span> <span class="st">"prob"</span>)<span class="sc">$</span>.pred_male) <span class="sc">%&gt;%</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bst_prob =</span> <span class="fu">predict</span>(penguin_boost_fit, <span class="at">new_data =</span> penguin_test, <span class="at">type =</span> <span class="st">"prob"</span>)<span class="sc">$</span>.pred_male)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a tibble with a data column containing the tibbles, then run roc_curve</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>roc_data_all <span class="ot">&lt;-</span> roc_plot_comparison_data <span class="sc">%&gt;%</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(species<span class="sc">:</span>year)) <span class="sc">%&gt;%</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">roc_plot_data =</span> <span class="fu">map</span>(data, </span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">~</span>{</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">roc_curve</span>(.x, value, <span class="at">truth =</span> sex, <span class="at">event_level =</span> <span class="st">"second"</span>)</span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>                               }</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>                            )) <span class="sc">%&gt;%</span></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(roc_plot_data) <span class="sc">%&gt;%</span></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> stringr<span class="sc">::</span><span class="fu">str_remove</span>(name, <span class="st">"_prob"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">1 - specificity</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> specificity) <span class="sc">%&gt;%</span> </span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="st">`</span><span class="at">1 - specificity</span><span class="st">`</span>, sensitivity) <span class="sc">%&gt;%</span></span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(name, <span class="st">`</span><span class="at">1 - specificity</span><span class="st">`</span>, sensitivity, <span class="at">.keep_all =</span> T)</span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>roc_data_all <span class="sc">%&gt;%</span></span>
+<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">1 - specificity</span><span class="st">`</span>, <span class="at">y =</span> sensitivity, <span class="at">color =</span> model)) <span class="sc">+</span> </span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>() <span class="sc">+</span> </span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"ROC Plot for penguin sex prediction"</span>, <span class="at">subtitle =</span> <span class="st">"Model comparison"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-advanced-models_files/figure-html/roc and auc comparison-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>roc_plot_comparison_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(species<span class="sc">:</span>year)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">auc_data =</span> <span class="fu">map</span>(data, </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">~</span>{</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">roc_auc</span>(.x, value, <span class="at">truth =</span> sex, <span class="at">event_level =</span> <span class="st">"second"</span>)</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>                               }</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>                            )) <span class="sc">%&gt;%</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(auc_data) <span class="sc">%&gt;%</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+# Groups:   name [3]
+  name     .metric .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rf_prob  roc_auc binary         0.982
+2 glm_prob roc_auc binary         0.985
+3 bst_prob roc_auc binary         0.977</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="סיכום" class="level2" data-number="8.10">
