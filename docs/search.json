@@ -644,7 +644,7 @@
     "href": "08-advanced-models.html#קריאה-נוספת",
     "title": "8  מודלים מונחים",
     "section": "8.11 קריאה נוספת",
-    "text": "8.11 קריאה נוספת\nלצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את (Kuhn and Silge 2022) המפרט על השימוש בחבילת tidymodels עם דוגמאות רבות. הספר זמין באינטרנט.\n\n\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד\n\n:::\n\n\n\nHastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The Elements of Statistical Learning. Springer New York. https://doi.org/10.1007/978-0-387-84858-7.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning. Springer US. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nKuhn, Max, and Julia Silge. 2022. Tidy Modeling with r. \" O’Reilly Media, Inc.\".",
+    "text": "8.11 קריאה נוספת\nלצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את (Kuhn and Silge 2022) המפרט על השימוש בחבילת tidymodels עם דוגמאות רבות. הספר זמין באינטרנט.\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד\n\n\n\n\n\nHastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The Elements of Statistical Learning. Springer New York. https://doi.org/10.1007/978-0-387-84858-7.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. An Introduction to Statistical Learning. Springer US. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nKuhn, Max, and Julia Silge. 2022. Tidy Modeling with r. \" O’Reilly Media, Inc.\".",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים</span>"
     ]
