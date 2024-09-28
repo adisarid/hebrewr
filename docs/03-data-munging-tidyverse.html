@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>החבילה ב-R שנקראת <code>tidyverse</code> היא למעשה “חבילה של חבילות”.<br>
 היא מכילה מקבץ חבילות לעבודה עם נתונים כמו <code>dplyr</code>, וכמו <code>tidyr</code> שהן חבילות מאוד שימושיות במניפולציה על נתונים, וסידור נתונים, אבל היא מכילה גם חבילות שממוקדות סביב עולמות תוכן אחרים, כמו <code>stringr</code> לעבודה עם מחרוזות, <code>lubridate</code> לעבודה עם תאריכים, ו-<code>forcats</code> לעבודה עם פקטורים. כפי שחדי העין ישימו לב, לרוב שם של חבילה ירמוז לגבי מהות החבילה (לעיתים עם האות r איפשהו, ולעיתים עם קורטוב של הומור). הפירוט המלא של תוכן החבילה <code>tidyverse</code>והחבילות שמוכלות בה זמין <a href="https://www.tidyverse.org/">בקישור</a>.</p>
 <p>על מנת להתקין את החבילה נשתמש בפקודה <code>install.packages("tidyverse")</code>, ועל מנת לטעון אותה לאחר ההתקנה, נשתמש בפקודה <code>library(tidyverse)</code>. שימו לב שבהתקנה צריך להשתמש במרכאות אבל בקריאה לאחר מכן אין צורך במרכאות. את ההתקנה צריך לעשות רק פעם אחת (והיא לוקחת המון זמן), ואת הקריאה לספריה צריך לעשות כל פעם שמפעילים מחדש את R.</p>
-<p>כשלב יסודי, מה שחשוב להבין בעבודה עם נתונים זה שהשאיפה היא שתמיד נשאף להגיע ולעבוד במבנה מסודר שבו:</p>
+<p>כשלב יסודי, מה שחשוב להבין בעבודה עם נתונים זה שהשאיפה היא להביא את הנתונים מבנה מסודר שבו:</p>
 <ol type="1">
 <li>כל עמודה היא משתנה.</li>
 <li>כל שורה היא תצפית.</li>
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>דאטה לא-מסודר מאתר הלשכה המרכזית לסטטיסטיקה</figcaption>
 </figure>
 </div>
-<p>איפה הבעיות עם הדאטה? נראה מה הסעיפים שאינם מתקיימים:</p>
+<p>איפה הבעיות עם הדאטה? נראה איזה סעיפים שאינם מתקיימים:</p>
 <ol type="1">
 <li>כל עמודה היא משתנה - מתקיים באופן חלקי. משום שיש עמודות מסוימות כמו עמודות H-K שהן ממוזגות מה שהופך אותם ל”לא בדיוק משתנה יחיד”. מדובר בקבוצת משתנים ותכונה שמתארת אותם. בפרט, היינו מצפים לראות שורת כותרת אחת שמתארת את שמות המשתנים (מה שמכונה באנגלית headers), אבל בפועל יש פה הרבה שורות כותרות.</li>
 <li>כל שורה היא תצפית - לא מתקיים בכלל. יש שורות ריקות (כמו שורה 5), ויש שורות שאינן תצפית אלא מתארות תכונות של מקבץ תצפיות (כגון שורה 6 ושורה 14).</li>
@@ -309,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="דאטה-tidy" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="דאטה-tidy"><span class="header-section-number">3.1.2</span> דאטה tidy</h3>
-<p>הנה דוגמה לדאטה מסודר מתוך חבילת <code>palmerpenguins</code>. חבילה זו מכילה נתונים של שלושה זנים של פינגוינים, ואנחנו עוד נשתמש בה בהמשך הספר. לכרגע רק נראה איך נראות עשרת השורות הראשונות בטבלת הנתונים (הסבר על הקוד והתוצר שרואים מצורף מטה):</p>
+<p>הנה דוגמה לדאטה מסודר מתוך חבילת <code>palmerpenguins</code>. חבילה זו מכילה נתונים של שלושה זנים של פינגוינים, ואנחנו עוד נשתמש בה בהמשך הספר. בשלב זה נראה איך נראות עשרת השורות הראשונות בטבלת הנתונים (הסבר על הקוד והתוצר שרואים מצורף מטה):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>palmerpenguins<span class="sc">::</span>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
-<p>אנחנו רואים שהאובייקט הוא מסוג tibble (טבלה שהיא גרסה מודרנית יותר של ה-<code>data.frame</code> הבסיסי ב-R). לטבלה הזו יש 344 תצפיות (פינגוינים), ויש לה 8 עמודות (משתנים) שכוללים את הזן של הפינגוין, מאיזה אי הוא, אורך ועומד המקור, אורך הכנף, מסה, מין, והשנה שבה נצפתה הדגימה. הדאטה הזה מסודר ועומד בכללים שהגדרנו.</p>
+<p>אנחנו רואים שהאובייקט הוא מסוג tibble (טבלה שהיא גרסה מודרנית יותר של ה-<code>data.frame</code> הבסיסי ב-R). לטבלה הזו יש 344 תצפיות (פינגוינים), ויש לה 8 עמודות (משתנים) שכוללים את הזן של הפינגוין, מאיזה אי הוא, אורך ועומק המקור, אורך הכנף, מסה, מין, והשנה שבה נצפתה הדגימה. הדאטה הזה מסודר ועומד בכללים שהגדרנו.</p>
 <p>לגבי הקוד עצמו שבו השתמשנו: השימוש בנקודותיים <code>::</code> אומר ל-R לקחת את האובייקט <code>penguins</code> שנמצא בתוך חבילת <code>palmerpenguins</code> (אפשר גם היה לפצל את הקוד וקודם להשתמש ב-<code>library(palmerpenguins)</code> ואז להריץ את <code>head(penguins)</code>.</p>
 <p>אם תרצו להריץ את הקוד הזה אצלכם במחשב, יכול להיות שתצטרכו קודם להתקין את החבילה על ידי שימוש בפקודה <code>install.packages("palmerpenguins")</code>.</p>
 <p>כעת לאחר שלמדנו קצת על מה הוא דאטה מסודר, נראה איך אפשר לקרוא נתונים ו”להציץ” בנתונים, כדי לקבל מושג מה יש בנתונים ואיך לגשת אליהם.</p>
@@ -465,7 +465,12 @@ Tip
 <p>טרנספורמציה היא פעולה (פונקציה) על משתנה או צירוף של משתנים המניבה משתנה עם ערך חדש. היא יכולה להיות פעולה מתמטית פשוטה כמו לוגריתם, פונקציה טריגונומטרית, או מכפלה בסקלר (ערך כלשהו).</p>
 <p>גם פעולה על מחרוזת היא טרנספורמציה, כגון החזרת אורך המחרוזת או חלק ממחרוזת.</p>
 <p>טרנספורמציות ב-R יבוצעו באמצעות הפקודה <code>mutate</code>, והן יכולות לדרוס ערך קיים או להוסיף משתנה חדש לטבלה. התוצאה תוחזר בטבלה חדשה לגמרי (ולא תדרוס את הטבלה שהוזנה לתוך הפונציה <code>mutate</code>.</p>
-<p>בנוסף, על מנת להפעיל את הטרנספורמציה עם פקודת mutate (ובאופן כללי בשימוש ב-tidyverse) נשתמש באופרטור הנקרא pipe (מקטרת או צינור) ומטרתו להפוך את הקוד ליותר ברור. ישנם שני אופרטורים מסוג pipe: <code>%&gt;%</code> ו-<code>|&gt;</code>. בספר זה נשתמש בנוסח הראשון (הנוסח השני נמצא ב-Base R החל מגרסה 4.0.0).</p>
+<p>בנוסף, על מנת להפעיל את הטרנספורמציה עם פקודת mutate (ובאופן כללי בשימוש ב-tidyverse) נשתמש באופרטור הנקרא pipe (מקטרת או צינור) ומטרתו להפוך את הקוד ליותר ברור. ישנם שני אופרטורים מסוג pipe:</p>
+<ul>
+<li><code>%&gt;%</code></li>
+<li><code>|&gt;</code></li>
+</ul>
+<p>בספר זה נשתמש בנוסח הראשון (הנוסח השני נמצא ב-Base R החל מגרסה 4.0.0).</p>
 <p>להלן דוגמה המייצרת משתנה חדש (עמודה נוספת) ל-penguins, של משקל בקילוגרמים.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>new_penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
@@ -541,7 +546,7 @@ $ gender &lt;chr&gt; "m", "f", "f", NA, "f", "m", "f", "m", NA, NA, NA, NA, "f",
 <li><p><code>across</code> על מנת להחיל טרנספורמציות על כל המשתנים שעונים על קריטריונים שהוגדרו עם הפונקציות לעיל.</p></li>
 </ul>
 <p>נמחיש באמצעות שתי דוגמאות.</p>
-<p><strong>דוגמה ראשונה:</strong> נניח שברצוננו לחלק ב-10 את כל המשתנים שמסתיימים ב-“mm” (בעצם להחליף מיחידות של מילימטר ליחידות של ס”מ). אז ניעזר בפונקציה <code>ends_with("mm")</code> בשביל לזהות את המשתנים הללו, ובפונקציה <code>across</code> על מנת להפעיל עליהם את הטרנספורמציה <code>~{.x/10}</code> (שזו דרך סימבולית לבנות פונקציה שמחלקת מספר ב-10). התוצאה הסופית תיראה כך. לבסוף נרצה לשנות את “mm<em>”</em> ל- <em>”</em>cm”.</p>
+<p><strong>דוגמה ראשונה:</strong> נניח שברצוננו לחלק ב-10 את כל המשתנים שמסתיימים ב-“mm” (לשנות את יחידת המידה ממילימטר ליחידות של ס”מ). אז ניעזר בפונקציה <code>ends_with("mm")</code> בשביל לזהות את המשתנים הללו, ובפונקציה <code>across</code> על מנת להפעיל עליהם את הטרנספורמציה <code>~{.x/10}</code> (שזו דרך סימבולית לבנות פונקציה שמחלקת מספר ב-10). התוצאה הסופית תיראה כך. לבסוף נרצה לשנות את “mm<em>”</em> ל- <em>”</em>cm”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>penguin_cm <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"mm"</span>), <span class="sc">~</span>{.x<span class="sc">/</span><span class="dv">10</span>})) <span class="sc">%&gt;%</span> </span>
@@ -749,7 +754,7 @@ Tip
 </div>
 <section id="פעולות-סיכום-מורכבות" class="level3" data-number="3.7.1">
 <h3 data-number="3.7.1" class="anchored" data-anchor-id="פעולות-סיכום-מורכבות"><span class="header-section-number">3.7.1</span> פעולות סיכום מורכבות</h3>
-<p>את הפונקציה <code>across</code> הכרנו כבר בשלב מוקדם יותר בפרק זה (כשהסברנו על הפוקנציה <code>mutate</code>). באופן אמצעות שימוש בפקודה <code>across</code> ניתן להגדיר פעולות סיכום מורכבות על פני קיבוצים שונים ועל פני מספר משתנים רב. לדוגמה, נניח שאנו רוצים לקבל ממוצע של כל המשתנים הנומריים על פני סוגים שונים של פינגווינים. נוכל לעשות זאת באמצעות הקוד הבא:</p>
+<p>את הפונקציה <code>across</code> הכרנו כבר בשלב מוקדם יותר בפרק זה (כשהסברנו על הפוקנציה <code>mutate</code>). באמצעות שימוש בפקודה <code>across</code> ניתן להגדיר פעולות סיכום מורכבות על פני קיבוצים שונים ועל פני מספר משתנים רב. לדוגמה, נניח שאנו רוצים לקבל ממוצע של כל המשתנים הנומריים על פני סוגים שונים של פינגווינים. נוכל לעשות זאת באמצעות הקוד הבא:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">%&gt;%</span> </span>
@@ -810,10 +815,12 @@ Note
 <h2 data-number="3.8" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">3.8</span> סיכום</h2>
 <div class="end-page">
 
+</div>
+
 <div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
 <p><strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href="https://www.sarid-ins.com">מכון שריד</a></p>
 </div>
-</div>
+<p>:::</p>
 
 </section>
 

@@ -359,7 +359,7 @@ Levels: Apples Mangos Oranges Paers</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>some_date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">Sys.Date</span>(), <span class="fu">as.Date</span>(<span class="st">"1993-08-01"</span>))</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>some_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-08-17" "1993-08-01"</code></pre>
+<pre><code>[1] "2024-09-28" "1993-08-01"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>some_logical <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>) <span class="co"># can also use c(T, F, F, T) is the same</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>some_logical</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -452,7 +452,7 @@ $my_factor
 Levels: Apples Mangos Oranges Paers
 
 $my_date
-[1] "2024-08-17" "1993-08-01"</code></pre>
+[1] "2024-09-28" "1993-08-01"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -490,7 +490,7 @@ $my_date
 <section id="שימוש-בפונקציות" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="שימוש-בפונקציות"><span class="header-section-number">2.3</span> שימוש בפונקציות</h2>
 <p>ניתן גם להפעיל פונקציות שונות, לדוגמה לוגריתם, פונקציות טריגונומטריות. למעשה בסעיף הקודם כבר ראינו מספר פונקציות כגון <code>c</code> ו-<code>typeof</code>. כעת נראה עוד מספר דוגמאות.</p>
-<p>נסו להריץ את הקוד הבא, ולאחר מכן לענות על השאלות שמתחת למקטע הקוד. יש לשים לב שעל מנת להריץ את הפקודות בסוף המקטע (שקשורות ב-<code>my_data</code> נדרש קודם להגדיר את <code>my_data</code> כפי שהוגדר במקטע הקוד הקודם.</p>
+<p>נסו להריץ את הקוד הבא, ולאחר מכן לענות על השאלות שלאחר מקטע הקוד. יש לשים לב שעל מנת להריץ את הפקודות בסוף המקטע (שקשורות ב-<code>my_data</code> נדרש קודם להגדיר את <code>my_data</code> כפי שהוגדר במקטע הקוד הקודם.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">100</span>)  <span class="co"># natural logarithm</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">100</span>)  <span class="co"># base 10 logarithm </span></span>
@@ -618,7 +618,7 @@ $my_date
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
-<p>שימו לב שבדוגמה האחרונה השתמשנו באופרטור נוסף אשר בודק אם שני אובייקטים הם בעלי אותו הערך. אופרטור זו מצויין עם שיוויון כפול <code>==</code>. ניתן גם להשוות שני משתנים זה לזה או להשוות שני וקטורים (איבר-איבר) באופן הבא:</p>
+<p>שימו לב שבדוגמה האחרונה השתמשנו באופרטור נוסף אשר בודק אם שני אובייקטים הם בעלי אותו הערך. אופרטור זה מצויין עם שיוויון כפול <code>==</code>. ניתן גם להשוות שני משתנים זה לזה או להשוות שני וקטורים (איבר-איבר) באופן הבא:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -685,7 +685,7 @@ $my_date
 </section>
 <section id="לולאות" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="לולאות"><span class="header-section-number">2.6</span> לולאות</h2>
-<p>לולאות הן דרך נוחה כדי לגרום למחשב לעשות הרבה חזרות של אותה הפעולה (רק בשינוי ערכים מסוימים). ב-R ישנם סוגים שונים של לולאות, המתאפיינים בפקודות שונות אבל גם בזמן ריצה (יעילות) שונה.</p>
+<p>לולאות הן דרך נוחה כדי לגרום למחשב לעשות הרבה חזרות של אותה הפעולה (רק בשינוי ערכים מסוימים). ב-R ישנם סוגים שונים של לולאות, המתאפיינות בפקודות שונות אבל גם בזמן ריצה (יעילות) שונה.</p>
 <ul>
 <li>לולאות <code>for</code></li>
 <li>לולאות <code>while</code></li>

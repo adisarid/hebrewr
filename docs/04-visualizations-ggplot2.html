@@ -293,7 +293,7 @@ div.csl-indent {
 <p>ויז’ואליזציות הן כלי קריטי בהבנה ובתקשור של נתונים (וחוץ מזה, הן כיפיות 😊). בפרק זה נלמד איך להפיק ויז’ואליזציות באמצעות חבילת <code>ggplot2</code>.</p>
 <p>חבילת <code>ggplot2</code> מבוססת על תיאוריה שנקראת דקדוק של גרפיקה <span class="citation" data-cites="wickham2010">(<a href="references.html#ref-wickham2010" role="doc-biblioref">Wickham 2010</a>)</span>. עקרונות התיאוריה מניחים את קווי היסוד הבאים לבניה של כל גרף. בקווים כלליים:</p>
 <ol type="1">
-<li>כל משתנה ממופה למאפיין מסוים על הגרף (“אסטטיקה”), לדוגמה, משתנה יכול להיות ממופה לציר X לציר Y, והוא יכול להיות ממופה לצבע, גודל, שקיפות, צורה, ועוד.</li>
+<li>כל משתנה ממופה למאפיין מסוים על הגרף (“אסתטיקה”), לדוגמה, משתנה יכול להיות ממופה לציר X לציר Y, והוא יכול להיות ממופה לצבע, גודל, שקיפות, צורה, ועוד.</li>
 <li>לאחר המיפוי מתווספות שכבות שנקראות גיאומטריות. ישנן גיאומטריות רבות והן קובעות כיצד יראה הגרף, לדוגמה נקודות (דיאגרמת פיזור), קווים, עמודות (bars), אריחים (tiles), קופסאות התפלגות (boxplots), ועוד.</li>
 <li>לבסוף מולבשים על הגרף עוד “קישוטים” כמו כותרות, מקרא, צירים, וכל מה שנדרש בשביל לשדרג לו את הניראות ואת הנהירות.</li>
 </ol>
@@ -378,7 +378,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>כדאי להכיר - “פרדוס סימפסון”:</strong> התופעה שבה הבחנו בשינוי המשמעות של הקשר בין המשתנים כאשר מוסיפים אינטראקציה או זיהוי של הקבוצה, תוארה על ידי סימפסון <span class="citation" data-cites="simpson1951">(<a href="references.html#ref-simpson1951" role="doc-biblioref">Simpson 1951</a>)</span>. אחד מהגילגולים המודרנים של הפרדוקס הזה נמצא בדאטהסט שנוצר על ידי סימולציה ונקרא Datasaurus dozen <span class="citation" data-cites="murray2021">(ראו <a href="references.html#ref-murray2021" role="doc-biblioref">Murray and Wilson 2021</a>)</span>.</p>
+<p><strong>כדאי להכיר - “פרדוקס סימפסון”:</strong> התופעה שבה הבחנו בשינוי המשמעות של הקשר בין המשתנים כאשר מוסיפים אינטראקציה או זיהוי של הקבוצה, תוארה על ידי סימפסון <span class="citation" data-cites="simpson1951">(<a href="references.html#ref-simpson1951" role="doc-biblioref">Simpson 1951</a>)</span>. אחד מהגילגולים המודרנים של הפרדוקס הזה נמצא בדאטהסט שנוצר על ידי סימולציה ונקרא Datasaurus dozen <span class="citation" data-cites="murray2021">(ראו <a href="references.html#ref-murray2021" role="doc-biblioref">Murray and Wilson 2021</a>)</span>.</p>
 <p>ב-Datasaurus משתמשים בסימולציה כדי לייצר שנים עשר קבוצות שבפני עצמן נראות זהות בפרמטרים מסוימים (ממוצע בציר x, ממוצע בציר y, סטיית תקן, קורלציה, וכו’), אבל כשמציגים את הנקודות בדיאגרמת פיזור, באופן מובחן בין הקבוצות, מקבלים את התרשים הבא:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -519,7 +519,7 @@ Tip
 <p>נדגים מספר גיאומטריות נוספות מההיצע הרב שיש בחבילת <code>ggplot2</code>. שימו לב, בסוף הפרק מדריך שיסייע לכם להחליט באיזה תרשים כדאי להשתמש לפי סוג המשתנים או היחס בין משתנים שאתם רוצים להדגים.</p>
 <section id="boxplot" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">4.5.1</span> Boxplot</h3>
-<p>דיאגרמה מסוג Boxplot עוזרת לנו להבין את צורת ההתפלגות. הדיאגרמה מציגה “קופסה” שתוחמת 50% מהנתונים (החלק התחתון של הקופסה הוא רבעון ראשון, והחלק העליון של הקופסה הוא רבעון שלישי). במרכזה של הקופסה מוצג החציון קקו עבה (מחלק את התצפיות לחצי-חצי). ערכי קיצון, אם ישנם, מופיעים כנקודות. במידה ומופיעה קופסה שאינה סימטרית סביב החציון, הדבר מעיד על כך שההתפלגות אינה התפלגות נורמלית.</p>
+<p>דיאגרמה מסוג Boxplot עוזרת לנו להבין את צורת ההתפלגות. הדיאגרמה מציגה “קופסה” שתוחמת 50% מהנתונים (החלק התחתון של הקופסה הוא רבעון ראשון, והחלק העליון של הקופסה הוא רבעון שלישי). במרכזה של הקופסה מוצג החציון כקו עבה (מחלק את התצפיות לחצי-חצי). ערכי קיצון, אם ישנם, מופיעים כנקודות. במידה ומופיעה קופסה שאינה סימטרית סביב החציון, הדבר מעיד על כך שההתפלגות אינה התפלגות נורמלית.</p>
 <p>נציג את התפלגות המשקל של הפינגויינים בתרשים, בהפרדה לפי זן הפינגויינים, ומיד לאחריו נציג את החציון, ורבעונים של כל קבוצה.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
@@ -557,7 +557,7 @@ Tip
 <p><strong>איך מזהים ערכי קיצון?</strong></p>
 <p>ערכי קיצון היא בעיה בפני עצמה ואפשר להקדיש לה פרק, ואפילו ספר שלם. יש לערכי קיצון השלכות משמעותיות במגוון שימושים, החל ממודלים (כמו רגרסיה שנלמד עליה בספר זה) וחישובים שונים (ממוצע לדוגמה מושפע מאוד מערכי קיצון), דרך זיהוי אנומליות.</p>
 <p>ערכי הקיצון מחושבים כ-1.5*טווח בין רבעוני מהרבעון הראשון מטה או מהרבעון השלישי מעלה, כלומר נקודות אשר מרוחקות לפחות פי 1.5 הטווח הבין רבעוני (הטווח “הסביר”) ביחס לרבעונים.</p>
-<p>אם נמחיש זאת על קבוצת הפינגויינים מסוג Chinstrap. הרבעון הראשון מתקבל ב-3488 גרם, והרבעון השלישי מתקבל ב-3950 גרם. הטווח הבין רבעון לכן הינו 462. כלומר הטווח הבין רבעוני כפול 1.5 הינו 693.</p>
+<p>אם נמחיש זאת על קבוצת הפינגויינים מסוג Chinstrap. הרבעון הראשון מתקבל ב-3488 גרם, והרבעון השלישי מתקבל ב-3950 גרם. הטווח הבין רבעוני לכן הינו 462. כלומר הטווח הבין רבעוני כפול 1.5 הינו 693.</p>
 <p>כלומר, כל נקודה שנמצאת מחוץ לתחום של [3950+693, 3488-693] תיחשב כערך חריג ותסומן כנקודה.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>extreme_hinges <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3488-693</span>, <span class="dv">3950</span><span class="sc">+</span><span class="dv">693</span>)</span>
@@ -624,7 +624,7 @@ Tip
 <section id="היסטוגרמה" class="level3" data-number="4.5.3">
 <h3 data-number="4.5.3" class="anchored" data-anchor-id="היסטוגרמה"><span class="header-section-number">4.5.3</span> היסטוגרמה</h3>
 <p>היסטוגרמה הוא גרף נוסף שנועד להציג התפלגות של משתנים רציפים, על ידי שבירה של הערכים הרציפים לערכים בדידים (קבוצות טווחים), בשונה מהגרפים הקודמים.</p>
-<p>בנייה של היסטגרמה תתבצע באמצעות הפונקציה <code>geom_histogram</code>.</p>
+<p>בנייה של היסטוגרמה תתבצע באמצעות הפונקציה <code>geom_histogram</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
@@ -678,7 +678,7 @@ Tip
 </div>
 </div>
 <p>שתי הפקודות עם אותו הפלט בדיוק. אני באופן אישי מעדיף את השימוש ב-<code>geom_col</code> משום שיותר קל לעשות לה debug (בכך שנראה מה הדאטה שנכנס פנימה).</p>
-<p>גרף בארים יכול להציג גם יותר ממשתנה אחד, לדוגמה אפשר להשתמש בו על מנת להציג את ההתפלגות של משתנה מסוים כפונקציה של משתנים אחר (קשר בין שני משתנים בדידים). נדגים זאת בתרשים הבא שיציג את התפלגות הדגימות של זנים שונים כפונקציה של מגדר.</p>
+<p>גרף בארים יכול להציג גם יותר ממשתנה אחד, לדוגמה אפשר להשתמש בו על מנת להציג את ההתפלגות של משתנה מסוים כפונקציה של משתנה אחר (קשר בין שני משתנים בדידים). נדגים זאת בתרשים הבא שיציג את התפלגות הדגימות של זנים שונים כפונקציה של מגדר.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span> </span>
@@ -697,7 +697,12 @@ Tip
 </div>
 </div>
 </div>
-<p>ניתן לראות מהתרשים שהתפלגות הדגימה של הזנים דומה בין שני המגדרים תמהיל של כ-20% מסוג Chinstrap, 36% מסוג Gentoo, והיתר ממין Adelie.</p>
+<p>ניתן לראות מהתרשים שהתפלגות הדגימה של הזנים דומה בין שני המגדרים:</p>
+<ul>
+<li>כ-20% מסוג Chinstrap</li>
+<li>36% מסוג Gentoo</li>
+<li>היתר ממין Adelie.</li>
+</ul>
 <p>הפונקציה <code>position_fill</code> מגדירה שיש לערום את הבארים אחד על השני כך שיסתכמו ל-100%, ישנן שתי אפשרויות נוספות: <code>position_dodge</code>, ו-<code>position_stack</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -733,7 +738,7 @@ Tip
 <ol type="1">
 <li>כמה משתנים אנחנו רוצים לתאר בתרשים (האם אנחנו רוצים לתאר התפלגות של משתנה אחד, קשר בין שני משתנים, או אולי קשר בין שלושה משתנים)?</li>
 <li>מהם סוגי המשתנים שאנחנו מתארים (בדידים או רציפים)?</li>
-<li>אילו גיאומטריות יכולות לשמש אותנו לתיאור זה, ואיזה משתנה ימופה לאן (לאיזו אסטטיקה)?</li>
+<li>אילו גיאומטריות יכולות לשמש אותנו לתיאור זה, ואיזה משתנה ימופה לאן (לאיזו אסתטיקה)?</li>
 </ol>
 <p>החלקים 1-2 נובעים מהבנה טובה של הדאטה, והצורך המחקרי/העסקי שלכם. בשביל חלק 3 תוכלו להיעזר ב-Cheatsheet שהכינו בחברת Posit (לשעבר RStudio). הוא מאפשר להבין לכל סיטואציה איזה סוג תרשים ידרש: <a href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">קישור ל-Cheatsheet</a>.</p>
 <p>עברנו את התהליך הזה בדוגמאות שכבר ראינו בפרק זה, מבלי לציין זאת:</p>
@@ -793,23 +798,23 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(penguin_ranges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="akbzulbvff" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#akbzulbvff table {
+<div id="jzoumkvcco" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jzoumkvcco table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#akbzulbvff thead, #akbzulbvff tbody, #akbzulbvff tfoot, #akbzulbvff tr, #akbzulbvff td, #akbzulbvff th {
+#jzoumkvcco thead, #jzoumkvcco tbody, #jzoumkvcco tfoot, #jzoumkvcco tr, #jzoumkvcco td, #jzoumkvcco th {
   border-style: none;
 }
 
-#akbzulbvff p {
+#jzoumkvcco p {
   margin: 0;
   padding: 0;
 }
 
-#akbzulbvff .gt_table {
+#jzoumkvcco .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -835,12 +840,12 @@ Tip
   border-left-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_caption {
+#jzoumkvcco .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#akbzulbvff .gt_title {
+#jzoumkvcco .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -852,7 +857,7 @@ Tip
   border-bottom-width: 0;
 }
 
-#akbzulbvff .gt_subtitle {
+#jzoumkvcco .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -864,7 +869,7 @@ Tip
   border-top-width: 0;
 }
 
-#akbzulbvff .gt_heading {
+#jzoumkvcco .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -876,13 +881,13 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_bottom_border {
+#jzoumkvcco .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_col_headings {
+#jzoumkvcco .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -897,7 +902,7 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_col_heading {
+#jzoumkvcco .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -917,7 +922,7 @@ Tip
   overflow-x: hidden;
 }
 
-#akbzulbvff .gt_column_spanner_outer {
+#jzoumkvcco .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -929,15 +934,15 @@ Tip
   padding-right: 4px;
 }
 
-#akbzulbvff .gt_column_spanner_outer:first-child {
+#jzoumkvcco .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#akbzulbvff .gt_column_spanner_outer:last-child {
+#jzoumkvcco .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#akbzulbvff .gt_column_spanner {
+#jzoumkvcco .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -949,11 +954,11 @@ Tip
   width: 100%;
 }
 
-#akbzulbvff .gt_spanner_row {
+#jzoumkvcco .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#akbzulbvff .gt_group_heading {
+#jzoumkvcco .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -979,7 +984,7 @@ Tip
   text-align: left;
 }
 
-#akbzulbvff .gt_empty_group_heading {
+#jzoumkvcco .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -994,15 +999,15 @@ Tip
   vertical-align: middle;
 }
 
-#akbzulbvff .gt_from_md > :first-child {
+#jzoumkvcco .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#akbzulbvff .gt_from_md > :last-child {
+#jzoumkvcco .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#akbzulbvff .gt_row {
+#jzoumkvcco .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1021,7 +1026,7 @@ Tip
   overflow-x: hidden;
 }
 
-#akbzulbvff .gt_stub {
+#jzoumkvcco .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1034,7 +1039,7 @@ Tip
   padding-right: 5px;
 }
 
-#akbzulbvff .gt_stub_row_group {
+#jzoumkvcco .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1048,15 +1053,15 @@ Tip
   vertical-align: top;
 }
 
-#akbzulbvff .gt_row_group_first td {
+#jzoumkvcco .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#akbzulbvff .gt_row_group_first th {
+#jzoumkvcco .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#akbzulbvff .gt_summary_row {
+#jzoumkvcco .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1066,16 +1071,16 @@ Tip
   padding-right: 5px;
 }
 
-#akbzulbvff .gt_first_summary_row {
+#jzoumkvcco .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_first_summary_row.thick {
+#jzoumkvcco .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#akbzulbvff .gt_last_summary_row {
+#jzoumkvcco .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1085,7 +1090,7 @@ Tip
   border-bottom-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_grand_summary_row {
+#jzoumkvcco .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1095,7 +1100,7 @@ Tip
   padding-right: 5px;
 }
 
-#akbzulbvff .gt_first_grand_summary_row {
+#jzoumkvcco .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1105,7 +1110,7 @@ Tip
   border-top-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_last_grand_summary_row_top {
+#jzoumkvcco .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1115,11 +1120,11 @@ Tip
   border-bottom-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_striped {
+#jzoumkvcco .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#akbzulbvff .gt_table_body {
+#jzoumkvcco .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1128,7 +1133,7 @@ Tip
   border-bottom-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_footnotes {
+#jzoumkvcco .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1142,7 +1147,7 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_footnote {
+#jzoumkvcco .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1151,7 +1156,7 @@ Tip
   padding-right: 5px;
 }
 
-#akbzulbvff .gt_sourcenotes {
+#jzoumkvcco .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1165,7 +1170,7 @@ Tip
   border-right-color: #D3D3D3;
 }
 
-#akbzulbvff .gt_sourcenote {
+#jzoumkvcco .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1173,63 +1178,63 @@ Tip
   padding-right: 5px;
 }
 
-#akbzulbvff .gt_left {
+#jzoumkvcco .gt_left {
   text-align: left;
 }
 
-#akbzulbvff .gt_center {
+#jzoumkvcco .gt_center {
   text-align: center;
 }
 
-#akbzulbvff .gt_right {
+#jzoumkvcco .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#akbzulbvff .gt_font_normal {
+#jzoumkvcco .gt_font_normal {
   font-weight: normal;
 }
 
-#akbzulbvff .gt_font_bold {
+#jzoumkvcco .gt_font_bold {
   font-weight: bold;
 }
 
-#akbzulbvff .gt_font_italic {
+#jzoumkvcco .gt_font_italic {
   font-style: italic;
 }
 
-#akbzulbvff .gt_super {
+#jzoumkvcco .gt_super {
   font-size: 65%;
 }
 
-#akbzulbvff .gt_footnote_marks {
+#jzoumkvcco .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#akbzulbvff .gt_asterisk {
+#jzoumkvcco .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#akbzulbvff .gt_indent_1 {
+#jzoumkvcco .gt_indent_1 {
   text-indent: 5px;
 }
 
-#akbzulbvff .gt_indent_2 {
+#jzoumkvcco .gt_indent_2 {
   text-indent: 10px;
 }
 
-#akbzulbvff .gt_indent_3 {
+#jzoumkvcco .gt_indent_3 {
   text-indent: 15px;
 }
 
-#akbzulbvff .gt_indent_4 {
+#jzoumkvcco .gt_indent_4 {
   text-indent: 20px;
 }
 
-#akbzulbvff .gt_indent_5 {
+#jzoumkvcco .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

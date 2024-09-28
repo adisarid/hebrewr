@@ -332,7 +332,7 @@ window.Quarto = {
 </ul>
 <section id="מבחן-השערות-על-תוחלת" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="מבחן-השערות-על-תוחלת"><span class="header-section-number">6.1</span> מבחן השערות על תוחלת</h2>
-<p>אחד מהפרמטרים החשובים של התפלגויות הוא התוחלת. לתוחלת ולממוצע יש קשר הדוק ביניהם - כאשר אנחנו מבצעים דגימה מתוך אוכלוסיה, ממוצע המדגם הוא אמד המייצג את התוחלת.</p>
+<p>אחד מהפרמטרים החשובים של התפלגויות הוא התוחלת. ישנו קשר הדוק בין תוחלת ובין ממוצע - כאשר אנחנו מבצעים דגימה מתוך אוכלוסיה, ממוצע המדגם הוא אמד המייצג את התוחלת.</p>
 <p>נדגים זאת בעזרת מדגם הפינגויינים שראינו בפרק הקודם:</p>
 <p>לכל אחד מזני הפינגויינים ממוצע שונה לאורך המקור. לדוגמה, פינגויינים מסוג Adelie הם בעלי מקור באורך ממוצע 38.8 מ”מ. בפועל מדובר בממוצע המחושב על מדגם של 151 תצפיות, וסביר להניח שהתוחלת בכלל אוכלוסית הפינגויים מזן Adelie היא קצת שונה. לדוגמה, תוחלת של 38 מ”מ, יכולה להביא לכך שממוצע על פני דגימה של 151 תצפיות יהיה 38.8 מ”מ.</p>
 <p>המטרה של מבחן השערות על התוחלת היא לעזור לנו לקבוע ברמת שגיאה של <span class="math inline">\(\alpha\)</span> (אשר בדרך כלל נקבעת כ-5% שגיאה), <em>האם התוחלת היא בעלת ערך מסוים</em> <span class="math inline">\(\mu_0\)</span>, <em>בהינתן תוצאות המדגם</em> שלנו.</p>
@@ -604,12 +604,12 @@ ratio of variances
 </div>
 </div>
 <p>השלבים שבוצעו בקוד כללו ראשית בניית טבלה של צפיפות של ההתפלגות הנורמלית עם ממוצע 38.79, וסטיית תקן 2.66, הם האמדים מהנתונים האמפיריים של תוחלת וסטיית תקן אורך המקור של פינגויינים מזן Adelie. הפונקציה <code>dnorm</code> משמשת לחישוב הצפיפות הנורמלית.</p>
-<p>לאחר מכן השתמשנו ב<code>ggplot</code>, שאליו הוספנו שכבה נוספת של <code>geom_line</code> אשר לא משתמשת בדאטה הראשי (<code>adelie</code>) אלא בטבלה המשנית שחישבנו בשלב קודם (<code>theoretical_bill_length</code>). השתמשנו בארגומנטים <code>data = theoretical_bill_length</code> וב-<code>inherit.aes = FALSE</code> , על מנת להנחות את הפקודה של <code>geom_line</code> להשתמש בדאטה שונה, ובהגדרות אסטטיקה שונות.</p>
+<p>לאחר מכן השתמשנו ב<code>ggplot</code>, שאליו הוספנו שכבה נוספת של <code>geom_line</code> אשר לא משתמשת בדאטה הראשי (<code>adelie</code>) אלא בטבלה המשנית שחישבנו בשלב קודם (<code>theoretical_bill_length</code>). השתמשנו בארגומנטים <code>data = theoretical_bill_length</code> וב-<code>inherit.aes = FALSE</code> , על מנת להנחות את הפקודה של <code>geom_line</code> להשתמש בדאטה שונה, ובהגדרות אסתטיקה שונות.</p>
 <p>התוצאה נראית כמו שני גרפי צפיפויות דומים אחד לשני, עם חריגה מסוימת (באדום הצפיפות התיאורתית ובכחול האמפירית). דומים, אבל לא זהים. האם הם “שונים מספיק” על מנת שנדחה את השערת האפס (שהם אותה ההתפלגות)?</p>
 <p>צעד אחד מקדים לפני שנבצע את מבחן טיב ההתאמה, הוא לבנות תרשים הנותן לנו כלי להשוות בין התפלגויות. תרשים מסוג Q-Q-Plot.</p>
 <section id="תרשים-q-q-plot" class="level4" data-number="6.5.1.1">
 <h4 data-number="6.5.1.1" class="anchored" data-anchor-id="תרשים-q-q-plot"><span class="header-section-number">6.5.1.1</span> תרשים Q-Q-Plot</h4>
-<p>בתרשים מסוג Q-Q-Plot המחשב מציב אחוזונים של שתי התפלגויות כנקודות במרחב (התפלגות אחת בציר X והשניה בציר Y). אם הנקודות המוצגות מתלבשות על אלכסון הדבר מעיד על כך שהן מגיעות מאותן התפלגות. ככל שהנקודות מתרחקות מהאלכסון, הדבר מעיד על כך שההתפלגויות אינן זהות. התרשים מהווה כלי ויזואלי שיכול לתמוך את התיאור של מבחן טיב ההתאמה.</p>
+<p>בתרשים מסוג Q-Q-Plot המחשב מציב אחוזונים של שתי התפלגויות כנקודות במרחב (התפלגות אחת בציר X והשניה בציר Y). אם הנקודות המוצגות מתלבשות על אלכסון הדבר מעיד על כך שהן מגיעות מאותה התפלגות. ככל שהנקודות מתרחקות מהאלכסון, הדבר מעיד על כך שההתפלגויות אינן זהות. התרשים מהווה כלי ויזואלי שיכול לתמוך את התיאור של מבחן טיב ההתאמה.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>adelie <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> bill_length_mm)) <span class="sc">+</span> </span>
@@ -667,7 +667,7 @@ data:  observed_expected_counts$observed
 X-squared = 1.6432, df = 4, p-value = 0.801</code></pre>
 </div>
 </div>
-<p>ראשית נקבעו הגבולות של הקבוצות בהתפלגות (הדיסקרטיזציה, יצירת התפלגות בדידה), כך שההתפלגות תכיל את כל תוצאות ההתפלגות האפשריות מ-0 ועד 1.</p>
+<p>ראשית נקבעו הגבולות של הקבוצות בהתפלגות (הדיסקרטיזציה, כלומר יצירת התפלגות בדידה), כך שההתפלגות תכיל את כל תוצאות ההתפלגות האפשריות מ-0 ועד 1.</p>
 <p>החלק השני של הקוד מייצר את טבלת התצפיות בפועל ואת מספר התצפיות הצפוי (על ידי חישוב ההסתברות מתוך הממוצע וסטיית התקן של המדגם), והכפלה בסך התצפיות במדגם.</p>
 <p>לאחר מכן אנחנו משתמשים בפקודה <code>chisq.test</code>. שימו לב שלמעשה לא השתמשנו במספר התצפיות הצפוי אלא בהתפלגות שלהם (הארגומנט <code>p</code>), שמעיד מה ההסתברות לקבל דגימות בתאים הסטטיסטיים הנבחנים.</p>
 <p>במקרה זה קיבלנו <code>p.value=0.801</code> כלומר לא ניתן לדחות את השערת האפס שההתפלגות הנדונה היא התפלגות נורמלית (לכן נאמר שיש בסיס להתייחס להתפלגות כהתפלגות נורמלית).</p>
@@ -681,7 +681,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>במרבית ספרי הסטטיסטיקה תתיקלו בנוסחה הבאה עבור מבחן חי-בריבוע.</p>
+<p>במרבית ספרי הסטטיסטיקה תמצאו את הנוסחה הבאה עבור מבחן חי-בריבוע.</p>
 <p>ראשית מחשבים את הסטטיסטי:<br>
 <span class="math display">\[
 X=\sum_{i=1}^l\frac{\left(O_i-E_i\right)^2}{E_i}
@@ -710,7 +710,7 @@ X=\sum_{i=1}^l\frac{\left(O_i-E_i\right)^2}{E_i}
 </section>
 <section id="מבחן-אי-תלות" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="מבחן-אי-תלות"><span class="header-section-number">6.5.2</span> מבחן אי-תלות</h3>
-<p>מבחן אי-תלות משמש אותנו על מנת להבחין האם שני משתנים מקריים כלשהם הם בעלי תלות מסוימת או לא, כאשר שניהם משתנים קטגוריאליים. נדגים את השימוש במבחן: בנתוני הפינגויינים שעמם אנחנו עובדים בדוגמאות ישנם מספר משתנים קטגוריאליים (זן, אי, מין, ושנת המדידה שחרף היותו מספרי ניתן להתייחס אליו גם כקטגוריה). נרצה לבחון באמצעות מבחן אי-תלות האם יש קשר בין זן הפינגויינים לבין שנת המדידה: כלומר האם החוקרים שאספו את הדאטה נתנו דגשים על איסוף נתונים של זנים מסוימים בשנים מסוימים או שעבדו באופן אחיד בדגימת פינגויינים מכל שלושת הזנים בכל שלושת השנים בדאטה (2007-2009). נתחיל ביצירת תרשים שיציג את התפלגות הזנים בכל שנת דגימה.</p>
+<p>מבחן אי-תלות משמש אותנו על מנת להבחין האם שני משתנים מקריים כלשהם הם בעלי תלות מסוימת או לא, כאשר שניהם משתנים קטגוריאליים. נדגים את השימוש במבחן: בנתוני הפינגויינים שעמם אנחנו עובדים. בדוגמאות ישנם מספר משתנים קטגוריאליים (זן, אי, מין, ושנת המדידה שחרף היותו מספרי ניתן להתייחס אליו גם כקטגוריה). נרצה לבחון באמצעות מבחן אי-תלות האם יש קשר בין זן הפינגויינים לבין שנת המדידה: כלומר האם החוקרים שאספו את הדאטה נתנו דגשים על איסוף נתונים של זנים מסוימים בשנים מסוימות או שעבדו באופן אחיד בדגימת פינגויינים מכל שלושת הזנים בכל תקופת איסוף הדאטה בשנים 2007-2009. נתחיל ביצירת תרשים שיציג את התפלגות הזנים בכל שנת דגימה.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, species) <span class="sc">%&gt;%</span></span>
@@ -817,7 +817,7 @@ sample estimates:
 0.5175439 </code></pre>
 </div>
 </div>
-<p>כפי שניתן לראות בפלט הפקודה, ערך ה-p-value הינו 0.552, ולכן לא ניתן לדחות את השערת האפס של חלוקה חצי/חצי. רווח בר סמך לפרופורציה של הפינגויינים בעלי משקל מעל 4 ק”ג עומד על בין 0.463 ועד 0.571.</p>
+<p>כפי שניתן לראות בפלט הפקודה, ערך ה-p-value הינו 0.552, ולכן לא ניתן לדחות את השערת האפס של חלוקה חצי/חצי. רווח בר סמך לפרופורציה של הפינגויינים בעלי משקל מעל 4 ק”ג נמצא בין 0.463 ועד 0.571.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -868,8 +868,8 @@ sample estimates:
 0.05022831 0.86991870 </code></pre>
 </div>
 </div>
-<p>כפי שניתן לראות על פי תוצאות המבחן, יש שיעור של כ-5% מהפינגויינים שאינם מזן Gentoo שיש להם משקל מעל 4.5 ק”ג, לעומת 87% מהפינגויינים שהם כן מזן Gentoo ובעלי משקל מעל 4.5 ק”ג. הבדל זה מובהק סטטיסטית עם p-value &lt; 2.2e-16 (כלומר קטן מהמספר הקטן ביותר שהמחשב יכול להציג).</p>
-<p>רווח בר סמך להפרש בין אחוזים אלו עומד על בין 0.747 ועד 0.892 (בשורה בפלט זה מופיע בסימן שלילי משום שהפקודה מחסרת את הפרופורציה הראשונה מהשניה ובמקרה זה הפרופורציה הראשונה נמוכה מהשניה - 11 מתוך 219 לעומת 107 מתוך 123).</p>
+<p>כפי שניתן לראות על פי תוצאות המבחן, יש שיעור של כ-5% מהפינגויינים שאינם מזן Gentoo שמשקלם מעל 4.5 ק”ג, לעומת 87% מהפינגויינים שהם כן מזן Gentoo ומשקלם מעל 4.5 ק”ג. הבדל זה מובהק סטטיסטית עם p-value &lt; 2.2e-16 (כלומר קטן מהמספר הקטן ביותר שהמחשב יכול להציג).</p>
+<p>רווח בר סמך להפרש בין אחוזים אלו נמצא בין 0.747 ועד 0.892 (בשורה בפלט זה מופיע בסימן שלילי משום שהפקודה מחסרת את הפרופורציה הראשונה מהשניה ובמקרה זה הפרופורציה הראשונה נמוכה מהשניה - 11 מתוך 219 לעומת 107 מתוך 123).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -890,7 +890,7 @@ sample estimates:
 <section id="מבחן-קולמוגורוב-סמירנוב-ks-test-להתפלגות" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="מבחן-קולמוגורוב-סמירנוב-ks-test-להתפלגות"><span class="header-section-number">6.9</span> מבחן קולמוגורוב-סמירנוב (KS test) להתפלגות</h2>
 <p>מבחן קולמוגורוב-סמירנוב משמש להשוואה בין שתי התפלגויות, בדומה למבחן חי-בריבוע לטיב התאמה, אך הוא אינו דורש התפלגויות בדידות (כפי שמבחן חי-בריבוע דורש).</p>
-<p>אפשר להפעיל אותו על מנת להשוות בין שתי התפלגויות רציפות נתונות או בין התפלגות רציפה נתונה לבין התפלגות רציפה תיאורתית. לדוגמה, נשוואה את אורך המקור של פינגויינים מזן Adelie להתפלגות רציפה תיאורתית נורמלית עם תוחלת 38.79, וסטיית תקן 2.66:</p>
+<p>אפשר להפעיל אותו על מנת להשוות בין שתי התפלגויות רציפות נתונות או בין התפלגות רציפה נתונה לבין התפלגות רציפה תיאורתית. לדוגמה, נשווה את אורך המקור של פינגויינים מזן Adelie להתפלגות רציפה תיאורתית נורמלית עם תוחלת 38.79, וסטיית תקן 2.66:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ks_test_output <span class="ot">&lt;-</span> <span class="fu">ks.test</span>(adelie<span class="sc">$</span>bill_length_mm, <span class="st">"pnorm"</span>, <span class="at">mean =</span> length_mu, <span class="at">sd =</span> length_sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -920,7 +920,7 @@ alternative hypothesis: two-sided</code></pre>
 <div class="callout-body-container callout-body">
 <p>במסגרת המבחן שהרצנו קיבלנו הודעת אזהרה:</p>
 <p>ties should not be present for the Kolmogorob-Smirnov test.</p>
-<p>מבחן קולמוגורוב-סמירנוב משתמש בסטטיסטי אחר מהסטטיסטיים שהצגנו עד כה (סטטיסטי t וסטטיסטי חי-בריבוע). במסגרת חישוב הסטטיסטי של מבחן קולמוגורוב-סמירנוב מסודרים הערכים שבמדגם. אם מחושבת ההתפלגות האמפירית ומשוות להתפלגות התיאורתית. הודעת האזהרה מעידה על כך שיש ערכים זהים שלא ניתן לסדרם, אך המבחן עדיין עובד ומחזיר את תוצאת החישוב. ככל שבהתפלגות האמפירית ישנם הרבה ערכים זהים, זה מהווה אינדיקציה לכך שההתפלגות אינה רציפה, וייתכן שמבחן טיב התאמה עשוי להיות מתאים יותר (ואשר משווה להתפלגות בדידה).</p>
+<p>מבחן קולמוגורוב-סמירנוב משתמש בסטטיסטי שונה מהסטטיסטיים שהצגנו עד כה (סטטיסטי t וסטטיסטי חי-בריבוע). במסגרת חישוב הסטטיסטי של מבחן קולמוגורוב-סמירנוב מסודרים הערכים שבמדגם. אם מחושבת ההתפלגות האמפירית ומשוות להתפלגות התיאורתית. הודעת האזהרה מעידה על כך שיש ערכים זהים שלא ניתן לסדרם, אך המבחן עדיין עובד ומחזיר את תוצאת החישוב. ככל שבהתפלגות האמפירית ישנם הרבה ערכים זהים, זה מהווה אינדיקציה לכך שההתפלגות אינה רציפה, וייתכן שמבחן טיב התאמה עשוי להיות מתאים יותר (ואשר משווה להתפלגות בדידה).</p>
 </div>
 </div>
 </section>
@@ -943,23 +943,23 @@ alternative hypothesis: two-sided</code></pre>
 <div style="zoom:80%; direction:ltr;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="abguxcibbu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#abguxcibbu table {
+<div id="mpdetmtydk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mpdetmtydk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#abguxcibbu thead, #abguxcibbu tbody, #abguxcibbu tfoot, #abguxcibbu tr, #abguxcibbu td, #abguxcibbu th {
+#mpdetmtydk thead, #mpdetmtydk tbody, #mpdetmtydk tfoot, #mpdetmtydk tr, #mpdetmtydk td, #mpdetmtydk th {
   border-style: none;
 }
 
-#abguxcibbu p {
+#mpdetmtydk p {
   margin: 0;
   padding: 0;
 }
 
-#abguxcibbu .gt_table {
+#mpdetmtydk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -985,12 +985,12 @@ alternative hypothesis: two-sided</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_caption {
+#mpdetmtydk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#abguxcibbu .gt_title {
+#mpdetmtydk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1002,7 +1002,7 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-width: 0;
 }
 
-#abguxcibbu .gt_subtitle {
+#mpdetmtydk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1014,7 +1014,7 @@ alternative hypothesis: two-sided</code></pre>
   border-top-width: 0;
 }
 
-#abguxcibbu .gt_heading {
+#mpdetmtydk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1026,13 +1026,13 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_bottom_border {
+#mpdetmtydk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_col_headings {
+#mpdetmtydk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1047,7 +1047,7 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_col_heading {
+#mpdetmtydk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1067,7 +1067,7 @@ alternative hypothesis: two-sided</code></pre>
   overflow-x: hidden;
 }
 
-#abguxcibbu .gt_column_spanner_outer {
+#mpdetmtydk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1079,15 +1079,15 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 4px;
 }
 
-#abguxcibbu .gt_column_spanner_outer:first-child {
+#mpdetmtydk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#abguxcibbu .gt_column_spanner_outer:last-child {
+#mpdetmtydk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#abguxcibbu .gt_column_spanner {
+#mpdetmtydk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1099,11 +1099,11 @@ alternative hypothesis: two-sided</code></pre>
   width: 100%;
 }
 
-#abguxcibbu .gt_spanner_row {
+#mpdetmtydk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#abguxcibbu .gt_group_heading {
+#mpdetmtydk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1129,7 +1129,7 @@ alternative hypothesis: two-sided</code></pre>
   text-align: left;
 }
 
-#abguxcibbu .gt_empty_group_heading {
+#mpdetmtydk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1144,15 +1144,15 @@ alternative hypothesis: two-sided</code></pre>
   vertical-align: middle;
 }
 
-#abguxcibbu .gt_from_md > :first-child {
+#mpdetmtydk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#abguxcibbu .gt_from_md > :last-child {
+#mpdetmtydk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#abguxcibbu .gt_row {
+#mpdetmtydk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1171,7 +1171,7 @@ alternative hypothesis: two-sided</code></pre>
   overflow-x: hidden;
 }
 
-#abguxcibbu .gt_stub {
+#mpdetmtydk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1184,7 +1184,7 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#abguxcibbu .gt_stub_row_group {
+#mpdetmtydk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1198,15 +1198,15 @@ alternative hypothesis: two-sided</code></pre>
   vertical-align: top;
 }
 
-#abguxcibbu .gt_row_group_first td {
+#mpdetmtydk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#abguxcibbu .gt_row_group_first th {
+#mpdetmtydk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#abguxcibbu .gt_summary_row {
+#mpdetmtydk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1216,16 +1216,16 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#abguxcibbu .gt_first_summary_row {
+#mpdetmtydk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_first_summary_row.thick {
+#mpdetmtydk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#abguxcibbu .gt_last_summary_row {
+#mpdetmtydk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1235,7 +1235,7 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_grand_summary_row {
+#mpdetmtydk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1245,7 +1245,7 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#abguxcibbu .gt_first_grand_summary_row {
+#mpdetmtydk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1255,7 +1255,7 @@ alternative hypothesis: two-sided</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_last_grand_summary_row_top {
+#mpdetmtydk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1265,11 +1265,11 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_striped {
+#mpdetmtydk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#abguxcibbu .gt_table_body {
+#mpdetmtydk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1278,7 +1278,7 @@ alternative hypothesis: two-sided</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_footnotes {
+#mpdetmtydk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1292,7 +1292,7 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_footnote {
+#mpdetmtydk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1301,7 +1301,7 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#abguxcibbu .gt_sourcenotes {
+#mpdetmtydk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1315,7 +1315,7 @@ alternative hypothesis: two-sided</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#abguxcibbu .gt_sourcenote {
+#mpdetmtydk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1323,63 +1323,63 @@ alternative hypothesis: two-sided</code></pre>
   padding-right: 5px;
 }
 
-#abguxcibbu .gt_left {
+#mpdetmtydk .gt_left {
   text-align: left;
 }
 
-#abguxcibbu .gt_center {
+#mpdetmtydk .gt_center {
   text-align: center;
 }
 
-#abguxcibbu .gt_right {
+#mpdetmtydk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#abguxcibbu .gt_font_normal {
+#mpdetmtydk .gt_font_normal {
   font-weight: normal;
 }
 
-#abguxcibbu .gt_font_bold {
+#mpdetmtydk .gt_font_bold {
   font-weight: bold;
 }
 
-#abguxcibbu .gt_font_italic {
+#mpdetmtydk .gt_font_italic {
   font-style: italic;
 }
 
-#abguxcibbu .gt_super {
+#mpdetmtydk .gt_super {
   font-size: 65%;
 }
 
-#abguxcibbu .gt_footnote_marks {
+#mpdetmtydk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#abguxcibbu .gt_asterisk {
+#mpdetmtydk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#abguxcibbu .gt_indent_1 {
+#mpdetmtydk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#abguxcibbu .gt_indent_2 {
+#mpdetmtydk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#abguxcibbu .gt_indent_3 {
+#mpdetmtydk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#abguxcibbu .gt_indent_4 {
+#mpdetmtydk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#abguxcibbu .gt_indent_5 {
+#mpdetmtydk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
