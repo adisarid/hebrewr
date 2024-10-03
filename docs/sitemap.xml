@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.hebrewr.co.il/index.html</loc>
-    <lastmod>2024-04-30T04:18:31.012Z</lastmod>
+    <lastmod>2024-10-03T16:19:55.695Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/02-base-R.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/01-introduction.html</loc>
-    <lastmod>2024-08-25T15:12:06.492Z</lastmod>
+    <lastmod>2024-10-03T16:16:59.104Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/04-visualizations-ggplot2.html</loc>
@@ -45,8 +45,16 @@
     <lastmod>2024-04-30T04:18:30.966Z</lastmod>
   </url>
   <url>
-    <loc>https://www.hebrewr.co.il/10-hebrew-in-R.html</loc>
-    <lastmod>2024-09-28T15:01:08.528Z</lastmod>
+    <loc>https://www.hebrewr.co.il/10-using-reticulate.html</loc>
+    <lastmod>2024-10-03T16:24:38.181Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/11-using-openai.html</loc>
+    <lastmod>2024-10-03T16:24:37.162Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hebrewr.co.il/12-hebrew-in-R.html</loc>
+    <lastmod>2024-10-03T16:24:39.068Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/references.html</loc>
