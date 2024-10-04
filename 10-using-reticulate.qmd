@@ -1,7 +1,86 @@
-# פיית'ון מתוך R
+# פיית'ון מתוך R {#sec-using-reticulate}
 
-TBD
+כפי שציינתי בהקדמה לספר זה, אחד מהכלים הנפוצים ל-Data Science (ובכלל) הוא שפת פיית'ון (python). מאוד סביר שבסיטואציה כזו או אחרת תמצאו עצמכם מול בעיה שבה שילוב של פיית'ון עם R יכול להוות יתרון גדול ולחסוך זמן ומאמץ.
+
+לדוגמה, לעיתים קרובות תמצאו ששירותים מסוימים, כגון שירותי Amazon Web Services (AWS) זמינים באופן מלא בפיית'ון (באמצעות חבילה שנקראת `boto3` וזמינה בפיית'ון), אך ממומשים באופן חלקי בחבילות ב-R. בדוגמה זו, החבילה `boto3` היא חבילה רשמית המתוחזקת על ידי AWS ולעומת זאת, חבילות אחרות הזמינות ישירות ב-R הן חבילות המפותחות על ידי הקהילה, ואינן נתמכות באופן "רשמי" על ידי AWS.
+
+ישנן דוגמאות נוספות רבות, לדוגמה החבילה הרשמית של OpenAI (שנקראת `openai` בפיית'ון), שמתוחזקת באופן רשמי על ידי OpenAI, ומקבילה לה ל-R הנקראת גם היא באותו השם, אך מתוחזקת על ידי הקהילה באופן לא רשמי.
+
+הקריאה לפיית'ון מתוך R מתבצעת באמצעות חבילה הנקראת `reticulate` שמכילה כלים שימושיים רבים להפעלת פיית'ון. בפרק זה נדגים כיצד:
+
+-   להתקין סביבות פיית'ון באמצעות חבילת `reticulate` של R, ולקרוא לסביבה שהותקנה
+
+-   כיצד אובייקטים שונים עוברים (מתורגמים) מאובייקטים של R לאובייקטים של פיית'ון, ולהיפך
+
+-   לשלב קוד פיית'ון בתוך סקריפט של R
+
+## התקנת סביבה
+
+על מנת שתוכלו לקרוא לפיית'ון מתוך R, ראשית צריך להתקין סביבת פיית'ון. 
+פעולה זו תתבצע בפעם הראשונה בלבד (אלא אם תעברו לעבוד במחשב אחר), באמצעות פקודות של חבילת `reticulate`. לשם כך ישנן שתי פקודות אפשריות:
+
+   * `virtualenv_create`
+   * `conda_create`
+
+ההבדל ביניהן הוא הכלי שבו יעשה שימוש להתקנה ([Conda](https://docs.conda.io/en/latest/) מול [pip](https://pypi.org/project/pip/)).
+
+::: {.side-by-side}
+```{r, example conda}
+#| eval: false
+# Using Conda
+library(reticulate)
+conda_create(
+    envname = "my_conda_env", 
+    packages = c("pandas", "plotnine"))
+
+# Activate the environment
+use_condaenv("my_conda_env")
+```
+```{r, example virtual environment}
+#| eval: false
+# Using virtual environment (pip)
+library(reticulate)
+virtualenv_create(
+    envname = "my_virtual_env", 
+    packages = c("pandas", "plotnine"))
+
+# Activate the environment
+use_virtualenv("my_virtual_env")
+```
+:::
+
+אם ניסיתם להשתמש בפקודה `conda_create` וקיבלתם הודעת שגיאה "Unable to find conda binary. Is Anaconda installed?", נדרש קודם להתקין את miniconda על ידי שימוש בפקודה `reticulate::install_miniconda`, או התקנה ישירה מהאתר הרשמי של חברת [Anaconda](https://docs.anaconda.com/miniconda/miniconda-install/).
+
+שימו לב שאת פקודת ההפעלה (`use_*`) יש להפעיל ראשונה, לפני שמפעילים פקודה אחרת של פיית'ון, אחרת `reticulate` עשוי לבחור בסביבה אחרת זמינה, לפי לוגיקה פנימית (והיא לאו דווקא תהיה הסביבה שהותקנה, במידה והיתה סביבה אחרת מותקנת).
+
+```{r, read the virtual environment}
+#| echo: false
+#| include: false
+library(reticulate)
+use_virtualenv("my_virtual_env")
+```
+
+כעת, לאחר שהפעלנו את סביבת הפיית'ון הרצויה, ניתן לקרוא חבילות (במידה והותקנו במסגרת בניית הסביבה הוירטואלית), לדוגמה:
+
+```{r, read python packages}
+pd <- import("pandas")
+pn <- import("plotnine")
+```
+
+וכמו כן, ניתן להריץ קוד פיית'ון ישירות:
+
+```{r, run python directly within R}
+py_run_string("
+print('Hi, I am python code, run directly from an R interpreter!')
+")
+```
+
+## תרגום בין אובייקטים
+
+ב-R ובפיית'ון יש אובייקטים מסוגים שונים. 
+כדי שנוכל למנף את השילוביות בין שתי השפות כדאי להבין כיצד אובייקטים מתורגמים מאחד לשני.
 
 
+## שילוב קוד פיית'ון בסקריפט
 
 ::: end-page

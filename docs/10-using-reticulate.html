@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -205,15 +239,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">בעמוד זה</h2>
+   
+  <ul>
+  <li><a href="#התקנת-סביבה" id="toc-התקנת-סביבה" class="nav-link active" data-scroll-target="#התקנת-סביבה"><span class="header-section-number">10.1</span> התקנת סביבה</a></li>
+  <li><a href="#תרגום-בין-אובייקטים" id="toc-תרגום-בין-אובייקטים" class="nav-link" data-scroll-target="#תרגום-בין-אובייקטים"><span class="header-section-number">10.2</span> תרגום בין אובייקטים</a></li>
+  <li><a href="#שילוב-קוד-פייתון-בסקריפט" id="toc-שילוב-קוד-פייתון-בסקריפט" class="nav-link" data-scroll-target="#שילוב-קוד-פייתון-בסקריפט"><span class="header-section-number">10.3</span> שילוב קוד פיית’ון בסקריפט</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">פיית’ון מתוך R</span></h1>
+<h1 class="title"><span id="sec-using-reticulate" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">פיית’ון מתוך R</span></span></h1>
 </div>
 
 
@@ -230,7 +272,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TBD</p>
+<p>כפי שציינתי בהקדמה לספר זה, אחד מהכלים הנפוצים ל-Data Science (ובכלל) הוא שפת פיית’ון (python). מאוד סביר שבסיטואציה כזו או אחרת תמצאו עצמכם מול בעיה שבה שילוב של פיית’ון עם R יכול להוות יתרון גדול ולחסוך זמן ומאמץ.</p>
+<p>לדוגמה, לעיתים קרובות תמצאו ששירותים מסוימים, כגון שירותי Amazon Web Services (AWS) זמינים באופן מלא בפיית’ון (באמצעות חבילה שנקראת <code>boto3</code> וזמינה בפיית’ון), אך ממומשים באופן חלקי בחבילות ב-R. בדוגמה זו, החבילה <code>boto3</code> היא חבילה רשמית המתוחזקת על ידי AWS ולעומת זאת, חבילות אחרות הזמינות ישירות ב-R הן חבילות המפותחות על ידי הקהילה, ואינן נתמכות באופן “רשמי” על ידי AWS.</p>
+<p>ישנן דוגמאות נוספות רבות, לדוגמה החבילה הרשמית של OpenAI (שנקראת <code>openai</code> בפיית’ון), שמתוחזקת באופן רשמי על ידי OpenAI, ומקבילה לה ל-R הנקראת גם היא באותו השם, אך מתוחזקת על ידי הקהילה באופן לא רשמי.</p>
+<p>הקריאה לפיית’ון מתוך R מתבצעת באמצעות חבילה הנקראת <code>reticulate</code> שמכילה כלים שימושיים רבים להפעלת פיית’ון. בפרק זה נדגים כיצד:</p>
+<ul>
+<li><p>להתקין סביבות פיית’ון באמצעות חבילת <code>reticulate</code> של R, ולקרוא לסביבה שהותקנה</p></li>
+<li><p>כיצד אובייקטים שונים עוברים (מתורגמים) מאובייקטים של R לאובייקטים של פיית’ון, ולהיפך</p></li>
+<li><p>לשלב קוד פיית’ון בתוך סקריפט של R</p></li>
+</ul>
+<section id="התקנת-סביבה" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="התקנת-סביבה"><span class="header-section-number">10.1</span> התקנת סביבה</h2>
+<p>על מנת שתוכלו לקרוא לפיית’ון מתוך R, ראשית צריך להתקין סביבת פיית’ון. פעולה זו תתבצע בפעם הראשונה בלבד (אלא אם תעברו לעבוד במחשב אחר), באמצעות פקודות של חבילת <code>reticulate</code>. לשם כך ישנן שתי פקודות אפשריות:</p>
+<ul>
+<li><code>virtualenv_create</code></li>
+<li><code>conda_create</code></li>
+</ul>
+<p>ההבדל ביניהן הוא הכלי שבו יעשה שימוש להתקנה (<a href="https://docs.conda.io/en/latest/">Conda</a> מול <a href="https://pypi.org/project/pip/">pip</a>).</p>
+<div class="side-by-side">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using Conda</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_create</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">envname =</span> <span class="st">"my_conda_env"</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"pandas"</span>, <span class="st">"plotnine"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate the environment</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">"my_conda_env"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using virtual environment (pip)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">virtualenv_create</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">envname =</span> <span class="st">"my_virtual_env"</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"pandas"</span>, <span class="st">"plotnine"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate the environment</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">use_virtualenv</span>(<span class="st">"my_virtual_env"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>אם ניסיתם להשתמש בפקודה <code>conda_create</code> וקיבלתם הודעת שגיאה “Unable to find conda binary. Is Anaconda installed?”, נדרש קודם להתקין את miniconda על ידי שימוש בפקודה <code>reticulate::install_miniconda</code>, או התקנה ישירה מהאתר הרשמי של חברת <a href="https://docs.anaconda.com/miniconda/miniconda-install/">Anaconda</a>.</p>
+<p>שימו לב שאת פקודת ההפעלה (<code>use_*</code>) יש להפעיל ראשונה, לפני שמפעילים פקודה אחרת של פיית’ון, אחרת <code>reticulate</code> עשוי לבחור בסביבה אחרת זמינה, לפי לוגיקה פנימית (והיא לאו דווקא תהיה הסביבה שהותקנה, במידה והיתה סביבה אחרת מותקנת).</p>
+<p>כעת, לאחר שהפעלנו את סביבת הפיית’ון הרצויה, ניתן לקרוא חבילות (במידה והותקנו במסגרת בניית הסביבה הוירטואלית), לדוגמה:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pn <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"plotnine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>וכמו כן, ניתן להריץ קוד פיית’ון ישירות:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">py_run_string</span>(<span class="st">"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">print('Hi, I am python code, run directly from an R interpreter!')</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hi, I am python code, run directly from an R interpreter!</code></pre>
+</div>
+</div>
+</section>
+<section id="תרגום-בין-אובייקטים" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="תרגום-בין-אובייקטים"><span class="header-section-number">10.2</span> תרגום בין אובייקטים</h2>
+<p>ב-R ובפיית’ון יש אובייקטים מסוגים שונים. כדי שנוכל למנף את השילוביות בין שתי השפות כדאי להבין כיצד אובייקטים מתורגמים מאחד לשני.</p>
+</section>
+<section id="שילוב-קוד-פייתון-בסקריפט" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="שילוב-קוד-פייתון-בסקריפט"><span class="header-section-number">10.3</span> שילוב קוד פיית’ון בסקריפט</h2>
 <div class="end-page">
 
 <div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
@@ -238,6 +341,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -98,3 +98,13 @@ ul {
 .replace-straight-quotes::after {
   content: '”';
 }
+
+.side-by-side {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.side-by-side .cell {
+  width: 48%;
+}
