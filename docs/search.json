@@ -24,7 +24,7 @@
     "href": "02-base-R.html#השמת-משתנים-פעולות-אריתמטיות-ופונקציות",
     "title": "2  תחביר בסיסי",
     "section": "",
-    "text": "2.1.1 קביעת שמות משתנים\nקודם השתמשנו בשמות a, b , ו-a_plus_b כדי לקבוע משתנים. ככלל, מומלץ להשתמש בשמות קצרים בעלי משמעות. שמות משתנים חייבים להתחיל באות באנגלית, ויכולים להכיל אותיות, מספרים, קו תחתון, ונקודה. לדוגמה gender, age, raw_data, וכו’.\n\n\n2.1.2 סוגי משתנים\nבבסיס השפה יש כמה סוגי משתנים, שקובעים מה סוג הערכים שהמשתנה יכול לקבל:\n\nמספר שלם (Integer)\nמספר רציף (Double)\nמחרוזת (Character)\nמשתנה קטגוריות (Factor)\nתאריך (Date)\nמשתנה לוגי (Logical)\n\nכל משתנה חדש אנחנו מגדירים ב-R הוא למעשה וקטור. אגב, גם כשאנחנו מגדירים משתנה כערך בודד, בעצם הוא וקטור עם איבר אחד. אנחנו יכולים להשתמש בפקודה c (קיצור של המילה combine) כדי לשלב וקטורים שונים.\nנראה דוגמאות להגדרות של וקטורים מסוגים שונים.\n\nsome_integer &lt;- c(1L, 2L, 3L)  # The L sign stands for \"Long integer\"\nsome_integer\n\n[1] 1 2 3\n\nsome_double &lt;- c(1, 2, pi, exp(1))\nsome_double\n\n[1] 1.000000 2.000000 3.141593 2.718282\n\nsome_character &lt;- c(\"This\", \"is\", \"a\", \"character\", \"vector\")\nsome_character\n\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\nsome_factor &lt;- factor(c(\"Apples\", \"Oranges\", \"Paers\", \"Mangos\", \"Apples\", \"Oranges\"))\nsome_factor\n\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_date &lt;- c(Sys.Date(), as.Date(\"1993-08-01\"))\nsome_date\n\n[1] \"2024-10-03\" \"1993-08-01\"\n\nsome_logical &lt;- c(TRUE, FALSE, FALSE, TRUE) # can also use c(T, F, F, T) is the same\nsome_logical\n\n[1]  TRUE FALSE FALSE  TRUE\n\n\nלמשתני קטגוריות יש שימוש חשוב בסטטיסטיקה שעוד נראה אותו בפרקים הבאים, ולכן הוא מובחן ממשתנה מחרוזת ומקבל מקום של כבוד. כפי שניתן לראות, כאשר מדפיסים אותו, R מדווח גם על הרמות השונות שכלולות בו.\nשימוש בפקודה typeof(some_variable) יציג את סוג המשתנה.\n\ntypeof(some_integer)\n\n[1] \"integer\"\n\ntypeof(some_double)\n\n[1] \"double\"\n\ntypeof(some_character)\n\n[1] \"character\"\n\ntypeof(some_date)\n\n[1] \"double\"\n\ntypeof(some_factor)\n\n[1] \"integer\"\n\ntypeof(some_logical)\n\n[1] \"logical\"\n\n\nניתן לשים לב ש-R מחשיב את המשתנה הקטגוריאלי כמספר שלם (integer) ואת התאריך כמספר רציף (double).\n\n\n\n\n\n\nתרגיל: חיבור של וקטורים מסוגים שונים\n\n\n\nבאמצעות הפקודה c והפקודה typeof בדקו מה קורה כאשר מחברים משתנים מסוגים שונים אחד לשני. האם התוצאה הגיונית? מה ההיגיון? האם יש מקרים בהם התוצאה של חיבור משתנים עשויה להטעות?\nבדקו את c(some_factor, some_character) ודוגמאות נוספות.\n\n\n\n\n2.1.3 קריאה לתתי וקטורים\nב-R ניתן לקרוא לחלק מסוים מתוך וקטור. לדוגמה, אם אנחנו רוצים רק את שני האיברים הראשונים מתוך הוקטור some_factor או את האיבר הראשון והרביעי מתוך some_character נשתמש בכתיב:\n\nsome_factor[1:2]\n\n[1] Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_character[c(1,4)]\n\n[1] \"This\"      \"character\"",
+    "text": "2.1.1 קביעת שמות משתנים\nקודם השתמשנו בשמות a, b , ו-a_plus_b כדי לקבוע משתנים. ככלל, מומלץ להשתמש בשמות קצרים בעלי משמעות. שמות משתנים חייבים להתחיל באות באנגלית, ויכולים להכיל אותיות, מספרים, קו תחתון, ונקודה. לדוגמה gender, age, raw_data, וכו’.\n\n\n2.1.2 סוגי משתנים\nבבסיס השפה יש כמה סוגי משתנים, שקובעים מה סוג הערכים שהמשתנה יכול לקבל:\n\nמספר שלם (Integer)\nמספר רציף (Double)\nמחרוזת (Character)\nמשתנה קטגוריות (Factor)\nתאריך (Date)\nמשתנה לוגי (Logical)\n\nכל משתנה חדש אנחנו מגדירים ב-R הוא למעשה וקטור. אגב, גם כשאנחנו מגדירים משתנה כערך בודד, בעצם הוא וקטור עם איבר אחד. אנחנו יכולים להשתמש בפקודה c (קיצור של המילה combine) כדי לשלב וקטורים שונים.\nנראה דוגמאות להגדרות של וקטורים מסוגים שונים.\n\nsome_integer &lt;- c(1L, 2L, 3L)  # The L sign stands for \"Long integer\"\nsome_integer\n\n[1] 1 2 3\n\nsome_double &lt;- c(1, 2, pi, exp(1))\nsome_double\n\n[1] 1.000000 2.000000 3.141593 2.718282\n\nsome_character &lt;- c(\"This\", \"is\", \"a\", \"character\", \"vector\")\nsome_character\n\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\nsome_factor &lt;- factor(c(\"Apples\", \"Oranges\", \"Paers\", \"Mangos\", \"Apples\", \"Oranges\"))\nsome_factor\n\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_date &lt;- c(Sys.Date(), as.Date(\"1993-08-01\"))\nsome_date\n\n[1] \"2024-10-06\" \"1993-08-01\"\n\nsome_logical &lt;- c(TRUE, FALSE, FALSE, TRUE) # can also use c(T, F, F, T) is the same\nsome_logical\n\n[1]  TRUE FALSE FALSE  TRUE\n\n\nלמשתני קטגוריות יש שימוש חשוב בסטטיסטיקה שעוד נראה אותו בפרקים הבאים, ולכן הוא מובחן ממשתנה מחרוזת ומקבל מקום של כבוד. כפי שניתן לראות, כאשר מדפיסים אותו, R מדווח גם על הרמות השונות שכלולות בו.\nשימוש בפקודה typeof(some_variable) יציג את סוג המשתנה.\n\ntypeof(some_integer)\n\n[1] \"integer\"\n\ntypeof(some_double)\n\n[1] \"double\"\n\ntypeof(some_character)\n\n[1] \"character\"\n\ntypeof(some_date)\n\n[1] \"double\"\n\ntypeof(some_factor)\n\n[1] \"integer\"\n\ntypeof(some_logical)\n\n[1] \"logical\"\n\n\nניתן לשים לב ש-R מחשיב את המשתנה הקטגוריאלי כמספר שלם (integer) ואת התאריך כמספר רציף (double).\n\n\n\n\n\n\nתרגיל: חיבור של וקטורים מסוגים שונים\n\n\n\nבאמצעות הפקודה c והפקודה typeof בדקו מה קורה כאשר מחברים משתנים מסוגים שונים אחד לשני. האם התוצאה הגיונית? מה ההיגיון? האם יש מקרים בהם התוצאה של חיבור משתנים עשויה להטעות?\nבדקו את c(some_factor, some_character) ודוגמאות נוספות.\n\n\n\n\n2.1.3 קריאה לתתי וקטורים\nב-R ניתן לקרוא לחלק מסוים מתוך וקטור. לדוגמה, אם אנחנו רוצים רק את שני האיברים הראשונים מתוך הוקטור some_factor או את האיבר הראשון והרביעי מתוך some_character נשתמש בכתיב:\n\nsome_factor[1:2]\n\n[1] Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\nsome_character[c(1,4)]\n\n[1] \"This\"      \"character\"",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>תחביר בסיסי</span>"
     ]
@@ -34,7 +34,7 @@
     "href": "02-base-R.html#רשימה-list",
     "title": "2  תחביר בסיסי",
     "section": "2.2 רשימה (list)",
-    "text": "2.2 רשימה (list)\nכעת נדון במבנה נתונים שנקרא רשימה (list). רשימה היא אובייקט מרכזי ב-R שמאפשר לנו לאחד משתנים ווקטורים מסוגים שונים, לתוך dataset שיאפשר לנו בהמשך לנתח נתונים. ישנן מספר דרכים להגדיר רשימה, אחת מהן באמצעות הפקודה list. לדוגמה, הרשימה הבאה תכיל את כל הוקטורים שהגדרנו עד כה, מבלי שהם יאבדו מהמשמעות שלהם (כפי שקורה כשמנסים לעשות חיבור רגיל).\n\nmy_list &lt;- list(my_int = some_integer,\n                my_double = some_double,\n                my_character = some_character,\n                my_factor = some_factor,\n                my_date = some_date)\nmy_list\n\n$my_int\n[1] 1 2 3\n\n$my_double\n[1] 1.000000 2.000000 3.141593 2.718282\n\n$my_character\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\n$my_factor\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\n$my_date\n[1] \"2024-10-03\" \"1993-08-01\"\n\ntypeof(my_list)\n\n[1] \"list\"\n\n\nכדי לקרוא לוקטור מסוים מתוך רשימה ניתן להשתמש ב-$ באופן הבא:\n\nmy_list$my_int\n\n[1] 1 2 3\n\n\nהחלק הסופי בהצגה שלנו הוא רשימה מסוג מאוד מסוים, data.frame. מבנה נתונים זה הוא רשימה שבה כל הוקטורים באותו האורך. הוקטורים יכולים להיות מסוגים שונים כפי שציינו, ומה שחשוב ב-data.frame הוא שהוא הולך להיות אבן הפינה שלנו בכל ניתוח נתונים סטטיסטי. בינתיים נסתפק בהדגמה קצרה של הגדרת data.frame אך נרחיב עליו בפרקים הבאים.\n\nmy_data &lt;- data.frame(name = c(\"Danny\", \"Moshe\", \"Iris\", \"Ronit\"),\n                      favorite_fruit = factor(c(\"Mango\", \"Apple\", \"Apple\", \"Paer\")),\n                      age = c(25L, 32L, 22L, 30L),\n                      height = c(1.8, 1.75, 1.6, 1.68),\n                      married = c(F, T, F, T))\nmy_data\n\n   name favorite_fruit age height married\n1 Danny          Mango  25   1.80   FALSE\n2 Moshe          Apple  32   1.75    TRUE\n3  Iris          Apple  22   1.60   FALSE\n4 Ronit           Paer  30   1.68    TRUE\n\ntypeof(my_data)\n\n[1] \"list\"",
+    "text": "2.2 רשימה (list)\nכעת נדון במבנה נתונים שנקרא רשימה (list). רשימה היא אובייקט מרכזי ב-R שמאפשר לנו לאחד משתנים ווקטורים מסוגים שונים, לתוך dataset שיאפשר לנו בהמשך לנתח נתונים. ישנן מספר דרכים להגדיר רשימה, אחת מהן באמצעות הפקודה list. לדוגמה, הרשימה הבאה תכיל את כל הוקטורים שהגדרנו עד כה, מבלי שהם יאבדו מהמשמעות שלהם (כפי שקורה כשמנסים לעשות חיבור רגיל).\n\nmy_list &lt;- list(my_int = some_integer,\n                my_double = some_double,\n                my_character = some_character,\n                my_factor = some_factor,\n                my_date = some_date)\nmy_list\n\n$my_int\n[1] 1 2 3\n\n$my_double\n[1] 1.000000 2.000000 3.141593 2.718282\n\n$my_character\n[1] \"This\"      \"is\"        \"a\"         \"character\" \"vector\"   \n\n$my_factor\n[1] Apples  Oranges Paers   Mangos  Apples  Oranges\nLevels: Apples Mangos Oranges Paers\n\n$my_date\n[1] \"2024-10-06\" \"1993-08-01\"\n\ntypeof(my_list)\n\n[1] \"list\"\n\n\nכדי לקרוא לוקטור מסוים מתוך רשימה ניתן להשתמש ב-$ באופן הבא:\n\nmy_list$my_int\n\n[1] 1 2 3\n\n\nהחלק הסופי בהצגה שלנו הוא רשימה מסוג מאוד מסוים, data.frame. מבנה נתונים זה הוא רשימה שבה כל הוקטורים באותו האורך. הוקטורים יכולים להיות מסוגים שונים כפי שציינו, ומה שחשוב ב-data.frame הוא שהוא הולך להיות אבן הפינה שלנו בכל ניתוח נתונים סטטיסטי. בינתיים נסתפק בהדגמה קצרה של הגדרת data.frame אך נרחיב עליו בפרקים הבאים.\n\nmy_data &lt;- data.frame(name = c(\"Danny\", \"Moshe\", \"Iris\", \"Ronit\"),\n                      favorite_fruit = factor(c(\"Mango\", \"Apple\", \"Apple\", \"Paer\")),\n                      age = c(25L, 32L, 22L, 30L),\n                      height = c(1.8, 1.75, 1.6, 1.68),\n                      married = c(F, T, F, T))\nmy_data\n\n   name favorite_fruit age height married\n1 Danny          Mango  25   1.80   FALSE\n2 Moshe          Apple  32   1.75    TRUE\n3  Iris          Apple  22   1.60   FALSE\n4 Ronit           Paer  30   1.68    TRUE\n\ntypeof(my_data)\n\n[1] \"list\"",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>תחביר בסיסי</span>"
     ]
@@ -720,6 +720,46 @@
     ]
   },
   {
+    "objectID": "10-using-reticulate.html#התקנת-סביבה",
+    "href": "10-using-reticulate.html#התקנת-סביבה",
+    "title": "10  פיית’ון מתוך R",
+    "section": "",
+    "text": "virtualenv_create\nconda_create\n\n\n\n\n# Using Conda\nlibrary(reticulate)\nconda_create(\n    envname = \"my_conda_env\", \n    packages = c(\"pandas\")) \n# (add libraries to `packages` argument as needed)\n\n# Activate the environment\nuse_condaenv(\"my_conda_env\")\n\n\n# Using virtual environment (pip)\nlibrary(reticulate)\nvirtualenv_create(\n    envname = \"my_virtual_env\", \n    packages = c(\"pandas\")) \n# (add libraries to `packages` argument as needed)\n\n# Activate the environment\nuse_virtualenv(\"my_virtual_env\")",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
+    ]
+  },
+  {
+    "objectID": "10-using-reticulate.html#תרגום-בין-אובייקטים",
+    "href": "10-using-reticulate.html#תרגום-בין-אובייקטים",
+    "title": "10  פיית’ון מתוך R",
+    "section": "10.2 תרגום בין אובייקטים",
+    "text": "10.2 תרגום בין אובייקטים\nב-R ובפיית’ון יש אובייקטים מסוגים שונים. כדי שנוכל למנף את השילוביות בין שתי השפות כדאי להבין כיצד אובייקטים מתורגמים מאחד לשני. הטבלה הבאה מציגה כיצד אובייקטים עוברים מאחד לשני:\n\nטבלת המרה בין אובייקטים ב-R וב-python\n\n\n\n\n\n\nR\npython\n\n\n\n\nוקטור עם איבר יחיד el &lt;- 5\nסקלר el=5\n\n\nוקטור עם מספר איברים vec &lt;- c(1, 2, 3)\nרשימה vec=[1, 2, 3]\n\n\nרשימה משוימת (named) עם איברים מסוגים שונים\nlst &lt;- list(a = 5, b = list(1, 2, 3))\nאובייקט מסוג מילון\nlst={'a' : 5, 'b' : [1, 2, 3]}\n\n\nרשימה לא משוימת עם איברים מסוגים שונים\nlst_unnamed &lt;- list(1, 2, list(3, 4))\nרשימה\nlst_unamed=[1, 2, [3, 4]]\n\n\nניתן להשתמש בפקודה\ntup &lt;- reticulate::tuple(1, 2, 3)\nבכיוון הפוך (בחזרה מפייתון) היא מומרת לרשימה לא משוימת\nlist(1, 2, 3)\ntuple\ntup=(1, 2, 3)\n\n\nמטריצה\n&gt; matrix(1:10, 2, 5)\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    3    5    7    9\n[2,]    2    4    6    8   10\nמערך של NumPy\narray([[ 1,  3,  5,  7,  9],\n       [ 2,  4,  6,  8, 10]], dtype=int32)\n\n\ndata frame או tibble\ndata frame של חבילת pandas\n\n\n\nניתן להשתמש בפקודה r_to_py ובפקודה py_to_r על מנת לעבור בין אובייקטים. לדוגמה:\n\nr_to_py(palmerpenguins::penguins)\n\n       species     island  bill_length_mm  ...  body_mass_g     sex  year\n0       Adelie  Torgersen            39.1  ...         3750    male  2007\n1       Adelie  Torgersen            39.5  ...         3800  female  2007\n2       Adelie  Torgersen            40.3  ...         3250  female  2007\n3       Adelie  Torgersen             NaN  ...  -2147483648     NaN  2007\n4       Adelie  Torgersen            36.7  ...         3450  female  2007\n..         ...        ...             ...  ...          ...     ...   ...\n339  Chinstrap      Dream            55.8  ...         4000    male  2009\n340  Chinstrap      Dream            43.5  ...         3400  female  2009\n341  Chinstrap      Dream            49.6  ...         3775    male  2009\n342  Chinstrap      Dream            50.8  ...         4100    male  2009\n343  Chinstrap      Dream            50.2  ...         3775  female  2009\n\n[344 rows x 8 columns]",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
+    ]
+  },
+  {
+    "objectID": "10-using-reticulate.html#שילוב-קוד-פייתון-בסקריפט",
+    "href": "10-using-reticulate.html#שילוב-קוד-פייתון-בסקריפט",
+    "title": "10  פיית’ון מתוך R",
+    "section": "10.3 שילוב קוד פיית’ון בסקריפט",
+    "text": "10.3 שילוב קוד פיית’ון בסקריפט\nלאחר שהפעלנו את סביבת הפיית’ון הרצויה, ניתן לקרוא חבילות (במידה והותקנו במסגרת בניית הסביבה הוירטואלית), באמצעות הפקודה import מתוך חבילת reticulate, ואז להשתמש בפקודות שזמינות בחבילות שקראנו.\nהקריאה לפקודה מתוך חבילה מסוימת תתבצע באמצעות התו $.\nנדגים זאת על ידי שימוש בפקודות מתוך pandas:\n\npd &lt;- import(\"pandas\")\nspecies_count &lt;- pd$value_counts(palmerpenguins::penguins$species)\nspecies_count\n\n   Adelie    Gentoo Chinstrap \n      152       124        68 \n\n# And another option is to use this:\npenguins_py &lt;- r_to_py(palmerpenguins::penguins)\n\n# Demonstrating grouping, counts, then proportions\n# Group penguins by island and species\ngrouped &lt;- penguins_py$groupby(list('island', 'species'))$size()$reset_index(name='counts')\n\n# Calculate proportions for each species on each island\ngrouped['proportion'] &lt;- grouped$groupby('island')['counts']$transform(function(x) x / x$sum())\n\n# Convert the Pandas DataFrame back to an R dataframe (optional)\ngrouped_r &lt;- py_to_r(grouped)\n\ngrouped_r\n\n     island   species counts proportion\n1    Biscoe    Adelie     44  0.2619048\n2    Biscoe Chinstrap      0  0.0000000\n3    Biscoe    Gentoo    124  0.7380952\n4     Dream    Adelie     56  0.4516129\n5     Dream Chinstrap     68  0.5483871\n6     Dream    Gentoo      0  0.0000000\n7 Torgersen    Adelie     52  1.0000000\n8 Torgersen Chinstrap      0  0.0000000\n9 Torgersen    Gentoo      0  0.0000000\n\n\nהפקודה py_to_r מעבירה את התוצאות חזרה לאובייקטים של R, וניתן לעבוד איתם באופן רגיל. במקרה זה האובייקט grouped_r הוא מסוג data.frame.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
+    ]
+  },
+  {
+    "objectID": "10-using-reticulate.html#סיכום",
+    "href": "10-using-reticulate.html#סיכום",
+    "title": "10  פיית’ון מתוך R",
+    "section": "10.4 סיכום",
+    "text": "10.4 סיכום\nבפרק זה עסקנו בשילוב בין שפת פיית’ון לבין R באמצעות חבילת reticulate. שילוב זה מאפשר לנצל את היתרונות של כל אחת מהשפות. אני באופן אישי מעדיף להשתמש בעיקר ב-R, במיוחד בכל המקרים של ניתוח נתונים “קלאסי” (כל מה שמכוסה בפרקים השונים של ספר זה).\nהמקרים בהם יש יתרון לשימוש בפיית’ון באמצעות reticulate הם כאשר ישנה חבילה מסוימת שהיא יותר “בשלה” או מתוחזקת היטב בפיית’ון אבל המקבילה שלה ב-R אינה קיימת, או מתוחזקת באופן חלקי/לא מספק.\nראינו כיצד מתקינים סביבת פיית’ון באמצעות פקודות של reticulate, כיצד אובייקטים עוברים המרה משפה לשפה, וכיצד לשלב קוד פיית’ון בתוך סקריפט של R.\nבפרק הבא נראה דוגמה פרקטית נוספת של שימוש בספריית openai של פיית’ון, להפעלת מודלי LLM של חברת OpenAI.\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
+    ]
+  },
+  {
     "objectID": "11-using-openai.html",
     "href": "11-using-openai.html",
     "title": "11  הפעלת ChatGPT",
@@ -787,66 +827,6 @@
     "text": "Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The\nElements of Statistical Learning. Springer New York. https://doi.org/10.1007/978-0-387-84858-7.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani.\n2021. An Introduction to Statistical Learning. Springer US. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nKuhn, Max, and Julia Silge. 2022. Tidy Modeling with r. \"\nO’Reilly Media, Inc.\".\n\n\nMurray, Lori L., and John G. Wilson. 2021. “Generating Data Sets\nfor Teaching the Importance of Regression Analysis.” Decision\nSciences Journal of Innovative Education 19 (2): 157–66. https://doi.org/10.1111/dsji.12233.\n\n\nSimpson, E. H. 1951. “The Interpretation of Interaction in\nContingency Tables.” Journal of the Royal Statistical\nSociety: Series B (Methodological) 13 (2): 238–41. https://doi.org/10.1111/j.2517-6161.1951.tb00088.x.\n\n\nWalpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993.\nProbability and Statistics for Engineers and Scientists. Vol.\n5. Macmillan New York.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.”\nJournal of Computational and Graphical Statistics 19 (1): 3–28.\nhttps://doi.org/10.1198/jcgs.2009.07098.\n\n\n———. 2021. Mastering Shiny. \"O’Reilly Media, Inc.\".\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \"O’Reilly\nMedia, Inc.\".\n\n\nXie, Yihui, Joseph J Allaire, and Garrett Grolemund. 2018. R\nMarkdown: The Definitive Guide. CRC Press.\n\n\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד",
     "crumbs": [
       "מקורות"
-    ]
-  },
-  {
-    "objectID": "10-using-reticulate.html#התקנת-סביבה",
-    "href": "10-using-reticulate.html#התקנת-סביבה",
-    "title": "10  פיית’ון מתוך R",
-    "section": "",
-    "text": "virtualenv_create\nconda_create\n\n\n\n\n# Using Conda\nlibrary(reticulate)\nconda_create(\n    envname = \"my_conda_env\", \n    packages = c(\"pandas\")) \n# (add libraries to `packages` argument as needed)\n\n# Activate the environment\nuse_condaenv(\"my_conda_env\")\n\n\n# Using virtual environment (pip)\nlibrary(reticulate)\nvirtualenv_create(\n    envname = \"my_virtual_env\", \n    packages = c(\"pandas\")) \n# (add libraries to `packages` argument as needed)\n\n# Activate the environment\nuse_virtualenv(\"my_virtual_env\")",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
-    ]
-  },
-  {
-    "objectID": "10-using-reticulate.html#תרגום-בין-אובייקטים",
-    "href": "10-using-reticulate.html#תרגום-בין-אובייקטים",
-    "title": "10  פיית’ון מתוך R",
-    "section": "10.2 תרגום בין אובייקטים",
-    "text": "10.2 תרגום בין אובייקטים\nב-R ובפיית’ון יש אובייקטים מסוגים שונים. כדי שנוכל למנף את השילוביות בין שתי השפות כדאי להבין כיצד אובייקטים מתורגמים מאחד לשני. הטבלה הבאה מציגה כיצד אובייקטים עוברים מאחד לשני:\n\nטבלת המרה בין אובייקטים ב-R וב-python\n\n\n\n\n\n\nR\npython\n\n\n\n\nוקטור עם איבר יחיד el &lt;- 5\nסקלר el=5\n\n\nוקטור עם מספר איברים vec &lt;- c(1, 2, 3)\nרשימה vec=[1, 2, 3]\n\n\nרשימה משוימת (named) עם איברים מסוגים שונים\nlst &lt;- list(a = 5, b = list(1, 2, 3))\nאובייקט מסוג מילון\nlst={'a' : 5, 'b' : [1, 2, 3]}\n\n\nרשימה לא משוימת עם איברים מסוגים שונים\nlst_unnamed &lt;- list(1, 2, list(3, 4))\nרשימה\nlst_unamed=[1, 2, [3, 4]]\n\n\nניתן להשתמש בפקודה\ntup &lt;- reticulate::tuple(1, 2, 3)\nבכיוון הפוך (בחזרה מפייתון) היא מומרת לרשימה לא משוימת\nlist(1, 2, 3)\ntuple\ntup=(1, 2, 3)\n\n\nמטריצה\n&gt; matrix(1:10, 2, 5)\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    3    5    7    9\n[2,]    2    4    6    8   10\nמערך של NumPy\narray([[ 1,  3,  5,  7,  9],\n       [ 2,  4,  6,  8, 10]], dtype=int32)\n\n\ndata frame או tibble\ndata frame של חבילת pandas\n\n\n\nניתן להשתמש בפקודה r_to_py ובפקודה py_to_r על מנת לעבור בין אובייקטים. לדוגמה:\n\nr_to_py(palmerpenguins::penguins)\n\n       species     island  bill_length_mm  ...  body_mass_g     sex  year\n0       Adelie  Torgersen            39.1  ...         3750    male  2007\n1       Adelie  Torgersen            39.5  ...         3800  female  2007\n2       Adelie  Torgersen            40.3  ...         3250  female  2007\n3       Adelie  Torgersen             NaN  ...  -2147483648     NaN  2007\n4       Adelie  Torgersen            36.7  ...         3450  female  2007\n..         ...        ...             ...  ...          ...     ...   ...\n339  Chinstrap      Dream            55.8  ...         4000    male  2009\n340  Chinstrap      Dream            43.5  ...         3400  female  2009\n341  Chinstrap      Dream            49.6  ...         3775    male  2009\n342  Chinstrap      Dream            50.8  ...         4100    male  2009\n343  Chinstrap      Dream            50.2  ...         3775  female  2009\n\n[344 rows x 8 columns]",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
-    ]
-  },
-  {
-    "objectID": "10-using-reticulate.html#שילוב-קוד-פייתון-בסקריפט",
-    "href": "10-using-reticulate.html#שילוב-קוד-פייתון-בסקריפט",
-    "title": "10  פיית’ון מתוך R",
-    "section": "10.3 שילוב קוד פיית’ון בסקריפט",
-    "text": "10.3 שילוב קוד פיית’ון בסקריפט\nלאחר שהפעלנו את סביבת הפיית’ון הרצויה, ניתן לקרוא חבילות (במידה והותקנו במסגרת בניית הסביבה הוירטואלית), באמצעות הפקודה import מתוך חבילת reticulate, ואז להשתמש בפקודות שזמינות בחבילות שקראנו.\nהקריאה לפקודה מתוך חבילה מסוימת תתבצע באמצעות התו $.\nנדגים זאת על ידי שימוש בפקודות מתוך pandas:\n\npd &lt;- import(\"pandas\")\nspecies_count &lt;- pd$value_counts(palmerpenguins::penguins$species)\nspecies_count\n\n   Adelie    Gentoo Chinstrap \n      152       124        68 \n\n# And another option is to use this:\npenguins_py &lt;- r_to_py(palmerpenguins::penguins)\n\n# Demonstrating grouping, counts, then proportions\n# Group penguins by island and species\ngrouped &lt;- penguins_py$groupby(list('island', 'species'))$size()$reset_index(name='counts')\n\n# Calculate proportions for each species on each island\ngrouped['proportion'] &lt;- grouped$groupby('island')['counts']$transform(function(x) x / x$sum())\n\n# Convert the Pandas DataFrame back to an R dataframe (optional)\ngrouped_r &lt;- py_to_r(grouped)\n\ngrouped_r\n\n     island   species counts proportion\n1    Biscoe    Adelie     44  0.2619048\n2    Biscoe Chinstrap      0  0.0000000\n3    Biscoe    Gentoo    124  0.7380952\n4     Dream    Adelie     56  0.4516129\n5     Dream Chinstrap     68  0.5483871\n6     Dream    Gentoo      0  0.0000000\n7 Torgersen    Adelie     52  1.0000000\n8 Torgersen Chinstrap      0  0.0000000\n9 Torgersen    Gentoo      0  0.0000000\n\n\nהפקודה py_to_r מעבירה את התוצאות חזרה לאובייקטים של R, וניתן לעבוד איתם באופן רגיל. במקרה זה האובייקט grouped_r הוא מסוג data.frame.",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
-    ]
-  },
-  {
-    "objectID": "10-using-reticulate.html#מתי-להשתמש-בפייתון-ומתי-ב-r",
-    "href": "10-using-reticulate.html#מתי-להשתמש-בפייתון-ומתי-ב-r",
-    "title": "10  פיית’ון מתוך R",
-    "section": "10.4 מתי להשתמש בפיית’ון ומתי ב-R?",
-    "text": "10.4 מתי להשתמש בפיית’ון ומתי ב-R?\n\n\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד\n\n:::",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
-    ]
-  },
-  {
-    "objectID": "10-using-reticulate.html#מתי-להשתמש-בפייתון-באמצעות-reticulate",
-    "href": "10-using-reticulate.html#מתי-להשתמש-בפייתון-באמצעות-reticulate",
-    "title": "10  פיית’ון מתוך R",
-    "section": "10.4 מתי להשתמש בפיית’ון באמצעות reticulate?",
-    "text": "10.4 מתי להשתמש בפיית’ון באמצעות reticulate?\nאני באופן אישי מעדיף להשתמש בעיקר ב-R, במיוחד בכל המקרים של ניתוח נתונים “קלאסי” (כל מה שמכוסה בפרקים השונים של ספר זה).\nמבחינתי, המקרים בהם יש יתרון לשימוש בפיית’ון באמצעות reticulate הם כאשר ישנה חבילה מסוימת שהיא יותר “בשלה” או מתוחזקת היטב בפיית’ון אבל המקבילה שלה ב-R אינה קיימת, או מתוחזקת באופן חלקי/לא מספק.",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
-    ]
-  },
-  {
-    "objectID": "10-using-reticulate.html#סיכום",
-    "href": "10-using-reticulate.html#סיכום",
-    "title": "10  פיית’ון מתוך R",
-    "section": "10.4 סיכום",
-    "text": "10.4 סיכום\nבפרק זה עסקנו בשילוב בין שפת פיית’ון לבין R באמצעות חבילת reticulate. שילוב זה מאפשר לנצל את היתרונות של כל אחת מהשפות. אני באופן אישי מעדיף להשתמש בעיקר ב-R, במיוחד בכל המקרים של ניתוח נתונים “קלאסי” (כל מה שמכוסה בפרקים השונים של ספר זה).\nהמקרים בהם יש יתרון לשימוש בפיית’ון באמצעות reticulate הם כאשר ישנה חבילה מסוימת שהיא יותר “בשלה” או מתוחזקת היטב בפיית’ון אבל המקבילה שלה ב-R אינה קיימת, או מתוחזקת באופן חלקי/לא מספק.\nראינו כיצד מתקינים סביבת פיית’ון באמצעות פקודות של reticulate, כיצד אובייקטים עוברים המרה משפה לשפה, וכיצד לשלב קוד פיית’ון בתוך סקריפט של R.\nבפרק הבא נראה דוגמה פרקטית נוספת של שימוש בספריית openai של פיית’ון, להפעלת מודלי LLM של חברת OpenAI.\n\n\n\nהמדריך העברי למשתמש ב-R נכתב על ידי עדי שריד בהוצאת מכון שריד",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span>"
     ]
   }
 ]
