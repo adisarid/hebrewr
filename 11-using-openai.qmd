@@ -1,4 +1,4 @@
-# הפעלת ChatGPT
+# הפעלת ChatGPT {#sec-openai}
 
 TBD
 

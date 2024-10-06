@@ -16,33 +16,35 @@
 
 ## התקנת סביבה
 
-על מנת שתוכלו לקרוא לפיית'ון מתוך R, ראשית צריך להתקין סביבת פיית'ון. 
-פעולה זו תתבצע בפעם הראשונה בלבד (אלא אם תעברו לעבוד במחשב אחר), באמצעות פקודות של חבילת `reticulate`. לשם כך ישנן שתי פקודות אפשריות:
+על מנת שתוכלו לקרוא לפיית'ון מתוך R, ראשית צריך להתקין סביבת פיית'ון. פעולה זו תתבצע בפעם הראשונה בלבד (אלא אם תעברו לעבוד במחשב אחר), באמצעות פקודות של חבילת `reticulate`. לשם כך ישנן שתי פקודות אפשריות:
 
-   * `virtualenv_create`
-   * `conda_create`
+-   `virtualenv_create`
+-   `conda_create`
 
 ההבדל ביניהן הוא הכלי שבו יעשה שימוש להתקנה ([Conda](https://docs.conda.io/en/latest/) מול [pip](https://pypi.org/project/pip/)).
 
-::: {.side-by-side}
+::: side-by-side
 ```{r, example conda}
 #| eval: false
 # Using Conda
 library(reticulate)
 conda_create(
     envname = "my_conda_env", 
-    packages = c("pandas", "plotnine"))
+    packages = c("pandas")) 
+# (add libraries to `packages` argument as needed)
 
 # Activate the environment
 use_condaenv("my_conda_env")
 ```
+
 ```{r, example virtual environment}
 #| eval: false
 # Using virtual environment (pip)
 library(reticulate)
 virtualenv_create(
     envname = "my_virtual_env", 
-    packages = c("pandas", "plotnine"))
+    packages = c("pandas")) 
+# (add libraries to `packages` argument as needed)
 
 # Activate the environment
 use_virtualenv("my_virtual_env")
@@ -51,36 +53,112 @@ use_virtualenv("my_virtual_env")
 
 אם ניסיתם להשתמש בפקודה `conda_create` וקיבלתם הודעת שגיאה "Unable to find conda binary. Is Anaconda installed?", נדרש קודם להתקין את miniconda על ידי שימוש בפקודה `reticulate::install_miniconda`, או התקנה ישירה מהאתר הרשמי של חברת [Anaconda](https://docs.anaconda.com/miniconda/miniconda-install/).
 
-שימו לב שאת פקודת ההפעלה (`use_*`) יש להפעיל ראשונה, לפני שמפעילים פקודה אחרת של פיית'ון, אחרת `reticulate` עשוי לבחור בסביבה אחרת זמינה, לפי לוגיקה פנימית (והיא לאו דווקא תהיה הסביבה שהותקנה, במידה והיתה סביבה אחרת מותקנת).
+שימו לב שאת פקודת ההפעלה (`use_*`) יש להפעיל ראשונה, לפני שמפעילים פקודה אחרת של פיית'ון, אחרת `reticulate` עשוי לבחור בסביבה אחרת זמינה, לפי לוגיקה פנימית (והיא לאו דווקא תהיה הסביבה שאתם מתכוונים, במידה והיתה סביבה אחרת מותקנת).
 
 ```{r, read the virtual environment}
 #| echo: false
 #| include: false
 library(reticulate)
-use_virtualenv("my_virtual_env")
+use_virtualenv("my_virtual_env", required = TRUE)
 ```
 
-כעת, לאחר שהפעלנו את סביבת הפיית'ון הרצויה, ניתן לקרוא חבילות (במידה והותקנו במסגרת בניית הסביבה הוירטואלית), לדוגמה:
+במידה ופקודה זו לא עבדה כנדרש, ונטענת סביבה אחרת, ניתן גם להשתמש בהגדרת משתנה סביבה (Environment Variable), על ידי שימוש בפקודה `Sys.setenv(RETICULATE_PYTHON = PATH)` או על ידי הגדרה בקובץ `.Renviron` בתיקיית העבודה שלכם, עם השורה המתאימה `RETICULATE_PYTHON = PATH` .
 
-```{r, read python packages}
-pd <- import("pandas")
-pn <- import("plotnine")
-```
-
-וכמו כן, ניתן להריץ קוד פיית'ון ישירות:
+כעת ניתן להריץ קוד פיית'ון ישירות:
 
 ```{r, run python directly within R}
 py_run_string("
-print('Hi, I am python code, run directly from an R interpreter!')
+print('Hi, I\\'m python code, run directly from an R interpreter!')
 ")
 ```
 
 ## תרגום בין אובייקטים
 
-ב-R ובפיית'ון יש אובייקטים מסוגים שונים. 
-כדי שנוכל למנף את השילוביות בין שתי השפות כדאי להבין כיצד אובייקטים מתורגמים מאחד לשני.
+ב-R ובפיית'ון יש אובייקטים מסוגים שונים. כדי שנוכל למנף את השילוביות בין שתי השפות כדאי להבין כיצד אובייקטים מתורגמים מאחד לשני. הטבלה הבאה מציגה כיצד אובייקטים עוברים מאחד לשני:
 
++--------------------------------------------------------+--------------------------------------------+
+| R                                                      | python                                     |
++========================================================+============================================+
+| וקטור עם איבר יחיד `el <- 5`                           | סקלר `el=5`                                |
++--------------------------------------------------------+--------------------------------------------+
+| וקטור עם מספר איברים `vec <- c(1, 2, 3)`               | רשימה `vec=[1, 2, 3]`                      |
++--------------------------------------------------------+--------------------------------------------+
+| רשימה משוימת (named) עם איברים מסוגים שונים            | אובייקט מסוג מילון                         |
+|                                                        |                                            |
+| `lst <- list(a = 5, b = list(1, 2, 3))`                | `lst={'a' : 5, 'b' : [1, 2, 3]}`           |
++--------------------------------------------------------+--------------------------------------------+
+| רשימה לא משוימת עם איברים מסוגים שונים                 | רשימה                                      |
+|                                                        |                                            |
+| `lst_unnamed <- list(1, 2, list(3, 4))`                | `lst_unamed=[1, 2, [3, 4]]`                |
++--------------------------------------------------------+--------------------------------------------+
+| ניתן להשתמש בפקודה                                     | tuple                                      |
+|                                                        |                                            |
+| `tup <- reticulate::tuple(1, 2, 3)`                    | `tup=(1, 2, 3)`                            |
+|                                                        |                                            |
+| בכיוון הפוך (בחזרה מפייתון) היא מומרת לרשימה לא משוימת |                                            |
+|                                                        |                                            |
+| `list(1, 2, 3)`                                        |                                            |
++--------------------------------------------------------+--------------------------------------------+
+| מטריצה                                                 | מערך של `NumPy`                            |
+|                                                        |                                            |
+| ```                                                    | ```                                        |
+| > matrix(1:10, 2, 5)                                   | array([[ 1,  3,  5,  7,  9],               |
+|      [,1] [,2] [,3] [,4] [,5]                          |        [ 2,  4,  6,  8, 10]], dtype=int32) |
+| [1,]    1    3    5    7    9                          | ```                                        |
+| [2,]    2    4    6    8   10                          |                                            |
+| ```                                                    |                                            |
++--------------------------------------------------------+--------------------------------------------+
+| data frame או tibble                                   | data frame של חבילת pandas                 |
++--------------------------------------------------------+--------------------------------------------+
+
+: טבלת המרה בין אובייקטים ב-R וב-python
+
+ניתן להשתמש בפקודה `r_to_py` ובפקודה `py_to_r` על מנת לעבור בין אובייקטים. לדוגמה:
+
+```{r switch between objects}
+r_to_py(palmerpenguins::penguins)
+```
 
 ## שילוב קוד פיית'ון בסקריפט
+
+לאחר שהפעלנו את סביבת הפיית'ון הרצויה, ניתן לקרוא חבילות (במידה והותקנו במסגרת בניית הסביבה הוירטואלית), באמצעות הפקודה `import` מתוך חבילת `reticulate`, ואז להשתמש בפקודות שזמינות בחבילות שקראנו.
+
+הקריאה לפקודה מתוך חבילה מסוימת תתבצע באמצעות התו `$`.
+
+נדגים זאת על ידי שימוש בפקודות מתוך pandas:
+
+```{r using pandas directly}
+pd <- import("pandas")
+species_count <- pd$value_counts(palmerpenguins::penguins$species)
+species_count
+
+# And another option is to use this:
+penguins_py <- r_to_py(palmerpenguins::penguins)
+
+# Demonstrating grouping, counts, then proportions
+# Group penguins by island and species
+grouped <- penguins_py$groupby(list('island', 'species'))$size()$reset_index(name='counts')
+
+# Calculate proportions for each species on each island
+grouped['proportion'] <- grouped$groupby('island')['counts']$transform(function(x) x / x$sum())
+
+# Convert the Pandas DataFrame back to an R dataframe (optional)
+grouped_r <- py_to_r(grouped)
+
+grouped_r
+```
+
+הפקודה `py_to_r` מעבירה את התוצאות חזרה לאובייקטים של R, וניתן לעבוד איתם באופן רגיל. במקרה זה האובייקט `grouped_r` הוא מסוג `data.frame`.
+
+## סיכום
+
+בפרק זה עסקנו בשילוב בין שפת פיית'ון לבין R באמצעות חבילת `reticulate`. שילוב זה מאפשר לנצל את היתרונות של כל אחת מהשפות. 
+אני באופן אישי מעדיף להשתמש בעיקר ב-R, במיוחד בכל המקרים של ניתוח נתונים "קלאסי" (כל מה שמכוסה בפרקים השונים של ספר זה).
+
+המקרים בהם יש יתרון לשימוש בפיית'ון באמצעות `reticulate` הם כאשר ישנה חבילה מסוימת שהיא יותר "בשלה" או מתוחזקת היטב בפיית'ון אבל המקבילה שלה ב-R אינה קיימת, או מתוחזקת באופן חלקי/לא מספק.
+
+ראינו כיצד מתקינים סביבת פיית'ון באמצעות פקודות של `reticulate`, כיצד אובייקטים עוברים המרה משפה לשפה, וכיצד לשלב קוד פיית'ון בתוך סקריפט של R.
+
+בפרק הבא נראה דוגמה פרקטית נוספת של שימוש בספריית `openai` של פיית'ון, להפעלת מודלי LLM של חברת OpenAI.
 
 ::: end-page
