@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.5.56" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
 
-<title>1&nbsp; מבוא – המדריך העברי למשתמש ב-R</title>
+<title>11  הפעלת מודלי שפה (LLMs) – המדריך העברי למשתמש ב-R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,47 +56,9 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./02-base-R.html" rel="next">
-<link href="./index.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<!-- htmldependencies:E3FAD763 -->
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -124,20 +88,25 @@ div.csl-indent {
 }</script>
 
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="nav-sidebar floating">
+<body>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" role="link"
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -151,9 +120,11 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">המדריך העברי למשתמש ב-R</a> 
+      <a href="/">
+      המדריך העברי למשתמש ב-R
+      </a> 
         <div class="sidebar-tools-main">
-    <a href="https://www.github.com/adisarid/hebrewr" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://www.github.com/adisarid/hebrewr"  title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -166,116 +137,108 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">הקדמה</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></span></a>
+  <a href="/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>מבוא</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-base-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></span></a>
+  <a href="/02-base-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>תחביר בסיסי</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-data-munging-tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">הכנת נתונים</span></span></a>
+  <a href="/03-data-munging-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>הכנת נתונים</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-visualizations-ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ויז’ואליזציות</span></span></a>
+  <a href="/04-visualizations-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>ויז'ואליזציות</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-pivot-and-join.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">מבנה וחיבור נתונים</span></span></a>
+  <a href="/05-pivot-and-join.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>מבנה וחיבור נתונים</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-hypothesis-tests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">מבחני השערות</span></span></a>
+  <a href="/06-hypothesis-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>מבחני השערות</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-linear-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">רגרסיה לינארית</span></span></a>
+  <a href="/07-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>רגרסיה לינארית</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-advanced-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">מודלים מונחים</span></span></a>
+  <a href="/08-advanced-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>מודלים מונחים</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">לולאות מיוחדות</span></span></a>
+  <a href="/09-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>לולאות מיוחדות</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-using-reticulate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">פיית’ון מתוך R</span></span></a>
+  <a href="/10-using-reticulate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-using-llms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת ChatGPT</span></span></a>
+  <a href="/11-using-llms.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>הפעלת מודלי שפה (LLMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-hebrew-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">עברית ב-R</span></span></a>
+  <a href="/12-hebrew-in-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>עברית ב-R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="/about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">על הכותב</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">מקורות</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">בעמוד זה</h2>
-   
-  <ul>
-  <li><a href="#תהליך-ניתוח-נתונים" id="toc-תהליך-ניתוח-נתונים" class="nav-link active" data-scroll-target="#תהליך-ניתוח-נתונים"><span class="header-section-number">1.1</span> תהליך ניתוח נתונים</a></li>
-  <li><a href="#איך-מתקינים-את-r" id="toc-איך-מתקינים-את-r" class="nav-link" data-scroll-target="#איך-מתקינים-את-r"><span class="header-section-number">1.2</span> איך מתקינים את R?</a></li>
-  <li><a href="#איך-משתמשים-ב-rstudio" id="toc-איך-משתמשים-ב-rstudio" class="nav-link" data-scroll-target="#איך-משתמשים-ב-rstudio"><span class="header-section-number">1.3</span> איך משתמשים ב-RStudio?</a></li>
-  </ul>
-</nav>
+        <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">מבוא</span></span></h1>
+<h1 class="title"><span id="sec-llms" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span></h1>
 </div>
 
 
@@ -292,76 +255,47 @@ div.csl-indent {
 </header>
 
 
-<section id="תהליך-ניתוח-נתונים" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="תהליך-ניתוח-נתונים"><span class="header-section-number">1.1</span> תהליך ניתוח נתונים</h2>
-<p>בספר הזה אני מאמץ את נקודת ההשקפה של <span class="citation" data-cites="wickham2016r">(<a href="references.html#ref-wickham2016r" role="doc-biblioref">Wickham and Grolemund 2016</a>)</span> שמציגים את אבני הבניין של עבודת מדען הנתונים כפי שמומחש באיור הבא:</p>
-<div id="fig:ds-workflow" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/ds_workflow_he.svg" title="תהליך ניתוח הנתונים" class="img-fluid figure-img"></p>
-<figcaption>המחשה של תהליך ניתוח הנתונים</figcaption>
-</figure>
-</div>
-<p>כל תהליך ניתוח נתונים מורכב מיבוא סט הנתונים, סידור שלהם בצורה שנוח לעבוד איתה, לאחר מכן מחקר על הנתונים, שהוא תהליך איטרטיבי (חוזר על עצמו) שמורכב מהתמרות שונות על הנתונים (טרנספורמציות), המחשות בתרשימים (ויז’ואליזציות), ומידול של הנתונים. לבסוף, התהליך עובר למסמך, מצגת או אמצעי אחר, ומוצג למקבלי החלטות.</p>
-<p>בספר זה נדון בשלבים של יבוא הנתונים, סידור, וכלל שלבי המחקר (טרנספורמציות, ויז’ואליזציות, ומידול). אך ראשית, לפני שנתחיל בצעדים הראשונים (למידת בסיס השפה), נראה כיצד להתקין את R.</p>
-</section>
-<section id="איך-מתקינים-את-r" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="איך-מתקינים-את-r"><span class="header-section-number">1.2</span> איך מתקינים את R?</h2>
-<p>התקנת התוכנה פשוטה מאוד. R היא שפה בקוד פתוח (Open Source) , כלומר, כל אחד יכול להתקין אותה ללא עלות. כמו כן, ישנה סביבת פיתוח, גם היא חינמית ובקוד פתוח, הנקראת RStudio IDE.</p>
-<p>על מנת להתקין את R עליכם להיכנס לכתובת <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> ולבחור בגרסה המתאימה למערכת ההפעלה שלכם. לאחר מכן, כדי להתקין את RStudio היכנסו לכתובת <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a> הגרסה החינמית של RStudio נקראת RStudio Desktop והיא זמינה לכל צורך (כולל לשימוש במסגרת מסחרית).</p>
-<p>הסיבה שאנחנו מתקינים גם את R וגם את RStudio היא שבהתקנת R בלבד, מקבלים ממשק משתמש בסיסי ביותר, בעוד שלאחר התקנת RStudio ניתן יהיה לעבוד עם ממשק משתמש נוח שיש לו הרבה אפשרויות שיקלו עליכם את הלמידה ואת העבודה השוטפת ב-R.</p>
-</section>
-<section id="איך-משתמשים-ב-rstudio" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="איך-משתמשים-ב-rstudio"><span class="header-section-number">1.3</span> איך משתמשים ב-RStudio?</h2>
-<p>לאחר ההתקנה, כשתפעילו את RStudio, תראו חלון המפוצל לשלושה (או אולי ארבעה) חלקים. החלק הגדול בצד שמאל הוא ה-Console, הוא סביבת ה-R המריצה את הקוד שלכם. אתם יכולים לנסות לרשום בו קוד ולראות מה קורה, לדוגמה תנסו לרשום <code>2+2</code> וללחוץ Enter או לרשום <code>pi</code> וללחוץ Enter.</p>
+<p>אחד מהכלים שהתפתחו מאוד בשנים האחרונות ועושים מהפכה של ממש באופן שבו אנחנו חושבים ועובדים, ובמיוחד למי שעובד עם קוד ועם דאטה, הם כלי בינה מלאכותית גנרטיבית בכלל, ומודלי שפה בפרט (Large Language Models, Generative AI).</p>
+<p>במקרה של LLMs מדובר במודלים סטטיסטיים שמאומנים על מקבץ טקסט גדול (נניח לדוגמה מודלים שאומנו על חלק ניכר מהעמודים הזמינים באינטרנט), תוך כדי מעורבות אנושית שנותנת פידבק בתהליך הלמידה של המודל. לא ניכנס בפרק זה לתיאוריה של אופן האימון של מודל שפה, אך סביר להניח שכבר נתקלתם במספר מודלים ושימושים שונים.</p>
+<p>יש דוגמאות רבות למודלים שונים שזמינים לשימוש בחינם או בתשלום, של ספקים כגון (רשימה חלקית):</p>
+<ul>
+<li>Open AI עם מודלי ChatGPT</li>
+<li>Anthropic עם מודלי Claude</li>
+<li>Google עם מודלי Gemini</li>
+<li>Meta עם מודלי Llama</li>
+<li>AWS עם תשתית מודלים בשירות שנקרא (Bedrock)</li>
+</ul>
+<p>הרשימה ממשיכה, גדולה מאוד, וגדלה מיום ליום. מרבית המודלים לעיל הם מודלים מבוססים צ’ט (נותנים תחושה של שיחה). בפועל מה שהמודלים עושים זה לתת חיזוי למילה הבאה בכל פעם, וכך הם יוצרים משפטים, שהופכים לפסקאות, ולטקסטים מורכבים. ישנם כמובן מודלים שעושים משימות שונות כמו ליצור תמונה או סרט.</p>
+<p>ישנה תיאוריה ופרקטיקה נרחבת על אופן השימוש, ההפעלה, וההתאמה של מודלים לצרכים שונים. אחד מהמקורות</p>
+<p>בפרק זה נדגים את השימוש בחבילה שנקראת <code>ellmer</code> ומאפשרת להתממשק מתוך R למנעד של מודלים נפוצים. נדגים את השימוש בחבילה באמצעות מודלי Open AI, אך באופן דומה ניתן להשתמש בהתממשקות עם מודלים של ספקים אחרים.</p>
+<p>בעת כתיבת שורות אלו, החבילה אינה זמינה ב-CRAN ועל מנת להתקינה יש להשתמש בחבילת <code>remotes</code> באופן הבא:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;tidyverse/ellmer&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># When the package will be deployed to CRAN use instead:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&#39;ellmer&#39;)</span></span></code></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.141593</code></pre>
-</div>
-</div>
-<p>בצד ימין למעלה ישנה חלונית המחולקת לטאבים. בין הטאבים שמופיעים בה תוכלו לראות את:</p>
-<ul>
-<li><p>Environment - משתנים או פונקציות שנטענו לסביבה</p></li>
-<li><p>History - היסטורית הפקודות שהרצתם</p></li>
-<li><p>Connections - חיבורים למקורות נתונים</p></li>
-<li><p>Tutorial - הצגה של מדריכים שונים שמלמדים איך להשתמש בחבילות של R</p></li>
-</ul>
-<p>בצד ימין למטה תופיעה חלונית נוספת המחולקת גם היא לטאבים:</p>
-<ul>
-<li><p>Files - תוכן התיקייה הנוכחית</p></li>
-<li><p>Plots - תרשימים שנכין יופיעו בטאב זה</p></li>
-<li><p>Packages - חבילות שזמינות לנו או שנטענו לסביבה (יסומנו ב-V)</p></li>
-<li><p>Help - חלונית עזרה על פקודות</p></li>
-<li><p>Viewer - צפיה בתכנים שונים שנכין (בעיקר תכנים אינטראקטיביים כמו טבלאות html תרשימים אינטראקטיביים, ואפליקציות).</p></li>
-</ul>
-<p>בתור משתמשים מתחילים נשתמש בחלק קטן מאלו, אך ככל שיעבור זמן תראו שאתם משתמשים ביותר ויותר אפשרויות, וגם אפשרויות נוספות שכרגע אינן מופיעות לכם.</p>
-<p>עוד כמה פינות חשובות שנמצאות ב-RStudio:</p>
-<ul>
-<li><p>אם תלחצו על Help-&gt;Cheat sheets תוכלו לראות רשימה של “שליפים”. דפים שימושיים שמרכזים פקודות שונות של R וחבילות של R. לדוגמה, אחד מהשליפים ששם נקרא RStudio IDE Cheat Sheet, והוא מכיל הרבה הסברים נוספים על הממשק משתמש של RStudio.</p></li>
-<li><p>בתפריט File -&gt; New File ישנה אפשרות לפתוח קובץ חדש. מומלץ שתנסו לפתוח קובץ חדש מסוג R Script, שישמש אותנו לפרק הבא.</p></li>
-</ul>
-<p><strong>שימו לב</strong>: לאחר שפתחתם Script חדש, וכתבתם בו קוד, על מנת להריץ את הקוד צריך לסמן אותו וללחוץ Ctrl+Enter. זה יגרום ל-R להריץ את כל הקוד המסומן.</p>
-<p>כעת אנחנו מוכנים לפרק הבא, שבו נלמד את בסיס השפה, מה שמכונה גם Base R.</p>
 <div class="end-page">
 
-<div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
-<p><strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href="https://www.sarid-ins.com">מכון שריד</a></p>
 </div>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar-title">המדריך העברי למשתמש ב-R</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-navbar-title">המדריך העברי למשתמש ב-R</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-next"><span class="chapter-number">12</span>  <span class="chapter-title">עברית ב-R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-prev"><span class="chapter-number">10</span>  <span class="chapter-title">פיית’ון מתוך R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/index.htmlהקדמה">הקדמה</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/01-introduction.html&lt;span-class=&#39;chapter-number&#39;&gt;1&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;מבוא&lt;/span&gt;"><span class="chapter-number">1</span>  <span class="chapter-title">מבוא</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/02-base-R.html&lt;span-class=&#39;chapter-number&#39;&gt;2&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;תחביר-בסיסי&lt;/span&gt;"><span class="chapter-number">2</span>  <span class="chapter-title">תחביר בסיסי</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/03-data-munging-tidyverse.html&lt;span-class=&#39;chapter-number&#39;&gt;3&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;הכנת-נתונים&lt;/span&gt;"><span class="chapter-number">3</span>  <span class="chapter-title">הכנת נתונים</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/04-visualizations-ggplot2.html&lt;span-class=&#39;chapter-number&#39;&gt;4&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;ויז&#39;ואליזציות&lt;/span&gt;"><span class="chapter-number">4</span>  <span class="chapter-title">ויז’ואליזציות</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/05-pivot-and-join.html&lt;span-class=&#39;chapter-number&#39;&gt;5&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;מבנה-וחיבור-נתונים&lt;/span&gt;"><span class="chapter-number">5</span>  <span class="chapter-title">מבנה וחיבור נתונים</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/06-hypothesis-tests.html&lt;span-class=&#39;chapter-number&#39;&gt;6&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;מבחני-השערות&lt;/span&gt;"><span class="chapter-number">6</span>  <span class="chapter-title">מבחני השערות</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/07-linear-regression.html&lt;span-class=&#39;chapter-number&#39;&gt;7&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;רגרסיה-לינארית&lt;/span&gt;"><span class="chapter-number">7</span>  <span class="chapter-title">רגרסיה לינארית</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/08-advanced-models.html&lt;span-class=&#39;chapter-number&#39;&gt;8&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;מודלים-מונחים&lt;/span&gt;"><span class="chapter-number">8</span>  <span class="chapter-title">מודלים מונחים</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/09-purrr.html&lt;span-class=&#39;chapter-number&#39;&gt;9&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;לולאות-מיוחדות&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">לולאות מיוחדות</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/10-using-reticulate.html&lt;span-class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;פיית&#39;ון-מתוך-R&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">פיית’ון מתוך R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/11-using-llms.html&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;הפעלת-מודלי-שפה-(LLMs)&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/12-hebrew-in-R.html&lt;span-class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;עברית-ב-R&lt;/span&gt;"><span class="chapter-number">12</span>  <span class="chapter-title">עברית ב-R</span></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/about.htmlעל-הכותב">על הכותב</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-int-sidebar:/references.htmlמקורות">מקורות</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-breadcrumbs-&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;הפעלת-מודלי-שפה-(LLMs)&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span></p>
+:::{.hidden .quarto-markdown-envelope-contents render-id=“footer-left-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script>
+<script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>
+“}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script>
+<script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>
 </div>
-
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-wickham2016r" class="csl-entry" role="listitem">
-Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. "O’Reilly Media, Inc.".
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-&lt;strong&gt;המדריך העברי למשתמש ב-R&lt;/strong&gt; נכתב על ידי עדי שריד בהוצאת &lt;a href=&#39;https://www.sarid-ins.com&#39;&gt;מכון שריד&lt;/a&gt; ">
+<p><strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a></p>
 </div>
+<p>:::</p>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-metatitle"><span id="sec-llms" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span> – המדריך העברי למשתמש ב-R</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercardtitle"><span id="sec-llms" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span> – המדריך העברי למשתמש ב-R</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardtitle"><span id="sec-llms" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span> – המדריך העברי למשתמש ב-R</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-metasitename">המדריך העברי למשתמש ב-R</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercarddesc"></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardddesc"></span></p>
 </div>
-</section>
 
 </main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<script id = "quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -783,13 +717,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="הקדמה">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">הקדמה</span>
+      <a  href="/10-using-reticulate.html" class="pagination-link" aria-label="פיית&#39;ון מתוך R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>פיית'ון מתוך R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-base-R.html" class="pagination-link" aria-label="תחביר בסיסי">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">תחביר בסיסי</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a  href="/12-hebrew-in-R.html" class="pagination-link" aria-label="עברית ב-R">
+        <span class="nav-page-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>עברית ב-R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -799,14 +733,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script> <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-B91GCMKVW9"></script> <script>window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag("js", new Date()); gtag("config", "G-B91GCMKVW9"); </script>
   </li>  
 </ul>
     </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- <strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href="https://www.sarid-ins.com">מכון שריד</a>
+ <strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a>
   </li>  
 </ul>
     </div>
@@ -816,7 +750,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </footer>
 
+</body>
 
-
-
-</body></html>
+</html>

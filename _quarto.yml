@@ -19,7 +19,7 @@ book:
     - 08-advanced-models.qmd
     - 09-purrr.qmd
     - 10-using-reticulate.qmd
-    - 11-using-openai.qmd
+    - 11-using-llms.qmd
     - 12-hebrew-in-R.qmd
     - about.Rmd
     - references.qmd

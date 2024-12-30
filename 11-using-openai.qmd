@@ -1,6 +1,0 @@
-# הפעלת ChatGPT {#sec-openai}
-
-TBD
-
-
-::: end-page

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="דר’ עדי שריד">
-<meta name="dcterms.date" content="2024-10-06">
+<meta name="dcterms.date" content="2024-12-30">
 
 <title>המדריך העברי למשתמש ב-R</title>
 <style>
@@ -179,8 +179,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-using-openai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת ChatGPT</span></span></a>
+  <a href="./11-using-llms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -237,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-10-06</p>
+      <p class="date">2024-12-30</p>
     </div>
   </div>
   
@@ -273,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
 <p>ב<a href="03-data-munging-tidyverse.html" class="quarto-xref">פרק&nbsp;<span>3&nbsp; הכנת נתונים</span></a> נלמד את הבסיס של חבילות <code>tidyverse</code> ואיך הן מרחיבות את Base-R והופכות את הקוד שלנו ליותר קריא, ואת הכתיבה ליותר נוחה. אנחנו נתמקד בעיקר בשלבי הכנת הנתונים לקראת ניתוח, ואז ב<a href="04-visualizations-ggplot2.html" class="quarto-xref">פרק&nbsp;<span>4&nbsp; ויז’ואליזציות</span></a> נלמד על ויז’ואליזציות באמצעות חבילת <code>ggplot2</code>. ב<a href="05-pivot-and-join.html" class="quarto-xref">פרק&nbsp;<span>5&nbsp; מבנה וחיבור נתונים</span></a> נטפל במניפולציות קצת יותר מתקדמות כמו חיבור טבלאות ושינוי מבנה טבלאות.</p>
 <p>לעולם הסטטיסטי ניכנס ב<a href="06-hypothesis-tests.html" class="quarto-xref">פרק&nbsp;<span>6&nbsp; מבחני השערות</span></a> עם מבחני השערה, <a href="07-linear-regression.html" class="quarto-xref">ובפרק&nbsp;<span>7&nbsp; רגרסיה לינארית</span></a> עם רגרסיה לינארית.</p>
 <p>לאחר מכן נצלול קצת יותר לעומק עם מודלים מתקדמים מעולם ה-Data Science תוך שימוש בחבילת <code>tidymodels</code> ב<a href="08-advanced-models.html" class="quarto-xref">פרק&nbsp;<span>8&nbsp; מודלים מונחים</span></a>.</p>
-<p><a href="09-purrr.html" class="quarto-xref">בפרק&nbsp;<span>9&nbsp; לולאות מיוחדות</span></a> נחזור מהעולם הסטטיסטי לתכנות, ונתעמק קצת יותר בלולאות מתוכמות. <a href="10-using-reticulate.html" class="quarto-xref">בפרק&nbsp;<span>10&nbsp; פיית’ון מתוך R</span></a> נציג כיצד ניתן להפעיל את פיית’ון מתוך R, <a href="11-using-openai.html" class="quarto-xref">ובפרק&nbsp;<span>11&nbsp; הפעלת ChatGPT</span></a> נדגים את השימוש בחבילות של OpenAI (להפעלת מודלי LLM כגון ChatGPT) באמצעות פיית’ון, מתוך R.</p>
+<p><a href="09-purrr.html" class="quarto-xref">בפרק&nbsp;<span>9&nbsp; לולאות מיוחדות</span></a> נחזור מהעולם הסטטיסטי לתכנות, ונתעמק קצת יותר בלולאות מתוכמות. <a href="10-using-reticulate.html" class="quarto-xref">בפרק&nbsp;<span>10&nbsp; פיית’ון מתוך R</span></a> נציג כיצד ניתן להפעיל את פיית’ון מתוך R, <span class="quarto-unresolved-ref">?sec-llms</span> נדגים את השימוש בחבילות של מודלי שפה (הפעלת מודלי LLM כגון ChatGPT) מתוך R.</p>
 <p><a href="12-hebrew-in-R.html" class="quarto-xref">בפרק&nbsp;<span>12&nbsp; עברית ב-R</span></a> ניתן טיפים לכל מי שמשתמש ב-R וצריך לשלב את העבודה שלו עם עברית.</p>
 <p><strong>הנוסח שלפניכם הוא טיוטה, ולכן חלקים מסוימים עוד חסרים ממנו, וחלקים מסוימים עוד ישתנו. מי שמוצא טעות בספר, מוזמן לפנות אלי בטוויטר @SaridResearch</strong>, או להציע עדכונים באמצעות Pull request או לפתוח Issue ב-<a href="https://www.github.com/adisarid/hebrewr">github</a>.</p>
 <p>ספר זה זמין באופן חופשי באינטרנט, <strong>ללא עלות</strong>, תחת רישיון <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a>, מה שאומר שאפשר לשתף את הקישור לספר או לשתף ציטוטים מהספר תוך ציון המקור עם קישור לעמוד זה. לא ניתן להשתמש בתוכן למטרות מסחריות.</p>

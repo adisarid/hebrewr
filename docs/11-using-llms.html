@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; פיית’ון מתוך R – המדריך העברי למשתמש ב-R</title>
+<title>11&nbsp; הפעלת מודלי שפה (LLMs) – המדריך העברי למשתמש ב-R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./11-using-llms.html" rel="next">
-<link href="./09-purrr.html" rel="prev">
+<link href="./12-hebrew-in-R.html" rel="next">
+<link href="./10-using-reticulate.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-using-reticulate.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">פיית’ון מתוך R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-using-llms.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -206,13 +206,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-using-reticulate.html" class="sidebar-item-text sidebar-link active">
+  <a href="./10-using-reticulate.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">פיית’ון מתוך R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-using-llms.html" class="sidebar-item-text sidebar-link">
+  <a href="./11-using-llms.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span></a>
   </div>
 </li>
@@ -239,24 +239,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">בעמוד זה</h2>
-   
-  <ul>
-  <li><a href="#התקנת-סביבה" id="toc-התקנת-סביבה" class="nav-link active" data-scroll-target="#התקנת-סביבה"><span class="header-section-number">10.1</span> התקנת סביבה</a></li>
-  <li><a href="#תרגום-בין-אובייקטים" id="toc-תרגום-בין-אובייקטים" class="nav-link" data-scroll-target="#תרגום-בין-אובייקטים"><span class="header-section-number">10.2</span> תרגום בין אובייקטים</a></li>
-  <li><a href="#שילוב-קוד-פייתון-בסקריפט" id="toc-שילוב-קוד-פייתון-בסקריפט" class="nav-link" data-scroll-target="#שילוב-קוד-פייתון-בסקריפט"><span class="header-section-number">10.3</span> שילוב קוד פיית’ון בסקריפט</a></li>
-  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">10.4</span> סיכום</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-using-reticulate" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">פיית’ון מתוך R</span></span></h1>
+<h1 class="title"><span id="sec-llms" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span></h1>
 </div>
 
 
@@ -273,197 +264,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>כפי שציינתי בהקדמה לספר זה, אחד מהכלים הנפוצים ל-Data Science (ובכלל) הוא שפת פיית’ון (python). מאוד סביר שבסיטואציה כזו או אחרת תמצאו עצמכם מול בעיה שבה שילוב של פיית’ון עם R יכול להוות יתרון גדול ולחסוך זמן ומאמץ.</p>
-<p>לדוגמה, לעיתים קרובות תמצאו ששירותים מסוימים, כגון שירותי Amazon Web Services (AWS) זמינים באופן מלא בפיית’ון (באמצעות חבילה שנקראת <code>boto3</code> וזמינה בפיית’ון), אך ממומשים באופן חלקי בחבילות ב-R. בדוגמה זו, החבילה <code>boto3</code> היא חבילה רשמית המתוחזקת על ידי AWS ולעומת זאת, חבילות אחרות הזמינות ישירות ב-R הן חבילות המפותחות על ידי הקהילה, ואינן נתמכות באופן “רשמי” על ידי AWS.</p>
-<p>ישנן דוגמאות נוספות רבות, לדוגמה החבילה הרשמית של OpenAI (שנקראת <code>openai</code> בפיית’ון), שמתוחזקת באופן רשמי על ידי OpenAI, ומקבילה לה ל-R הנקראת גם היא באותו השם, אך מתוחזקת על ידי הקהילה באופן לא רשמי.</p>
-<p>הקריאה לפיית’ון מתוך R מתבצעת באמצעות חבילה הנקראת <code>reticulate</code> שמכילה כלים שימושיים רבים להפעלת פיית’ון. בפרק זה נדגים כיצד:</p>
+<p>אחד מהכלים שהתפתחו מאוד בשנים האחרונות ועושים מהפכה של ממש באופן שבו אנחנו חושבים ועובדים, ובמיוחד למי שעובד עם קוד ועם דאטה, הם כלי בינה מלאכותית גנרטיבית בכלל, ומודלי שפה בפרט (Large Language Models, Generative AI).</p>
+<p>במקרה של LLMs מדובר במודלים סטטיסטיים שמאומנים על מקבץ טקסט גדול (נניח לדוגמה מודלים שאומנו על חלק ניכר מהעמודים הזמינים באינטרנט), תוך כדי מעורבות אנושית שנותנת פידבק בתהליך הלמידה של המודל. לא ניכנס בפרק זה לתיאוריה של אופן האימון של מודל שפה, אך סביר להניח שכבר נתקלתם במספר מודלים ושימושים שונים.</p>
+<p>יש דוגמאות רבות למודלים שונים שזמינים לשימוש בחינם או בתשלום, של ספקים כגון (רשימה חלקית):</p>
 <ul>
-<li><p>להתקין סביבות פיית’ון באמצעות חבילת <code>reticulate</code> של R, ולקרוא לסביבה שהותקנה</p></li>
-<li><p>כיצד אובייקטים שונים עוברים (מתורגמים) מאובייקטים של R לאובייקטים של פיית’ון, ולהיפך</p></li>
-<li><p>לשלב קוד פיית’ון בתוך סקריפט של R</p></li>
+<li>Open AI עם מודלי ChatGPT</li>
+<li>Anthropic עם מודלי Claude</li>
+<li>Google עם מודלי Gemini</li>
+<li>Meta עם מודלי Llama</li>
+<li>AWS עם תשתית מודלים בשירות שנקרא (Bedrock)</li>
 </ul>
-<section id="התקנת-סביבה" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="התקנת-סביבה"><span class="header-section-number">10.1</span> התקנת סביבה</h2>
-<p>על מנת שתוכלו לקרוא לפיית’ון מתוך R, ראשית צריך להתקין סביבת פיית’ון. פעולה זו תתבצע בפעם הראשונה בלבד (אלא אם תעברו לעבוד במחשב אחר), באמצעות פקודות של חבילת <code>reticulate</code>. לשם כך ישנן שתי פקודות אפשריות:</p>
-<ul>
-<li><code>virtualenv_create</code></li>
-<li><code>conda_create</code></li>
-</ul>
-<p>ההבדל ביניהן הוא הכלי שבו יעשה שימוש להתקנה (<a href="https://docs.conda.io/en/latest/">Conda</a> מול <a href="https://pypi.org/project/pip/">pip</a>).</p>
-<div class="side-by-side">
+<p>הרשימה ממשיכה, גדולה מאוד, וגדלה מיום ליום. מרבית המודלים לעיל הם מודלים מבוססים צ’ט (נותנים תחושה של שיחה). בפועל מה שהמודלים עושים זה לתת חיזוי למילה הבאה בכל פעם, וכך הם יוצרים משפטים, שהופכים לפסקאות, ולטקסטים מורכבים. ישנם כמובן מודלים שעושים משימות שונות כמו ליצור תמונה או סרט.</p>
+<p>ישנה תיאוריה ופרקטיקה נרחבת על אופן השימוש, ההפעלה, וההתאמה של מודלים לצרכים שונים. אחד מהמקורות</p>
+<p>בפרק זה נדגים את השימוש בחבילה שנקראת <code>ellmer</code> ומאפשרת להתממשק מתוך R למנעד של מודלים נפוצים. נדגים את השימוש בחבילה באמצעות מודלי Open AI, אך באופן דומה ניתן להשתמש בהתממשקות עם מודלים של ספקים אחרים.</p>
+<p>בעת כתיבת שורות אלו, החבילה אינה זמינה ב-CRAN ועל מנת להתקינה יש להשתמש בחבילת <code>remotes</code> באופן הבא:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using Conda</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_create</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">envname =</span> <span class="st">"my_conda_env"</span>, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"pandas"</span>)) </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># (add libraries to `packages` argument as needed)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate the environment</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">"my_conda_env"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'tidyverse/ellmer'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># When the package will be deployed to CRAN use instead:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('ellmer')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using virtual environment (pip)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">virtualenv_create</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">envname =</span> <span class="st">"my_virtual_env"</span>, </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"pandas"</span>)) </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># (add libraries to `packages` argument as needed)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate the environment</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">use_virtualenv</span>(<span class="st">"my_virtual_env"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<p>אם ניסיתם להשתמש בפקודה <code>conda_create</code> וקיבלתם הודעת שגיאה “Unable to find conda binary. Is Anaconda installed?”, נדרש קודם להתקין את miniconda על ידי שימוש בפקודה <code>reticulate::install_miniconda</code>, או התקנה ישירה מהאתר הרשמי של חברת <a href="https://docs.anaconda.com/miniconda/miniconda-install/">Anaconda</a>.</p>
-<p>שימו לב שאת פקודת ההפעלה (<code>use_*</code>) יש להפעיל ראשונה, לפני שמפעילים פקודה אחרת של פיית’ון, אחרת <code>reticulate</code> עשוי לבחור בסביבה אחרת זמינה, לפי לוגיקה פנימית (והיא לאו דווקא תהיה הסביבה שאתם מתכוונים, במידה והיתה סביבה אחרת מותקנת).</p>
-<p>במידה ופקודה זו לא עבדה כנדרש, ונטענת סביבה אחרת, ניתן גם להשתמש בהגדרת משתנה סביבה (Environment Variable), על ידי שימוש בפקודה <code>Sys.setenv(RETICULATE_PYTHON = PATH)</code> או על ידי הגדרה בקובץ <code>.Renviron</code> בתיקיית העבודה שלכם, עם השורה המתאימה <code>RETICULATE_PYTHON = PATH</code> .</p>
-<p>כעת ניתן להריץ קוד פיית’ון ישירות:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">py_run_string</span>(<span class="st">"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">print('Hi, I</span><span class="sc">\\</span><span class="st">'m python code, run directly from an R interpreter!')</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hi, I'm python code, run directly from an R interpreter!</code></pre>
-</div>
-</div>
-</section>
-<section id="תרגום-בין-אובייקטים" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="תרגום-בין-אובייקטים"><span class="header-section-number">10.2</span> תרגום בין אובייקטים</h2>
-<p>ב-R ובפיית’ון יש אובייקטים מסוגים שונים. כדי שנוכל למנף את השילוביות בין שתי השפות כדאי להבין כיצד אובייקטים מתורגמים מאחד לשני. הטבלה הבאה מציגה כיצד אובייקטים עוברים מאחד לשני:</p>
-<table class="caption-top table">
-<caption>טבלת המרה בין אובייקטים ב-R וב-python</caption>
-<colgroup>
-<col style="width: 55%">
-<col style="width: 44%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>R</th>
-<th>python</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>וקטור עם איבר יחיד <code>el &lt;- 5</code></td>
-<td>סקלר <code>el=5</code></td>
-</tr>
-<tr class="even">
-<td>וקטור עם מספר איברים <code>vec &lt;- c(1, 2, 3)</code></td>
-<td>רשימה <code>vec=[1, 2, 3]</code></td>
-</tr>
-<tr class="odd">
-<td><p>רשימה משוימת (named) עם איברים מסוגים שונים</p>
-<p><code>lst &lt;- list(a = 5, b = list(1, 2, 3))</code></p></td>
-<td><p>אובייקט מסוג מילון</p>
-<p><code>lst={'a' : 5, 'b' : [1, 2, 3]}</code></p></td>
-</tr>
-<tr class="even">
-<td><p>רשימה לא משוימת עם איברים מסוגים שונים</p>
-<p><code>lst_unnamed &lt;- list(1, 2, list(3, 4))</code></p></td>
-<td><p>רשימה</p>
-<p><code>lst_unamed=[1, 2, [3, 4]]</code></p></td>
-</tr>
-<tr class="odd">
-<td><p>ניתן להשתמש בפקודה</p>
-<p><code>tup &lt;- reticulate::tuple(1, 2, 3)</code></p>
-<p>בכיוון הפוך (בחזרה מפייתון) היא מומרת לרשימה לא משוימת</p>
-<p><code>list(1, 2, 3)</code></p></td>
-<td><p>tuple</p>
-<p><code>tup=(1, 2, 3)</code></p></td>
-</tr>
-<tr class="even">
-<td><p>מטריצה</p>
-<pre><code>&gt; matrix(1:10, 2, 5)
-     [,1] [,2] [,3] [,4] [,5]
-[1,]    1    3    5    7    9
-[2,]    2    4    6    8   10</code></pre></td>
-<td><p>מערך של <code>NumPy</code></p>
-<pre><code>array([[ 1,  3,  5,  7,  9],
-       [ 2,  4,  6,  8, 10]], dtype=int32)</code></pre></td>
-</tr>
-<tr class="odd">
-<td>data frame או tibble</td>
-<td>data frame של חבילת pandas</td>
-</tr>
-</tbody>
-</table>
-<p>ניתן להשתמש בפקודה <code>r_to_py</code> ובפקודה <code>py_to_r</code> על מנת לעבור בין אובייקטים. לדוגמה:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r_to_py</span>(palmerpenguins<span class="sc">::</span>penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       species     island  bill_length_mm  ...  body_mass_g     sex  year
-0       Adelie  Torgersen            39.1  ...         3750    male  2007
-1       Adelie  Torgersen            39.5  ...         3800  female  2007
-2       Adelie  Torgersen            40.3  ...         3250  female  2007
-3       Adelie  Torgersen             NaN  ...  -2147483648     NaN  2007
-4       Adelie  Torgersen            36.7  ...         3450  female  2007
-..         ...        ...             ...  ...          ...     ...   ...
-339  Chinstrap      Dream            55.8  ...         4000    male  2009
-340  Chinstrap      Dream            43.5  ...         3400  female  2009
-341  Chinstrap      Dream            49.6  ...         3775    male  2009
-342  Chinstrap      Dream            50.8  ...         4100    male  2009
-343  Chinstrap      Dream            50.2  ...         3775  female  2009
-
-[344 rows x 8 columns]</code></pre>
-</div>
-</div>
-</section>
-<section id="שילוב-קוד-פייתון-בסקריפט" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="שילוב-קוד-פייתון-בסקריפט"><span class="header-section-number">10.3</span> שילוב קוד פיית’ון בסקריפט</h2>
-<p>לאחר שהפעלנו את סביבת הפיית’ון הרצויה, ניתן לקרוא חבילות (במידה והותקנו במסגרת בניית הסביבה הוירטואלית), באמצעות הפקודה <code>import</code> מתוך חבילת <code>reticulate</code>, ואז להשתמש בפקודות שזמינות בחבילות שקראנו.</p>
-<p>הקריאה לפקודה מתוך חבילה מסוימת תתבצע באמצעות התו <code>$</code>.</p>
-<p>נדגים זאת על ידי שימוש בפקודות מתוך pandas:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>species_count <span class="ot">&lt;-</span> pd<span class="sc">$</span><span class="fu">value_counts</span>(palmerpenguins<span class="sc">::</span>penguins<span class="sc">$</span>species)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>species_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Adelie    Gentoo Chinstrap 
-      152       124        68 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># And another option is to use this:</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>penguins_py <span class="ot">&lt;-</span> <span class="fu">r_to_py</span>(palmerpenguins<span class="sc">::</span>penguins)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrating grouping, counts, then proportions</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Group penguins by island and species</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>grouped <span class="ot">&lt;-</span> penguins_py<span class="sc">$</span><span class="fu">groupby</span>(<span class="fu">list</span>(<span class="st">'island'</span>, <span class="st">'species'</span>))<span class="sc">$</span><span class="fu">size</span>()<span class="sc">$</span><span class="fu">reset_index</span>(<span class="at">name=</span><span class="st">'counts'</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate proportions for each species on each island</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'proportion'</span>] <span class="ot">&lt;-</span> grouped<span class="sc">$</span><span class="fu">groupby</span>(<span class="st">'island'</span>)[<span class="st">'counts'</span>]<span class="sc">$</span><span class="fu">transform</span>(<span class="cf">function</span>(x) x <span class="sc">/</span> x<span class="sc">$</span><span class="fu">sum</span>())</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the Pandas DataFrame back to an R dataframe (optional)</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>grouped_r <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(grouped)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>grouped_r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     island   species counts proportion
-1    Biscoe    Adelie     44  0.2619048
-2    Biscoe Chinstrap      0  0.0000000
-3    Biscoe    Gentoo    124  0.7380952
-4     Dream    Adelie     56  0.4516129
-5     Dream Chinstrap     68  0.5483871
-6     Dream    Gentoo      0  0.0000000
-7 Torgersen    Adelie     52  1.0000000
-8 Torgersen Chinstrap      0  0.0000000
-9 Torgersen    Gentoo      0  0.0000000</code></pre>
-</div>
-</div>
-<p>הפקודה <code>py_to_r</code> מעבירה את התוצאות חזרה לאובייקטים של R, וניתן לעבוד איתם באופן רגיל. במקרה זה האובייקט <code>grouped_r</code> הוא מסוג <code>data.frame</code>.</p>
-</section>
-<section id="סיכום" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">10.4</span> סיכום</h2>
-<p>בפרק זה עסקנו בשילוב בין שפת פיית’ון לבין R באמצעות חבילת <code>reticulate</code>. שילוב זה מאפשר לנצל את היתרונות של כל אחת מהשפות. אני באופן אישי מעדיף להשתמש בעיקר ב-R, במיוחד בכל המקרים של ניתוח נתונים “קלאסי” (כל מה שמכוסה בפרקים השונים של ספר זה).</p>
-<p>המקרים בהם יש יתרון לשימוש בפיית’ון באמצעות <code>reticulate</code> הם כאשר ישנה חבילה מסוימת שהיא יותר “בשלה” או מתוחזקת היטב בפיית’ון אבל המקבילה שלה ב-R אינה קיימת, או מתוחזקת באופן חלקי/לא מספק.</p>
-<p>ראינו כיצד מתקינים סביבת פיית’ון באמצעות פקודות של <code>reticulate</code>, כיצד אובייקטים עוברים המרה משפה לשפה, וכיצד לשלב קוד פיית’ון בתוך סקריפט של R.</p>
-<p>בפרק הבא נראה דוגמה פרקטית נוספת של שימוש בספריית <code>openai</code> של פיית’ון, להפעלת מודלי LLM של חברת OpenAI.</p>
 <div class="end-page">
+
+</div>
 
 <div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
 <p><strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href="https://www.sarid-ins.com">מכון שריד</a></p>
 </div>
-</div>
+<p>:::</p>
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -888,13 +716,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./09-purrr.html" class="pagination-link" aria-label="לולאות מיוחדות">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">לולאות מיוחדות</span></span>
+      <a href="./10-using-reticulate.html" class="pagination-link" aria-label="פיית'ון מתוך R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">פיית’ון מתוך R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./11-using-llms.html" class="pagination-link" aria-label="הפעלת מודלי שפה (LLMs)">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12-hebrew-in-R.html" class="pagination-link" aria-label="עברית ב-R">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">עברית ב-R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
