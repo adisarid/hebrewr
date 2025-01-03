@@ -212,8 +212,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-using-openai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת ChatGPT</span></span></a>
+  <a href="./11-using-llms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -275,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>בפרק זה נלמד על השימוש בחבילת <code>purrr</code> לצורך בניית לולאות. הפונקציות שזמינות לנו בחבילה זו מחליפות את רוב השימושים בהם נרצה להפעיל את <code>for</code> (שהוזכרה ב<a href="02-base-R.html" class="quarto-xref">פרק&nbsp;<span>2</span></a>).</p>
+<p>בפרק זה נלמד על השימוש בחבילת <code>purrr</code> לצורך בניית לולאות. הפונקציות שזמינות לנו בחבילה זו מחליפות את רוב השימושים בהם נרצה להפעיל את <code>for</code> (שהוזכרה ב<a href="#sec-base-r" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-base-r</span></a>).</p>
 <p>היתרונות בשימוש בפונקציות מחבילת <code>purrr</code> על פני לולאות <code>for</code> הינם:</p>
 <ul>
 <li><p>מהירות - יש מקרים בהם השימוש בפונקציות אלו יניב תוצאות מהירות משמעותית מהשימוש בלולאות <code>for</code></p></li>
@@ -461,7 +461,7 @@ $ p.value_sexmale            &lt;dbl&gt; 9.707824e-05, 4.738359e-01, 2.935314e-0
 <section id="הדגמה-לויזואליזציות" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="הדגמה-לויזואליזציות"><span class="header-section-number">9.4</span> הדגמה לויז’ואליזציות</h2>
 <p>כעת נדגים יצירה של ויז’ואליזציות עבור התפלגות שאריות המודלים, גם תוך שימוש ב-<code>map</code>.</p>
-<p>ראשית נגדיר פונקציה אשר מייצרת ויז’ואליזציה לשאריות בהתבסס על המודל. ראינו דוגמה כזו ב<a href="07-linear-regression.html" class="quarto-xref">פרק&nbsp;<span>7</span></a>:</p>
+<p>ראשית נגדיר פונקציה אשר מייצרת ויז’ואליזציה לשאריות בהתבסס על המודל. ראינו דוגמה כזו ב<a href="#sec-linear-regression" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-linear-regression</span></a>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_residuals <span class="ot">&lt;-</span> <span class="cf">function</span>(lm_res){</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">resid =</span> lm_res<span class="sc">$</span>residuals)) <span class="sc">+</span> </span>

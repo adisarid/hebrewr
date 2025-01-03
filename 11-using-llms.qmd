@@ -32,31 +32,59 @@ library(ellmer)
 
 ## הגדרת המפתחות
 
-לפני שאנחנו מתחילים לעבוד עם החבילה, מומלץ לפתוח קובץ עם סיומת `.Renviron` בתיקיית העבודה, שיכיל את המפתחות הנדרשים להפעלה של ה-API. ברגע ש-R עולה הוא יקרא את המשתנה לתוך משתנה סביבה.
+לפני שאנחנו מתחילים לעבוד עם החבילה, מומלץ לפתוח קובץ עם סיומת `Renviron` בתיקיית העבודה, שיכיל את המפתחות הנדרשים להפעלה של ה-API. ברגע ש-R עולה הוא יקרא את המשתנה לתוך משתנה סביבה.
 
-הנה דוגמה לקובץ `.Renviron` שמכיל מפתח לשימוש ב-OpenAI:
+ניתן לערוך את הקובץ על ידי שימוש בפקודה הבאה: `usethis::edit_r_environ()`.
+
+הנה דוגמה לקובץ `Renviron` שמכיל מפתח לשימוש ב-OpenAI:
 
 ```         
+# Example for a .Renviron file
 OPENAI_API_KEY = "***** ADD YOUR SECRET OPENAI KEY HERE *****"
 ```
 
-ניתן להוסיף מפתחות לשירותים נוספים בשורה חדשה. את ערכיהם של המשתנים הגלובליים ניתן לקרוא על ידי שימוש בפקודה `Sys.getenv("OPENAI_API_KEY")` אבל בפועל לא תצטרכו כי הפקודות של החבילה יודעות לחפש אותם לבד, ברגע שהם נקראו לסביבה.
+ניתן להוסיף מפתחות לשירותים נוספים בשורה חדשה (לדוגמה עבור מודל קלוד של אנטרופיק, הגדירו משתנה `ANTHROPIC_API_KEY`).
+
+את ערכיהם של המשתנים הגלובליים ניתן לקרוא על ידי שימוש בפקודה `Sys.getenv("OPENAI_API_KEY")` אבל בפועל לא תצטרכו כי הפקודות של החבילה יודעות לחפש אותם לבד, ברגע שהם נקראו לסביבה.
 
 כדי להשיג מפתח לשימוש, עליכם לקחת אותו מממשק השליטה של השירות שבו אתם משתמשים (לדוגמה ב-OpenAI צריך לעשות הרשמה קצרה כמפתח developer ולתת מספר כרטיס אשראי. בדרך מקבלים סכום התחלתי מרשים של קרדיטים לשימוש חינמי).
 
-אם אתם משתמשים ב-git, מומלץ לוודא שיש לכם גם קובץ `.gitignore`, ושהוא מכיל שורה שכתוב בה `.Renviron` על מנת שהקוד הסודי לא יעלה ל-repository בטעות (וזה במיוחד חשוב אם אתם עובדים על repository ציבורי, אחרת עלולים להשתמש במפתחות שלכם ותחויבו על השימושים הללו).
+::: callout-tip
+## שימוש בקבצי \`gitignore\`
+
+אם אתם משתמשים ב-git, מומלץ לוודא שיש לכם גם קובץ `gitignore`, ושהוא מכיל שורה שכתוב בה `Renviron` על מנת שהקוד הסודי לא יעלה ל-repository בטעות (וזה במיוחד חשוב אם אתם עובדים על repository ציבורי, אחרת עלולים להשתמש במפתחות שלכם ותחויבו על השימושים הללו). להלן דוגמה לקובץ זה, הכוללת המלצות נוספות שקשורות בפרויקטי R:
+
+```         
+# Example for .gitignore file  
+# Ignore global environment variables 
+.Renviron  
+
+# History files 
+.Rhistory 
+.Rapp.history  
+
+# Session Data files 
+.RData  
+
+# User-specific files 
+.Ruserdata  
+
+# RStudio internal project files 
+.Rproj.user/ 
+```
+:::
 
 כעת נציג דוגמה להפעלת צ'ט ולאחר מכן נסביר בפירוט על הפקודות של החבילה.
 
-## הפעלת צ'ט - דוגמה
+## היסטוריה מנוהלת
 
-היופי שבחבילת `ellmer` זה שהיא מייצרת ממשק מאוד נוח לצ'ט, והיא מנהלת את היסטורית השיחה עבורנו. לדוגמה, הנה שתי דוגמאות, אחת שכוללת היסטורית שיחה והשניה ללא היסטוריה.
+היופי שבחבילת `ellmer` זה שהיא מייצרת ממשק מאוד נוח לצ'ט, והיא מנהלת את היסטורית השיחה עבורנו. לדוגמה שתי שיחות דומות, באחת יש יותר הסטוריה מהשניה:
 
 בשתי הדוגמאות אנחנו מאתחלים את הצ'ט עם פרומפט בסיסי (אפילו בסיסי מדי) שאומר למודל לענות כמיטב יכולתו. ההבדל בין הדוגמאות הוא שבצד ימין הוספנו הנחיה "מעכשיו אתה קפטן פיקארד" ואז שאלנו אותו מה התאריך, ולעומת זאת בצד שמאל ישר שאלנו אותו מה התאריך.
 
 בשני המקרים השאלה של "מה התאריך" עומדת, לכאורה, בפני עצמה - כלומר בפקודה נפרדת, אבל ניתן לראות שהאובייקט `chat` מכיל את ההיסטוריה, ולכן בצד ימין עונה כמו קפטן פיקארד. ה-API כמובן לא מחובר לשעון כלשהו ולכן לא עונה בפועל על השאלה.
 
-כל הרצה נוספת של `chat$chat()` מעלה למעשה את כל ההיסטוריה של השאלות ושל התשובות שניתנו בחזרה ל-API שעמו אנחנו מתקשרים וכך התשובה תמיד שומרת על ההקשר הרלוונטי של השיחה.
+כל הרצה נוספת של `chat$chat` מעלה למעשה את כל ההיסטוריה של השאלות ושל התשובות שניתנו בחזרה ל-API שעמו אנחנו מתקשרים וכך התשובה תמיד שומרת על ההקשר הרלוונטי של השיחה.
 
 ::: side-by-side
 ```{r example gpt-4o}
@@ -96,4 +124,193 @@ chat$chat("איזה יום היום?")
 #אנא בדוק זאת באמצעות 
 #מכשיר אחר או לוח שנה.
 ```
+:::
+
+נעבור להסבר מפורט של השימוש בפקודה `chat_openai`, כאשר פקודות אחרות בחבילה פועלות בפורמט דומה מאוד רק עם מודלים של חברות אחרות.
+
+## הסבר מפורט ל- `chat_openai`
+
+השלב הראשון בהפעלת הפקודה הוא להגדיר אובייקט שיחה של open ai. ניתן להגדיר מספר אובייקטים שונים למטרות שונות, כאשר כל אובייקט יחזיק הנחיות, מודל, והיסטוריה משל עצמו. לדוגמה:
+
+```{r define chat session}
+#| include: true
+#| eval: true
+library(ellmer)
+my_chat <- chat_openai(
+    system_prompt = 
+    "You are an expert in using R, tidyverse, and ggplot2. 
+    Keep your responses concise, provide minimal examples.",
+    model = "gpt-4o",
+)
+```
+
+בפקודה זו הגדרנו אובייקט `my_chat` שיעשה שימוש במודל "gpt-4o", וההנחיה הראשונית שלו היא לנהוג כמומחה לשפת R, tidyverse, ו-ggplot2, וכמו כן לשמור על התגובות שלו תמציתיות ועם דוגמאות מינימליות.
+
+כעת כל הפעלה של המודל תתבצע על ידי הפעלת הפונקציה `chat` שנמצאת בתוך אובייקט `my_chat`, באופן הבא:
+
+```{r example for run}
+#| include: true
+#| eval: false
+my_chat$chat("Create an example of a chart using mtcars and ggplot2.")
+```
+
+פלט הפקודה יהיה:
+
+````         
+Certainly! Here's a simple example of a scatter plot using the `mtcars` 
+dataset, showcasing the relationship between miles per gallon (`mpg`) and 
+horsepower (`hp`):
+
+```
+# Load ggplot2
+library(ggplot2)
+
+# Create scatter plot
+ggplot(data = mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  labs(title = "MPG vs Horsepower",
+       x = "Horsepower",
+       y = "Miles Per Gallon") +
+  theme_minimal()
+```
+
+This code will create a scatter plot with points representing each car in the 
+ The x-axis represents horsepower and the y-axis represents miles per 
+gallon.
+````
+
+### היסטוריית השיחה
+
+ניתן לצפות בכל ההיסטוריה על ידי קריאה לאובייקט המקורי:
+
+```{r example history}
+#| eval: false
+my_chat
+```
+
+````         
+<Chat turns=3 tokens=52/142>
+── system ──────────────────────────────────────────────────────────────────────
+You are an expert in using R, tidyverse, and ggplot2.  Keep your responses 
+concise, provide minimal examples.
+── user ────────────────────────────────────────────────────────────────────────
+Create an example of a chart using mtcars and ggplot2.
+── assistant ───────────────────────────────────────────────────────────────────
+Certainly! Here's a simple example of a scatter plot using the `mtcars` 
+dataset, showcasing the relationship between miles per gallon (`mpg`) and 
+horsepower (`hp`):
+
+```r 
+# Load ggplot2 library(ggplot2)
+
+# Create scatter plot ggplot(data = mtcars, aes(x = hp, y = mpg)) + 
+geom_point() + labs(title = "MPG vs Horsepower", x = "Horsepower", y = "Miles 
+Per Gallon") + theme_minimal() 
+```
+
+This code will create a scatter plot with points representing each car in the 
+dataset. The x-axis represents horsepower and the y-axis represents miles per 
+gallon.
+````
+
+### חישוב עלויות
+
+מספר הטוקנים (tokens) יכול לשמש להערכה של עלויות ההרצה. טוקנים שקולים למילים או רכיבי שפה אחרים שמתרגמים לפיצ'רים של המודל.
+
+```{r sample tokens}
+#| eval: false
+my_chat$tokens()
+```
+
+```         
+     input output
+[1,]     0      0
+[2,]     0      0
+[3,]    52    142
+```
+
+לדוגמה, במקרה זה השתמשנו ב-142 טוקנים מסוג פלט (בתשובות המודל) ו-52 טוקנים מסוג קלט, ומכיוון שכל פעם כל היסטוריית הצ'ט נשלחת למודל, הערכים הללו יצטברו:
+
+```{r sample tokens 2}
+#| eval: false
+my_chat$chat("Explain tokens")
+```
+
+```         
+In R, particularly within the context of data manipulation and visualization 
+the term "token" isn't commonly used. However, in 
+and data contexts, "tokens" can refer to different 
+concepts:
+
+**Programming Context**: Tokens are the smallest units of code that carry 
+keywords, operators, identifiers, and literals. In R, the 
+ breaks down code into tokens to analyze and execute it.
+
+**Text Analysis**: In text mining, a token is a single element of a text, 
+ a phrase, that is extracted during the process of tokenization.
+Tokenization is the process of breaking text data into individual pieces or 
+tokens.
+
+3. **Authentication Context**: A token could refer to a security token in API 
+acting as a key that provides access to resources or services.
+
+If you meant "tokens" in relation to another specific context, please provide 
+more details for a more targeted explanation.
+```
+
+```{r total tokens now}
+#| eval: false
+my_chat$tokens()
+```
+
+```         
+     input output
+[1,]     0      0
+[2,]     0      0
+[3,]    52    142
+[4,]     0      0
+[5,]   204    199
+```
+
+בעת כתיבת שורות אלו העלות של gpt-4o היא:
+
+-   2.5\$ למיליון טוקנים של קלט
+
+-   10\$ למיליון טוקנים של פלט
+
+מה שאומר שסך העלות עד כה עומדת על 0.00405\$. העלויות יורדות באופן שוטף כל פעם שיוצאים מודלים חדשים, כך שעד שתקראו שורות אלו יכול להיות שהעלויות ירדו בכמה סדרי גודל. כמו כן ישנם מודלים אחרים שכבר היום ניתן להפעיל וזולים במספר סדרי גודל כמו gpt-4o-mini.
+
+מומלץ להתאים את המודל לצורך, נניח במקרה של שימוש מאסיבי, כדאי לבחון ראשית האם המודלים הזולים יתנו ביצועים מספקים.
+
+### ניתוח של תרשימים
+
+ניתן להיעזר בפקודות `content_image_url`, `content_image_plot` ו-`content_image_file` על מנת לקודד תמונה ולהעלות אותה כחלק משיחה עם המודל. חלק מהמודלים אומנו כך שגם ידעו להסביר גרפים או תמונות.
+
+במידה ותרצו לקבל הסברים או סיכום של תרשים בצורה אינטראקטיבית (נניח תוך כדי ניתוח), וכבר ייצרתם תרשים, אז ניתן להשתמש ב-`content_image_plot` ואז התרשים שמוצג בסביבה נלקח ישירות, או לחילופין לקחת אותו מקובץ או url עם אחת משתי הפקודות האחרות.
+
+לדוגמה הנה הסבר לכריכה של הספר:
+
+```{r reading images}
+#| eval: false
+my_chat$chat("What do you see in this image?", 
+             content_image_url("https://www.hebrewr.co.il/images/hebrewr_book_cover.png"))
+```
+
+```         
+The image contains text in Hebrew and an illustration of a bird. There's a logo
+at the top, and the text appears to be related to using R.
+```
+
+::: callout-note
+## שימושים באפליקציות: הפעלה א-סנכרונית של מודלים
+
+שימוש במודלים עשוי לקחת זמן, לכן אם אנחנו מעוניינים לשלב מודלים בשימושים שדורשים עבודה רציפה ואי-היתקעות של המערכת, עלינו לעבוד באופן א-סנכרוני. חבילת `ellmer` תומכת גם בהפעלה א-סנכרונית, לדוגמה עם פקודת `chat_async`, ופקודה זו שימושית כאשר מטמיעים מודלים באפליקציות shiny. עם זאת, לא נדון בהפעלה א-סנכרונית בפרק זה, ובמידת הצורך מומלץ להיעזר בדוגמאות מהתיעוד הרשמי של החבילה.
+:::
+
+## תרגילים
+
+::: callout-note
+## תרגיל: שימוש במודל להסבר תרשים
+
+השתמשו באחת מהפונקציות שפועלות על גרפים/תמונות על מנת להסביר את אחד מהתרשימים שהוצגו [בפרק -@sec-ggplot2]. באפשרותכם להזין ישירות url מאתר הספר או לשחזר תרשים מסוים באמצעות קוד ולהשתמש בפונקציה `content_image_plot`.
 :::

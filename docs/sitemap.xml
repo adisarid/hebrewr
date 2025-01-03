@@ -1,56 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.hebrewr.co.il/index.html</loc>
-    <lastmod>2024-12-30T06:51:27.413Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/02-base-R.html</loc>
-    <lastmod>2024-09-28T14:18:19.794Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/03-data-munging-tidyverse.html</loc>
-    <lastmod>2024-12-30T06:49:06.846Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/about.html</loc>
-    <lastmod>2024-06-30T05:58:47.708Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/01-introduction.html</loc>
-    <lastmod>2024-10-03T16:16:59.104Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/04-visualizations-ggplot2.html</loc>
-    <lastmod>2024-09-28T14:32:50.782Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/05-pivot-and-join.html</loc>
-    <lastmod>2024-09-28T14:35:26.871Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/06-hypothesis-tests.html</loc>
-    <lastmod>2024-09-28T14:58:29.875Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/07-linear-regression.html</loc>
-    <lastmod>2024-04-30T04:18:30.964Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/08-advanced-models.html</loc>
-    <lastmod>2024-09-28T14:27:03.654Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/09-purrr.html</loc>
-    <lastmod>2024-04-30T04:18:30.966Z</lastmod>
-  </url>
-  <url>
     <loc>https://www.hebrewr.co.il/10-using-reticulate.html</loc>
     <lastmod>2024-10-06T05:15:20.608Z</lastmod>
   </url>
   <url>
-    <loc>https://www.hebrewr.co.il/11-using-openai.html</loc>
-    <lastmod>2024-10-06T05:15:20.609Z</lastmod>
+    <loc>https://www.hebrewr.co.il/11-using-llms.html</loc>
+    <lastmod>2025-01-03T15:18:54.160Z</lastmod>
   </url>
   <url>
     <loc>https://www.hebrewr.co.il/12-hebrew-in-R.html</loc>
@@ -59,9 +15,5 @@
   <url>
     <loc>https://www.hebrewr.co.il/references.html</loc>
     <lastmod>2023-09-25T11:52:45.152Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.hebrewr.co.il/11-using-llms.html</loc>
-    <lastmod>2025-01-03T11:00:00.965Z</lastmod>
   </url>
 </urlset>

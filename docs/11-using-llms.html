@@ -246,7 +246,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#התקנת-ellmer" id="toc-התקנת-ellmer" class="nav-link active" data-scroll-target="#התקנת-ellmer"><span class="header-section-number">11.1</span> התקנת <code>ellmer</code></a></li>
   <li><a href="#הגדרת-המפתחות" id="toc-הגדרת-המפתחות" class="nav-link" data-scroll-target="#הגדרת-המפתחות"><span class="header-section-number">11.2</span> הגדרת המפתחות</a></li>
-  <li><a href="#הפעלת-צט---דוגמה" id="toc-הפעלת-צט---דוגמה" class="nav-link" data-scroll-target="#הפעלת-צט---דוגמה"><span class="header-section-number">11.3</span> הפעלת צ’ט - דוגמה</a></li>
+  <li><a href="#היסטוריה-מנוהלת" id="toc-היסטוריה-מנוהלת" class="nav-link" data-scroll-target="#היסטוריה-מנוהלת"><span class="header-section-number">11.3</span> היסטוריה מנוהלת</a></li>
+  <li><a href="#הסבר-מפורט-ל--chat_openai" id="toc-הסבר-מפורט-ל--chat_openai" class="nav-link" data-scroll-target="#הסבר-מפורט-ל--chat_openai"><span class="header-section-number">11.4</span> הסבר מפורט ל- <code>chat_openai</code></a>
+  <ul class="collapse">
+  <li><a href="#היסטוריית-השיחה" id="toc-היסטוריית-השיחה" class="nav-link" data-scroll-target="#היסטוריית-השיחה"><span class="header-section-number">11.4.1</span> היסטוריית השיחה</a></li>
+  <li><a href="#חישוב-עלויות" id="toc-חישוב-עלויות" class="nav-link" data-scroll-target="#חישוב-עלויות"><span class="header-section-number">11.4.2</span> חישוב עלויות</a></li>
+  <li><a href="#ניתוח-של-תרשימים" id="toc-ניתוח-של-תרשימים" class="nav-link" data-scroll-target="#ניתוח-של-תרשימים"><span class="header-section-number">11.4.3</span> ניתוח של תרשימים</a></li>
+  </ul></li>
+  <li><a href="#תרגילים" id="toc-תרגילים" class="nav-link" data-scroll-target="#תרגילים"><span class="header-section-number">11.5</span> תרגילים</a></li>
   </ul>
 </nav>
     </div>
@@ -297,50 +304,241 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="הגדרת-המפתחות" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="הגדרת-המפתחות"><span class="header-section-number">11.2</span> הגדרת המפתחות</h2>
-<p>לפני שאנחנו מתחילים לעבוד עם החבילה, מומלץ לפתוח קובץ עם סיומת <code>.Renviron</code> בתיקיית העבודה, שיכיל את המפתחות הנדרשים להפעלה של ה-API. ברגע ש-R עולה הוא יקרא את המשתנה לתוך משתנה סביבה.</p>
-<p>הנה דוגמה לקובץ <code>.Renviron</code> שמכיל מפתח לשימוש ב-OpenAI:</p>
-<pre><code>OPENAI_API_KEY = "***** ADD YOUR SECRET OPENAI KEY HERE *****"</code></pre>
-<p>ניתן להוסיף מפתחות לשירותים נוספים בשורה חדשה. את ערכיהם של המשתנים הגלובליים ניתן לקרוא על ידי שימוש בפקודה <code>Sys.getenv("OPENAI_API_KEY")</code> אבל בפועל לא תצטרכו כי הפקודות של החבילה יודעות לחפש אותם לבד, ברגע שהם נקראו לסביבה.</p>
+<p>לפני שאנחנו מתחילים לעבוד עם החבילה, מומלץ לפתוח קובץ עם סיומת <code>Renviron</code> בתיקיית העבודה, שיכיל את המפתחות הנדרשים להפעלה של ה-API. ברגע ש-R עולה הוא יקרא את המשתנה לתוך משתנה סביבה.</p>
+<p>ניתן לערוך את הקובץ על ידי שימוש בפקודה הבאה: <code>usethis::edit_r_environ()</code>.</p>
+<p>הנה דוגמה לקובץ <code>Renviron</code> שמכיל מפתח לשימוש ב-OpenAI:</p>
+<pre><code># Example for a .Renviron file
+OPENAI_API_KEY = "***** ADD YOUR SECRET OPENAI KEY HERE *****"</code></pre>
+<p>ניתן להוסיף מפתחות לשירותים נוספים בשורה חדשה (לדוגמה עבור מודל קלוד של אנטרופיק, הגדירו משתנה <code>ANTHROPIC_API_KEY</code>).</p>
+<p>את ערכיהם של המשתנים הגלובליים ניתן לקרוא על ידי שימוש בפקודה <code>Sys.getenv("OPENAI_API_KEY")</code> אבל בפועל לא תצטרכו כי הפקודות של החבילה יודעות לחפש אותם לבד, ברגע שהם נקראו לסביבה.</p>
 <p>כדי להשיג מפתח לשימוש, עליכם לקחת אותו מממשק השליטה של השירות שבו אתם משתמשים (לדוגמה ב-OpenAI צריך לעשות הרשמה קצרה כמפתח developer ולתת מספר כרטיס אשראי. בדרך מקבלים סכום התחלתי מרשים של קרדיטים לשימוש חינמי).</p>
-<p>אם אתם משתמשים ב-git, מומלץ לוודא שיש לכם גם קובץ <code>.gitignore</code>, ושהוא מכיל שורה שכתוב בה <code>.Renviron</code> על מנת שהקוד הסודי לא יעלה ל-repository בטעות (וזה במיוחד חשוב אם אתם עובדים על repository ציבורי, אחרת עלולים להשתמש במפתחות שלכם ותחויבו על השימושים הללו).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+שימוש בקבצי `gitignore`
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>אם אתם משתמשים ב-git, מומלץ לוודא שיש לכם גם קובץ <code>gitignore</code>, ושהוא מכיל שורה שכתוב בה <code>Renviron</code> על מנת שהקוד הסודי לא יעלה ל-repository בטעות (וזה במיוחד חשוב אם אתם עובדים על repository ציבורי, אחרת עלולים להשתמש במפתחות שלכם ותחויבו על השימושים הללו). להלן דוגמה לקובץ זה, הכוללת המלצות נוספות שקשורות בפרויקטי R:</p>
+<pre><code># Example for .gitignore file  
+# Ignore global environment variables 
+.Renviron  
+
+# History files 
+.Rhistory 
+.Rapp.history  
+
+# Session Data files 
+.RData  
+
+# User-specific files 
+.Ruserdata  
+
+# RStudio internal project files 
+.Rproj.user/ </code></pre>
+</div>
+</div>
 <p>כעת נציג דוגמה להפעלת צ’ט ולאחר מכן נסביר בפירוט על הפקודות של החבילה.</p>
 </section>
-<section id="הפעלת-צט---דוגמה" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="הפעלת-צט---דוגמה"><span class="header-section-number">11.3</span> הפעלת צ’ט - דוגמה</h2>
-<p>היופי שבחבילת <code>ellmer</code> זה שהיא מייצרת ממשק מאוד נוח לצ’ט, והיא מנהלת את היסטורית השיחה עבורנו. לדוגמה, הנה שתי דוגמאות, אחת שכוללת היסטורית שיחה והשניה ללא היסטוריה.</p>
+<section id="היסטוריה-מנוהלת" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="היסטוריה-מנוהלת"><span class="header-section-number">11.3</span> היסטוריה מנוהלת</h2>
+<p>היופי שבחבילת <code>ellmer</code> זה שהיא מייצרת ממשק מאוד נוח לצ’ט, והיא מנהלת את היסטורית השיחה עבורנו. לדוגמה שתי שיחות דומות, באחת יש יותר הסטוריה מהשניה:</p>
 <p>בשתי הדוגמאות אנחנו מאתחלים את הצ’ט עם פרומפט בסיסי (אפילו בסיסי מדי) שאומר למודל לענות כמיטב יכולתו. ההבדל בין הדוגמאות הוא שבצד ימין הוספנו הנחיה “מעכשיו אתה קפטן פיקארד” ואז שאלנו אותו מה התאריך, ולעומת זאת בצד שמאל ישר שאלנו אותו מה התאריך.</p>
 <p>בשני המקרים השאלה של “מה התאריך” עומדת, לכאורה, בפני עצמה - כלומר בפקודה נפרדת, אבל ניתן לראות שהאובייקט <code>chat</code> מכיל את ההיסטוריה, ולכן בצד ימין עונה כמו קפטן פיקארד. ה-API כמובן לא מחובר לשעון כלשהו ולכן לא עונה בפועל על השאלה.</p>
-<p>כל הרצה נוספת של <code>chat$chat()</code> מעלה למעשה את כל ההיסטוריה של השאלות ושל התשובות שניתנו בחזרה ל-API שעמו אנחנו מתקשרים וכך התשובה תמיד שומרת על ההקשר הרלוונטי של השיחה.</p>
+<p>כל הרצה נוספת של <code>chat$chat</code> מעלה למעשה את כל ההיסטוריה של השאלות ושל התשובות שניתנו בחזרה ל-API שעמו אנחנו מתקשרים וכך התשובה תמיד שומרת על ההקשר הרלוונטי של השיחה.</p>
 <div class="side-by-side">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chat_openai</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Answer the best you can"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using model = "gpt-4o".</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"מעכשיו אתה קפטן Jean-Luc Picard"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#בכבוד רב, אני מקבל את תפקידי כקפטן ז'אן-לוק</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># פיקארד ומברך את כולכם על סיפון האנטרפרייז. </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># האם יש בקשות או שאלות שברצונכם לדון בהן?</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># "Make it so!"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"איזה יום היום?"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#לצערי, אני לא יכול לגשת למידע בזמן אמת </span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># או לדעת את התאריך הנוכחי. </span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># אבל תמיד אפשר להיעזר בקומוניקטור שלך </span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># או בכל לוח שנה זמין. אם יש עוד משהו שאוכל</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># אנא אל תהסס לשאול!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chat_openai</span>(</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Answer the best you can"</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using model = "gpt-4o".</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"איזה יום היום?"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#אני מצטער, אבל אין לי את האפשרות </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#לבדוק את התאריך הנוכחי.</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#אנא בדוק זאת באמצעות </span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#מכשיר אחר או לוח שנה.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"מעכשיו אתה קפטן Jean-Luc Picard"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#בכבוד רב, אני מקבל את תפקידי כקפטן ז'אן-לוק</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># פיקארד ומברך את כולכם על סיפון האנטרפרייז. </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># האם יש בקשות או שאלות שברצונכם לדון בהן?</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># "Make it so!"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"איזה יום היום?"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#לצערי, אני לא יכול לגשת למידע בזמן אמת </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># או לדעת את התאריך הנוכחי. </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># אבל תמיד אפשר להיעזר בקומוניקטור שלך </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># או בכל לוח שנה זמין. אם יש עוד משהו שאוכל</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># אנא אל תהסס לשאול!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chat_openai</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Answer the best you can"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using model = "gpt-4o".</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"איזה יום היום?"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#אני מצטער, אבל אין לי את האפשרות </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#לבדוק את התאריך הנוכחי.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#אנא בדוק זאת באמצעות </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#מכשיר אחר או לוח שנה.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>נעבור להסבר מפורט של השימוש בפקודה <code>chat_openai</code>, כאשר פקודות אחרות בחבילה פועלות בפורמט דומה מאוד רק עם מודלים של חברות אחרות.</p>
+</section>
+<section id="הסבר-מפורט-ל--chat_openai" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="הסבר-מפורט-ל--chat_openai"><span class="header-section-number">11.4</span> הסבר מפורט ל- <code>chat_openai</code></h2>
+<p>השלב הראשון בהפעלת הפקודה הוא להגדיר אובייקט שיחה של open ai. ניתן להגדיר מספר אובייקטים שונים למטרות שונות, כאשר כל אובייקט יחזיק הנחיות, מודל, והיסטוריה משל עצמו. לדוגמה:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>my_chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">system_prompt =</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"You are an expert in using R, tidyverse, and ggplot2. </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">    Keep your responses concise, provide minimal examples."</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"gpt-4o"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>בפקודה זו הגדרנו אובייקט <code>my_chat</code> שיעשה שימוש במודל “gpt-4o”, וההנחיה הראשונית שלו היא לנהוג כמומחה לשפת R, tidyverse, ו-ggplot2, וכמו כן לשמור על התגובות שלו תמציתיות ועם דוגמאות מינימליות.</p>
+<p>כעת כל הפעלה של המודל תתבצע על ידי הפעלת הפונקציה <code>chat</code> שנמצאת בתוך אובייקט <code>my_chat</code>, באופן הבא:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Create an example of a chart using mtcars and ggplot2."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>פלט הפקודה יהיה:</p>
+<pre><code>Certainly! Here's a simple example of a scatter plot using the `mtcars` 
+dataset, showcasing the relationship between miles per gallon (`mpg`) and 
+horsepower (`hp`):
+
+```
+# Load ggplot2
+library(ggplot2)
+
+# Create scatter plot
+ggplot(data = mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  labs(title = "MPG vs Horsepower",
+       x = "Horsepower",
+       y = "Miles Per Gallon") +
+  theme_minimal()
+```
+
+This code will create a scatter plot with points representing each car in the 
+ The x-axis represents horsepower and the y-axis represents miles per 
+gallon.</code></pre>
+<section id="היסטוריית-השיחה" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="היסטוריית-השיחה"><span class="header-section-number">11.4.1</span> היסטוריית השיחה</h3>
+<p>ניתן לצפות בכל ההיסטוריה על ידי קריאה לאובייקט המקורי:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_chat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>&lt;Chat turns=3 tokens=52/142&gt;
+── system ──────────────────────────────────────────────────────────────────────
+You are an expert in using R, tidyverse, and ggplot2.  Keep your responses 
+concise, provide minimal examples.
+── user ────────────────────────────────────────────────────────────────────────
+Create an example of a chart using mtcars and ggplot2.
+── assistant ───────────────────────────────────────────────────────────────────
+Certainly! Here's a simple example of a scatter plot using the `mtcars` 
+dataset, showcasing the relationship between miles per gallon (`mpg`) and 
+horsepower (`hp`):
+
+```r 
+# Load ggplot2 library(ggplot2)
+
+# Create scatter plot ggplot(data = mtcars, aes(x = hp, y = mpg)) + 
+geom_point() + labs(title = "MPG vs Horsepower", x = "Horsepower", y = "Miles 
+Per Gallon") + theme_minimal() 
+```
+
+This code will create a scatter plot with points representing each car in the 
+dataset. The x-axis represents horsepower and the y-axis represents miles per 
+gallon.</code></pre>
+</section>
+<section id="חישוב-עלויות" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="חישוב-עלויות"><span class="header-section-number">11.4.2</span> חישוב עלויות</h3>
+<p>מספר הטוקנים (tokens) יכול לשמש להערכה של עלויות ההרצה. טוקנים שקולים למילים או רכיבי שפה אחרים שמתרגמים לפיצ’רים של המודל.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>my_chat<span class="sc">$</span><span class="fu">tokens</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>     input output
+[1,]     0      0
+[2,]     0      0
+[3,]    52    142</code></pre>
+<p>לדוגמה, במקרה זה השתמשנו ב-142 טוקנים מסוג פלט (בתשובות המודל) ו-52 טוקנים מסוג קלט, ומכיוון שכל פעם כל היסטוריית הצ’ט נשלחת למודל, הערכים הללו יצטברו:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Explain tokens"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>In R, particularly within the context of data manipulation and visualization 
+the term "token" isn't commonly used. However, in 
+and data contexts, "tokens" can refer to different 
+concepts:
+
+**Programming Context**: Tokens are the smallest units of code that carry 
+keywords, operators, identifiers, and literals. In R, the 
+ breaks down code into tokens to analyze and execute it.
+
+**Text Analysis**: In text mining, a token is a single element of a text, 
+ a phrase, that is extracted during the process of tokenization.
+Tokenization is the process of breaking text data into individual pieces or 
+tokens.
+
+3. **Authentication Context**: A token could refer to a security token in API 
+acting as a key that provides access to resources or services.
+
+If you meant "tokens" in relation to another specific context, please provide 
+more details for a more targeted explanation.</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_chat<span class="sc">$</span><span class="fu">tokens</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>     input output
+[1,]     0      0
+[2,]     0      0
+[3,]    52    142
+[4,]     0      0
+[5,]   204    199</code></pre>
+<p>בעת כתיבת שורות אלו העלות של gpt-4o היא:</p>
+<ul>
+<li><p>2.5$ למיליון טוקנים של קלט</p></li>
+<li><p>10$ למיליון טוקנים של פלט</p></li>
+</ul>
+<p>מה שאומר שסך העלות עד כה עומדת על 0.00405$. העלויות יורדות באופן שוטף כל פעם שיוצאים מודלים חדשים, כך שעד שתקראו שורות אלו יכול להיות שהעלויות ירדו בכמה סדרי גודל. כמו כן ישנם מודלים אחרים שכבר היום ניתן להפעיל וזולים במספר סדרי גודל כמו gpt-4o-mini.</p>
+<p>מומלץ להתאים את המודל לצורך, נניח במקרה של שימוש מאסיבי, כדאי לבחון ראשית האם המודלים הזולים יתנו ביצועים מספקים.</p>
+</section>
+<section id="ניתוח-של-תרשימים" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="ניתוח-של-תרשימים"><span class="header-section-number">11.4.3</span> ניתוח של תרשימים</h3>
+<p>ניתן להיעזר בפקודות <code>content_image_url</code>, <code>content_image_plot</code> ו-<code>content_image_file</code> על מנת לקודד תמונה ולהעלות אותה כחלק משיחה עם המודל. חלק מהמודלים אומנו כך שגם ידעו להסביר גרפים או תמונות.</p>
+<p>במידה ותרצו לקבל הסברים או סיכום של תרשים בצורה אינטראקטיבית (נניח תוך כדי ניתוח), וכבר ייצרתם תרשים, אז ניתן להשתמש ב-<code>content_image_plot</code> ואז התרשים שמוצג בסביבה נלקח ישירות, או לחילופין לקחת אותו מקובץ או url עם אחת משתי הפקודות האחרות.</p>
+<p>לדוגמה הנה הסבר לכריכה של הספר:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>my_chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"What do you see in this image?"</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">content_image_url</span>(<span class="st">"https://www.hebrewr.co.il/images/hebrewr_book_cover.png"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>The image contains text in Hebrew and an illustration of a bird. There's a logo
+at the top, and the text appears to be related to using R.</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+שימושים באפליקציות: הפעלה א-סנכרונית של מודלים
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>שימוש במודלים עשוי לקחת זמן, לכן אם אנחנו מעוניינים לשלב מודלים בשימושים שדורשים עבודה רציפה ואי-היתקעות של המערכת, עלינו לעבוד באופן א-סנכרוני. חבילת <code>ellmer</code> תומכת גם בהפעלה א-סנכרונית, לדוגמה עם פקודת <code>chat_async</code>, ופקודה זו שימושית כאשר מטמיעים מודלים באפליקציות shiny. עם זאת, לא נדון בהפעלה א-סנכרונית בפרק זה, ובמידת הצורך מומלץ להיעזר בדוגמאות מהתיעוד הרשמי של החבילה.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="תרגילים" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="תרגילים"><span class="header-section-number">11.5</span> תרגילים</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: שימוש במודל להסבר תרשים
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>השתמשו באחת מהפונקציות שפועלות על גרפים/תמונות על מנת להסביר את אחד מהתרשימים שהוצגו <a href="04-visualizations-ggplot2.html" class="quarto-xref">בפרק&nbsp;<span>4</span></a>. באפשרותכם להזין ישירות url מאתר הספר או לשחזר תרשים מסוים באמצעות קוד ולהשתמש בפונקציה <code>content_image_plot</code>.</p>
 </div>
 </div>
 

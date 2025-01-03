@@ -261,8 +261,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-using-openai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת ChatGPT</span></span></a>
+  <a href="./11-using-llms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">הפעלת מודלי שפה (LLMs)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -363,8 +363,8 @@ window.Quarto = {
 <p>ישנן משפחות רבות של מודלים מונחים, בין המוכרים כלולים גם מודלי שפה (כגון ChatGPT), אך גם מודלים לזיהוי נטישה, זיהוי הונאות, רגרסיות למיניהן, למידה עמוקה, ועוד.</p>
 <p>הספר הנוכחי אינו מתמקד בתיאוריה העומדת בבסיס המודלים השונים, אלא מהווה עזר מעשי להפעלת המודלים. אתם מוזמנים לעיין בספרים הבאים לצורך העמקה תיאורתית:</p>
 <ul>
-<li><p>The Elements of statistical learning <span class="citation" data-cites="hastie2009">(<a href="references.html#ref-hastie2009" role="doc-biblioref">Hastie, Tibshirani, and Friedman 2009</a>)</span></p></li>
-<li><p>An Introduction to Statistical Learning <span class="citation" data-cites="james2021">(<a href="references.html#ref-james2021" role="doc-biblioref">James et al. 2021</a>)</span></p></li>
+<li><p>The Elements of statistical learning <span class="citation" data-cites="hastie2009">(<a href="#ref-hastie2009" role="doc-biblioref">Hastie, Tibshirani, and Friedman 2009</a>)</span></p></li>
+<li><p>An Introduction to Statistical Learning <span class="citation" data-cites="james2021">(<a href="#ref-james2021" role="doc-biblioref">James et al. 2021</a>)</span></p></li>
 </ul>
 </div>
 </div>
@@ -430,7 +430,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>בדרך כלל לאחר פיצול הדאטה נבצע ויז’ואליזציות שונות כדי להבין איך משתנים שונים משפיעים על המשתנה התלוי (לפני שרואים את השפעתם במודל עצמו). בשלב זה העבודה שתוארה ב<a href="04-visualizations-ggplot2.html" class="quarto-xref">פרק&nbsp;<span>4</span></a> תהא משמעותית מאוד. לצורך תרגול, בחנו כיצד המשתנים השונים שבדאטה שלנו (penguin_train) משפיעים על מין התצפית.</p>
+<p>בדרך כלל לאחר פיצול הדאטה נבצע ויז’ואליזציות שונות כדי להבין איך משתנים שונים משפיעים על המשתנה התלוי (לפני שרואים את השפעתם במודל עצמו). בשלב זה העבודה שתוארה ב<a href="#sec-ggplot2" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-ggplot2</span></a> תהא משמעותית מאוד. לצורך תרגול, בחנו כיצד המשתנים השונים שבדאטה שלנו (penguin_train) משפיעים על מין התצפית.</p>
 <ol type="1">
 <li>השתמשו בויז’ואליזציות שונות כפי שנלמדו והודגמו בפרק על ויז’ואליזציות. לאור הבדיקה, אילו משתנים הייתם מצפים שיהיו משמעותיים במודלים שנפתח?</li>
 <li>ישנן שלוש תצפיות בעלות ערך חסר (ללא מין) בקבוצת האימון. לא נוכל להשתמש בתצפיות אלו לצורך אימון המודל - הסבירו מדוע.</li>
@@ -441,7 +441,7 @@ window.Quarto = {
 <section id="בניית-מתכון" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="בניית-מתכון"><span class="header-section-number">8.4</span> בניית מתכון</h2>
 <p>כפי שמיד תראו, חבילת tidymodels מאמצת ז’רגון של מטבח כמו בניית מתכון - recipe, סחיטת מיצים - juice, אפייה - bake, גזר לבן - parsnip, ועוד.<br>
-בשלב זה נבנה “מתכון” שהמטרה שלו להגדיר את השינויים שעובר הדאטה לפני שהוא נכנס למודל. במובן מסויים, התהליך מאוד דומה לתהליך שתואר ב<a href="03-data-munging-tidyverse.html" class="quarto-xref">פרק&nbsp;<span>3</span></a> על הכנת נתונים, אך יש הבדל מהותי: מתכון זה יופעל אוטומטית בכל פעם שנרצה להפעיל את המודל מחדש על תצפיות חדשות, וכן הוא יופעל גם במהלך שלב הכיוונים (וגם ניתן יהיה להגדיר היפר-פרמטרים כחלק מהמתכון, ולאפשר לשלב הכיוונון לבדוק גם אותם).</p>
+בשלב זה נבנה “מתכון” שהמטרה שלו להגדיר את השינויים שעובר הדאטה לפני שהוא נכנס למודל. במובן מסויים, התהליך מאוד דומה לתהליך שתואר ב<a href="#sec-data-munging-tidyverse" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-data-munging-tidyverse</span></a> על הכנת נתונים, אך יש הבדל מהותי: מתכון זה יופעל אוטומטית בכל פעם שנרצה להפעיל את המודל מחדש על תצפיות חדשות, וכן הוא יופעל גם במהלך שלב הכיוונים (וגם ניתן יהיה להגדיר היפר-פרמטרים כחלק מהמתכון, ולאפשר לשלב הכיוונון לבדוק גם אותם).</p>
 <p>בבניית המתכון הבא נפעיל מספר צעדים, החל מהפקודה <code>recipe</code> לאתחול המקום ודרך צעדים שונים (<code>step</code>) שמיד נסביר אותם.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Excuse the pun (for the name...)</span></span>
@@ -581,7 +581,7 @@ $ island_Torgersen  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> penguin_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>לפעמים מודל הוא “קופסה שחורה” ולא ניתן להתעמק בו (לדוגמה, מודלי למידה עמוקה, ובפרט מודלי שפה כגון ChatGPT הם קופסה שחורה, בהיבט שקשה לחקור את המודל אך קל לחזות בתוצאותיו).<br>
-עם זאת, לעיתים ההתעמקות בתכונות של מודל יכולה לשפוך אור על הקשר שבין המשתנים (כפי שראינו ב<a href="07-linear-regression.html" class="quarto-xref">פרק&nbsp;<span>7</span></a>. לשם כך עומדות לרשותנו פונקציות שונות המאפשרות לחלץ את המודל וללמוד את תכונותיו. נדגים חקירה של מודל הרגרסיה הלוגיסטית ושל מודל ה-Boosting.</p>
+עם זאת, לעיתים ההתעמקות בתכונות של מודל יכולה לשפוך אור על הקשר שבין המשתנים (כפי שראינו ב<a href="#sec-linear-regression" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-linear-regression</span></a>. לשם כך עומדות לרשותנו פונקציות שונות המאפשרות לחלץ את המודל וללמוד את תכונותיו. נדגים חקירה של מודל הרגרסיה הלוגיסטית ושל מודל ה-Boosting.</p>
 <section id="חקירה-של-מודל-הרגרסיה-הלוגיסטית" class="level3" data-number="8.6.1">
 <h3 data-number="8.6.1" class="anchored" data-anchor-id="חקירה-של-מודל-הרגרסיה-הלוגיסטית"><span class="header-section-number">8.6.1</span> חקירה של מודל הרגרסיה הלוגיסטית</h3>
 <div class="cell">
@@ -1159,7 +1159,7 @@ Number of Fisher Scoring iterations: 7</code></pre>
 </ol>
 </div>
 </div>
-<p>מומלץ להעמיק בתכונות הרגרסיה הלוגיסטית, לדוגמה בספר של <span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="references.html#ref-hastie2009" role="doc-biblioref">2009</a>)</span>.<br>
+<p>מומלץ להעמיק בתכונות הרגרסיה הלוגיסטית, לדוגמה בספר של <span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie2009" role="doc-biblioref">2009</a>)</span>.<br>
 נדגים כעת כיצד אנו מחלצים את מודל ה-boosting ולומדים ממנו על השפעת המשתנים על מין הפינגויין.</p>
 </section>
 <section id="חקירה-של-מודל-ה-boosting" class="level3" data-number="8.6.2">
@@ -1452,7 +1452,7 @@ Computational engine: ranger </code></pre>
 <section id="טעות-מסוג-ראשון-וטעות-מסוג-שני" class="level3" data-number="8.8.2">
 <h3 data-number="8.8.2" class="anchored" data-anchor-id="טעות-מסוג-ראשון-וטעות-מסוג-שני"><span class="header-section-number">8.8.2</span> טעות מסוג ראשון וטעות מסוג שני</h3>
 <p>מקובל להגדיר טעות מסוג ראשון (type I error) כמקרה שסווג כנכון למרות שאינו נכון, וטעות מסוג שני (type II error) כמקרה שסווג כלא נכון, למרות שהינו נכון.</p>
-<p>ניתן להסביר את ההגדרות של <em>סווג כנכון</em> או של <em>סווג כלא נכון</em>, באופן מדויק יותר אם משאילים את המושגים הסטטיסטיים עליהם דנו בפרק <a href="06-hypothesis-tests.html" class="quarto-xref"><span>6</span></a>, כאשר: <span class="math display">\[
+<p>ניתן להסביר את ההגדרות של <em>סווג כנכון</em> או של <em>סווג כלא נכון</em>, באופן מדויק יותר אם משאילים את המושגים הסטטיסטיים עליהם דנו בפרק <a href="#sec-hypothesis-tests" class="quarto-xref"><span class="quarto-unresolved-ref ref-noprefix">sec-hypothesis-tests</span></a>, כאשר: <span class="math display">\[
 \operatorname{Type-I\ Error}=Pr\left(\operatorname{Reject }H_0|H_0\right)
 \]</span></p>
 <p><span class="math display">\[
@@ -1745,7 +1745,7 @@ Prediction female male
 </section>
 <section id="קריאה-נוספת" class="level2" data-number="8.11">
 <h2 data-number="8.11" class="anchored" data-anchor-id="קריאה-נוספת"><span class="header-section-number">8.11</span> קריאה נוספת</h2>
-<p>לצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את <span class="citation" data-cites="kuhn2022tidy">(<a href="references.html#ref-kuhn2022tidy" role="doc-biblioref">Kuhn and Silge 2022</a>)</span> המפרט על השימוש בחבילת <code>tidymodels</code> עם דוגמאות רבות. הספר <a href="https://www.tmwr.org/">זמין באינטרנט</a>.</p>
+<p>לצורך קריאה והעמקה נוספת בתהליך המידול, מומלץ לקרוא את <span class="citation" data-cites="kuhn2022tidy">(<a href="#ref-kuhn2022tidy" role="doc-biblioref">Kuhn and Silge 2022</a>)</span> המפרט על השימוש בחבילת <code>tidymodels</code> עם דוגמאות רבות. הספר <a href="https://www.tmwr.org/">זמין באינטרנט</a>.</p>
 <div class="end-page">
 
 <div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
@@ -1753,7 +1753,7 @@ Prediction female male
 </div>
 </div>
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-hastie2009" class="csl-entry" role="listitem">
 Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning</em>. Springer New York. <a href="https://doi.org/10.1007/978-0-387-84858-7">https://doi.org/10.1007/978-0-387-84858-7</a>.
 </div>
