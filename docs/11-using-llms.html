@@ -239,8 +239,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">בעמוד זה</h2>
+   
+  <ul>
+  <li><a href="#התקנת-ellmer" id="toc-התקנת-ellmer" class="nav-link active" data-scroll-target="#התקנת-ellmer"><span class="header-section-number">11.1</span> התקנת <code>ellmer</code></a></li>
+  <li><a href="#הגדרת-המפתחות" id="toc-הגדרת-המפתחות" class="nav-link" data-scroll-target="#הגדרת-המפתחות"><span class="header-section-number">11.2</span> הגדרת המפתחות</a></li>
+  <li><a href="#הפעלת-צט---דוגמה" id="toc-הפעלת-צט---דוגמה" class="nav-link" data-scroll-target="#הפעלת-צט---דוגמה"><span class="header-section-number">11.3</span> הפעלת צ’ט - דוגמה</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -275,16 +283,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>AWS עם תשתית מודלים בשירות שנקרא (Bedrock)</li>
 </ul>
 <p>הרשימה ממשיכה, גדולה מאוד, וגדלה מיום ליום. מרבית המודלים לעיל הם מודלים מבוססים צ’ט (נותנים תחושה של שיחה). בפועל מה שהמודלים עושים זה לתת חיזוי למילה הבאה בכל פעם, וכך הם יוצרים משפטים, שהופכים לפסקאות, ולטקסטים מורכבים. ישנם כמובן מודלים שעושים משימות שונות כמו ליצור תמונה או סרט.</p>
-<p>ישנה תיאוריה ופרקטיקה נרחבת על אופן השימוש, ההפעלה, וההתאמה של מודלים לצרכים שונים. אחד מהמקורות</p>
-<p>בפרק זה נדגים את השימוש בחבילה שנקראת <code>ellmer</code> ומאפשרת להתממשק מתוך R למנעד של מודלים נפוצים. נדגים את השימוש בחבילה באמצעות מודלי Open AI, אך באופן דומה ניתן להשתמש בהתממשקות עם מודלים של ספקים אחרים.</p>
-<p>בעת כתיבת שורות אלו, החבילה אינה זמינה ב-CRAN ועל מנת להתקינה יש להשתמש בחבילת <code>remotes</code> באופן הבא:</p>
+<section id="התקנת-ellmer" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="התקנת-ellmer"><span class="header-section-number">11.1</span> התקנת <code>ellmer</code></h2>
+<p>ישנה תיאוריה ופרקטיקה נרחבת על אופן השימוש, ההפעלה, וההתאמה של מודלים לצרכים שונים. בפרק זה נדגים את השימוש בחבילה שנקראת <code>ellmer</code> ומאפשרת להתממשק מתוך R למנעד של מודלים נפוצים. נדגים את השימוש בחבילה באמצעות מודלי Open AI, אך באופן דומה ניתן להשתמש בהתממשקות עם מודלים של ספקים אחרים.</p>
+<p>נציין גם שטכניקה נוספת אפשרית היא להשתמש בחבילת <code>openai</code> של R, ואפשר גם להשתמש בחבילות Python ייעודיות על ידי התממשקות של חבילת <code>reticulate</code> שאותה ראינו בפרק הקודם.</p>
+<p>כאמור, נמשיך את ההדגמה בחבילת <code>ellmer</code>. בעת כתיבת שורות אלו, החבילה אינה זמינה ב-CRAN ועל מנת להתקינה יש להשתמש בחבילת <code>remotes</code> באופן הבא:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'tidyverse/ellmer'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># When the package will be deployed to CRAN use instead:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('ellmer')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('ellmer')</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="end-page">
-
+</section>
+<section id="הגדרת-המפתחות" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="הגדרת-המפתחות"><span class="header-section-number">11.2</span> הגדרת המפתחות</h2>
+<p>לפני שאנחנו מתחילים לעבוד עם החבילה, מומלץ לפתוח קובץ עם סיומת <code>.Renviron</code> בתיקיית העבודה, שיכיל את המפתחות הנדרשים להפעלה של ה-API. ברגע ש-R עולה הוא יקרא את המשתנה לתוך משתנה סביבה.</p>
+<p>הנה דוגמה לקובץ <code>.Renviron</code> שמכיל מפתח לשימוש ב-OpenAI:</p>
+<pre><code>OPENAI_API_KEY = "***** ADD YOUR SECRET OPENAI KEY HERE *****"</code></pre>
+<p>ניתן להוסיף מפתחות לשירותים נוספים בשורה חדשה. את ערכיהם של המשתנים הגלובליים ניתן לקרוא על ידי שימוש בפקודה <code>Sys.getenv("OPENAI_API_KEY")</code> אבל בפועל לא תצטרכו כי הפקודות של החבילה יודעות לחפש אותם לבד, ברגע שהם נקראו לסביבה.</p>
+<p>כדי להשיג מפתח לשימוש, עליכם לקחת אותו מממשק השליטה של השירות שבו אתם משתמשים (לדוגמה ב-OpenAI צריך לעשות הרשמה קצרה כמפתח developer ולתת מספר כרטיס אשראי. בדרך מקבלים סכום התחלתי מרשים של קרדיטים לשימוש חינמי).</p>
+<p>אם אתם משתמשים ב-git, מומלץ לוודא שיש לכם גם קובץ <code>.gitignore</code>, ושהוא מכיל שורה שכתוב בה <code>.Renviron</code> על מנת שהקוד הסודי לא יעלה ל-repository בטעות (וזה במיוחד חשוב אם אתם עובדים על repository ציבורי, אחרת עלולים להשתמש במפתחות שלכם ותחויבו על השימושים הללו).</p>
+<p>כעת נציג דוגמה להפעלת צ’ט ולאחר מכן נסביר בפירוט על הפקודות של החבילה.</p>
+</section>
+<section id="הפעלת-צט---דוגמה" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="הפעלת-צט---דוגמה"><span class="header-section-number">11.3</span> הפעלת צ’ט - דוגמה</h2>
+<p>היופי שבחבילת <code>ellmer</code> זה שהיא מייצרת ממשק מאוד נוח לצ’ט, והיא מנהלת את היסטורית השיחה עבורנו. לדוגמה, הנה שתי דוגמאות, אחת שכוללת היסטורית שיחה והשניה ללא היסטוריה.</p>
+<p>בשתי הדוגמאות אנחנו מאתחלים את הצ’ט עם פרומפט בסיסי (אפילו בסיסי מדי) שאומר למודל לענות כמיטב יכולתו. ההבדל בין הדוגמאות הוא שבצד ימין הוספנו הנחיה “מעכשיו אתה קפטן פיקארד” ואז שאלנו אותו מה התאריך, ולעומת זאת בצד שמאל ישר שאלנו אותו מה התאריך.</p>
+<p>בשני המקרים השאלה של “מה התאריך” עומדת, לכאורה, בפני עצמה - כלומר בפקודה נפרדת, אבל ניתן לראות שהאובייקט <code>chat</code> מכיל את ההיסטוריה, ולכן בצד ימין עונה כמו קפטן פיקארד. ה-API כמובן לא מחובר לשעון כלשהו ולכן לא עונה בפועל על השאלה.</p>
+<p>כל הרצה נוספת של <code>chat$chat()</code> מעלה למעשה את כל ההיסטוריה של השאלות ושל התשובות שניתנו בחזרה ל-API שעמו אנחנו מתקשרים וכך התשובה תמיד שומרת על ההקשר הרלוונטי של השיחה.</p>
+<div class="side-by-side">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chat_openai</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Answer the best you can"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using model = "gpt-4o".</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"מעכשיו אתה קפטן Jean-Luc Picard"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#בכבוד רב, אני מקבל את תפקידי כקפטן ז'אן-לוק</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># פיקארד ומברך את כולכם על סיפון האנטרפרייז. </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># האם יש בקשות או שאלות שברצונכם לדון בהן?</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># "Make it so!"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"איזה יום היום?"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#לצערי, אני לא יכול לגשת למידע בזמן אמת </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># או לדעת את התאריך הנוכחי. </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># אבל תמיד אפשר להיעזר בקומוניקטור שלך </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># או בכל לוח שנה זמין. אם יש עוד משהו שאוכל</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># אנא אל תהסס לשאול!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">chat_openai</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Answer the best you can"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using model = "gpt-4o".</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"איזה יום היום?"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#אני מצטער, אבל אין לי את האפשרות </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#לבדוק את התאריך הנוכחי.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#אנא בדוק זאת באמצעות </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#מכשיר אחר או לוח שנה.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 
 <div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
@@ -292,6 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>:::</p>
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
