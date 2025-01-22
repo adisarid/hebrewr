@@ -312,9 +312,13 @@ at the top, and the text appears to be related to using R.
 
 השתמשו באחת מהפונקציות שפועלות על גרפים/תמונות על מנת להסביר את אחד מהתרשימים שהוצגו [בפרק -@sec-ggplot2]. באפשרותכם להזין ישירות url מאתר הספר או לשחזר תרשים מסוים באמצעות קוד ולהשתמש בפונקציה `content_image_plot`.
 
-באפשרותכם להשתמש בקישור הבא: https://www.hebrewr.co.il/04-visualizations-ggplot2_files/figure-html/pengions%20vis%203%20with%20linear%20regression%20lines-1.png
+באפשרותכם להשתמש בקישור הבא:
+
+https://www.hebrewr.co.il/04-visualizations-ggplot2_files/figure-html/pengions%20vis%203%20with%20linear%20regression%20lines-1.png
 
 שמוביל לתרשים:
+
+![](https://www.hebrewr.co.il/04-visualizations-ggplot2_files/figure-html/pengions%20vis%203%20with%20linear%20regression%20lines-1.png)
 :::
 
 ::: callout-note
