@@ -339,7 +339,7 @@ window.Quarto = {
 
 <p>בפרק זה נדון באחד המודלים הבסיסיים בסטטיסטיקה: רגרסיה לינארית.</p>
 <p>רגרסיה (regression) היא שם כולל למודלים אשר מתאימים בין משתנים בלתי תלויים (המסומנים ב-x בדרך כלל, ונקראים גם משתנים מסבירים), לבין משתנה תלוי (המסומן ב-y בדרך כלל). רגרסיה לינארית הינה סוג מסוים של רגרסיה המניח קשר לינארי בין המשתנה התלוי לבין המשתנים הבלתי תלויים.</p>
-<p>כאמור, בפרק זה איננו מתעמקים בתיאוריה הסטטיסטית, ולצורך העמקת הרקע הסטטיסטי שנוגע לבעיות רגרסיה, מומלץ לעיין בספר מתאים <span class="citation" data-cites="walpole1993probability">(לדוגמה <a href="#ref-walpole1993probability" role="doc-biblioref">Walpole et al. 1993</a>)</span>. עם זאת, נציין שמודל הרגרסיה הלינארית מוצא את מקדמי ה-<span class="math inline">\(\beta\)</span> שקושרת בין המשתנה התלוי למשתנים המסבירים: <span class="math display">\[
+<p>כאמור, בפרק זה איננו מתעמקים בתיאוריה הסטטיסטית, ולצורך העמקת הרקע הסטטיסטי שנוגע לבעיות רגרסיה, מומלץ לעיין בספר מתאים <span class="citation" data-cites="walpole1993probability">(לדוגמה <a href="references.html#ref-walpole1993probability" role="doc-biblioref">Walpole et al. 1993</a>)</span>. עם זאת, נציין שמודל הרגרסיה הלינארית מוצא את מקדמי ה-<span class="math inline">\(\beta\)</span> שקושרת בין המשתנה התלוי למשתנים המסבירים: <span class="math display">\[
 y=\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p + \epsilon
 \]</span></p>
 <p>המקדמים שמביא מודל הרגרסיה הלינארית מביאים למינימום את <strong>סכום ריבועי השגיאות</strong> אשר נמחיש בהמשך הפרק (בנוסחה לעיל <span class="math inline">\(\epsilon\)</span> מסמן את שגיאת המודל). התחזיות שהמודל מפיק מסומנות ב-<span class="math inline">\(\hat{y}_i\)</span>, והממוצע של כלל תצפיות הערך <span class="math inline">\(y\)</span> מסומן ב-<span class="math inline">\(\bar{y}\)</span>.</p>
@@ -356,7 +356,7 @@ Note
 <p>באופן כללי נציין שיש אבחנה בין בעיות רגרסיה בהן המשתנה התלוי מקבל ערכים רציפים (ערך ממשי), לבין בעיות סיווג (Classification), בהם המשתנה התלוי מקבל ערך קטגוריאלי. נדון באבחנה זו ובדוגמאות נוספות של מודלים בפרק הבא.</p>
 </div>
 </div>
-<p>נדגים שימוש בגרסיה לינארית באמצעות הדאטה שעמו עבדנו עד כה, שבו תצפיות של פינגוינים (<code>palmerpenguins::penguins</code>). כפי שראינו בפרקים קודמים (ראו לדוגמה ב<a href="#sec-ggplot2" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-ggplot2</span></a> תחת “מיפויים נוספים”), הקשרים שבין המשתנים שבדאטה תלויים גם בסוג הפינגויין, ולכן נתחיל בהסתכלות על הקשר שבין עומק המקור לאורך המקור בזן Adelie בלבד.</p>
+<p>נדגים שימוש בגרסיה לינארית באמצעות הדאטה שעמו עבדנו עד כה, שבו תצפיות של פינגוינים (<code>palmerpenguins::penguins</code>). כפי שראינו בפרקים קודמים (ראו לדוגמה ב<a href="04-visualizations-ggplot2.html" class="quarto-xref">פרק&nbsp;<span>4</span></a> תחת “מיפויים נוספים”), הקשרים שבין המשתנים שבדאטה תלויים גם בסוג הפינגויין, ולכן נתחיל בהסתכלות על הקשר שבין עומק המקור לאורך המקור בזן Adelie בלבד.</p>
 <p>התרשים הבא מציג את פיזור התצפיות בין עומק מקור לאורך המקור, וכמו כן מציג רגרסיה לינארית “פשוטה” (כלומר רגרסיה שבה יש משתנה בלתי תלוי יחיד).</p>
 <p>המשתנה התלוי בציר x (אורך המקור), והמשתנה הבלתי-תלוי בציר y (עומק המקור). במקרה זה הבחירה במה יהיה המשתנה התלוי ומה המשתנה הבלתי תלוי היא בחירה שרירותית, אז בדרך כלל זהו אינו המצב (ראו הסבר במסגרת שלאחר התרשים).</p>
 <p>את קו הרגרסיה אנחנו מוסיפים באמצעות הפקודה <code>stat_smooth(method="lm")</code> , אשר מוסיפה לתרשים פיזור החלקה, במקרה זה בשיטה של רגרסיה לינארית (lm זה קיצור של linear model). הרקע האפור מסביב לקו הלינארי של הרגרסיה מהווה רווח בר סמך למודל הרגרסיה (מיד נדון במשמעויות שלו).</p>
@@ -499,7 +499,7 @@ Note
 <p>כעת נבחן האם הנחות מודל הרגרסיה תקפות עבור מודל הרגרסיה שבנינו.</p>
 <section id="התפלגות-נורמלית" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="התפלגות-נורמלית"><span class="header-section-number">7.3.1</span> התפלגות נורמלית</h3>
-<p>כפי שראינו ב<a href="#sec-hypothesis-tests" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-hypothesis-tests</span></a>, עומדים לרשותנו שני כלים על מנת לבחון התפלגות נורמלית: ויז’ואליזציה (כדוגמת q-q plot), ומבחן השערות (כדוגמת טיב התאמה או קולמוגורוב-סמירנוב). נשתמש ראשית בהמחשה ויזואלית ולאחר מכן במבחן סטטיסטי.</p>
+<p>כפי שראינו ב<a href="06-hypothesis-tests.html" class="quarto-xref">פרק&nbsp;<span>6</span></a>, עומדים לרשותנו שני כלים על מנת לבחון התפלגות נורמלית: ויז’ואליזציה (כדוגמת q-q plot), ומבחן השערות (כדוגמת טיב התאמה או קולמוגורוב-סמירנוב). נשתמש ראשית בהמחשה ויזואלית ולאחר מכן במבחן סטטיסטי.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">resid =</span> adelie_lm<span class="sc">$</span>residuals) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> resid)) <span class="sc">+</span> </span>
@@ -1187,7 +1187,7 @@ F-statistic: 23.58 on 4 and 141 DF,  p-value: 6.06e-15</code></pre>
 <section id="אינטראקציה-של-משתנים" class="level3" data-number="7.5.1">
 <h3 data-number="7.5.1" class="anchored" data-anchor-id="אינטראקציה-של-משתנים"><span class="header-section-number">7.5.1</span> אינטראקציה של משתנים</h3>
 <p>רגרסיה לינארית מניחה מודל לינארי (סכום של משתנים המוכפלים במקדמים), אך בפועל ניתן להשתמש בה גם על מנת לבטא קשרים שאינם לינאריים. לדוגמה מכפלה של משתנים, חזקות, ועוד קשרים פונקציונליים. התאמה זו ניתן לבצע על ידי הגדרה של משתנים נוספים שהם טרנספורמציה של משתנים קיימים, או לעיתים על ידי שימוש בארגומנט ה-<code>formula</code> בפונקציה <code>lm</code>. אחת הדוגמאות למקרים כאלו היא אינטראקציה בין משתנים, קרי כאשר היחס בין משתנה תלוי למשתנים הבלתי תלויים תלוי במכפלה בין המשתנים הבלתי תלויים.</p>
-<p>ניתן למצוא דוגמה לאינטראקציה גם בנתונים של הפינגויינים, ולמעשה, ראינו דוגמה דומה בפרק קודם שעסק בויז’ואליזציות (<a href="#sec-ggplot2" class="quarto-xref">פרק&nbsp;<span class="quarto-unresolved-ref ref-noprefix">sec-ggplot2</span></a>). נמחיש זאת באמצעות התרשים הבא שמציג את הקשר בין אורך הכנף, סוג הפינגויין, והשפעתם על עומק המקור.</p>
+<p>ניתן למצוא דוגמה לאינטראקציה גם בנתונים של הפינגויינים, ולמעשה, ראינו דוגמה דומה בפרק קודם שעסק בויז’ואליזציות (<a href="04-visualizations-ggplot2.html" class="quarto-xref">פרק&nbsp;<span>4</span></a>). נמחיש זאת באמצעות התרשים הבא שמציג את הקשר בין אורך הכנף, סוג הפינגויין, והשפעתם על עומק המקור.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">y =</span> bill_depth_mm, <span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span> </span>
@@ -1257,7 +1257,7 @@ F-statistic: 214.6 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-walpole1993probability" class="csl-entry" role="listitem">
 Walpole, Ronald E, Raymond H Myers, Sharon L Myers, and Keying Ye. 1993. <em>Probability and Statistics for Engineers and Scientists</em>. Vol. 5. Macmillan New York.
 </div>

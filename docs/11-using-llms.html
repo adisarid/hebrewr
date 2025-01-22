@@ -254,6 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ניתוח-של-תרשימים" id="toc-ניתוח-של-תרשימים" class="nav-link" data-scroll-target="#ניתוח-של-תרשימים"><span class="header-section-number">11.4.3</span> ניתוח של תרשימים</a></li>
   </ul></li>
   <li><a href="#תרגילים" id="toc-תרגילים" class="nav-link" data-scroll-target="#תרגילים"><span class="header-section-number">11.5</span> תרגילים</a></li>
+  <li><a href="#סיכום" id="toc-סיכום" class="nav-link" data-scroll-target="#סיכום"><span class="header-section-number">11.6</span> סיכום</a></li>
   </ul>
 </nav>
     </div>
@@ -294,12 +295,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="11.1" class="anchored" data-anchor-id="התקנת-ellmer"><span class="header-section-number">11.1</span> התקנת <code>ellmer</code></h2>
 <p>ישנה תיאוריה ופרקטיקה נרחבת על אופן השימוש, ההפעלה, וההתאמה של מודלים לצרכים שונים. בפרק זה נדגים את השימוש בחבילה שנקראת <code>ellmer</code> ומאפשרת להתממשק מתוך R למנעד של מודלים נפוצים. נדגים את השימוש בחבילה באמצעות מודלי Open AI, אך באופן דומה ניתן להשתמש בהתממשקות עם מודלים של ספקים אחרים.</p>
 <p>נציין גם שטכניקה נוספת אפשרית היא להשתמש בחבילת <code>openai</code> של R, ואפשר גם להשתמש בחבילות Python ייעודיות על ידי התממשקות של חבילת <code>reticulate</code> שאותה ראינו בפרק הקודם.</p>
-<p>כאמור, נמשיך את ההדגמה בחבילת <code>ellmer</code>. בעת כתיבת שורות אלו, החבילה אינה זמינה ב-CRAN ועל מנת להתקינה יש להשתמש בחבילת <code>remotes</code> באופן הבא:</p>
+<p>כאמור, נמשיך את ההדגמה בחבילת <code>ellmer</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'tidyverse/ellmer'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># When the package will be deployed to CRAN use instead:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('ellmer')</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ellmer'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="הגדרת-המפתחות" class="level2" data-number="11.2">
@@ -539,8 +538,60 @@ at the top, and the text appears to be related to using R.</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <p>השתמשו באחת מהפונקציות שפועלות על גרפים/תמונות על מנת להסביר את אחד מהתרשימים שהוצגו <a href="04-visualizations-ggplot2.html" class="quarto-xref">בפרק&nbsp;<span>4</span></a>. באפשרותכם להזין ישירות url מאתר הספר או לשחזר תרשים מסוים באמצעות קוד ולהשתמש בפונקציה <code>content_image_plot</code>.</p>
+<p>באפשרותכם להשתמש בקישור הבא: https://www.hebrewr.co.il/04-visualizations-ggplot2_files/figure-html/pengions%20vis%203%20with%20linear%20regression%20lines-1.png</p>
+<p>שמוביל לתרשים:</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: חילוץ מידע ממחרוזות
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>השתמשו ב-LLM על מנת לחלץ את שם היצרן מתוך רשימת הרכבים הבאה (המודל צריך להוריד את שם המדינה ולהשאיר רק את שם היצרן):</p>
+<pre><code>car_models &lt;- c("סוזוקי-יפן", "פורד ספרד", "ב מ וו בריטניה",  "טויוטה ארהב", "יונדאי צ'כיה", "יונדאי טורקיה",  "פיאט פולין", "אופל-ספרד", "דאציה מרוקו",  "פולקסווגן פורט", "רנו ד.קוריאה", "מזדה תאילנד",  "אופל פולין", "גיי.איי.סי סין", "סוזוקי תאילנד",  "פורד-בלגיה", "אודי מכסיקו", "פורד רומניה",  "פורשה סלובקיה", "מיצובישי הולנד", "דימלרקריזלר-ספ",  "פיאט סרביה", "קרייזלר מכסיקו", "פורד בריטניה",  "טויוטה בלגיה", "קיי גי מוביליט", "האמר ג.מ. דרום",  "פיאט פורטוגל", "ב מ וו מקסיקו", "לנציה פולין",  "גיאיוואן סין", "סנטרו סין", "טויוטה צרפת",  "טויוטה יפן", "וולבו שוודיה", "סיאט ספרד",  "מיצובישי תאילנ", "מקסוס סין", "הונדה בריטניה",  "מרוטי-סוזוקי", "לנצ'יה", "מ.ג סין", "מזארטי איטליה",  "קאדילאק מכסיקו", "הונדה מקסיקו", "סיטרואן סלובק",  "מרצדס בנץ הונג", "אורה סין", "פיאט תאילנד",  "ב מ וו אוסטריה")</code></pre>
+<p>נסו זאת בשתי שיטות:</p>
+<p>(1) על ידי הרצה אחת של המודל.</p>
+<p>(2) על ידי הרצה של המודל בשלבים (בכל פעם שם אחד מהרשימה).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+תרגיל: ניתוח סנטימנט
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>השתמשו ב-LLM על מנת לנתח את הסנטימנט של כל אחת מההערות המילוליות הבאות.<br>
+התוצר הנדרש הוא טבלה שבה שתי עמודות. עמודה אחת היא ההערה עצמה, ועמודה שניה היא הסנטימנט - משתנה מסוג factor בעל שלושה ערכים: Positive, Neutral, Negative.</p>
+<pre><code>comments &lt;- c(
+  "המכשיר הזה עובד מצוין ואנחנו מאוד מרוצים ממנו.",
+  "למכשיר הזה יש הרבה תקלות ולפעמים הוא פשוט מפסיק לעבוד.",
+  "המכשיר לא רע, אבל יש לו הרבה מקום לשיפור.",
+  "אני ממש אוהב את העיצוב של המקרר החדש הזה.",
+  "המכונת כביסה הזו לוקחת הרבה זמן לסיים מחזור עבודה.",
+  "המוצר הזה ענה על כל הציפיות שלי ואני ממליץ עליו בחום.",
+  "השואב אבק עושה עבודה סבירה, אבל יש לו כוח שאיבה נמוך.",
+  "המדיח כלים הזה שקט ויעיל ואני ממש מרוצה ממנו.",
+  "המאוורר לא מפיק הרבה רוח וזה די מאכזב.",
+  "הטוסטר עובד טוב, אך מחמם לאט מדי לטעמי."
+)</code></pre>
+<p>נסו זאת באמצעות שני מודלים שונים, והשוו בין תוצאותיהם.</p>
+</div>
+</div>
+</section>
+<section id="סיכום" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="סיכום"><span class="header-section-number">11.6</span> סיכום</h2>
+<p>מודלי שפה גדולים הם כלי עוצמתי ומהפכני שמספק יכולות יוצאות דופן לאוטומציה, חיזוי וניתוח טקסט, ומאפשר גישה חדשה לשיפור תהליכי עבודה. בפרק זה סקרנו את היכולות העיקריות של מודלים אלו, הדגמנו את השימוש בחבילת <strong>ellmer</strong> לעבודה עם מודלים מתוך R, והסברנו את עקרונות השימוש במפתחות API ובניהול היסטוריית שיחות.</p>
+<p>השימוש במודלים כמו אלו של OpenAI או Anthropic מדגים כיצד ניתן לשלב בינה מלאכותית בתהליכי עבודה יומיומיים, תוך שמירה על גמישות והתאמה אישית לצרכים שונים. עם התפתחות המהירה של התחום, המודלים הללו ממשיכים להוות כלי מרכזי לעבודה עם דאטה, ניתוח טקסט, ופתרון בעיות מורכבות.</p>
+<p>בנוסף, הדגשנו את חשיבות ניהול המידע בצורה מאובטחת ושמירה על פרקטיקות עבודה נכונות, כולל שימוש בקבצי <code>.Renviron</code> ו-<code>.gitignore</code>.</p>
 
 <div class="hidden quarto-markdown-envelope-contents" data-render-id="footer-center-<strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href='https://www.sarid-ins.com'>מכון שריד</a> ">
 <p><strong>המדריך העברי למשתמש ב-R</strong> נכתב על ידי עדי שריד בהוצאת <a href="https://www.sarid-ins.com">מכון שריד</a></p>
