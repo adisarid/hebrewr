@@ -22,3 +22,8 @@ figures
 /.quarto/
 # Ignores the .Renviron file
 .Renviron
+
+# Ignore temporary word files
+word/~$*
+*.ini
+word/*.tmp
